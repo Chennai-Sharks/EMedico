@@ -1,0 +1,22 @@
+{
+  "name": "emedico",
+  "version": "1.0.0",
+  "description": "In Progress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chennai-Sharks/EMedico.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chennai-Sharks/EMedico/issues"
+  },
+  "homepage": "https://github.com/Chennai-Sharks/EMedico#readme",
+  "dependencies": {
+    "node": "^15.12.0"
+  }
+}
