@@ -1,3 +1,4 @@
+import 'package:app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:url_strategy/url_strategy.dart';
@@ -15,11 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        body: Container(
-          child: Text('hello world'),
-        ),
-      ),
+      home: HomeScreen()
     );
   }
 }
