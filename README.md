@@ -4,9 +4,9 @@ In Progress
 Visit us back again and hopefully we've finished the project by then xD
 Or else look at our other works. Oh wait there ain't any lol
 
-Api blueprint 
+## Api blueprint 
 
-Adding a new patient :
+### Adding a new patient :
 
 route: '/create'
 GET '/:dpid' => adds a new patient under the doctor's document.
@@ -20,7 +20,7 @@ returns pat_name and mongoID( to be used when further data to medical data colle
 }
 
 ----------------------------------
-Retrieving patient info: 
+### Retrieving patient info: 
 
 route: '/read'
 GET '/:dpid' => returns corresponding mongoID from doctor's document. 
@@ -33,7 +33,7 @@ GET '/:dpid' => returns corresponding mongoID from doctor's document.
 GET '/readall' => returns the list of patients and their dpid under the doctors A/c
 
 ----------------------------------
-Updating patient info: 
+### Updating patient info: 
 to update the data in a section, the data is from obtained using '/read/:mongoID'
 and the whole section is overwritten.
 
@@ -45,7 +45,7 @@ route : '/update'
 }
 
 ----------------------------------
-Deleting patient info:
+### Deleting patient info:
 
 route: '/delete'
 {
