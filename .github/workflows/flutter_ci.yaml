@@ -23,8 +23,8 @@ jobs:
         working-directory: app
         run: flutter pub get
       - name: Build for Android
-        working-directory: mobile
+        working-directory: app
         run: flutter build apk --split-per-abi
       - name: Build for IOS
-        working-directory: mobile
+        working-directory: app
         run: flutter build ios --release --no-codesign
