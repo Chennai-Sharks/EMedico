@@ -1,8 +1,10 @@
+import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
+// import 'package:url_strategy/url_strategy.dart';
+
+import 'package:app/providers/auth_provider.dart';
 import 'package:app/screens/auth_screen.dart';
 import 'package:app/screens/home_screen.dart';
-import 'package:flutter/material.dart';
-
-// import 'package:url_strategy/url_strategy.dart';
 
 void main() {
   // setPathUrlStrategy();
@@ -25,13 +27,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'EMedico',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: MaterialColor(0xFF6C63FF, color),
-      ),
-      home: AuthScreen(),
+    return ChangeNotifierProvider(
+      create: (_) => AuthProvider(),
+      builder: (context, _) {
+        print(Provider.of<AuthProvider>(context).isAuth);
+        return Consumer<AuthProvider>(
+          builder: (context, auth, _) {
+            print(auth.isAuth);
+            return MaterialApp(
+              title: 'EMedico',
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(
+                primarySwatch: MaterialColor(0xFF6C63FF, color),
+                primaryColor: MaterialColor(0xFF6C63FF, color),
+                backgroundColor: MaterialColor(0xFF6C63FF, color),
+              ),
+              home: auth.isAuth ? HomeScreen() : AuthScreen(),
+            );
+          },
+        );
+      },
     );
   }
 }
