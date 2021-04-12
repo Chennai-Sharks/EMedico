@@ -20,6 +20,6 @@ app.use(express.json());
 app.use(cors());
 
 //Route Middlewares
-app.use('/api/user', authRoute);
+app.use('/api/users', authRoute);
 
 app.listen(3000, () => console.log('Server is running'));
