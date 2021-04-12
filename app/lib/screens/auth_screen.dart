@@ -57,7 +57,10 @@ class AuthScreen extends StatelessWidget {
               return AuthScreenTemplate(
                 givenHeight: height * 0.8,
                 givenWidth: width * 0.6,
-                givenChild: Row(),
+                givenChild: AuthForms(
+                  isMobile: true,
+                  isTablet: false,
+                ),
               );
             } else
               return AuthScreenTemplate(
@@ -65,7 +68,7 @@ class AuthScreen extends StatelessWidget {
                 givenWidth: width * 0.85,
                 givenChild: AuthForms(
                   isMobile: true,
-                  isTablet: false,
+                  isTablet: true,
                 ),
               );
           },

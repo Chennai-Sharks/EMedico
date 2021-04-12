@@ -42,6 +42,27 @@ class _AuthFormsState extends State<AuthForms> {
     );
   }
 
+  Widget SignInorUpText() {
+    return Container(
+      alignment: Alignment.center,
+      margin: widget.isMobile
+          ? const EdgeInsets.only(
+              top: 15,
+              bottom: 10,
+            )
+          : null,
+      child: AutoSizeText(
+        isSignIn ? 'Login' : 'Sign Up',
+        style: GoogleFonts.poppins(
+          fontSize: widget.isMobile ? 30 : 35,
+          fontWeight: FontWeight.bold,
+        ),
+        textAlign: TextAlign.center,
+        maxLines: 1,
+      ),
+    );
+  }
+
   Widget textFeildWrapper({Widget? widget, required bool isMobile, required bool isTablet}) {
     return Container(
       margin: isMobile
@@ -95,24 +116,11 @@ class _AuthFormsState extends State<AuthForms> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            alignment: Alignment.center,
-            margin: widget.isMobile
-                ? const EdgeInsets.only(
-                    top: 15,
-                    bottom: 10,
-                  )
-                : null,
-            child: AutoSizeText(
-              isSignIn ? 'Login' : 'Sign Up',
-              style: GoogleFonts.poppins(
-                fontSize: widget.isMobile ? 30 : 35,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-              maxLines: 1,
-            ),
-          ),
+          widget.isMobile
+              ? SignInorUpText()
+              : Expanded(
+                  child: SignInorUpText(),
+                ),
           Expanded(
             flex: widget.isMobile ? 1 : 2,
             child: Container(
@@ -121,7 +129,7 @@ class _AuthFormsState extends State<AuthForms> {
                 key: _formKey,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: widget.isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     isSignIn
