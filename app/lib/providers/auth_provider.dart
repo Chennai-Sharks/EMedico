@@ -56,6 +56,7 @@ class AuthProvider with ChangeNotifier {
         );
         closeLoading();
         notifyListeners();
+        return;
       }
       // print(response.body);
       SharedPreferences pref = await SharedPreferences.getInstance();
