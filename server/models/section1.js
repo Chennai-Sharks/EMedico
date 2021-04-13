@@ -86,7 +86,7 @@ const section1Schema = new mongoose.Schema({
         "treatments": {
           type: String,
         },
-        "aggrevatingFactors": {
+        "aggravatingFactors": {
           type: String,
         },
         "RelievingFactors": {
@@ -120,3 +120,5 @@ const section1Schema = new mongoose.Schema({
     type: String
   }
 });
+
+module.exports = mongoose.model('Section1', section1Schema);
