@@ -9,6 +9,8 @@ import 'package:http/http.dart' as http;
 import 'package:velocity_x/velocity_x.dart' show VxToast, VxToastPosition;
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// [Implemenation of showing server errors to the users is still left.]
+
 class AuthProvider with ChangeNotifier {
   // Future<String?> getToken() async {
   //   SharedPreferences pref = await SharedPreferences.getInstance();
@@ -18,9 +20,16 @@ class AuthProvider with ChangeNotifier {
   //   } else
   //     return null;
   // }
-  String? userToken = null;
+  String? _userToken = null;
 
-  bool get isAuth => userToken != null;
+  final String localHostLoginUrl = 'http://localhost:3000/api/users/login';
+  final String ipAddressLoginUrl = 'http://192.168.0.103:3000/api/users/login'; //  This is used for Mobile connection.
+
+  final String localHostSignUpUrl = 'http://localhost:3000/api/users/register';
+  final String ipAddressSignUpUrl = 'http://192.168.0.103:3000/api/users/register';
+
+  bool get isAuth => _userToken != null;
+  String? get getToken => _userToken;
 
   Future<void> signIn(AuthSignInModel loginData, BuildContext context) async {
     final closeLoading = VxToast.showLoading(
@@ -30,7 +39,7 @@ class AuthProvider with ChangeNotifier {
     );
 
     try {
-      String url = kIsWeb ? 'http://localhost:3000/api/user/login' : 'http://192.168.0.103:3000/api/user/login';
+      final String url = kIsWeb ? localHostLoginUrl : ipAddressLoginUrl;
       final response = await http.post(
         Uri.parse(url),
         body: json.encode({
@@ -51,8 +60,8 @@ class AuthProvider with ChangeNotifier {
       // print(response.body);
       SharedPreferences pref = await SharedPreferences.getInstance();
       pref.setString('token', response.body);
-      userToken = pref.getString('token');
-      print(userToken);
+      _userToken = pref.getString('token');
+      print(_userToken);
       print(isAuth);
       closeLoading();
       notifyListeners();
@@ -70,7 +79,7 @@ class AuthProvider with ChangeNotifier {
       textColor: Colors.white,
     );
     try {
-      String url = kIsWeb ? 'http://localhost:3000/api/user/register' : 'http://192.168.0.103:3000/api/user/register';
+      final String url = kIsWeb ? localHostSignUpUrl : ipAddressSignUpUrl;
       print("${userData.email},${userData.name}, ${userData.password},");
       final response = await http.post(
         Uri.parse(url),
