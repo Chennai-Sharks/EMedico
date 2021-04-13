@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    max: 200,
+    max: 200, 
     min: 10
   },
   password: {
