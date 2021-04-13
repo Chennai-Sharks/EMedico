@@ -13,7 +13,7 @@ class CustomDialog {
           return Dialog(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
-            ), //this right here
+            ),
             child: child,
           );
         });
