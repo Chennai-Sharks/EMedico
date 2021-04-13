@@ -46,7 +46,7 @@ const section1Schema = new mongoose.Schema({
       type: String
     }
   },
-  "additionalConcerns" {
+  "additionalConcerns": {
     type: Array,
     "items": {
       type: String
@@ -106,7 +106,7 @@ const section1Schema = new mongoose.Schema({
         },
       }
     }
-  }
+  },
   "primaryCarePhysician": {
     type: String
   },
