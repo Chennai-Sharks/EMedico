@@ -6,6 +6,9 @@ import 'package:app/providers/auth_provider.dart';
 import 'package:app/screens/auth_screen.dart';
 import 'package:app/screens/home_screen.dart';
 
+/// [ Remove all the print and log statements before production. ]
+/// [ Add setPathUrlStrategy before production ]
+
 void main() {
   // setPathUrlStrategy();
   runApp(MyApp());
