@@ -11,10 +11,8 @@ const createRoute = require('./routes/create');
 dotenv.config(); //To access/config the DB connection token
 
 //Connect to DB
-mongoose.connect(process.env.DB_CONNECT, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}, () => console.log("DB Connected"));
+const connectDB = require('./config/db');
+connectDB();
 
 //Middleware
 app.use(express.json());
