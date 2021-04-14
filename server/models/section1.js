@@ -55,7 +55,7 @@ const section1Schema = new mongoose.Schema({
   "historyOfpresentingIllness":{
     type: Array,
     "items": {
-      type: "object",
+      type: Object,
       "properties": {
         "onset": {
           type: String

@@ -1,5 +1,14 @@
 const mongoose = require('mongoose');
 
+const patientSchema = new mongoose.Schema({
+  name:{
+    type:String
+  },
+  dpid:{
+    type:String
+  }
+});
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -7,6 +16,7 @@ const userSchema = new mongoose.Schema({
     min: 3,
     max: 200
   },
+  patients:[patientSchema],
   email: {
     type: String,
     required: true,
