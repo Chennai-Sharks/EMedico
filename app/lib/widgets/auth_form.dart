@@ -1,5 +1,6 @@
 import 'package:app/models/auth_model.dart';
 import 'package:app/widgets/custom_dialog.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
@@ -140,6 +141,7 @@ class _AuthFormsState extends State<AuthForms> {
                               isTablet: widget.isTablet,
                               widget: TextFormField(
                                 style: GoogleFonts.poppins(),
+                                keyboardType: TextInputType.name,
                                 focusNode: nameFocus,
                                 validator: (value) {
                                   if (value != null && value.isEmpty) return 'Name should not be empty';
@@ -173,6 +175,7 @@ class _AuthFormsState extends State<AuthForms> {
                         widget: TextFormField(
                             style: GoogleFonts.poppins(),
                             focusNode: emailFocus,
+                            keyboardType: TextInputType.emailAddress,
                             decoration: customizeTextField(
                               icon: Icon(Icons.email),
                               label: '  Email',
@@ -207,6 +210,8 @@ class _AuthFormsState extends State<AuthForms> {
                         widget: TextFormField(
                           style: GoogleFonts.poppins(),
                           focusNode: passwordFocus,
+                          obscureText: true,
+                          keyboardType: TextInputType.text,
                           decoration: customizeTextField(
                             icon: Icon(Icons.lock),
                             label: '  Password',
