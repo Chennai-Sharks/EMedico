@@ -17,8 +17,8 @@ dependencies:
   url_strategy: ^0.2.0
   google_fonts: ^2.0.0
   shared_preferences: ^2.0.5
-  # enhanced_drop_down: ^0.1.6
-  syncfusion_flutter_sliders: ^19.1.56-beta
+  flutter_form_builder: ^6.0.0-nullsafety.1
+  # syncfusion_flutter_sliders: ^19.1.56-beta
   flutter_radio_group: ^2.0.0
   responsive_builder: ^0.4.1
   http: ^0.13.1
