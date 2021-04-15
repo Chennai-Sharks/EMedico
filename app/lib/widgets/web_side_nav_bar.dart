@@ -19,6 +19,12 @@ class _WebSideNavBarState extends State<WebSideNavBar> {
   int selectedIndex = 0;
 
   @override
+  void setState(VoidCallback fn) {
+    if (mounted) super.setState(fn);
+    return;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return NavigationRail(
       selectedIndex: selectedIndex,
@@ -34,6 +40,7 @@ class _WebSideNavBarState extends State<WebSideNavBar> {
       extended: widget.isTablet ? false : true,
       minExtendedWidth: widget.isTablet ? null : MediaQuery.of(context).size.width * 0.16,
       backgroundColor: Utiliy.primaryColor,
+      labelType: widget.isTablet ? NavigationRailLabelType.all : null,
       destinations: [
         NavigationRailDestination(
           icon: Icon(
