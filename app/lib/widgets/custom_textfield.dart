@@ -1,26 +1,29 @@
 import 'package:app/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CustomTextFeild extends StatefulWidget {
+class CustomFormTextFeild extends StatefulWidget {
+  final String name;
   final String topLabel;
   final String textFieldLabel;
   final String? Function(String?)? validatorFunction;
-  final void Function(String?)? onSaved;
-  final FocusNode? focusNode;
+  // final void Function(String?)? onSaved;
+  // final FocusNode? focusNode;
 
-  CustomTextFeild({
+  CustomFormTextFeild({
     required this.topLabel,
-    required this.focusNode,
     required this.textFieldLabel,
-    required this.validatorFunction,
-    required this.onSaved,
+    required this.name,
+    this.validatorFunction,
+    // required this.onSaved,
+    // required this.focusNode,
   });
   @override
-  _CustomTextFeildState createState() => _CustomTextFeildState();
+  _CustomFormTextFeildState createState() => _CustomFormTextFeildState();
 }
 
-class _CustomTextFeildState extends State<CustomTextFeild> {
+class _CustomFormTextFeildState extends State<CustomFormTextFeild> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -31,24 +34,31 @@ class _CustomTextFeildState extends State<CustomTextFeild> {
             widget.topLabel,
             style: GoogleFonts.poppins(
               fontSize: 20,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
-        TextFormField(
+        FormBuilderTextField(
+          name: widget.name,
           decoration: InputDecoration(
             labelText: widget.textFieldLabel,
             labelStyle: GoogleFonts.poppins(),
             floatingLabelBehavior: FloatingLabelBehavior.never,
             filled: true,
-            fillColor: Utiliy.fullgreyBackground,
+            fillColor: Utility.fullgreyBackground,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide.none,
             ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Utility.primaryColor,
+              ),
+            ),
           ),
           validator: widget.validatorFunction,
-          focusNode: widget.focusNode,
-          onSaved: widget.onSaved,
+          // focusNode: widget.focusNode,
+          // onSaved: widget.onSaved,
         ),
       ],
     );
