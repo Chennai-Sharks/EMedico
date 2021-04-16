@@ -20,7 +20,7 @@ class AuthScreen extends StatelessWidget {
         height: height,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: Utiliy.modernWhiteBackground,
+          color: Utility.modernWhiteBackground,
         ),
         child: ResponsiveBuilder(
           builder: (context, sizingInformation) {

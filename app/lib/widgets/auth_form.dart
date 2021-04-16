@@ -36,7 +36,7 @@ class _AuthFormsState extends State<AuthForms> {
       labelStyle: GoogleFonts.poppins(),
       floatingLabelBehavior: FloatingLabelBehavior.never,
       filled: true,
-      fillColor: Utiliy.fullgreyBackground,
+      fillColor: Utility.fullgreyBackground,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
       ),

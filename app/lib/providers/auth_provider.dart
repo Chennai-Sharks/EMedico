@@ -46,7 +46,7 @@ class AuthProvider with ChangeNotifier {
           "email": loginData.email,
           "password": loginData.password,
         }),
-        headers: Utiliy.headerValue,
+        headers: Utility.headerValue,
       );
       if (response.statusCode >= 400) {
         VxToast.show(
@@ -89,7 +89,7 @@ class AuthProvider with ChangeNotifier {
           "email": userData.email,
           "password": userData.password,
         }),
-        headers: Utiliy.headerValue,
+        headers: Utility.headerValue,
       );
       if (response.statusCode >= 400) {
         VxToast.show(
