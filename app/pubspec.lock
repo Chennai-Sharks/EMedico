@@ -116,13 +116,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_radio_group:
+  flutter_staggered_grid_view:
     dependency: "direct main"
     description:
-      name: flutter_radio_group
+      name: flutter_staggered_grid_view
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "0.4.0"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -396,7 +396,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.19"
+    version: "0.3.0"
   typed_data:
     dependency: transitive
     description:
