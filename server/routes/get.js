@@ -13,6 +13,18 @@ router.get('/',async (req,res) => {
 
 });
 
+//this block of code is to display all the details of a particular doctor
+router.get('/:did', async (req, res) => {
+
+  try {
+    const allDocs = await User.findById(req.params.did);
+    res.json(allDocs);
+  } catch (err) {
+    res.status(400).send("Invalid ID");
+  }
+
+});
+
 
 //this block of code is to display all the patients inside a particular doctor
 router.get('/getPatients/:did', async (req, res) => {
@@ -29,17 +41,6 @@ router.get('/getPatients/:did', async (req, res) => {
 
 });
 
-//this block of code is to display all the patient details under a doctor
-router.get('/:did', async (req, res) => {
-
-  try {
-    const allDocs = await User.findById(req.params.did);
-    res.json(allDocs);
-  } catch (err) {
-    res.status(400).send("Invalid ID");
-  }
-
-});
 
 //this is to get a particular patient under a particular doctor
 router.get('/getOnePatient/:did', async(req,res) => {

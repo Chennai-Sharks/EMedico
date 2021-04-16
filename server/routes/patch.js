@@ -12,7 +12,7 @@ router.patch('/:did', async (req, res) => {
     const Doc = await User.findByIdAndUpdate(id,updates,options);
     res.json(Doc);
   } catch (err) {
-    res.json({
+    res.status(400).json({
       message: err
     });
   }

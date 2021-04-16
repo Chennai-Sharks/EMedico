@@ -27,19 +27,13 @@ const section1Schema = new mongoose.Schema({
     enum: ["evaluation","treatment","second Opinion","legal","MVA","other"],
     required: true
   },
-  "referralSource": {
-    type: String
-  },
+  "referralSource": String,
   "personalHistory": {
     type: String,
     enum: ["single","married","divorce","seperated","widowed","children"]
   },
-  "occupation": {
-    type: String
-  },
-  "allergiesToMedication": {
-    type: String
-  },
+  "occupation": String,
+  "allergiesToMedication": String,
   "chiefComplaints": {
     type: Array,
     "items": {
@@ -57,21 +51,11 @@ const section1Schema = new mongoose.Schema({
     "items": {
       type: Object,
       "properties": {
-        "onset": {
-          type: String
-        },
-        "location": {
-          type: String
-        },
-        "chronicity": {
-          type: String
-        },
-        "frequence": {
-          type: String
-        },
-        "duration": {
-          type: String
-        },
+        "onset": String,
+        "location": String,
+        "chronicity": String,
+        "frequence": String,
+        "duration": String,
         "intensity": {
           type: Number,
           enum: [0,1,2,3,4,5,6,7,8,9,10]
@@ -80,45 +64,21 @@ const section1Schema = new mongoose.Schema({
           type: Number,
           enum: [0,1,2,3,4,5,6,7,8,9,10]
         },
-        "quality": {
-          type: String,
-        },
-        "treatments": {
-          type: String,
-        },
-        "aggravatingFactors": {
-          type: String,
-        },
-        "RelievingFactors": {
-          type: String,
-        },
-        "temporalChar": {
-          type: String,
-        },
-        "associatedFeatures": {
-          type: String,
-        },
-        "referralPattern": {
-          type: String,
-        },
-        "sleep": {
-          type: String,
-        },
+        "quality": String,
+        "treatments": String,
+        "aggravatingFactors": String,
+        "RelievingFactors": String,
+        "temporalChar": String,
+        "associatedFeatures": String,
+        "referralPattern": String,
+        "sleep": String,
       }
     }
   },
-  "primaryCarePhysician": {
-    type: String
-  },
-  "primaryDentist": {
-    type: String
-  },
-  "anyOtherPhyscian": {
-    type: String
-  },
-  "additionalNotes": {
-    type: String
-  }
+  "primaryCarePhysician": String,
+  "primaryDentist": String,
+  "anyOtherPhyscian": String,
+  "additionalNotes": String
 });
 
 module.exports = mongoose.model('Section1', section1Schema);
