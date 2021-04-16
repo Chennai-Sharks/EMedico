@@ -1,6 +1,19 @@
 const router = require('express').Router();
 const User = require('../models/User');
 
+//this is to display all doctors
+router.get('/',async (req,res) => {
+
+  try{
+    const allDocs = await User.find();
+    res.json(allDocs);
+  } catch(err) {
+    res.status(400).send("No doctors fuck you");
+  }
+
+});
+
+
 //this block of code is to display all the patients inside a particular doctor
 router.get('/getPatients/:did', async (req, res) => {
 
@@ -44,17 +57,6 @@ router.get('/getOnePatient/:did', async(req,res) => {
 
 });
 
-//this is to display all doctors
-router.get('/',async (req,res) => {
-
-  try{
-    const allDocs = await User.find();
-    res.json(allDocs);
-  } catch(err) {
-    res.status(400).send("No doctors fuck you");
-  }
-
-});
 
 
 module.exports = router;

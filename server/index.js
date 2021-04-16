@@ -6,9 +6,10 @@ var cors = require('cors');
 
 //Import Routes
 const authRoute = require('./routes/auth');
-const createRoute = require('./routes/create');
+const createRoute = require('./routes/post');
 const getRoute = require('./routes/get');
 const deleteRoute = require('./routes/delete');
+const updateRoute = require('./routes/patch')
 dotenv.config(); //To access/config the DB connection token
 
 //Connect to DB
@@ -24,5 +25,6 @@ app.use('/api/users', authRoute);
 app.use('/api/create',createRoute);
 app.use('/api/get', getRoute);
 app.use('/api/delete', deleteRoute);
+app.use('/api/update', updateRoute);
 
 app.listen(3000, () => console.log('Server is running'));
