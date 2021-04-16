@@ -39,7 +39,7 @@ class _WebSideNavBarState extends State<WebSideNavBar> {
       elevation: 8,
       extended: widget.isTablet ? false : true,
       minExtendedWidth: widget.isTablet ? null : MediaQuery.of(context).size.width * 0.16,
-      backgroundColor: Utiliy.primaryColor,
+      backgroundColor: Utility.primaryColor,
       labelType: widget.isTablet ? NavigationRailLabelType.all : null,
       destinations: [
         NavigationRailDestination(
