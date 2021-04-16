@@ -55,3 +55,6 @@ route: '/delete'
 }
 
 ----------------------------------
+## Basic FrontEnd architecture
+
+<img src="./docs/basic_frontend_arch.svg"/>
