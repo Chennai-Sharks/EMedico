@@ -8,7 +8,7 @@ router.post('/addPatient/:did', async (req,res) =>{
     //checks if patient ID already exists
     var patient = await User.findOne({ _id: req.params.did   });
     patient = patient.patients;
-    for(var i=0 ;i<patient.length;i++)
+    for(var i=0 ;i<patient.length;i++)      
     if( patient[i].dpid == req.body.dpid)
     return res.status(400).send("Patient ID already exists");
     
