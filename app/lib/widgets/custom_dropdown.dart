@@ -22,37 +22,40 @@ class CustomDropDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderDropdown(
-      name: name, //'gender',
-      decoration: InputDecoration(
-        labelText: label, //'Gender',
-        labelStyle: GoogleFonts.poppins(
-          fontWeight: FontWeight.bold,
-          fontSize: 20,
-          color: Colors.black,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SelectableText(
+          label,
+          style: GoogleFonts.poppins(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+          ),
         ),
-      ),
-      allowClear: true,
-      focusColor: Colors.transparent,
-
-      hint: Text(
-        hintText, // 'Select Gender',
-        style: GoogleFonts.poppins(
-          fontSize: 18,
+        FormBuilderDropdown(
+          name: name,
+          allowClear: true,
+          focusColor: Colors.transparent,
+          hint: Text(
+            hintText,
+            style: GoogleFonts.poppins(
+              fontSize: 18,
+            ),
+          ),
+          validator: validator,
+          items: dropDownItems
+              .map((item) => DropdownMenuItem(
+                    value: item,
+                    child: Center(
+                      child: Text(
+                        '$item',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ))
+              .toList(),
         ),
-      ),
-      validator: validator,
-      items: dropDownItems
-          .map((item) => DropdownMenuItem(
-                value: item,
-                child: Center(
-                  child: Text(
-                    '$item',
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ))
-          .toList(),
+      ],
     );
   }
 }

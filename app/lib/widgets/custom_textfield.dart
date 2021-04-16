@@ -29,13 +29,11 @@ class _CustomFormTextFeildState extends State<CustomFormTextFeild> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          child: SelectableText(
-            widget.topLabel,
-            style: GoogleFonts.poppins(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+        SelectableText(
+          widget.topLabel,
+          style: GoogleFonts.poppins(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
           ),
         ),
         FormBuilderTextField(
