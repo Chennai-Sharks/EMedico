@@ -57,4 +57,7 @@ route: '/delete'
 ----------------------------------
 ## Basic FrontEnd architecture
 
-<img src="./docs/basic_frontend_arch.svg"/>
+Click here to check [that](https://github.com/Chennai-Sharks/EMedico/blob/main/docs/basic_frontend_arch.svg)
+
+----------------------------------
+
