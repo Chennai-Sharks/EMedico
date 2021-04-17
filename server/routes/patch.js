@@ -19,21 +19,11 @@ router.patch('/:did', async (req, res) => {
 
 });
 
-router.patch('/:did/:dpid', async (req,res) => {
+router.patch('/updatePatient/:did/:dpid', async (req,res) => {
 
   try {
 
-    let allPatients = await User.findById(req.params.did);
-    allPatients = allPatients.patients;
-    let patientID = 0;
-    for(i in allPatients){
-      if(allPatients[i].dpid == req.params.dpid)
-        patientID = allPatients[i]._id;
-      }
-    const id = patientID;
-    const update = req.body;
-    const options = {new: true};
-    const patient = await User.findByIdAndUpdate(id,update,options);
+    const patient = await User.findOneAndUpdate();
     res.json(Patient);
 
   } catch (err) {
