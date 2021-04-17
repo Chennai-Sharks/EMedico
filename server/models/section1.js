@@ -34,12 +34,7 @@ const section1Schema = new mongoose.Schema({
   },
   "occupation": String,
   "allergiesToMedication": String,
-  "chiefComplaints": {
-    type: Array,
-    "items": {
-      type: String
-    }
-  },
+  "chiefComplaints": String,
   "additionalConcerns": {
     type: Array,
     "items": {
