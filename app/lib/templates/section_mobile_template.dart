@@ -8,10 +8,17 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 class SectionMobileTemplate extends StatelessWidget {
   final List<Widget> forms;
   final GlobalKey<FormBuilderState> formKey;
+  final List<Widget>? extraWidget1;
+
+  final Widget? extraWidget2;
+  final void Function()? onSubmitForm;
 
   SectionMobileTemplate({
     required this.forms,
     required this.formKey,
+    this.extraWidget1,
+    this.extraWidget2,
+    this.onSubmitForm,
   });
 
   @override
@@ -28,15 +35,16 @@ class SectionMobileTemplate extends StatelessWidget {
             key: formKey,
             child: StaggeredGridView.count(
               crossAxisCount: 1,
-              shrinkWrap: true,
               staggeredTiles: [
                 ...forms.map((_) => StaggeredTile.fit(1)).toList(),
+                ...extraWidget1!.map((_) => StaggeredTile.fit(1)).toList(),
                 StaggeredTile.fit(1),
               ],
               children: [
                 ...forms,
+                ...extraWidget1 ?? [Container()],
                 ElevatedButton(
-                  onPressed: () {}, // this function will be coming from section_1_form.dart
+                  onPressed: onSubmitForm, // this function will be coming from section_1_form.dart
                   child: AutoSizeText(
                     'SUBMIT',
                   ),
