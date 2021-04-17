@@ -1,77 +1,31 @@
 const mongoose = require('mongoose');
 
 const section3Schema = new mongoose.Schema({
-  "currentIllness": {
-    type: String
-  },
-  "surgicalMedicalHist": {
-    type: String
-  },
+  "currentIllness": String,
+  "surgicalMedicalHist": String,
   "currentMedications": {
-    "dosage": {
-      type: String
-    },
-    "startDate": {
-      type: String
-    },
-    "Effect": {
-      type: String
-    }
+    "dosage": String,
+    "startDate": String,
+    "Effect": String
   },
-  "pastMedications": {
-    type: String
-  },
-  "concomitantMedicalTreatment": {
-    type: String
-  },
-  "resultsPriorMedTests": {
-    type: String
-  },
-  "famHistTmdOrofacialPain": {
-    type: String
-  },
-  "reviewOfSystem": {
-    type: String
-  },
-  "ent": {
-    type: String
-  },
-  "genitourinary": {
-    type: String
-  },
-  "cv": {
-    type: String
-  },
-  "musculoSkeletal": {
-    type: String
-  },
-  "respiratory": {
-    type: String
-  },
-  "neurological": {
-    type: String
-  },
-  "gi": {
-    type: String
-  },
-  "endocrine": {
-    type: String
-  },
-  "psychiatric": {
-    type: String
-  },
-  "hematopoitic": {
-    type: String
-  },
-  "obGyn": {
-    type: String
-  },
-  "pregnant": {
-    type: Boolean
-  },
-  "other": {
-    type: String
-  },
+  "pastMedications": String,
+  "concomitantMedicalTreatment": String,
+  "resultsPriorMedTests": String,
+  "famHistTmdOrofacialPain": String,
+  "reviewOfSystem": String,
+  "ent": String,
+  "genitourinary": String,
+  "cv": String,
+  "musculoSkeletal": String,
+  "respiratory": String,
+  "neurological": String,
+  "gi": String,
+  "endocrine": String,
+  "psychiatric": String,
+  "hematopoitic": String,
+  "obGyn": String,
+  "pregnant": Boolean,
+  "other": String,
 });
 
 module.exports = mongoose.model('Section3', section3Schema);
