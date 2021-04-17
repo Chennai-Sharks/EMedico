@@ -6,19 +6,20 @@ import 'package:google_fonts/google_fonts.dart';
 class CustomFormTextFeild extends StatefulWidget {
   final String name;
   final String topLabel;
-  final String textFieldLabel;
+  final String? textFieldLabel;
   final String? Function(String?)? validatorFunction;
-  // final void Function(String?)? onSaved;
-  // final FocusNode? focusNode;
+  final TextInputType? textInputType;
+  final int? maxLines;
 
   CustomFormTextFeild({
     required this.topLabel,
-    required this.textFieldLabel,
+    this.textFieldLabel,
     required this.name,
     this.validatorFunction,
-    // required this.onSaved,
-    // required this.focusNode,
+    this.textInputType,
+    this.maxLines,
   });
+
   @override
   _CustomFormTextFeildState createState() => _CustomFormTextFeildState();
 }
@@ -38,6 +39,8 @@ class _CustomFormTextFeildState extends State<CustomFormTextFeild> {
         ),
         FormBuilderTextField(
           name: widget.name,
+          keyboardType: widget.textInputType,
+          maxLines: widget.maxLines ?? 1,
           decoration: InputDecoration(
             labelText: widget.textFieldLabel,
             labelStyle: GoogleFonts.poppins(),
@@ -54,7 +57,12 @@ class _CustomFormTextFeildState extends State<CustomFormTextFeild> {
               ),
             ),
           ),
-          validator: widget.validatorFunction,
+          validator: widget.validatorFunction ??
+              FormBuilderValidators.compose(
+                [
+                  FormBuilderValidators.required(context),
+                ],
+              ),
           // focusNode: widget.focusNode,
           // onSaved: widget.onSaved,
         ),

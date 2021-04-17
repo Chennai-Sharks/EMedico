@@ -22,40 +22,46 @@ class CustomDropDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SelectableText(
-          label,
-          style: GoogleFonts.poppins(
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        FormBuilderDropdown(
-          name: name,
-          allowClear: true,
-          focusColor: Colors.transparent,
-          hint: Text(
-            hintText,
+    return Container(
+      margin: EdgeInsets.only(
+        top: 4,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SelectableText(
+            label,
             style: GoogleFonts.poppins(
               fontSize: 18,
+              fontWeight: FontWeight.w500,
             ),
           ),
-          validator: validator,
-          items: dropDownItems
-              .map((item) => DropdownMenuItem(
-                    value: item,
-                    child: Center(
-                      child: Text(
-                        '$item',
-                        textAlign: TextAlign.center,
+          FormBuilderDropdown(
+            name: name,
+            allowClear: true,
+            focusColor: Colors.transparent,
+            hint: Text(
+              hintText,
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+              ),
+            ),
+            validator: validator,
+            items: dropDownItems
+                .map((item) => DropdownMenuItem(
+                      value: item,
+                      child: Center(
+                        child: Text(
+                          '$item',
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    ),
-                  ))
-              .toList(),
-        ),
-      ],
+                    ))
+                .toList(),
+          ),
+        ],
+      ),
     );
   }
 }
