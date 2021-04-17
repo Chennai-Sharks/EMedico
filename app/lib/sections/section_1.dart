@@ -1,7 +1,9 @@
 import 'package:app/widgets/custom_dropdown.dart';
+import 'package:app/widgets/custom_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:app/widgets/custom_textfield.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Section1 {
   final textFieldPadding = EdgeInsets.all(20);
@@ -87,8 +89,8 @@ class Section1 {
           textFieldLabel: 'Enter:',
         ),
       ),
-      Padding(
-        padding: textFieldPadding,
+      Container(
+        margin: EdgeInsets.only(left: 20, right: 20, top: 22),
         child: CustomFormTextFeild(
           name: 'primaryCarePhysician',
           topLabel: 'Primary Care Physician:',
@@ -111,37 +113,209 @@ class Section1 {
           textFieldLabel: 'Enter:',
         ),
       ),
+    ];
+  }
 
-      /// [ Make this a seperate widget.]
-      // Container(child: Text('')),
-      // Container(
-      //   width: 1000,
-      //   color: Colors.red,
-      //   padding: textFieldPadding,
-      //   child: CustomFormTextFeild(
-      //     name: 'additionalNotes',
-      //     topLabel: 'Additional Notes:',
-      //     textFieldLabel: 'Enter:',
-      //   ),
-      // ),
-      // Container(child: Text('')),
+  List<Widget> secondPart({required bool isMobile, required BuildContext context}) {
+    final textFieldPadding = EdgeInsets.only(
+      top: 10,
+      bottom: 10,
+      left: isMobile ? 20 : MediaQuery.of(context).size.width * 0.18,
+      right: isMobile ? 20 : MediaQuery.of(context).size.width * 0.18,
+    );
+
+    return [
+      SizedBox(height: 20),
+      SelectableText(
+        'History of Presenting Illness',
+        style: GoogleFonts.poppins(
+          fontSize: isMobile ? 25 : 30,
+        ),
+        textAlign: TextAlign.center,
+      ),
+      Padding(
+        padding: textFieldPadding,
+        child: CustomFormTextFeild(
+          name: 'onset',
+          topLabel: 'Onset',
+          textFieldLabel: 'Enter:',
+        ),
+      ),
+      Padding(
+        padding: textFieldPadding,
+        child: CustomFormTextFeild(
+          name: 'location',
+          topLabel: 'Location',
+          textFieldLabel: 'Enter:',
+        ),
+      ),
+      Padding(
+        padding: textFieldPadding,
+        child: CustomFormTextFeild(
+          name: 'chronicity',
+          topLabel: 'Chronicity',
+          textFieldLabel: 'Enter:',
+        ),
+      ),
+      Padding(
+        padding: textFieldPadding,
+        child: CustomFormTextFeild(
+          name: 'frequence',
+          topLabel: 'Frequence',
+          textFieldLabel: 'Enter:',
+        ),
+      ),
+      Padding(
+        padding: textFieldPadding,
+        child: CustomFormTextFeild(
+          name: 'duration',
+          topLabel: 'Duration',
+          textFieldLabel: 'Enter:',
+        ),
+      ),
+      Padding(
+        padding: textFieldPadding,
+        child: CustomSlider(
+          name: 'intensity',
+          topLabel: "Intensity:",
+          floatingLabel: "Select Intensity",
+          intialValue: 5,
+          max: 10,
+          min: 0,
+          noOfSeperations: 10,
+        ),
+      ),
+      Padding(
+        padding: textFieldPadding,
+        child: CustomSlider(
+          name: 'backgroundPain',
+          topLabel: "Background Pain:",
+          floatingLabel: "Select Background Pain Level",
+          intialValue: 5,
+          max: 10,
+          min: 0,
+          noOfSeperations: 10,
+        ),
+      ),
+      Padding(
+        padding: textFieldPadding,
+        child: CustomFormTextFeild(
+          name: 'quality',
+          topLabel: 'Quality:',
+          textFieldLabel: 'Enter:',
+        ),
+      ),
+      Padding(
+        padding: textFieldPadding,
+        child: CustomFormTextFeild(
+          name: 'treatments',
+          topLabel: 'Treatments:',
+          textFieldLabel: 'Enter:',
+        ),
+      ),
+      Padding(
+        padding: textFieldPadding,
+        child: CustomFormTextFeild(
+          name: 'aggravatingFactors',
+          topLabel: 'Aggravating Factors:',
+          textFieldLabel: 'Enter:',
+        ),
+      ),
+      Padding(
+        padding: textFieldPadding,
+        child: CustomFormTextFeild(
+          name: 'RelievingFactors',
+          topLabel: 'Relieving Factors:',
+          textFieldLabel: 'Enter:',
+        ),
+      ),
+      Padding(
+        padding: textFieldPadding,
+        child: CustomFormTextFeild(
+          name: 'temporalChar',
+          topLabel: 'Temporal characteristics:',
+          textFieldLabel: 'Enter:',
+        ),
+      ),
+      Padding(
+        padding: textFieldPadding,
+        child: CustomFormTextFeild(
+          name: 'associatedFeatures',
+          topLabel: 'Associated features:',
+          textFieldLabel: 'Enter:',
+        ),
+      ),
+      Padding(
+        padding: textFieldPadding,
+        child: CustomFormTextFeild(
+          name: 'referralPattern',
+          topLabel: 'Referral pattern:',
+          textFieldLabel: 'Enter:',
+        ),
+      ),
+      Padding(
+        padding: textFieldPadding,
+        child: CustomFormTextFeild(
+          name: 'sleep',
+          topLabel: 'Sleep:',
+          textFieldLabel: 'Enter:',
+        ),
+      ),
+      SizedBox(height: 20),
+      SelectableText(
+        'Chief Complaints: (In order of significance)',
+        style: GoogleFonts.poppins(
+          fontSize: isMobile ? 25 : 25,
+        ),
+        textAlign: TextAlign.center,
+      ),
+      Padding(
+        padding: textFieldPadding,
+        child: CustomFormTextFeild(
+          name: 'chiefComplaints',
+          topLabel: 'Chief Complaints:',
+          textInputType: TextInputType.multiline,
+          maxLines: 5,
+        ),
+      ),
+      SelectableText(
+        'Additional Concerns',
+        style: GoogleFonts.poppins(
+          fontSize: isMobile ? 25 : 25,
+        ),
+        textAlign: TextAlign.center,
+      ),
+      Padding(
+        padding: textFieldPadding,
+        child: CustomFormTextFeild(
+          name: 'additionalConcerns',
+          topLabel: 'Additional Concerns:',
+          textInputType: TextInputType.multiline,
+          maxLines: 5,
+        ),
+      ),
     ];
   }
 }
 
+// class Section1HistoryOfPresentingIllness extends StatelessWidget {
+//   final bool isMobile;
 
- // Container(
-      //   child: FormBuilderTextField(
-      //     name: 'name',
-      //     decoration: InputDecoration(
-      //       labelText: 'Name:',
-      //       labelStyle: GoogleFonts.poppins(),
-      //       floatingLabelBehavior: FloatingLabelBehavior.never,
-      //       filled: true,
-      //       fillColor: Utiliy.fullgreyBackground,
-      //       border: OutlineInputBorder(
-      //         borderRadius: BorderRadius.circular(5),
-      //       ),
-      //     ),
-      //   ),
-      // ),
+//   Section1HistoryOfPresentingIllness({
+//     required this.isMobile,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return SingleChildScrollView(
+//       controller: controller,
+//       child: Container(
+//         width: MediaQuery.of(context).size.width,
+//         // height: 500,
+//         child: Column(
+//           children:
+//         ),
+//       ),
+//     );
+//   }
+// }
