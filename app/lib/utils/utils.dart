@@ -1,3 +1,4 @@
+// import 'dart:collection';
 import 'dart:ui';
 
 class Utility {
@@ -9,4 +10,22 @@ class Utility {
     'Content-type': 'application/json',
     'Accept': 'application/json',
   };
+  // late LinkedHashMap<String, Map<String,dynamic>> hello;
+  static List<String> historyOfPatientIllness = [
+    'onset',
+    'location',
+    'chronicity',
+    'frequence',
+    'duration',
+    'intensity',
+    'backgroundPain',
+    'quality',
+    'treatments',
+    'aggravatingFactors',
+    'RelievingFactors',
+    'temporalChar',
+    'associatedFeatures',
+    'referralPattern',
+    'sleep',
+  ];
 }
