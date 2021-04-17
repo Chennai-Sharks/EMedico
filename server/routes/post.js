@@ -2,7 +2,7 @@ const router = require('express').Router();
 const User = require('../models/User');
 const Section1 = require('../models/section1');
 const Section4 = require('../models/section4');
-
+ 
 router.post('/addPatient/:did', async (req,res) =>{
 
     //checks if patient ID already exists

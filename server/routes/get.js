@@ -3,7 +3,7 @@ const User = require('../models/User');
 
 //this is to display all doctors
 router.get('/',async (req,res) => {
-
+ 
   try{
     const allDocs = await User.find();
     res.json(allDocs);
