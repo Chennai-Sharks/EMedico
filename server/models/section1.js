@@ -47,10 +47,6 @@ const section1Schema = new mongoose.Schema({
     }
   },
   "historyOfpresentingIllness":{
-    type: Array,
-    "items": {
-      type: Object,
-      "properties": {
         "onset": String,
         "location": String,
         "chronicity": String,
@@ -72,8 +68,6 @@ const section1Schema = new mongoose.Schema({
         "associatedFeatures": String,
         "referralPattern": String,
         "sleep": String,
-      }
-    }
   },
   "primaryCarePhysician": String,
   "primaryDentist": String,
