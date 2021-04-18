@@ -63,8 +63,6 @@ class _CustomFormTextFeildState extends State<CustomFormTextFeild> {
                   FormBuilderValidators.required(context),
                 ],
               ),
-          // focusNode: widget.focusNode,
-          // onSaved: widget.onSaved,
         ),
       ],
     );
