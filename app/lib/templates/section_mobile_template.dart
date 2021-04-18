@@ -23,6 +23,8 @@ class SectionMobileTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: CustomAppBar(),
       drawer: CustomDrawer(),
@@ -43,10 +45,24 @@ class SectionMobileTemplate extends StatelessWidget {
               children: [
                 ...forms,
                 ...extraWidget1 ?? [Container()],
-                ElevatedButton(
-                  onPressed: onSubmitForm, // this function will be coming from section_1_form.dart
-                  child: AutoSizeText(
-                    'SUBMIT',
+                Container(
+                  height: 40,
+                  margin: EdgeInsets.only(
+                    left: (width - width * 0.160) * 0.45,
+                    right: (width - width * 0.160) * 0.45,
+                    top: 20,
+                    bottom: 40,
+                  ),
+                  child: ElevatedButton(
+                    onPressed: onSubmitForm,
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: AutoSizeText(
+                      'SUBMIT',
+                    ),
                   ),
                 ),
               ],

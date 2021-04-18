@@ -55,6 +55,7 @@ class SectionWebTemplate extends StatelessWidget {
                       ...forms.map((_) => StaggeredTile.fit(1)).toList(),
                       ...extraWidget1!.map((_) => StaggeredTile.fit(3)).toList(),
                       StaggeredTile.fit(3),
+                      StaggeredTile.fit(3),
                     ],
                     crossAxisCount: 3,
                     children: [

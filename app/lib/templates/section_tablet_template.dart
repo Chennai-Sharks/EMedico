@@ -58,10 +58,24 @@ class SectionTabletTemplate extends StatelessWidget {
                       children: [
                         ...forms,
                         ...extraWidget1 ?? [Container()],
-                        ElevatedButton(
-                          onPressed: onSubmitForm,
-                          child: AutoSizeText(
-                            'SUBMIT',
+                        Container(
+                          height: 40,
+                          margin: EdgeInsets.only(
+                            left: (width - width * 0.160) * 0.45,
+                            right: (width - width * 0.160) * 0.45,
+                            top: 20,
+                            bottom: 40,
+                          ),
+                          child: ElevatedButton(
+                            onPressed: onSubmitForm,
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            child: AutoSizeText(
+                              'SUBMIT',
+                            ),
                           ),
                         ),
                       ],
