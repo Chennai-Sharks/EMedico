@@ -46,7 +46,7 @@ class _Section1ScreenState extends State<Section1Screen> {
         } else
           return SectionMobileTemplate(
             forms: section1.section1Forms(context: context),
-            extraWidget1: section1.secondPart(isMobile: false, context: context),
+            extraWidget1: section1.secondPart(isMobile: true, context: context),
             formKey: _formKey,
             onSubmitForm: () async => await Section1Provider.submitHandler(_formKey),
           );
