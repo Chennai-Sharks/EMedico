@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const mongoose = require('mongoose');
 const User = require('../models/User.js');
 
 //Updates doctor details
@@ -19,12 +18,21 @@ router.patch('/:did', async (req, res) => {
 
 });
 
-router.patch('/updatePatient/:did/:dpid', async (req,res) => {
+router.patch('/updatePatient/:did/:mongoid', async (req,res) => {
 
   try {
 
-    const patient = await User.findOneAndUpdate();
-    res.json(Patient);
+    doc = await User.findById( req.params.did).exec();
+    i=0;
+    for ( i = 0; i < doc.patients.length; i++) {
+      if (doc.patients[i].id == req.params.mongoid)
+      {
+        doc.patients[i]= { _id : req.params.mongoid , ...req.body};
+        doc = await doc.save();
+        break;
+      }
+    }
+    res.send(doc.patients[i]);
 
   } catch (err) {
     res.status(400).json({message: err});
