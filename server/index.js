@@ -3,6 +3,7 @@ const app = express();
 const User = require('./models/User');
 const dotenv = require('dotenv');
 var cors = require('cors');
+const colors = require('colors');
 
 //Import Routes
 const authRoute = require('./routes/auth');
@@ -16,6 +17,7 @@ dotenv.config(); //To access/config the DB connection token
 //Connect to DB
 const connectDB = require('./config/db');
 connectDB();
+const port = process.env.PORT;
 
 //Middleware
 app.use(express.json());
@@ -27,12 +29,12 @@ app.get('/api/search/:did/:query', async(req, res)=>{
        await User.aggregate([
             // matching the doctor document
             {
-                $match:  { _id: mongoose.Types.ObjectId("6076c7c4a9ee3e09e0c23a60") } 
+                $match:  { _id: mongoose.Types.ObjectId("6076c7c4a9ee3e09e0c23a60") }
             },
-    
-            //unwind the patients array 
+
+            //unwind the patients array
             { "$unwind": "$patients"},
-    
+
             //using match to filter the matching patients
             { "$match":{
                     "$or":[
@@ -52,7 +54,7 @@ app.get('/api/search/:did/:query', async(req, res)=>{
 
          ]).exec(function (err, result) {
             if (err) return res.status(400).send(err);
-            res.send(result[0].patients); 
+            res.send(result[0].patients);
           });
 });
 
@@ -63,4 +65,4 @@ app.use('/api/get', getRoute);
 app.use('/api/delete', deleteRoute);
 app.use('/api/update', updateRoute);
 
-app.listen(3000, () => console.log('Server is running'));
+app.listen(port, () => console.log(`Server is running on port ${port}`.yellow.bold));
