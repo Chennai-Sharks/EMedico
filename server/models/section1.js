@@ -43,12 +43,12 @@ const section1Schema = new mongoose.Schema({
         "frequence": String,
         "duration": String,
         "intensity": {
-          type: Number,
-          enum: [0,1,2,3,4,5,6,7,8,9,10]
+          type: String,
+          enum: ['0','1','2','3','4','5','6','7','8','9','10']
         },
         "backgroundPain": {
-          type: Number,
-          enum: [0,1,2,3,4,5,6,7,8,9,10]
+          type: String,
+          enum: ['0','1','2','3','4','5','6','7','8','9','10']
         },
         "quality": String,
         "treatments": String,
