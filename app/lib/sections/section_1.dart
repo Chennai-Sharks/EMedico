@@ -297,25 +297,3 @@ class Section1 {
     ];
   }
 }
-
-// class Section1HistoryOfPresentingIllness extends StatelessWidget {
-//   final bool isMobile;
-
-//   Section1HistoryOfPresentingIllness({
-//     required this.isMobile,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SingleChildScrollView(
-//       controller: controller,
-//       child: Container(
-//         width: MediaQuery.of(context).size.width,
-//         // height: 500,
-//         child: Column(
-//           children:
-//         ),
-//       ),
-//     );
-//   }
-// }
