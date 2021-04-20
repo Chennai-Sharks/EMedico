@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const User = require('../models/User');
+const Section1 = require('../models/section1');
 
 //this is to display all doctors
 router.get('/',async (req,res) => {
@@ -58,5 +59,13 @@ router.get('/getOnePatient/:did', async(req,res) => {
 
 });
 
-
+// this is to GET the details of section 1
+router.get('/section1/:mongoid', async(req,res)=>{
+    try {
+      data = await Section1.findById(req.params.mongoid);
+      res.send(data);
+    } catch (err) {
+      res.status(400).send(err);
+    }
+});
 module.exports = router;
