@@ -28,6 +28,7 @@ class SectionWebTemplate extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: CustomAppBar(),
+      backgroundColor: Colors.white,
       body: Row(
         children: [
           WebSideNavBar(
@@ -41,14 +42,14 @@ class SectionWebTemplate extends StatelessWidget {
             hoverColor: Colors.white,
             highlightColor: Colors.white,
             onTap: () => FocusScope.of(context).unfocus(),
-            child: Scrollbar(
-              interactive: true,
-              controller: controller,
-              isAlwaysShown: true,
-              child: Container(
-                width: width - width * 0.16,
-                child: FormBuilder(
-                  key: formKey,
+            child: Container(
+              width: width - width * 0.16,
+              child: FormBuilder(
+                key: formKey,
+                child: Scrollbar(
+                  controller: controller,
+                  interactive: true,
+                  isAlwaysShown: true,
                   child: StaggeredGridView.count(
                     controller: controller,
                     staggeredTiles: [
@@ -58,6 +59,7 @@ class SectionWebTemplate extends StatelessWidget {
                       StaggeredTile.fit(3),
                     ],
                     crossAxisCount: 3,
+                    mainAxisSpacing: 10,
                     children: [
                       ...forms,
                       ...extraWidget1 ?? [Container()],

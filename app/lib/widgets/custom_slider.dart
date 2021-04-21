@@ -45,13 +45,13 @@ class CustomSlider extends StatelessWidget {
           displayValues: DisplayValues.all,
           enabled: true,
           maxTextStyle: GoogleFonts.poppins(
-            fontSize: 20,
+            fontSize: 18,
           ),
           minTextStyle: GoogleFonts.poppins(
-            fontSize: 20,
+            fontSize: 18,
           ),
           textStyle: GoogleFonts.poppins(
-            fontSize: 20,
+            fontSize: 18,
           ),
           decoration: InputDecoration(
             border: OutlineInputBorder(
