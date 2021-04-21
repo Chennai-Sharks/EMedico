@@ -125,7 +125,9 @@ class Section1 {
     );
 
     return [
-      SizedBox(height: 20),
+      SizedBox(
+        height: 10,
+      ),
       SelectableText(
         'History of Presenting Illness',
         style: GoogleFonts.poppins(
