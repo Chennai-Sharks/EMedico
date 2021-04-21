@@ -1,16 +1,18 @@
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-// import 'package:url_strategy/url_strategy.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 import 'package:app/providers/auth_provider.dart';
 import 'package:app/screens/auth_screen.dart';
 import 'package:app/screens/home_screen.dart';
 
 /// [ Remove all the print and log statements before production. ]
-/// [ Add setPathUrlStrategy before production ]
+
+/// [ After production if time is there, go to section folder and use map function to these]
+///  [ paddding widgets with textfields to simplify the code a lot. ]
 
 void main() {
-  // setPathUrlStrategy();
+  setPathUrlStrategy();
   runApp(MyApp());
 }
 
@@ -33,7 +35,6 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => AuthProvider(),
       builder: (context, _) {
-        print(Provider.of<AuthProvider>(context).isAuth);
         return Consumer<AuthProvider>(
           builder: (context, auth, _) {
             print(auth.isAuth);
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
                 backgroundColor: MaterialColor(0xFF6C63FF, color),
               ),
               home: auth.isAuth ? HomeScreen() : AuthScreen(),
+              // home: Section1Screen(),
             );
           },
         );
