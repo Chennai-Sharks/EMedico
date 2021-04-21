@@ -20,7 +20,6 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
     lowercase: true
   },
   password: {
@@ -28,6 +27,10 @@ const userSchema = new mongoose.Schema({
     required: true,
     max: 1000,
     min: 8
+  },
+  confirmed: {
+    type: Boolean,
+    default: false
   },
   date: {
     type: Date,
