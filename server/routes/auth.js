@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/User');
 const bcryptjs = require('bcryptjs');
+const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
 //register auth route
@@ -20,6 +21,8 @@ router.post('/register', async (req, res) => {
   const user = new User({
     name: req.body.name,
     email: req.body.email,
+    emailToken: crypto.randomBytes(64).toString('hex'),
+    isVerified: false,
     password: hashedPassword
   });
   try {
@@ -44,6 +47,8 @@ router.post('/login', async (req, res) => {
     email: req.body.email
   });
   if (!user) return res.status(400).send("Email not found");    //if the email entered isn't found in the DB
+
+  if(!user.confirmed) return res.status(400).send("Please confirm your email to login");
 
   //this block of code checks the corresponding password is right for that particular email
   const validPassword = await bcryptjs.compare(req.body.password, user.password);
