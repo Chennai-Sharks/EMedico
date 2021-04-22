@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/User');
 const bcryptjs = require('bcryptjs');
+const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
 //register auth route
@@ -20,6 +21,8 @@ router.post('/register', async (req, res) => {
   const user = new User({
     name: req.body.name,
     email: req.body.email,
+    emailToken: crypto.randomBytes(64).toString('hex'),
+    isVerified: false,
     password: hashedPassword
   });
   try {

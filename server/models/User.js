@@ -28,7 +28,8 @@ const userSchema = new mongoose.Schema({
     max: 1000,
     min: 8
   },
-  confirmed: {
+  emailToken: String,
+  isVerified: {
     type: Boolean,
     default: false
   },
