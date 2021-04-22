@@ -66,6 +66,10 @@ class Section1Provider with ChangeNotifier {
 
         await UtilityProvider.setCurrentPatientId(pId: newPatientDetails['_id']);
 
+        section1FormValues.addAll({
+          'mongoid': newPatientDetails['_id'],
+        });
+
         final response = await http.post(
           Uri.parse('http://localhost:3000/api/create/section1/${newPatientDetails['_id']}'),
           headers: Utility.headerValue,
