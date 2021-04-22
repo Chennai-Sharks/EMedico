@@ -22,9 +22,29 @@ class Section1 {
       Padding(
         padding: textFieldPadding,
         child: CustomFormTextFeild(
+          name: 'dpid',
+          topLabel: 'Enter Patient ID:',
+          textFieldLabel: 'Enter:',
+          validatorFunction: FormBuilderValidators.compose(
+            [
+              FormBuilderValidators.required(context),
+              FormBuilderValidators.numeric(context),
+            ],
+          ),
+        ),
+      ),
+      Padding(
+        padding: textFieldPadding,
+        child: CustomFormTextFeild(
           name: 'age',
           topLabel: 'Patient Age:',
           textFieldLabel: 'Age:',
+          validatorFunction: FormBuilderValidators.compose(
+            [
+              FormBuilderValidators.required(context),
+              FormBuilderValidators.numeric(context),
+            ],
+          ),
         ),
       ),
       Container(
@@ -47,6 +67,16 @@ class Section1 {
           validator: FormBuilderValidators.compose([FormBuilderValidators.required(context)]),
         ),
       ),
+      Container(
+        margin: dropDownMargin,
+        child: CustomDropDown(
+          name: 'personalHistory',
+          label: 'Personal History:',
+          hintText: 'Select:',
+          dropDownItems: ["single", "married", "divorce", "seperated", "widowed", "children"],
+          validator: FormBuilderValidators.compose([FormBuilderValidators.required(context)]),
+        ),
+      ),
       Padding(
         padding: textFieldPadding,
         child: CustomFormTextFeild(
@@ -63,16 +93,6 @@ class Section1 {
           textFieldLabel: 'Enter:',
         ),
       ),
-      Container(
-        margin: dropDownMargin,
-        child: CustomDropDown(
-          name: 'personalHistory',
-          label: 'Personal History:',
-          hintText: 'Select:',
-          dropDownItems: ["single", "married", "divorce", "seperated", "widowed", "children"],
-          validator: FormBuilderValidators.compose([FormBuilderValidators.required(context)]),
-        ),
-      ),
       Padding(
         padding: textFieldPadding,
         child: CustomFormTextFeild(
@@ -86,14 +106,6 @@ class Section1 {
         child: CustomFormTextFeild(
           name: 'allergiesToMedication',
           topLabel: 'Allergies To Medication:',
-          textFieldLabel: 'Enter:',
-        ),
-      ),
-      Container(
-        margin: EdgeInsets.only(left: 20, right: 20, top: 22),
-        child: CustomFormTextFeild(
-          name: 'primaryCarePhysician',
-          topLabel: 'Primary Care Physician:',
           textFieldLabel: 'Enter:',
         ),
       ),
@@ -113,10 +125,19 @@ class Section1 {
           textFieldLabel: 'Enter:',
         ),
       ),
+      Container(),
+      Container(
+        margin: textFieldPadding,
+        child: CustomFormTextFeild(
+          name: 'primaryCarePhysician',
+          topLabel: 'Primary Care Physician:',
+          textFieldLabel: 'Enter:',
+        ),
+      ),
     ];
   }
 
-  List<Widget> secondPart({required bool isMobile, required BuildContext context}) {
+  List<Widget> secondPartForms({required bool isMobile, required BuildContext context}) {
     final textFieldPadding = EdgeInsets.only(
       top: 10,
       bottom: 10,
