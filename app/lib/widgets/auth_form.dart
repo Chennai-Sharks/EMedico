@@ -73,7 +73,6 @@ class _AuthFormsState extends State<AuthForms> {
               left: 15,
             )
           : const EdgeInsets.only(
-              /// [70 if fully opened, 40 if its a tablet.]
               right: 50,
               bottom: 20,
             ),
@@ -82,26 +81,10 @@ class _AuthFormsState extends State<AuthForms> {
     );
   }
 
-  @override
-  void initState() {
-    super.initState();
-    emailFocus = FocusNode();
-    nameFocus = FocusNode();
-    passwordFocus = FocusNode();
-  }
-
   void unFocusFields() {
     emailFocus.unfocus();
     nameFocus.unfocus();
     passwordFocus.unfocus();
-  }
-
-  @override
-  void dispose() {
-    nameFocus.dispose();
-    passwordFocus.dispose();
-    emailFocus.dispose();
-    super.dispose();
   }
 
   @override
@@ -123,12 +106,14 @@ class _AuthFormsState extends State<AuthForms> {
                   child: SignInorUpText(),
                 ),
           Expanded(
-            flex: widget.isMobile ? 1 : 2,
+            flex: widget.isMobile
+                ? 1
+                : isSignIn
+                    ? 2
+                    : 3,
             child: Container(
-              // color: Colors.green,
               child: Form(
                 key: _formKey,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Column(
                   mainAxisAlignment: widget.isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -155,6 +140,9 @@ class _AuthFormsState extends State<AuthForms> {
                                   ),
                                   label: '  Name',
                                 ),
+                                onChanged: (value) {
+                                  if (value.length > 5) _formKey.currentState!.validate();
+                                },
                                 onSaved: (name) {
                                   if (!isSignIn) {
                                     userSignUp = AuthSignUpModel(
@@ -190,6 +178,9 @@ class _AuthFormsState extends State<AuthForms> {
                               }
                               return null;
                             },
+                            onChanged: (value) {
+                              if (value.length > 5) _formKey.currentState!.validate();
+                            },
                             onSaved: (email) {
                               if (isSignIn) {
                                 userSignIn = AuthSignInModel(email: email!, password: userSignIn.password);
@@ -222,6 +213,9 @@ class _AuthFormsState extends State<AuthForms> {
                               return null;
                             }
                             return null;
+                          },
+                          onChanged: (value) {
+                            if (value.length > 5) _formKey.currentState!.validate();
                           },
                           onSaved: (password) {
                             if (isSignIn) {
@@ -262,89 +256,33 @@ class _AuthFormsState extends State<AuthForms> {
                                   await Provider.of<AuthProvider>(context, listen: false).signUp(userSignUp, context);
 
                               if (signUpResult == 'done')
-                                CustomDialog.showCustomDialog(
-                                  context: context,
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Container(
-                                        margin: const EdgeInsets.only(
-                                          top: 15,
-                                          bottom: 10,
-                                        ),
-                                        padding: const EdgeInsets.only(
-                                          left: 15,
-                                          right: 15,
-                                          bottom: 5,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          border: Border(
-                                            bottom: BorderSide(
-                                              width: 1,
-                                              color: Colors.grey,
-                                              style: BorderStyle.solid,
-                                            ),
-                                          ),
-                                        ),
-                                        child: AutoSizeText(
-                                          'Sign Up done Successfully',
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: AutoSizeText(
-                                          'You can now sign In \nto access the dashboard.',
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 16,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                          maxLines: 2,
-                                        ),
-                                      ),
-                                      Container(
-                                        margin: const EdgeInsets.all(15),
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                            setState(() {
-                                              isSignIn = !isSignIn;
-                                            });
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                              elevation: 10,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(15),
-                                              )),
-                                          child: Text(
-                                            'Okay',
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
+                                showSignUpDoneDialog();
+                              else
+                                return;
                             }
                           }
                           return;
                         },
                         style: ElevatedButton.styleFrom(
-                          elevation: 10,
+                          elevation: 5,
+                          primary: Utility.primaryColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15),
                           ),
                         ),
-                        child: Text('Submit'),
+                        child: Text('Submit', style: GoogleFonts.poppins()),
                       ),
                     ),
                     Container(
                       margin: EdgeInsets.only(
                         right: widget.isMobile ? 0 : 20,
-                        top: 20,
+                        top: isSignIn
+                            ? 20
+                            : widget.isMobile
+                                ? widget.isTablet
+                                    ? 20
+                                    : 10
+                                : 30,
                       ),
                       child: TextButton(
                         onPressed: () {
@@ -358,9 +296,116 @@ class _AuthFormsState extends State<AuthForms> {
                           style: GoogleFonts.poppins(),
                         ),
                       ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        right: widget.isMobile ? 0 : 10,
+                        top: widget.isMobile
+                            ? widget.isTablet
+                                ? 10
+                                : 0
+                            : 10,
+                      ),
+                      child: TextButton(
+                        onPressed: () {
+                          unFocusFields();
+                        },
+                        child: Text(
+                          'Forgot Passoword?',
+                          style: GoogleFonts.poppins(),
+                        ),
+                        style: TextButton.styleFrom(
+                          primary: Utility.darkSecondaryColor,
+                        ),
+                      ),
                     )
                   ],
                 ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    emailFocus = FocusNode();
+    nameFocus = FocusNode();
+    passwordFocus = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    nameFocus.dispose();
+    passwordFocus.dispose();
+    emailFocus.dispose();
+    super.dispose();
+  }
+
+  void showSignUpDoneDialog() {
+    CustomDialog.showCustomDialog(
+      context: context,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(
+              top: 15,
+              bottom: 10,
+            ),
+            padding: const EdgeInsets.only(
+              left: 15,
+              right: 15,
+              bottom: 5,
+            ),
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  width: 1,
+                  color: Colors.grey,
+                  style: BorderStyle.solid,
+                ),
+              ),
+            ),
+            child: AutoSizeText(
+              'Sign Up done Successfully',
+              style: GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: AutoSizeText(
+              'You can now sign In \nto access the dashboard.',
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+              ),
+              textAlign: TextAlign.center,
+              maxLines: 2,
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.all(15),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                setState(() {
+                  isSignIn = !isSignIn;
+                });
+              },
+              style: ElevatedButton.styleFrom(
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  )),
+              child: Text(
+                'Okay',
               ),
             ),
           ),
