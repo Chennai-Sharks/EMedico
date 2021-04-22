@@ -48,7 +48,7 @@ router.post('/login', async (req, res) => {
   });
   if (!user) return res.status(400).send("Email not found");    //if the email entered isn't found in the DB
 
-  if(!user.confirmed) return res.status(400).send("Please confirm your email to login");
+  //if(!user.isVerified) return res.status(400).send("Please confirm your email to login");
 
   //this block of code checks the corresponding password is right for that particular email
   const validPassword = await bcryptjs.compare(req.body.password, user.password);

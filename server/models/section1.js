@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const section1Schema = new mongoose.Schema({
+
+  "mongoid":String,
+
   "date": {
     "type": Date,
     default: Date.now
