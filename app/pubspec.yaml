@@ -22,8 +22,9 @@ dependencies:
   responsive_builder: ^0.4.1
   http: ^0.13.1
   auto_size_text: ^3.0.0-nullsafety.0
-  velocity_x: ^2.6.1 # Check if this is needed in future
+  velocity_x: ^2.6.1
   provider: ^5.0.0
+  universal_html: ^2.0.8
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
