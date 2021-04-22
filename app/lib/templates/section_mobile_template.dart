@@ -4,11 +4,13 @@ import 'package:app/widgets/nav_drawer_mobile.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SectionMobileTemplate extends StatelessWidget {
   final List<Widget> forms;
   final GlobalKey<FormBuilderState> formKey;
   final List<Widget>? extraWidget1;
+  final String sectionName;
 
   final Widget? extraWidget2;
   final void Function()? onSubmitForm;
@@ -16,6 +18,7 @@ class SectionMobileTemplate extends StatelessWidget {
   SectionMobileTemplate({
     required this.forms,
     required this.formKey,
+    required this.sectionName,
     this.extraWidget1,
     this.extraWidget2,
     this.onSubmitForm,
@@ -38,11 +41,22 @@ class SectionMobileTemplate extends StatelessWidget {
             child: StaggeredGridView.count(
               crossAxisCount: 1,
               staggeredTiles: [
+                StaggeredTile.fit(1),
                 ...forms.map((_) => StaggeredTile.fit(1)).toList(),
                 ...extraWidget1!.map((_) => StaggeredTile.fit(1)).toList(),
                 StaggeredTile.fit(1),
               ],
               children: [
+                Container(
+                  alignment: Alignment.center,
+                  margin: const EdgeInsets.all(10),
+                  child: Text(
+                    '${sectionName}',
+                    style: GoogleFonts.poppins(
+                      fontSize: 30,
+                    ),
+                  ),
+                ),
                 ...forms,
                 ...extraWidget1 ?? [Container()],
                 Container(

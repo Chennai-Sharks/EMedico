@@ -1,10 +1,10 @@
-// import 'dart:convert';
+import 'dart:io';
 
 import 'package:app/templates/auth_screen_template.dart';
 import 'package:app/utils/utils.dart';
 import 'package:app/widgets/auth_form.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:http/http.dart' as http;
 
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +24,8 @@ class AuthScreen extends StatelessWidget {
         ),
         child: ResponsiveBuilder(
           builder: (context, sizingInformation) {
-            if ((sizingInformation.isDesktop) && sizingInformation.screenSize.width >= 1000) {
-              print(sizingInformation.deviceScreenType);
+            if ((kIsWeb ? sizingInformation.isDesktop : Platform.isWindows) &&
+                sizingInformation.screenSize.width >= 1000) {
               return AuthScreenTemplate(
                 givenHeight: height * 0.8,
                 givenWidth: width * 0.6,
@@ -34,7 +34,7 @@ class AuthScreen extends StatelessWidget {
                     Expanded(
                       child: Container(
                         margin: EdgeInsets.all(
-                          sizingInformation.isTablet
+                          sizingInformation.isTablet && (kIsWeb ? false : !Platform.isWindows)
                               ? 20
                               : sizingInformation.screenSize.width > 1350
                                   ? 70
@@ -59,12 +59,12 @@ class AuthScreen extends StatelessWidget {
                 givenWidth: width * 0.6,
                 givenChild: AuthForms(
                   isMobile: true,
-                  isTablet: false,
+                  isTablet: true,
                 ),
               );
             } else
               return AuthScreenTemplate(
-                givenHeight: height * 0.65,
+                givenHeight: height * 0.70,
                 givenWidth: width * 0.85,
                 givenChild: AuthForms(
                   isMobile: true,

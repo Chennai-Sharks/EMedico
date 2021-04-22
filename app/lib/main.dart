@@ -42,12 +42,11 @@ class MyApp extends StatelessWidget {
               title: 'EMedico',
               debugShowCheckedModeBanner: false,
               theme: ThemeData(
-                primarySwatch: MaterialColor(0xFF6C63FF, color),
-                primaryColor: MaterialColor(0xFF6C63FF, color),
-                backgroundColor: MaterialColor(0xFF6C63FF, color),
+                primarySwatch: MaterialColor(0xFF1089ff, color),
+                primaryColor: MaterialColor(0xFF1089ff, color),
+                backgroundColor: MaterialColor(0xFF1089ff, color),
               ),
               home: auth.isAuth ? HomeScreen() : AuthScreen(),
-              // home: Section1Screen(),
             );
           },
         );
