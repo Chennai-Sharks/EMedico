@@ -23,12 +23,11 @@ const section1Schema = new mongoose.Schema({
   },
   "treatingDentist": {
     type: String,
-    required: true
   },
   "purposeOfVisit": {
     type: String,
     enum: ["evaluation","treatment","second Opinion","legal","MVA","other"],
-    required: true
+
   },
   "referralSource": String,
   "personalHistory": {
