@@ -25,6 +25,7 @@ dependencies:
   velocity_x: ^2.6.1
   provider: ^5.0.0
   universal_html: ^2.0.8
+  recase: ^4.0.0
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
