@@ -8,7 +8,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 /// [ Extra Widgets are optional but don't give it as null. if it is not needed give []
-class SectionWebTemplate extends StatelessWidget {
+class SectionWebTemplateForm extends StatelessWidget {
   final List<Widget> widget1;
   final GlobalKey<FormBuilderState>? formKey;
   final String sectionName;
@@ -17,7 +17,7 @@ class SectionWebTemplate extends StatelessWidget {
   final ScrollController controller;
   final void Function()? onSubmitForm;
 
-  SectionWebTemplate({
+  SectionWebTemplateForm({
     required this.widget1,
     required this.sectionName,
     required this.controller,

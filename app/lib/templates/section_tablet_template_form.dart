@@ -7,7 +7,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SectionTabletTemplate extends StatelessWidget {
+class SectionTabletTemplateForm extends StatelessWidget {
   final List<Widget> widget1;
   final GlobalKey<FormBuilderState>? formKey;
   final List<Widget>? extraWidget1;
@@ -16,7 +16,7 @@ class SectionTabletTemplate extends StatelessWidget {
   final Widget? extraWidget2;
   final void Function()? onSubmitForm;
 
-  SectionTabletTemplate({
+  SectionTabletTemplateForm({
     required this.widget1,
     required this.sectionName,
     this.formKey,
