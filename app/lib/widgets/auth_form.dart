@@ -97,6 +97,7 @@ class _AuthFormsState extends State<AuthForms> {
       hoverColor: Colors.white,
       highlightColor: Colors.white,
       onTap: unFocusFields,
+      borderRadius: BorderRadius.circular(15),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
