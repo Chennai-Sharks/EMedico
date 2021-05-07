@@ -1,10 +1,11 @@
 import 'dart:io';
 
 import 'package:app/providers/section1_provider.dart';
-import 'package:app/sections/section_1_forms.dart';
-import 'package:app/templates/section_mobile_template.dart';
-import 'package:app/templates/section_tablet_template.dart';
-import 'package:app/templates/section_web_template.dart';
+import 'package:app/sections/section1/section1_show_data.dart';
+import 'package:app/sections/section1/section_1_forms.dart';
+import 'package:app/templates/section_mobile_template_form.dart';
+import 'package:app/templates/section_tablet_template_form.dart';
+import 'package:app/templates/section_web_template_form.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -13,13 +14,14 @@ import 'package:velocity_x/velocity_x.dart' show VxToast;
 
 /// [ Platform.isWindows does not work with flutter web. so that kIsWeb Constant is used.]
 
-class Section1Screen extends StatefulWidget {
+class Section1FormScreen extends StatefulWidget {
   @override
-  _Section1ScreenState createState() => _Section1ScreenState();
+  _Section1FormScreenState createState() => _Section1FormScreenState();
 }
 
-class _Section1ScreenState extends State<Section1Screen> {
+class _Section1FormScreenState extends State<Section1FormScreen> {
   final Section1Form section1Form = Section1Form();
+  final Section1ShowData section1showData = Section1ShowData();
 
   final _formKey = GlobalKey<FormBuilderState>();
 
@@ -43,7 +45,7 @@ class _Section1ScreenState extends State<Section1Screen> {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
         if ((kIsWeb ? sizingInformation.isDesktop : Platform.isWindows) && sizingInformation.screenSize.width >= 1125) {
-          return SectionWebTemplate(
+          return SectionWebTemplateForm(
             widget1: section1Form.section1Forms(context: context),
             sectionName: 'Section 1',
             formKey: _formKey,
@@ -52,7 +54,7 @@ class _Section1ScreenState extends State<Section1Screen> {
             controller: _controller,
           );
         } else if ((sizingInformation.screenSize.width >= 800 && sizingInformation.screenSize.width < 1125)) {
-          return SectionTabletTemplate(
+          return SectionTabletTemplateForm(
             widget1: section1Form.section1Forms(context: context),
             extraWidget1: section1Form.secondPartForms(isMobile: false, context: context),
             formKey: _formKey,
@@ -60,7 +62,7 @@ class _Section1ScreenState extends State<Section1Screen> {
             sectionName: 'Section1',
           );
         } else
-          return SectionMobileTemplate(
+          return SectionMobileTemplateForm(
             widget1: section1Form.section1Forms(context: context),
             extraWidget1: section1Form.secondPartForms(isMobile: true, context: context),
             formKey: _formKey,

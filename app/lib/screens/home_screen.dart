@@ -1,4 +1,5 @@
-import 'package:app/screens/section1_screen.dart';
+import 'package:app/screens/section1_form_screen.dart';
+import 'package:app/screens/section1_showData_screen.dart';
 import 'package:app/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -16,7 +17,7 @@ class HomeScreen extends StatelessWidget {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Section1Screen()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Section1FormScreen()));
               },
               child: Text('Create'),
             ),
@@ -27,7 +28,7 @@ class HomeScreen extends StatelessWidget {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                VxToast.show(context, msg: 'Not done');
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Section1ShowDataScreen()));
               },
               child: Text('read'),
             ),
