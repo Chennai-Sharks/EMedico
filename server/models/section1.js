@@ -38,27 +38,29 @@ const section1Schema = new mongoose.Schema({
   "allergiesToMedication": String,
   "chiefComplaints": String,
   "additionalConcerns": String,
-  "onset": String,
-  "location": String,
-  "chronicity": String,
-  "frequence": String,
-  "duration": String,
-  "intensity": {
-    type: String,
-    enum: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+  "historyOfpresentingIllness":{
+    "onset": String,
+    "location": String,
+    "chronicity": String,
+    "frequence": String,
+    "duration": String,
+    "intensity": {
+      type: String,
+      enum: ['0','1','2','3','4','5','6','7','8','9','10']
+    },
+    "backgroundPain": {
+      type: String,
+      enum: ['0','1','2','3','4','5','6','7','8','9','10']
+    },
+    "quality": String,
+    "treatments": String,
+    "aggravatingFactors": String,
+    "RelievingFactors": String,
+    "temporalChar": String,
+    "associatedFeatures": String,
+    "referralPattern": String,
+    "sleep": String,
   },
-  "backgroundPain": {
-    type: String,
-    enum: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
-  },
-  "quality": String,
-  "treatments": String,
-  "aggravatingFactors": String,
-  "RelievingFactors": String,
-  "temporalChar": String,
-  "associatedFeatures": String,
-  "referralPattern": String,
-  "sleep": String,
   "primaryCarePhysician": String,
   "primaryDentist": String,
   "anyOtherPhyscian": String,
