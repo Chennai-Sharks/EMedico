@@ -65,7 +65,7 @@ router.get('/section1/:mongoid', async(req,res)=>{
       const data = await Section1.findOne({mongoid: req.params.mongoid}).exec();
       res.json(data);
     } catch (err) {
-      res.status(400).send(err);
+      res.status(400).json({message: err});
     }
 });
 
