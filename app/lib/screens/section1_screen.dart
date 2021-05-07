@@ -44,7 +44,7 @@ class _Section1ScreenState extends State<Section1Screen> {
       builder: (context, sizingInformation) {
         if ((kIsWeb ? sizingInformation.isDesktop : Platform.isWindows) && sizingInformation.screenSize.width >= 1125) {
           return SectionWebTemplate(
-            forms: section1Form.section1Forms(context: context),
+            widget1: section1Form.section1Forms(context: context),
             sectionName: 'Section 1',
             formKey: _formKey,
             extraWidget1: section1Form.secondPartForms(isMobile: false, context: context),
@@ -53,7 +53,7 @@ class _Section1ScreenState extends State<Section1Screen> {
           );
         } else if ((sizingInformation.screenSize.width >= 800 && sizingInformation.screenSize.width < 1125)) {
           return SectionTabletTemplate(
-            forms: section1Form.section1Forms(context: context),
+            widget1: section1Form.section1Forms(context: context),
             extraWidget1: section1Form.secondPartForms(isMobile: false, context: context),
             formKey: _formKey,
             onSubmitForm: () async => await submitForm(context),
@@ -61,7 +61,7 @@ class _Section1ScreenState extends State<Section1Screen> {
           );
         } else
           return SectionMobileTemplate(
-            forms: section1Form.section1Forms(context: context),
+            widget1: section1Form.section1Forms(context: context),
             extraWidget1: section1Form.secondPartForms(isMobile: true, context: context),
             formKey: _formKey,
             onSubmitForm: () async => await submitForm(context),

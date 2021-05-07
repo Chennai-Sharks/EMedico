@@ -1,3 +1,4 @@
+import 'package:app/utils/utils.dart';
 import 'package:app/widgets/custom_app_bar.dart';
 import 'package:app/widgets/web_side_nav_bar.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -7,8 +8,8 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SectionTabletTemplate extends StatelessWidget {
-  final List<Widget> forms;
-  final GlobalKey<FormBuilderState> formKey;
+  final List<Widget> widget1;
+  final GlobalKey<FormBuilderState>? formKey;
   final List<Widget>? extraWidget1;
   final String sectionName;
 
@@ -16,12 +17,12 @@ class SectionTabletTemplate extends StatelessWidget {
   final void Function()? onSubmitForm;
 
   SectionTabletTemplate({
-    required this.forms,
-    required this.formKey,
+    required this.widget1,
+    required this.sectionName,
+    this.formKey,
     this.extraWidget1,
     this.extraWidget2,
     this.onSubmitForm,
-    required this.sectionName,
   });
 
   @override
@@ -29,6 +30,7 @@ class SectionTabletTemplate extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: Utility.modernWhiteBackground,
       appBar: CustomAppBar(),
       body: Row(
         children: [
@@ -39,10 +41,10 @@ class SectionTabletTemplate extends StatelessWidget {
             child: InkWell(
               enableFeedback: false,
               mouseCursor: MouseCursor.defer,
-              focusColor: Colors.white,
-              splashColor: Colors.white,
-              hoverColor: Colors.white,
-              highlightColor: Colors.white,
+              focusColor: Utility.modernWhiteBackground,
+              splashColor: Utility.modernWhiteBackground,
+              hoverColor: Utility.modernWhiteBackground,
+              highlightColor: Utility.modernWhiteBackground,
               onTap: () => FocusScope.of(context).unfocus(),
               child: Scrollbar(
                 interactive: true,
@@ -59,7 +61,7 @@ class SectionTabletTemplate extends StatelessWidget {
                       ),
                       Card(
                         elevation: 10,
-                        shadowColor: Colors.white,
+                        shadowColor: Utility.modernWhiteBackground,
                         margin: const EdgeInsets.only(top: 20, bottom: 40),
                         child: Container(
                           width: width - width * 0.16,
@@ -69,13 +71,13 @@ class SectionTabletTemplate extends StatelessWidget {
                               physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               staggeredTiles: [
-                                ...forms.map((_) => StaggeredTile.fit(1)).toList(),
+                                ...widget1.map((_) => StaggeredTile.fit(1)).toList(),
                                 ...extraWidget1!.map((_) => StaggeredTile.fit(2)).toList(),
                                 StaggeredTile.fit(2),
                               ],
                               crossAxisCount: 2,
                               children: [
-                                ...forms,
+                                ...widget1,
                                 ...extraWidget1 ?? [Container()],
                                 Container(
                                   height: 40,
