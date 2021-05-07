@@ -1,3 +1,4 @@
+import 'package:app/utils/utils.dart';
 import 'package:app/widgets/custom_app_bar.dart';
 import 'package:app/widgets/web_side_nav_bar.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -8,8 +9,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 /// [ Extra Widgets are optional but don't give it as null. if it is not needed give []
 class SectionWebTemplate extends StatelessWidget {
-  final List<Widget> forms;
-  final GlobalKey<FormBuilderState> formKey;
+  final List<Widget> widget1;
+  final GlobalKey<FormBuilderState>? formKey;
   final String sectionName;
   final List<Widget>? extraWidget1;
   final Widget? extraWidget2;
@@ -17,10 +18,10 @@ class SectionWebTemplate extends StatelessWidget {
   final void Function()? onSubmitForm;
 
   SectionWebTemplate({
-    required this.forms,
-    required this.formKey,
+    required this.widget1,
     required this.sectionName,
     required this.controller,
+    this.formKey,
     this.extraWidget1,
     this.extraWidget2,
     this.onSubmitForm,
@@ -31,7 +32,7 @@ class SectionWebTemplate extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: CustomAppBar(),
-      backgroundColor: Colors.white,
+      backgroundColor: Utility.modernWhiteBackground,
       body: Row(
         children: [
           WebSideNavBar(
@@ -40,10 +41,10 @@ class SectionWebTemplate extends StatelessWidget {
           InkWell(
             enableFeedback: false,
             mouseCursor: MouseCursor.defer,
-            focusColor: Colors.white,
-            splashColor: Colors.white,
-            hoverColor: Colors.white,
-            highlightColor: Colors.white,
+            focusColor: Utility.modernWhiteBackground,
+            splashColor: Utility.modernWhiteBackground,
+            hoverColor: Utility.modernWhiteBackground,
+            highlightColor: Utility.modernWhiteBackground,
             onTap: () => FocusScope.of(context).unfocus(),
             child: Scrollbar(
               isAlwaysShown: true,
@@ -72,7 +73,7 @@ class SectionWebTemplate extends StatelessWidget {
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             staggeredTiles: [
-                              ...forms.map((_) => StaggeredTile.fit(1)).toList(),
+                              ...widget1.map((_) => StaggeredTile.fit(1)).toList(),
                               ...extraWidget1!.map((_) => StaggeredTile.fit(3)).toList(),
                               StaggeredTile.fit(3),
                               StaggeredTile.fit(3),
@@ -80,7 +81,7 @@ class SectionWebTemplate extends StatelessWidget {
                             crossAxisCount: 3,
                             mainAxisSpacing: 10,
                             children: [
-                              ...forms,
+                              ...widget1,
                               ...extraWidget1 ?? [Container()],
                               extraWidget2 ?? Container(),
                               Container(

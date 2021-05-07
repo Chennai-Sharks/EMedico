@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const User = require('../models/User');
 const bcryptjs = require('bcryptjs');
-const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
 //register auth route
@@ -58,6 +57,6 @@ router.post('/login', async (req, res) => {
   // const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
   // res.header('auth_Token', token).send(token);
   res.send({_id: user._id});
-})
+});
 
 module.exports = router;

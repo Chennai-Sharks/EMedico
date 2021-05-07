@@ -62,10 +62,12 @@ router.get('/getOnePatient/:did', async(req,res) => {
 // this is to GET the details of section 1
 router.get('/section1/:mongoid', async(req,res)=>{
     try {
-      data = await Section1.findById(req.params.mongoid);
-      res.send(data);
+      const data = await Section1.findOne({mongoid: req.params.mongoid}).exec();
+      res.json(data);
     } catch (err) {
-      res.status(400).send(err);
+      res.status(400).json({message: err});
     }
 });
+
+
 module.exports = router;

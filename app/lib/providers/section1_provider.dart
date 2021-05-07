@@ -25,28 +25,8 @@ class Section1Provider with ChangeNotifier {
         /// [ This is done because formkey.currentState!.value is an unmodifiable map ]
         final section1FormValues = {...formkey.currentState!.value};
 
-        Map<String, Map<String, dynamic>> historyOfPresentingIllness = {
-          'historyOfPresentingIllness': {},
-        };
-
-        // This done beacause historyOfPre... is saved as seperate values in the form
-        // instead of a map. So I am making it as a map.
-        Utility.historyOfPatientIllness.forEach((element) {
-          historyOfPresentingIllness['historyOfPresentingIllness']![element] = section1FormValues[element];
-          section1FormValues.remove(element);
-        });
-
-        section1FormValues['historyOfpresentingIllness'] = {
-          ...historyOfPresentingIllness['historyOfPresentingIllness']!,
-        };
-
         // Change age to Number
         section1FormValues.update('age', (value) => int.parse(value));
-
-        (section1FormValues['historyOfpresentingIllness'] as Map<String, dynamic>)
-            .update('backgroundPain', (value) => value.toInt());
-        (section1FormValues['historyOfpresentingIllness'] as Map<String, dynamic>)
-            .update('intensity', (value) => value.toInt());
 
         final Map<String, String> addNewPatient = {
           'name': section1FormValues['name'],
@@ -55,6 +35,7 @@ class Section1Provider with ChangeNotifier {
         // Removed dpid coz its not need in the post request for submission of the form.
         section1FormValues.remove('dpid');
 
+        // this is to get the mongo id of the patient under a doctor
         final newPatient = await http.post(
           Uri.parse('http://localhost:3000/api/create/addPatient/${docId}'),
           headers: Utility.headerValue,
@@ -64,7 +45,12 @@ class Section1Provider with ChangeNotifier {
 
         final newPatientDetails = json.decode(newPatient.body) as Map<String, dynamic>;
 
+        // _id is mongoId
         await UtilityProvider.setCurrentPatientId(pId: newPatientDetails['_id']);
+
+        section1FormValues.addAll({
+          'mongoid': newPatientDetails['_id'],
+        });
 
         final response = await http.post(
           Uri.parse('http://localhost:3000/api/create/section1/${newPatientDetails['_id']}'),

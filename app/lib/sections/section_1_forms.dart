@@ -5,7 +5,7 @@ import 'package:app/widgets/custom_textfield.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Section1 {
+class Section1Form {
   final textFieldPadding = EdgeInsets.all(20);
   final dropDownMargin = EdgeInsets.only(top: 20, bottom: 20, left: 20, right: 20);
 
@@ -151,7 +151,7 @@ class Section1 {
       ),
       SelectableText(
         'History of Presenting Illness',
-        style: GoogleFonts.poppins(
+        style: GoogleFonts.rubik(
           fontSize: isMobile ? 25 : 30,
         ),
         textAlign: TextAlign.center,
@@ -287,7 +287,7 @@ class Section1 {
       SizedBox(height: 20),
       SelectableText(
         'Chief Complaints: (In order of significance)',
-        style: GoogleFonts.poppins(
+        style: GoogleFonts.rubik(
           fontSize: isMobile ? 25 : 25,
         ),
         textAlign: TextAlign.center,
@@ -303,7 +303,7 @@ class Section1 {
       ),
       SelectableText(
         'Additional Concerns',
-        style: GoogleFonts.poppins(
+        style: GoogleFonts.rubik(
           fontSize: isMobile ? 25 : 25,
         ),
         textAlign: TextAlign.center,

@@ -30,7 +30,7 @@ class CustomSlider extends StatelessWidget {
       children: [
         SelectableText(
           topLabel,
-          style: GoogleFonts.poppins(
+          style: GoogleFonts.rubik(
             fontSize: 18,
             fontWeight: FontWeight.w500,
           ),

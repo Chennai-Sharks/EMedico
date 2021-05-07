@@ -33,7 +33,7 @@ class _AuthFormsState extends State<AuthForms> {
     return InputDecoration(
       icon: icon,
       labelText: label,
-      labelStyle: GoogleFonts.poppins(),
+      labelStyle: GoogleFonts.rubik(),
       floatingLabelBehavior: FloatingLabelBehavior.never,
       filled: true,
       fillColor: Utility.fullgreyBackground,
@@ -54,7 +54,7 @@ class _AuthFormsState extends State<AuthForms> {
           : null,
       child: AutoSizeText(
         isSignIn ? 'Login' : 'Sign Up',
-        style: GoogleFonts.poppins(
+        style: GoogleFonts.rubik(
           fontSize: widget.isMobile ? 30 : 35,
           fontWeight: FontWeight.bold,
         ),
@@ -97,6 +97,7 @@ class _AuthFormsState extends State<AuthForms> {
       hoverColor: Colors.white,
       highlightColor: Colors.white,
       onTap: unFocusFields,
+      borderRadius: BorderRadius.circular(15),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -125,7 +126,7 @@ class _AuthFormsState extends State<AuthForms> {
                               isMobile: widget.isMobile,
                               isTablet: widget.isTablet,
                               widget: TextFormField(
-                                style: GoogleFonts.poppins(),
+                                style: GoogleFonts.rubik(),
                                 keyboardType: TextInputType.name,
                                 focusNode: nameFocus,
                                 validator: (value) {
@@ -161,7 +162,7 @@ class _AuthFormsState extends State<AuthForms> {
                         isMobile: widget.isMobile,
                         isTablet: widget.isTablet,
                         widget: TextFormField(
-                            style: GoogleFonts.poppins(),
+                            style: GoogleFonts.rubik(),
                             focusNode: emailFocus,
                             keyboardType: TextInputType.emailAddress,
                             decoration: customizeTextField(
@@ -199,7 +200,7 @@ class _AuthFormsState extends State<AuthForms> {
                         isMobile: widget.isMobile,
                         isTablet: widget.isTablet,
                         widget: TextFormField(
-                          style: GoogleFonts.poppins(),
+                          style: GoogleFonts.rubik(),
                           focusNode: passwordFocus,
                           obscureText: true,
                           keyboardType: TextInputType.text,
@@ -270,7 +271,7 @@ class _AuthFormsState extends State<AuthForms> {
                             borderRadius: BorderRadius.circular(15),
                           ),
                         ),
-                        child: Text('Submit', style: GoogleFonts.poppins()),
+                        child: Text('Submit', style: GoogleFonts.rubik()),
                       ),
                     ),
                     Container(
@@ -293,7 +294,7 @@ class _AuthFormsState extends State<AuthForms> {
                         },
                         child: Text(
                           isSignIn ? 'Sign Up Instead' : 'Sign In Instead',
-                          style: GoogleFonts.poppins(),
+                          style: GoogleFonts.rubik(),
                         ),
                       ),
                     ),
@@ -312,7 +313,7 @@ class _AuthFormsState extends State<AuthForms> {
                         },
                         child: Text(
                           'Forgot Passoword?',
-                          style: GoogleFonts.poppins(),
+                          style: GoogleFonts.rubik(),
                         ),
                         style: TextButton.styleFrom(
                           primary: Utility.darkSecondaryColor,
@@ -372,7 +373,7 @@ class _AuthFormsState extends State<AuthForms> {
             ),
             child: AutoSizeText(
               'Sign Up done Successfully',
-              style: GoogleFonts.poppins(
+              style: GoogleFonts.rubik(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
@@ -383,7 +384,7 @@ class _AuthFormsState extends State<AuthForms> {
             padding: const EdgeInsets.all(8.0),
             child: AutoSizeText(
               'You can now sign In \nto access the dashboard.',
-              style: GoogleFonts.poppins(
+              style: GoogleFonts.rubik(
                 fontSize: 16,
               ),
               textAlign: TextAlign.center,

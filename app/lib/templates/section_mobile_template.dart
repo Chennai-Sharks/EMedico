@@ -7,8 +7,8 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SectionMobileTemplate extends StatelessWidget {
-  final List<Widget> forms;
-  final GlobalKey<FormBuilderState> formKey;
+  final List<Widget> widget1;
+  final GlobalKey<FormBuilderState>? formKey;
   final List<Widget>? extraWidget1;
   final String sectionName;
 
@@ -16,7 +16,7 @@ class SectionMobileTemplate extends StatelessWidget {
   final void Function()? onSubmitForm;
 
   SectionMobileTemplate({
-    required this.forms,
+    required this.widget1,
     required this.formKey,
     required this.sectionName,
     this.extraWidget1,
@@ -42,7 +42,7 @@ class SectionMobileTemplate extends StatelessWidget {
               crossAxisCount: 1,
               staggeredTiles: [
                 StaggeredTile.fit(1),
-                ...forms.map((_) => StaggeredTile.fit(1)).toList(),
+                ...widget1.map((_) => StaggeredTile.fit(1)).toList(),
                 ...extraWidget1!.map((_) => StaggeredTile.fit(1)).toList(),
                 StaggeredTile.fit(1),
               ],
@@ -57,7 +57,7 @@ class SectionMobileTemplate extends StatelessWidget {
                     ),
                   ),
                 ),
-                ...forms,
+                ...widget1,
                 ...extraWidget1 ?? [Container()],
                 Container(
                   height: 40,
