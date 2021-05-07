@@ -44,12 +44,12 @@ router.patch('/updatePatient/:did/:mongoid', async (req,res) => {
 //this is to update the section 1 details
 router.patch('/section1/:mongoid', async (req,res) => {
   try {
-    const query = {mongoid: req.params.mongoid};
+    const conditions = {mongoid: req.params.mongoid};
     const update = req.body;
     const options = {new: true, useFindAndModify: false};
-    const section1doc = await Section1.findOneAndUpdate(query,update,options);
-    const patientDoc = await User.findOneAndUpdate()
-    res.send(doc);
+    const section1doc = await Section1.findOneAndUpdate(conditions,update,options);
+    //const patientDoc = await User.findOneAndUpdate(query,update,options);
+    res.send(section1doc);
   } catch(err){
     res.status(400).json({message: err});
   }
