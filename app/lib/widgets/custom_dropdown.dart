@@ -32,7 +32,7 @@ class CustomDropDown extends StatelessWidget {
         children: [
           SelectableText(
             label,
-            style: GoogleFonts.poppins(
+            style: GoogleFonts.rubik(
               fontSize: 18,
               fontWeight: FontWeight.w500,
             ),
@@ -43,7 +43,7 @@ class CustomDropDown extends StatelessWidget {
             focusColor: Colors.transparent,
             hint: Text(
               hintText,
-              style: GoogleFonts.poppins(
+              style: GoogleFonts.rubik(
                 fontSize: 18,
               ),
             ),

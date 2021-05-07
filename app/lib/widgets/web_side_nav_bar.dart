@@ -49,7 +49,7 @@ class _WebSideNavBarState extends State<WebSideNavBar> {
           ),
           label: Text(
             'DashBoard',
-            style: GoogleFonts.poppins(
+            style: GoogleFonts.rubik(
               fontSize: 18,
               color: Colors.white,
             ),
@@ -63,7 +63,7 @@ class _WebSideNavBarState extends State<WebSideNavBar> {
             ),
             label: Text(
               'Section $i',
-              style: GoogleFonts.poppins(
+              style: GoogleFonts.rubik(
                 fontSize: 18,
                 color: Colors.white,
               ),

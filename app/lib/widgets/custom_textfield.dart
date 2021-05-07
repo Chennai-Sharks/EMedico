@@ -32,7 +32,7 @@ class _CustomFormTextFeildState extends State<CustomFormTextFeild> {
       children: [
         SelectableText(
           widget.topLabel,
-          style: GoogleFonts.poppins(
+          style: GoogleFonts.rubik(
             fontSize: 18,
             fontWeight: FontWeight.w500,
           ),
@@ -43,7 +43,7 @@ class _CustomFormTextFeildState extends State<CustomFormTextFeild> {
           maxLines: widget.maxLines ?? 1,
           decoration: InputDecoration(
             labelText: widget.textFieldLabel,
-            labelStyle: GoogleFonts.poppins(),
+            labelStyle: GoogleFonts.rubik(),
             floatingLabelBehavior: FloatingLabelBehavior.never,
             filled: true,
             fillColor: Utility.fullgreyBackground,

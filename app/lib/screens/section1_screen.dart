@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:app/providers/section1_provider.dart';
-import 'package:app/sections/section_1.dart';
+import 'package:app/sections/section_1_forms.dart';
 import 'package:app/templates/section_mobile_template.dart';
 import 'package:app/templates/section_tablet_template.dart';
 import 'package:app/templates/section_web_template.dart';
@@ -19,7 +19,7 @@ class Section1Screen extends StatefulWidget {
 }
 
 class _Section1ScreenState extends State<Section1Screen> {
-  final Section1 section1 = Section1();
+  final Section1Form section1Form = Section1Form();
 
   final _formKey = GlobalKey<FormBuilderState>();
 
@@ -44,25 +44,25 @@ class _Section1ScreenState extends State<Section1Screen> {
       builder: (context, sizingInformation) {
         if ((kIsWeb ? sizingInformation.isDesktop : Platform.isWindows) && sizingInformation.screenSize.width >= 1125) {
           return SectionWebTemplate(
-            forms: section1.section1Forms(context: context),
+            forms: section1Form.section1Forms(context: context),
             sectionName: 'Section 1',
             formKey: _formKey,
-            extraWidget1: section1.secondPartForms(isMobile: false, context: context),
+            extraWidget1: section1Form.secondPartForms(isMobile: false, context: context),
             onSubmitForm: () async => await submitForm(context),
             controller: _controller,
           );
         } else if ((sizingInformation.screenSize.width >= 800 && sizingInformation.screenSize.width < 1125)) {
           return SectionTabletTemplate(
-            forms: section1.section1Forms(context: context),
-            extraWidget1: section1.secondPartForms(isMobile: false, context: context),
+            forms: section1Form.section1Forms(context: context),
+            extraWidget1: section1Form.secondPartForms(isMobile: false, context: context),
             formKey: _formKey,
             onSubmitForm: () async => await submitForm(context),
             sectionName: 'Section1',
           );
         } else
           return SectionMobileTemplate(
-            forms: section1.section1Forms(context: context),
-            extraWidget1: section1.secondPartForms(isMobile: true, context: context),
+            forms: section1Form.section1Forms(context: context),
+            extraWidget1: section1Form.secondPartForms(isMobile: true, context: context),
             formKey: _formKey,
             onSubmitForm: () async => await submitForm(context),
             sectionName: 'Section1',
