@@ -21,16 +21,31 @@ class Section1Provider with ChangeNotifier {
         return;
       else {
         formkey.currentState!.save();
+        Map<String, Map<String, dynamic>> historyOfPresentingIllness = {
+          'historyOfPresentingIllness': {},
+        };
 
         /// [ This is done because formkey.currentState!.value is an unmodifiable map ]
         final section1FormValues = {...formkey.currentState!.value};
 
+        // This done beacause historyOfPre... is saved as seperate values in the form
+        // instead of a map. So I am making it as a map.
+        Utility.historyOfPatientIllness.forEach((element) {
+          historyOfPresentingIllness['historyOfPresentingIllness']![element] = section1FormValues[element];
+          section1FormValues.remove(element);
+        });
+
+        section1FormValues['historyOfpresentingIllness'] = {
+          ...historyOfPresentingIllness['historyOfPresentingIllness']!,
+        };
+
         // Change age to Number
         section1FormValues.update('age', (value) => int.parse(value));
 
+        // This will get the mongo Id of the patient when submitted to addPatinet/docId
         final Map<String, String> addNewPatient = {
           'name': section1FormValues['name'],
-          'dpid': section1FormValues['dpid'],
+          'dpid': section1FormValues['dpid'], // this is the id given by doctor to a patient
         };
         // Removed dpid coz its not need in the post request for submission of the form.
         section1FormValues.remove('dpid');
