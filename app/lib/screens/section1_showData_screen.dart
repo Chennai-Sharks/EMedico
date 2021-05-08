@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:app/sections/section1/section1_show_data.dart';
+import 'package:app/templates/section_mobile_showData_template.dart';
+import 'package:app/templates/section_tablet_showData_template.dart';
 import 'package:app/templates/section_web_showData_template.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -59,9 +61,21 @@ class _Section1ShowDataScreenState extends State<Section1ShowDataScreen> {
                     extraWidget1: section1showData.historyOfPresentingIllness(data: historyOfPresentingIll),
                   );
                 } else if ((sizingInformation.screenSize.width >= 800 && sizingInformation.screenSize.width < 1125)) {
-                  return Container();
+                  return SectionTabletShowDataTemplate(
+                    widget1: section1showData.section1ShowData(context: context, data: responseData),
+                    sectionName: 'Section 1',
+                    controller: _controller,
+                    extraWidget2: section1showData.historyOfPresentingIllnessTitle(),
+                    extraWidget1: section1showData.historyOfPresentingIllness(data: historyOfPresentingIll),
+                  );
                 } else
-                  return Container();
+                  return SectionMobileShowDataTemplate(
+                    widget1: section1showData.section1ShowData(context: context, data: responseData),
+                    sectionName: 'Section 1',
+                    controller: _controller,
+                    extraWidget2: section1showData.historyOfPresentingIllnessTitle(),
+                    extraWidget1: section1showData.historyOfPresentingIllness(data: historyOfPresentingIll),
+                  );
               },
             );
           } else
