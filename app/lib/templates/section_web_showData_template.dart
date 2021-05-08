@@ -62,16 +62,16 @@ class SectionWebShowDataTemplate extends StatelessWidget {
                         shrinkWrap: true,
                         staggeredTiles: [
                           ...widget1.map((_) => StaggeredTile.fit(1)).toList(),
-                          ...extraWidget1!.map((_) => StaggeredTile.fit(3)).toList(),
                           StaggeredTile.fit(3),
+                          ...extraWidget1!.map((_) => StaggeredTile.fit(1)).toList(),
                           StaggeredTile.fit(3),
                         ],
                         crossAxisCount: 3,
                         mainAxisSpacing: 10,
                         children: [
                           ...widget1,
-                          ...extraWidget1 ?? [Container()],
                           extraWidget2 ?? Container(),
+                          ...extraWidget1 ?? [Container()],
                           Container(
                             height: 40,
                             margin: EdgeInsets.only(
