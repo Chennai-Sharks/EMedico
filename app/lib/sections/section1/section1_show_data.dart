@@ -23,6 +23,7 @@ class Section1ShowData {
       'History of Presenting Illness',
       style: GoogleFonts.rubik(
         fontSize: 30,
+        fontWeight: FontWeight.w500,
       ),
       textAlign: TextAlign.center,
     );

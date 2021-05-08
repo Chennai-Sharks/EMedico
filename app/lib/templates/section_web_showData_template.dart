@@ -54,6 +54,7 @@ class SectionWebShowDataTemplate extends StatelessWidget {
                   Card(
                     elevation: 10,
                     shadowColor: Colors.white,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                     margin: const EdgeInsets.only(left: 40, right: 40, top: 20, bottom: 40),
                     child: Container(
                       width: width - width * 0.16 - 80,
