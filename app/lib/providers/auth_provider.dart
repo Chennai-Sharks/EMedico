@@ -15,12 +15,12 @@ class AuthProvider with ChangeNotifier {
   final String localHostLoginUrl = 'http://localhost:3000/api/users/login';
 
   //  This is used for Mobile connection.
-  final String ipAddressLoginUrl = 'http://192.168.0.103:3000/api/users/login';
+  final String ipAddressLoginUrl = 'http://192.168.0.104:3000/api/users/login';
 
   final String localHostSignUpUrl = 'http://localhost:3000/api/users/register';
 
   //  This is used for Mobile connection.
-  final String ipAddressSignUpUrl = 'http://192.168.0.103:3000/api/users/register';
+  final String ipAddressSignUpUrl = 'http://192.168.0.104:3000/api/users/register';
 
   bool get isAuth => _userToken != null;
   String? get getToken => _userToken;
