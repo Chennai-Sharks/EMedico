@@ -11,6 +11,7 @@ const createRoute = require('./routes/post');
 const getRoute = require('./routes/get');
 const deleteRoute = require('./routes/delete');
 const updateRoute = require('./routes/patch');
+const pdfRoute = require('./routes/pdf');
 const mongoose = require('mongoose');
 dotenv.config(); //To access/config the DB connection token
 
@@ -64,5 +65,6 @@ app.use('/api/create',createRoute);
 app.use('/api/get', getRoute);
 app.use('/api/delete', deleteRoute);
 app.use('/api/update', updateRoute);
+app.use('/api/pdf', pdfRoute);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`.yellow.bold));
