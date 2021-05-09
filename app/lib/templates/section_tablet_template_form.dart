@@ -10,10 +10,11 @@ import 'package:google_fonts/google_fonts.dart';
 class SectionTabletTemplateForm extends StatelessWidget {
   final List<Widget> widget1;
   final GlobalKey<FormBuilderState>? formKey;
-  final List<Widget>? extraWidget1;
   final String sectionName;
-
-  final Widget? extraWidget2;
+  final List<Widget>? extraWidget1;
+  final Widget? extraWidget1Title;
+  final List<Widget>? extraWidget2;
+  final Widget? extraWidget2Title;
   final void Function()? onSubmitForm;
 
   SectionTabletTemplateForm({
@@ -23,6 +24,8 @@ class SectionTabletTemplateForm extends StatelessWidget {
     this.extraWidget1,
     this.extraWidget2,
     this.onSubmitForm,
+    this.extraWidget1Title,
+    this.extraWidget2Title,
   });
 
   @override
@@ -72,18 +75,24 @@ class SectionTabletTemplateForm extends StatelessWidget {
                               shrinkWrap: true,
                               staggeredTiles: [
                                 ...widget1.map((_) => StaggeredTile.fit(1)).toList(),
+                                StaggeredTile.fit(2),
                                 ...extraWidget1!.map((_) => StaggeredTile.fit(2)).toList(),
+                                StaggeredTile.fit(2),
+                                ...extraWidget2!.map((_) => StaggeredTile.fit(2)).toList(),
                                 StaggeredTile.fit(2),
                               ],
                               crossAxisCount: 2,
                               children: [
                                 ...widget1,
+                                extraWidget1Title ?? Container(),
                                 ...extraWidget1 ?? [Container()],
+                                extraWidget2Title ?? Container(),
+                                ...extraWidget2 ?? [Container()],
                                 Container(
                                   height: 40,
                                   margin: EdgeInsets.only(
-                                    left: (width - width * 0.160) * 0.45,
-                                    right: (width - width * 0.160) * 0.45,
+                                    left: (width - width * 0.160) * 0.40,
+                                    right: (width - width * 0.160) * 0.40,
                                     top: 20,
                                     bottom: 40,
                                   ),

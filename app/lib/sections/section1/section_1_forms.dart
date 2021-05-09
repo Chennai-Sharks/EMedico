@@ -6,10 +6,10 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Section1Form {
-  final textFieldPadding = EdgeInsets.all(20);
+  final textFieldPadding = EdgeInsets.all(10);
   final dropDownMargin = EdgeInsets.only(top: 20, bottom: 20, left: 20, right: 20);
 
-  List<Widget> section1Forms({required BuildContext context}) {
+  List<Widget> section1Forms({required BuildContext context, Map<String, dynamic>? data}) {
     return [
       Padding(
         padding: textFieldPadding,
@@ -17,6 +17,7 @@ class Section1Form {
           name: 'name',
           topLabel: 'Patient Name:',
           textFieldLabel: 'Name:',
+          initialValuefromDatabase: data != null ? data['name'] : '',
         ),
       ),
       Padding(
@@ -31,6 +32,7 @@ class Section1Form {
               FormBuilderValidators.numeric(context),
             ],
           ),
+          initialValuefromDatabase: data != null ? data['dpid'] : '',
         ),
       ),
       Padding(
@@ -45,6 +47,7 @@ class Section1Form {
               FormBuilderValidators.numeric(context),
             ],
           ),
+          initialValuefromDatabase: data != null ? data['age'] : '',
         ),
       ),
       Container(
@@ -54,6 +57,7 @@ class Section1Form {
           label: 'Gender',
           hintText: 'Select Gender:',
           dropDownItems: ["male", "female", "other"],
+          initialValuefromDatabase: data != null ? data['gender'] : null,
           validator: FormBuilderValidators.compose([FormBuilderValidators.required(context)]),
         ),
       ),
@@ -64,6 +68,7 @@ class Section1Form {
           label: 'Purpose Of Visit',
           hintText: 'Select:',
           dropDownItems: ["evaluation", "treatment", "second Opinion", "legal", "MVA", "other"],
+          initialValuefromDatabase: data != null ? data['purposeOfVisit'] : null,
           validator: FormBuilderValidators.compose([FormBuilderValidators.required(context)]),
         ),
       ),
@@ -74,6 +79,7 @@ class Section1Form {
           label: 'Personal History:',
           hintText: 'Select:',
           dropDownItems: ["single", "married", "divorce", "seperated", "widowed", "children"],
+          initialValuefromDatabase: data != null ? data['personalHistory'] : null,
           validator: FormBuilderValidators.compose([FormBuilderValidators.required(context)]),
         ),
       ),
@@ -82,6 +88,7 @@ class Section1Form {
         child: CustomFormTextFeild(
           name: 'referralSource',
           topLabel: 'Referral Source:',
+          initialValuefromDatabase: data != null ? data['referralSource'] : '',
           textFieldLabel: 'Enter:',
         ),
       ),
@@ -90,6 +97,7 @@ class Section1Form {
         child: CustomFormTextFeild(
           name: 'treatingDentist',
           topLabel: 'Treating Dentist:',
+          initialValuefromDatabase: data != null ? data['treatingDentist'] : '',
           textFieldLabel: 'Enter:',
         ),
       ),
@@ -99,6 +107,7 @@ class Section1Form {
           name: 'occupation',
           topLabel: 'Occupation:',
           textFieldLabel: 'Enter:',
+          initialValuefromDatabase: data != null ? data['occupation'] : '',
         ),
       ),
       Padding(
@@ -107,6 +116,7 @@ class Section1Form {
           name: 'allergiesToMedication',
           topLabel: 'Allergies To Medication:',
           textFieldLabel: 'Enter:',
+          initialValuefromDatabase: data != null ? data['allergiesToMedication'] : '',
         ),
       ),
       Padding(
@@ -115,6 +125,7 @@ class Section1Form {
           name: 'primaryDentist',
           topLabel: 'Primary Dentist:',
           textFieldLabel: 'Enter:',
+          initialValuefromDatabase: data != null ? data['primaryDentist'] : '',
         ),
       ),
       Padding(
@@ -123,21 +134,26 @@ class Section1Form {
           name: 'anyOtherPhyscian',
           topLabel: 'Any Other Physcian:',
           textFieldLabel: 'Enter:',
+          initialValuefromDatabase: data != null ? data['anyOtherPhyscian'] : '',
         ),
       ),
-      Container(),
       Container(
         margin: textFieldPadding,
         child: CustomFormTextFeild(
           name: 'primaryCarePhysician',
           topLabel: 'Primary Care Physician:',
           textFieldLabel: 'Enter:',
+          initialValuefromDatabase: data != null ? data['primaryCarePhysician'] : '',
         ),
       ),
     ];
   }
 
-  List<Widget> secondPartForms({required bool isMobile, required BuildContext context}) {
+  List<Widget> secondPartForms({
+    required bool isMobile,
+    required BuildContext context,
+    Map<String, dynamic>? data,
+  }) {
     final textFieldPadding = EdgeInsets.only(
       top: 10,
       bottom: 10,
@@ -162,6 +178,7 @@ class Section1Form {
           name: 'onset',
           topLabel: 'Onset',
           textFieldLabel: 'Enter:',
+          initialValuefromDatabase: data != null ? data['onset'] : '',
         ),
       ),
       Padding(
@@ -170,6 +187,7 @@ class Section1Form {
           name: 'location',
           topLabel: 'Location',
           textFieldLabel: 'Enter:',
+          initialValuefromDatabase: data != null ? data['location'] : '',
         ),
       ),
       Padding(
@@ -178,6 +196,7 @@ class Section1Form {
           name: 'chronicity',
           topLabel: 'Chronicity',
           textFieldLabel: 'Enter:',
+          initialValuefromDatabase: data != null ? data['chronicity'] : '',
         ),
       ),
       Padding(
@@ -186,6 +205,7 @@ class Section1Form {
           name: 'frequence',
           topLabel: 'Frequence',
           textFieldLabel: 'Enter:',
+          initialValuefromDatabase: data != null ? data['frequence'] : '',
         ),
       ),
       Padding(
@@ -194,6 +214,7 @@ class Section1Form {
           name: 'duration',
           topLabel: 'Duration',
           textFieldLabel: 'Enter:',
+          initialValuefromDatabase: data != null ? data['duration'] : '',
         ),
       ),
       Padding(
@@ -202,7 +223,7 @@ class Section1Form {
           name: 'intensity',
           topLabel: "Intensity:",
           floatingLabel: "Select Intensity",
-          intialValue: 5,
+          intialValue: data != null ? double.parse(data['intensity']) : 5,
           max: 10,
           min: 0,
           noOfSeperations: 10,
@@ -214,7 +235,7 @@ class Section1Form {
           name: 'backgroundPain',
           topLabel: "Background Pain:",
           floatingLabel: "Select Background Pain Level",
-          intialValue: 5,
+          intialValue: data != null ? double.parse(data['backgroundPain']) : 5,
           max: 10,
           min: 0,
           noOfSeperations: 10,
@@ -226,6 +247,7 @@ class Section1Form {
           name: 'quality',
           topLabel: 'Quality:',
           textFieldLabel: 'Enter:',
+          initialValuefromDatabase: data != null ? data['quality'] : '',
         ),
       ),
       Padding(
@@ -234,6 +256,7 @@ class Section1Form {
           name: 'treatments',
           topLabel: 'Treatments:',
           textFieldLabel: 'Enter:',
+          initialValuefromDatabase: data != null ? data['treatments'] : '',
         ),
       ),
       Padding(
@@ -242,6 +265,7 @@ class Section1Form {
           name: 'aggravatingFactors',
           topLabel: 'Aggravating Factors:',
           textFieldLabel: 'Enter:',
+          initialValuefromDatabase: data != null ? data['aggravatingFactors'] : '',
         ),
       ),
       Padding(
@@ -250,6 +274,7 @@ class Section1Form {
           name: 'RelievingFactors',
           topLabel: 'Relieving Factors:',
           textFieldLabel: 'Enter:',
+          initialValuefromDatabase: data != null ? data['RelievingFactors'] : '',
         ),
       ),
       Padding(
@@ -258,6 +283,7 @@ class Section1Form {
           name: 'temporalChar',
           topLabel: 'Temporal characteristics:',
           textFieldLabel: 'Enter:',
+          initialValuefromDatabase: data != null ? data['temporalChar'] : '',
         ),
       ),
       Padding(
@@ -266,6 +292,7 @@ class Section1Form {
           name: 'associatedFeatures',
           topLabel: 'Associated features:',
           textFieldLabel: 'Enter:',
+          initialValuefromDatabase: data != null ? data['associatedFeatures'] : '',
         ),
       ),
       Padding(
@@ -274,6 +301,7 @@ class Section1Form {
           name: 'referralPattern',
           topLabel: 'Referral pattern:',
           textFieldLabel: 'Enter:',
+          initialValuefromDatabase: data != null ? data['referralPattern'] : '',
         ),
       ),
       Padding(
@@ -282,6 +310,7 @@ class Section1Form {
           name: 'sleep',
           topLabel: 'Sleep:',
           textFieldLabel: 'Enter:',
+          initialValuefromDatabase: data != null ? data['sleep'] : '',
         ),
       ),
       SizedBox(height: 20),
@@ -299,6 +328,7 @@ class Section1Form {
           topLabel: 'Chief Complaints:',
           textInputType: TextInputType.multiline,
           maxLines: 5,
+          initialValuefromDatabase: data != null ? data['chiefComplaints'] : 'p',
         ),
       ),
       SelectableText(
@@ -314,6 +344,7 @@ class Section1Form {
           name: 'additionalConcerns',
           topLabel: 'Additional Concerns:',
           textInputType: TextInputType.multiline,
+          initialValuefromDatabase: data != null ? data['additionalConcerns'] : '',
           maxLines: 5,
         ),
       ),

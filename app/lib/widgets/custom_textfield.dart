@@ -10,6 +10,7 @@ class CustomFormTextFeild extends StatefulWidget {
   final String? Function(String?)? validatorFunction;
   final TextInputType? textInputType;
   final int? maxLines;
+  final String? initialValuefromDatabase;
 
   CustomFormTextFeild({
     required this.topLabel,
@@ -18,6 +19,7 @@ class CustomFormTextFeild extends StatefulWidget {
     this.validatorFunction,
     this.textInputType,
     this.maxLines,
+    this.initialValuefromDatabase,
   });
 
   @override
@@ -30,15 +32,19 @@ class _CustomFormTextFeildState extends State<CustomFormTextFeild> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SelectableText(
-          widget.topLabel,
-          style: GoogleFonts.rubik(
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SelectableText(
+            widget.topLabel,
+            style: GoogleFonts.rubik(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
         FormBuilderTextField(
           name: widget.name,
+          initialValue: widget.initialValuefromDatabase,
           keyboardType: widget.textInputType,
           maxLines: widget.maxLines ?? 1,
           decoration: InputDecoration(
