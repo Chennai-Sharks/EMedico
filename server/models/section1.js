@@ -8,10 +8,6 @@ const section1Schema = new mongoose.Schema({
     "type": Date,
     default: Date.now
   },
-  "name": {
-    type: String,
-    required: true
-  },
   "age": {
     type: Number,
     required: true

@@ -36,12 +36,12 @@ router.get('/getPatients/:did', async (req, res) => {
 });
 
 //this is to get a particular patient under a particular doctor
-router.get('/getOnePatient/:did', async (req, res) => {
+router.get('/getOnePatient/:did/:mongoid', async (req, res) => {
 	try {
 		let allPatients = await User.findById(req.params.did);
 		allPatients = allPatients.patients;
 		for (i in allPatients) {
-			if (allPatients[i].dpid == req.body.dpid) res.json(allPatients[i]);
+			if (allPatients[i]._id == req.params.mongoid) res.json(allPatients[i]);
 		}
 	} catch (err) {
 		res.status(400).send(err);
