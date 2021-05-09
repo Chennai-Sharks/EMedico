@@ -1,0 +1,368 @@
+{
+	"info": {
+		"_postman_id": "3486a53f-c86c-44cb-8096-594648fa1412",
+		"name": "Emedico API requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register and Login requests",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"neha@gmail.com\",\r\n    \"password\": \"whatever\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all doctors with all the details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/get",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a particular doctor detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/get/6079dd66d49369658c5c51be",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"get",
+						"6079dd66d49369658c5c51be"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all patient under a doctor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/get/getPatients/6079dd66d49369658c5c51be",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"get",
+						"getPatients",
+						"6079dd66d49369658c5c51be"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Display one patient under a doctor",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dpid\": \"10456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/get/getOnePatient/60788eec6395e73b8c348dd0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"get",
+						"getOnePatient",
+						"60788eec6395e73b8c348dd0"
+					],
+					"query": [
+						{
+							"key": "did",
+							"value": "6076c7c4a9ee3e09e0c23a60",
+							"disabled": true
+						},
+						{
+							"key": "dpid",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a patient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"PATIENT 3\",\r\n    \"dpid\": \"89543759\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/create/addPatient/6079dd66d49369658c5c51be",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"create",
+						"addPatient",
+						"6079dd66d49369658c5c51be"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Updating doc deets",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"David Beckham\",\r\n    \"email\": \"Beckhyy@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/update/6079dd66d49369658c5c51be",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"update",
+						"6079dd66d49369658c5c51be"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update One patient deets",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"kljsf\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/update/updaeOnePatient/6079753ec05c6c57c86d977b/10456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"update",
+						"updaeOnePatient",
+						"6079753ec05c6c57c86d977b",
+						"10456"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updating section 1 details",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Ajith\",\r\n    \"dpid\": \"98543\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/update/section1/60827b0abdd98e55103569aa/609525bce1cc0f4de8939293",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"update",
+						"section1",
+						"60827b0abdd98e55103569aa",
+						"609525bce1cc0f4de8939293"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get details of section 1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/get/section1/60827c634b723e4c0461790",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"get",
+						"section1",
+						"60827c634b723e4c0461790"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create section1 details",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mongoid\": \"609525bce1cc0f4de8939293\",\r\n    \"name\": \"sachin\",\r\n    \"age\": 56,\r\n    \"gender\": \"female\",\r\n    \"purposeOfVisit\": \"treatment\",\r\n    \"personalHistory\": \"married\",\r\n    \"referralSource\": \"dslkjf\",\r\n    \"treatingDentist\": \"kdlsjflkds\",\r\n    \"occupation\": \"Punda\",\r\n    \"allergiesToMedication\": \"dksjflka\",\r\n    \"primaryDentist\": \"ijdiosfj\",\r\n    \"anyOtherPhyscian\": \"iodjuioere\",\r\n    \"primaryCarePhysician\": \"ioejafio\",\r\n    \"chiefComplaints\": \"ldsjfi\",\r\n    \"additionalConcerns\": \"jfaoijf\",\r\n    \"onset\": \"kldjfalk4038\",\r\n    \"location\": \"ladf493858\",\r\n    \"intensity\": \"10\",\r\n    \"chronicity\": \"dskjf\",\r\n    \"frequence\": \"kdlasjflksjf\",\r\n    \"duration\": \"kdajflkf\",\r\n    \"backgroundPain\": \"3\",\r\n    \"quality\": \"lkdsjaf\",\r\n    \"treatments\": \"kdjsaklf\",\r\n    \"aggravatingFactors\": \"dkslfjf\",\r\n    \"RelievingFactors\": \"kljdfl\",\r\n    \"temporalChar\": \"kdjflkaf\",\r\n    \"associateFeatures\": \"kdjlksfj\",\r\n    \"refferralPattern\": \"lkdjfsklf\",\r\n    \"sleep\": \"ldksjf\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/create/section1/60827c634b723e4c04617900",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"create",
+						"section1",
+						"60827c634b723e4c04617900"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"update"
+					]
+				},
+				"description": "                    "
+			},
+			"response": []
+		},
+		{
+			"name": "pdf generator",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/pdf/609527f27f8b624f244dd5d6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"pdf",
+						"609527f27f8b624f244dd5d6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
