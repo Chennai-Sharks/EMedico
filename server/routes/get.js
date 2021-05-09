@@ -2,15 +2,6 @@ const router = require('express').Router();
 const User = require('../models/User');
 const Section1 = require('../models/section1');
 
-//this is to display all doctors
-router.get('/', async (req, res) => {
-	try {
-		const allDocs = await User.find();
-		res.json(allDocs);
-	} catch (err) {
-		res.status(400).send('No doctors fuck you');
-	}
-});
 
 //this block of code is to display all the details of a particular doctor
 router.get('/:did', async (req, res) => {
@@ -36,16 +27,19 @@ router.get('/getPatients/:did', async (req, res) => {
 });
 
 //this is to get a particular patient under a particular doctor
-router.get('/getOnePatient/:did/:mongoid', async (req, res) => {
-	try {
-		let allPatients = await User.findById(req.params.did);
-		allPatients = allPatients.patients;
-		for (i in allPatients) {
-			if (allPatients[i]._id == req.params.mongoid) res.json(allPatients[i]);
-		}
-	} catch (err) {
-		res.status(400).send(err);
-	}
+router.get('/getOnePatient/:did/:mongoid', async(req,res) => {
+
+  try{
+    let allPatients = await User.findById(req.params.did);
+    allPatients = allPatients.patients;
+    for(i in allPatients){
+      if(allPatients[i]._id == req.params.mongoid)
+        res.json(allPatients[i]);
+    }
+  } catch(err) {
+    res.status(400).send(err);
+  }
+
 });
 
 // this is to GET the details of section 1
