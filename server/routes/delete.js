@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/User');
 const Section1 = require('../models/section1');
-const Section4 = require('../models/section4');
+
 
 router.delete('/patient/:did', async (req, res)=>{
 

@@ -45,9 +45,17 @@ router.get('/getOnePatient/:did/:mongoid', async(req,res) => {
 // this is to GET the details of section 1
 router.get('/section1/:mongoid', async (req, res) => {
 	try {
-		const data = await Section1.findOne({ mongoid: req.params.mongoid }).exec();
+		let data = await Section1.findOne({ mongoid: req.params.mongoid }).exec();
+		let allPatients = await User.findById(req.body.did);
+    allPatients = allPatients.patients;
+    for(i in allPatients){
+      if(allPatients[i]._id == req.params.mongoid)
+        data.name = allPatients[i].name;
+				data.dpid = allPatients[i].dpid;
+    }
 		if (data) res.json(data);
 		else res.status(404).json({ message: 'No patient.' });
+
 	} catch (err) {
 		res.status(400).json({ message: err });
 	}
