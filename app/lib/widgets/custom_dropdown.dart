@@ -10,6 +10,7 @@ class CustomDropDown extends StatelessWidget {
   final String? initialDropDownValue;
   final List<String?> dropDownItems;
   final String? Function(String?)? validator;
+  final String? initialValuefromDatabase;
 
   CustomDropDown({
     required this.name,
@@ -18,6 +19,7 @@ class CustomDropDown extends StatelessWidget {
     required this.dropDownItems,
     this.initialDropDownValue,
     this.validator,
+    this.initialValuefromDatabase,
   });
 
   @override
@@ -39,6 +41,7 @@ class CustomDropDown extends StatelessWidget {
           ),
           FormBuilderDropdown(
             name: name,
+            initialValue: initialValuefromDatabase,
             allowClear: true,
             focusColor: Colors.transparent,
             hint: Text(
