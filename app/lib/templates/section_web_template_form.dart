@@ -13,7 +13,9 @@ class SectionWebTemplateForm extends StatelessWidget {
   final GlobalKey<FormBuilderState>? formKey;
   final String sectionName;
   final List<Widget>? extraWidget1;
-  final Widget? extraWidget2;
+  final Widget? extraWidget1Title;
+  final List<Widget>? extraWidget2;
+  final Widget? extraWidget2Title;
   final ScrollController controller;
   final void Function()? onSubmitForm;
 
@@ -25,6 +27,8 @@ class SectionWebTemplateForm extends StatelessWidget {
     this.extraWidget1,
     this.extraWidget2,
     this.onSubmitForm,
+    this.extraWidget1Title,
+    this.extraWidget2Title,
   });
 
   @override
@@ -57,8 +61,8 @@ class SectionWebTemplateForm extends StatelessWidget {
                     SizedBox(height: 20),
                     Text(
                       '${sectionName}',
-                      style: GoogleFonts.poppins(
-                        fontSize: 40,
+                      style: GoogleFonts.rubik(
+                        fontSize: 35,
                       ),
                     ),
                     Card(
@@ -74,16 +78,20 @@ class SectionWebTemplateForm extends StatelessWidget {
                             shrinkWrap: true,
                             staggeredTiles: [
                               ...widget1.map((_) => StaggeredTile.fit(1)).toList(),
+                              StaggeredTile.fit(3),
                               ...extraWidget1!.map((_) => StaggeredTile.fit(3)).toList(),
                               StaggeredTile.fit(3),
+                              ...extraWidget2!.map((_) => StaggeredTile.fit(3)).toList(),
                               StaggeredTile.fit(3),
                             ],
                             crossAxisCount: 3,
                             mainAxisSpacing: 10,
                             children: [
                               ...widget1,
+                              extraWidget1Title ?? Container(),
                               ...extraWidget1 ?? [Container()],
-                              extraWidget2 ?? Container(),
+                              extraWidget2Title ?? Container(),
+                              ...extraWidget2 ?? [Container()],
                               Container(
                                 height: 40,
                                 margin: EdgeInsets.only(

@@ -9,19 +9,22 @@ import 'package:google_fonts/google_fonts.dart';
 class SectionMobileTemplateForm extends StatelessWidget {
   final List<Widget> widget1;
   final GlobalKey<FormBuilderState>? formKey;
-  final List<Widget>? extraWidget1;
   final String sectionName;
-
-  final Widget? extraWidget2;
+  final List<Widget>? extraWidget1;
+  final Widget? extraWidget1Title;
+  final List<Widget>? extraWidget2;
+  final Widget? extraWidget2Title;
   final void Function()? onSubmitForm;
 
   SectionMobileTemplateForm({
     required this.widget1,
-    required this.formKey,
     required this.sectionName,
+    this.formKey,
     this.extraWidget1,
     this.extraWidget2,
     this.onSubmitForm,
+    this.extraWidget1Title,
+    this.extraWidget2Title,
   });
 
   @override
@@ -43,22 +46,28 @@ class SectionMobileTemplateForm extends StatelessWidget {
               staggeredTiles: [
                 StaggeredTile.fit(1),
                 ...widget1.map((_) => StaggeredTile.fit(1)).toList(),
+                StaggeredTile.fit(1),
                 ...extraWidget1!.map((_) => StaggeredTile.fit(1)).toList(),
+                StaggeredTile.fit(2),
+                ...extraWidget2!.map((_) => StaggeredTile.fit(1)).toList(),
                 StaggeredTile.fit(1),
               ],
               children: [
                 Container(
                   alignment: Alignment.center,
-                  margin: const EdgeInsets.all(10),
+                  margin: const EdgeInsets.only(top: 20),
                   child: Text(
                     '${sectionName}',
-                    style: GoogleFonts.poppins(
-                      fontSize: 30,
+                    style: GoogleFonts.rubik(
+                      fontSize: 32,
                     ),
                   ),
                 ),
                 ...widget1,
+                extraWidget1Title ?? Container(),
                 ...extraWidget1 ?? [Container()],
+                extraWidget2Title ?? Container(),
+                ...extraWidget2 ?? [Container()],
                 Container(
                   height: 40,
                   margin: EdgeInsets.only(
