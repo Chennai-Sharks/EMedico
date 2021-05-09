@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:app/providers/section1_provider.dart';
-import 'package:app/sections/section1/section1_show_data.dart';
 import 'package:app/sections/section1/section_1_forms.dart';
 import 'package:app/templates/section_mobile_template_form.dart';
 import 'package:app/templates/section_tablet_template_form.dart';
@@ -21,7 +20,6 @@ class Section1FormScreen extends StatefulWidget {
 
 class _Section1FormScreenState extends State<Section1FormScreen> {
   final Section1Form section1Form = Section1Form();
-  final Section1ShowData section1showData = Section1ShowData();
 
   final _formKey = GlobalKey<FormBuilderState>();
 
@@ -52,6 +50,7 @@ class _Section1FormScreenState extends State<Section1FormScreen> {
             extraWidget1: section1Form.secondPartForms(isMobile: false, context: context),
             onSubmitForm: () async => await submitForm(context),
             controller: _controller,
+            extraWidget2: [],
           );
         } else if ((sizingInformation.screenSize.width >= 800 && sizingInformation.screenSize.width < 1125)) {
           return SectionTabletTemplateForm(
@@ -59,7 +58,8 @@ class _Section1FormScreenState extends State<Section1FormScreen> {
             extraWidget1: section1Form.secondPartForms(isMobile: false, context: context),
             formKey: _formKey,
             onSubmitForm: () async => await submitForm(context),
-            sectionName: 'Section1',
+            sectionName: 'Section 1',
+            extraWidget2: [],
           );
         } else
           return SectionMobileTemplateForm(
@@ -67,7 +67,8 @@ class _Section1FormScreenState extends State<Section1FormScreen> {
             extraWidget1: section1Form.secondPartForms(isMobile: true, context: context),
             formKey: _formKey,
             onSubmitForm: () async => await submitForm(context),
-            sectionName: 'Section1',
+            sectionName: 'Section 1',
+            extraWidget2: [],
           );
       },
     );
