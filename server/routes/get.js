@@ -50,9 +50,9 @@ router.get('/section1/:mongoid', async (req, res) => {
 				data.dpid = allPatients[i].dpid;
 				if (data)
 					res.json({
-						...data._doc,
 						name: allPatients[i].name,
 						dpid: allPatients[i].dpid,
+						...data._doc,
 					});
 				else res.status(404).json({ message: 'No patient.' });
 				break;
