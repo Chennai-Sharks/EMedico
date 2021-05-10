@@ -46,8 +46,6 @@ router.get('/section1/:mongoid', async (req, res) => {
 		allPatients = allPatients.patients;
 		for (i in allPatients) {
 			if (allPatients[i]._id == req.params.mongoid) {
-				data.name = allPatients[i].name;
-				data.dpid = allPatients[i].dpid;
 				if (data)
 					res.json({
 						name: allPatients[i].name,
