@@ -1,4 +1,5 @@
 import 'package:app/utils/utils.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,7 +35,7 @@ class _CustomFormTextFeildState extends State<CustomFormTextFeild> {
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: SelectableText(
+          child: AutoSizeText(
             widget.topLabel,
             style: GoogleFonts.rubik(
               fontSize: 18,

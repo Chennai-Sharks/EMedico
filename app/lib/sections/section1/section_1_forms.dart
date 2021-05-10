@@ -1,5 +1,6 @@
 import 'package:app/widgets/custom_dropdown.dart';
 import 'package:app/widgets/custom_slider.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:app/widgets/custom_textfield.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -165,7 +166,7 @@ class Section1Form {
       SizedBox(
         height: 10,
       ),
-      SelectableText(
+      AutoSizeText(
         'History of Presenting Illness',
         style: GoogleFonts.rubik(
           fontSize: isMobile ? 25 : 30,
@@ -314,7 +315,7 @@ class Section1Form {
         ),
       ),
       SizedBox(height: 20),
-      SelectableText(
+      AutoSizeText(
         'Chief Complaints: (In order of significance)',
         style: GoogleFonts.rubik(
           fontSize: isMobile ? 25 : 25,
@@ -331,7 +332,7 @@ class Section1Form {
           initialValuefromDatabase: data != null ? data['chiefComplaints'] : 'p',
         ),
       ),
-      SelectableText(
+      AutoSizeText(
         'Additional Concerns',
         style: GoogleFonts.rubik(
           fontSize: isMobile ? 25 : 25,
