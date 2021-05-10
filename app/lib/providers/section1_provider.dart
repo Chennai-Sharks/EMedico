@@ -42,13 +42,23 @@ class Section1Provider with ChangeNotifier {
         // Change age to Number
         section1FormValues.update('age', (value) => int.parse(value));
 
+        (section1FormValues['historyOfpresentingIllness'] as Map<String, dynamic>).update('backgroundPain', (value) {
+          var newvalue = value.toInt();
+          return newvalue.toString();
+        });
+        (section1FormValues['historyOfpresentingIllness'] as Map<String, dynamic>).update('intensity', (value) {
+          var newvalue = value.toInt();
+          return newvalue.toString();
+        });
+
         // This will get the mongo Id of the patient when submitted to addPatinet/docId
         final Map<String, String> addNewPatient = {
           'name': section1FormValues['name'],
           'dpid': section1FormValues['dpid'], // this is the id given by doctor to a patient
         };
-        // Removed dpid coz its not need in the post request for submission of the form.
+        // Removed dpid coz and name its not need in the post request for submission of the form.
         section1FormValues.remove('dpid');
+        section1FormValues.remove('name');
 
         // this is to get the mongo id of the patient under a doctor
         final newPatient = await http.post(
@@ -83,6 +93,7 @@ class Section1Provider with ChangeNotifier {
   static Future<void> submitUpdateHandlerSection1({
     required GlobalKey<FormBuilderState> formkey,
     required BuildContext context,
+    required String patientId,
   }) async {
     final bool isFormValid = formkey.currentState!.validate();
 
@@ -113,22 +124,42 @@ class Section1Provider with ChangeNotifier {
         // Change age to Number
         section1FormValues.update('age', (value) => int.parse(value));
 
+        (section1FormValues['historyOfpresentingIllness'] as Map<String, dynamic>).update('backgroundPain', (value) {
+          var newvalue = value.toInt();
+          return newvalue.toString();
+        });
+        (section1FormValues['historyOfpresentingIllness'] as Map<String, dynamic>).update('intensity', (value) {
+          var newvalue = value.toInt();
+          return newvalue.toString();
+        });
+
+        final Map<String, String> updatedPatient = {
+          'name': section1FormValues['name'],
+          'dpid': section1FormValues['dpid'], // this is the id given by doctor to a patient
+        };
+
+        final response = await http.patch(
+          Uri.parse('http://localhost:3000/api/update/updatePatient/$docId/$patientId'),
+          body: json.encode(updatedPatient),
+          headers: Utility.headerValue,
+        );
+
+        print(response.body);
+
         // // This will get the mongo Id of the patient when submitted to addPatinet/docId
-        // final Map<String, String> addNewPatient = {
-        //   'name': section1FormValues['name'],
-        //   'dpid': section1FormValues['dpid'], // this is the id given by doctor to a patient
-        // };
+
         // Removed dpid coz its not need in the post request for submission of the form.
         section1FormValues.remove('dpid');
+        section1FormValues.remove('name');
 
         // this is to get the mongo id of the patient under a doctor
-        final response = await http.patch(
-          Uri.parse('http://localhost:3000/api/update/section1/${docId}/'),
+        final response1 = await http.patch(
+          Uri.parse('http://localhost:3000/api/update/section1/$patientId'),
           headers: Utility.headerValue,
           body: json.encode(section1FormValues),
         );
 
-        print(response.body);
+        print(response1.body);
         VxToast.show(context, msg: 'Done.');
       }
     } else {
