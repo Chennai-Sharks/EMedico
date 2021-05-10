@@ -2,7 +2,6 @@ const router = require('express').Router();
 const User = require('../models/User');
 const Section1 = require('../models/section1');
 
-
 //this block of code is to display all the details of a particular doctor
 router.get('/:did', async (req, res) => {
 	try {
@@ -27,35 +26,38 @@ router.get('/getPatients/:did', async (req, res) => {
 });
 
 //this is to get a particular patient under a particular doctor
-router.get('/getOnePatient/:did/:mongoid', async(req,res) => {
-
-  try{
-    let allPatients = await User.findById(req.params.did);
-    allPatients = allPatients.patients;
-    for(i in allPatients){
-      if(allPatients[i]._id == req.params.mongoid)
-        res.json(allPatients[i]);
-    }
-  } catch(err) {
-    res.status(400).send(err);
-  }
-
+router.get('/getOnePatient/:did/:mongoid', async (req, res) => {
+	try {
+		let allPatients = await User.findById(req.params.did);
+		allPatients = allPatients.patients;
+		for (i in allPatients) {
+			if (allPatients[i]._id == req.params.mongoid) res.json(allPatients[i]);
+		}
+	} catch (err) {
+		res.status(400).send(err);
+	}
 });
 
 // this is to GET the details of section 1
 router.get('/section1/:mongoid', async (req, res) => {
 	try {
 		let data = await Section1.findOne({ mongoid: req.params.mongoid }).exec();
-		let allPatients = await User.findById(req.body.did);
-    allPatients = allPatients.patients;
-    for(i in allPatients){
-      if(allPatients[i]._id == req.params.mongoid)
-        data.name = allPatients[i].name;
+		let allPatients = await User.findById(req.headers.did);
+		allPatients = allPatients.patients;
+		for (i in allPatients) {
+			if (allPatients[i]._id == req.params.mongoid) {
+				data.name = allPatients[i].name;
 				data.dpid = allPatients[i].dpid;
-    }
-		if (data) res.json(data);
-		else res.status(404).json({ message: 'No patient.' });
-
+				if (data)
+					res.json({
+						...data._doc,
+						name: allPatients[i].name,
+						dpid: allPatients[i].dpid,
+					});
+				else res.status(404).json({ message: 'No patient.' });
+				break;
+			}
+		}
 	} catch (err) {
 		res.status(400).json({ message: err });
 	}
