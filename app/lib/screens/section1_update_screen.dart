@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'dart:convert';
 
+import 'package:app/providers/section1_provider.dart';
+import 'package:app/providers/util_provider.dart';
 import 'package:app/sections/section1/section_1_forms.dart';
 import 'package:app/templates/section_mobile_template_form.dart';
 import 'package:app/templates/section_tablet_template_form.dart';
@@ -25,10 +27,22 @@ class _Section1UpdateScreenState extends State<Section1UpdateScreen> {
 
   final ScrollController _controller = ScrollController();
 
+  Future<http.Response> getData() async {
+    final did = await UtilityProvider.getDocId();
+    print(did);
+    return http.get(
+      Uri.parse('http://localhost:3000/api/get/section1/60990f363f4521435044fe2e'),
+      headers: {
+        HttpHeaders.contentTypeHeader: "application/json",
+        "did": "$did",
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<http.Response>(
-      future: http.get(Uri.parse('http://localhost:3000/api/get/section1/60963ba711885450c428e279')),
+      future: getData(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting)
           return Scaffold(
@@ -47,9 +61,10 @@ class _Section1UpdateScreenState extends State<Section1UpdateScreen> {
                 final responseData = json.decode(snapshot.data!.body) as Map<String, dynamic>;
 
                 /// [ Removed unwanted stuff ]
+                print(responseData);
                 responseData.remove('_id');
                 responseData.remove('__v');
-                responseData.remove('mongoid');
+                final patientId = responseData.remove('mongoid') as String;
                 responseData.remove('date');
                 responseData.update('age', (value) => value.toString());
 
@@ -75,7 +90,13 @@ class _Section1UpdateScreenState extends State<Section1UpdateScreen> {
                       data: historyOfPresentingIll,
                     ),
                     extraWidget2: [],
-                    onSubmitForm: null,
+                    onSubmitForm: () async => await Section1Provider.submitUpdateHandlerSection1(
+                      formkey: _formKey,
+                      context: context,
+                      patientId: patientId,
+                    ),
+                    extraWidget1Title: Container(),
+                    extraWidget2Title: Container(),
                     controller: _controller,
                   );
                 } else if ((sizingInformation.screenSize.width >= 800 && sizingInformation.screenSize.width < 1125)) {

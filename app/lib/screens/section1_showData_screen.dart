@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:app/providers/util_provider.dart';
 import 'package:app/sections/section1/section1_show_data.dart';
 import 'package:app/templates/section_mobile_showData_template.dart';
 import 'package:app/templates/section_tablet_showData_template.dart';
@@ -22,10 +23,22 @@ class _Section1ShowDataScreenState extends State<Section1ShowDataScreen> {
 
   final ScrollController _controller = ScrollController();
 
+  Future<http.Response> getData() async {
+    final did = await UtilityProvider.getDocId();
+    print(did);
+    return http.get(
+      Uri.parse('http://localhost:3000/api/get/section1/60990f363f4521435044fe2e'),
+      headers: {
+        HttpHeaders.contentTypeHeader: "application/json",
+        "did": "$did",
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<http.Response>(
-      future: http.get(Uri.parse('http://localhost:3000/api/get/section1/60963ba711885450c428e279')),
+      future: getData(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting)
           return Scaffold(
