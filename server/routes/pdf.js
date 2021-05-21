@@ -17,33 +17,33 @@ router.get('/:mongoid', async (req, res) => {
       align: 'center'
     });
 
-    pdfDoc.font('Times-Roman', 13).text(`Name: ${data.name}`, {
-      height: 100,
-      width: 200,
-      align: 'left'
-    });
 
-
-    pdfDoc.font('Times-Roman', 13).text(`Age: ${data.age}`, {
-      height: 100,
-      width: 200,
-      align: 'left'
-    });
-
-    pdfDoc.font('Times-Roman', 13).text(`Gender: ${data.gender}`, {
-      height: 100,
-      width: 200,
-      align: 'left'
-    });
-
-    pdfDoc.font('Times-Roman', 13).text(`Purpose of Visit: ${data.purposeOfVisit}`, {
-      height: 100,
-      width: 200,
-      align: 'left'
-    });
+    // pdfDoc.font('Times-Roman', 13).text(`Name: ${data.name}`, {
+    //   height: 100,
+    //   width: 200,
+    //   align: 'left'
+    // });
+    //
+    //
+    // pdfDoc.font('Times-Roman', 13).text(`Age: ${data.age}`, {
+    //   height: 100,
+    //   width: 200,
+    //   align: 'left'
+    // });
+    //
+    // pdfDoc.font('Times-Roman', 13).text(`Gender: ${data.gender}`, {
+    //   height: 100,
+    //   width: 200,
+    //   align: 'left'
+    // });
+    //
+    // pdfDoc.font('Times-Roman', 13).text(`Purpose of Visit: ${data.purposeOfVisit}`, {
+    //   height: 100,
+    //   width: 200,
+    //   align: 'left'
+    // });
 
     pdfDoc.end();
-
     res.status(200).send("Pdf generated");
   } catch (err) {
     res.status(400).json({
