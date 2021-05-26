@@ -1,3 +1,3 @@
 export const hello = () => {
-	return 'Hello world';
+	return 'This is coming from shared folder noice right!!';
 };
