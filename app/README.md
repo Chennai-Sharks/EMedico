@@ -1,3 +1,0 @@
-# EMedico Client
-
-In Progress
