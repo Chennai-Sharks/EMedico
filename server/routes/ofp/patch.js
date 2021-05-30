@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const User = require('../../models/User.js');
-const Section1 = require('../../models/section1');
+const Section1 = require('../../models/ofp/section1');
 
 //this is to update patient details under a doctor
 router.patch('/updatePatient/:did/:mongoid', async (req,res) => {
@@ -17,7 +17,7 @@ router.patch('/updatePatient/:did/:mongoid', async (req,res) => {
         break;
       }
     }
-    res.send(doc.ofPpatients[i]);
+    res.send(doc.ofpPatients[i]);
 
   } catch (err) {
     res.status(400).json({message: err});

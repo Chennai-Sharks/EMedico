@@ -62,4 +62,4 @@ const section4Schema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Section4',section4Schema);
+module.exports = mongoose.model('ofpSection4',section4Schema);

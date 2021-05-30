@@ -63,4 +63,4 @@ const section1Schema = new mongoose.Schema({
   "additionalNotes": String
 });
 
-module.exports = mongoose.model('Section1', section1Schema);
+module.exports = mongoose.model('ofpSection1', section1Schema);

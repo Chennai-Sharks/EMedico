@@ -255,3 +255,5 @@ const section5Schema = new mongoose.Schema({
     },
 
 });
+
+module.exports = mongoose.model('ofpSection5',section5Schema);

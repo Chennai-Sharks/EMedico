@@ -39,4 +39,4 @@ const section2Schema = new mongoose.Schema({
   children: [childSection2Schema]
 })
 
-module.exports = mongoose.model('Section2',section2Schema);
+module.exports = mongoose.model('ofpSection2',section2Schema);

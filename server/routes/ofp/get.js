@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const User = require('../../models/User');
-const Section1 = require('../../models/section1');
+const Section1 = require('../../models/ofp/section1');
 
 //this block of code is to display all ofp-patients inside a particular doctor
 router.get('/getPatients/:did', async (req, res) => {

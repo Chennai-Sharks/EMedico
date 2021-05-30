@@ -1,7 +1,7 @@
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const router = require('express').Router();
-const Section1 = require('../../models/section1');
+const Section1 = require('../../models/ofp/section1');
 
 
 router.get('/:mongoid', async (req, res) => {

@@ -28,4 +28,4 @@ const section3Schema = new mongoose.Schema({
   "other": String,
 });
 
-module.exports = mongoose.model('Section3', section3Schema);
+module.exports = mongoose.model('ofpSection3', section3Schema);
