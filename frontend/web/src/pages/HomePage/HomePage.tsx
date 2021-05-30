@@ -1,8 +1,13 @@
 import React from 'react';
+import CustomDrawer from 'widgets/CustomDrawer/CustomDrawer';
 
 interface HomePageProps {}
 
 const HomePage: React.FC<HomePageProps> = (props) => {
-	return <div>Home Page</div>;
+	return (
+		<>
+			<CustomDrawer />
+		</>
+	);
 };
 export default HomePage;
