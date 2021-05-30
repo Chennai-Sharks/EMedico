@@ -16,7 +16,8 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  patients:[patientSchema],
+  ofpPatients:[patientSchema],
+  fPatients:[patientSchema],
   email: {
     type: String,
     required: true,

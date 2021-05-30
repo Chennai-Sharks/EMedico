@@ -1,22 +1,12 @@
 const router = require('express').Router();
-const User = require('../models/User');
-const Section1 = require('../models/section1');
+const User = require('../../models/User');
+const Section1 = require('../../models/section1');
 
-//this block of code is to display all the details of a particular doctor
-router.get('/:did', async (req, res) => {
-	try {
-		const allDocs = await User.findById(req.params.did);
-		res.json(allDocs);
-	} catch (err) {
-		res.status(400).send('Invalid ID');
-	}
-});
-
-//this block of code is to display all the patients inside a particular doctor
+//this block of code is to display all ofp-patients inside a particular doctor
 router.get('/getPatients/:did', async (req, res) => {
 	try {
 		let allPatients = await User.findById(req.params.did);
-		allPatients = allPatients.patients;
+		allPatients = allPatients.ofpPatients;
 		if (allPatients.length === 0)
 			res.status(400).send('There are no patients to display');
 		else res.json(allPatients);
@@ -29,7 +19,7 @@ router.get('/getPatients/:did', async (req, res) => {
 router.get('/getOnePatient/:did/:mongoid', async (req, res) => {
 	try {
 		let allPatients = await User.findById(req.params.did);
-		allPatients = allPatients.patients;
+		allPatients = allPatients.ofpPatients;
 		for (i in allPatients) {
 			if (allPatients[i]._id == req.params.mongoid) res.json(allPatients[i]);
 		}
@@ -43,7 +33,7 @@ router.get('/section1/:mongoid', async (req, res) => {
 	try {
 		let data = await Section1.findOne({ mongoid: req.params.mongoid }).exec();
 		let allPatients = await User.findById(req.headers.did);
-		allPatients = allPatients.patients;
+		allPatients = allPatients.ofpPatients;
 		for (i in allPatients) {
 			if (allPatients[i]._id == req.params.mongoid) {
 				if (data)
