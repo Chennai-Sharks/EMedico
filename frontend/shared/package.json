@@ -10,6 +10,8 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"axios": "^0.21.1",
+		"react-query": "^3.16.0",
 		"zustand": "^3.5.1"
 	}
 }
