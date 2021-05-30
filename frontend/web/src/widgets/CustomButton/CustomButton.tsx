@@ -4,6 +4,7 @@ import React from 'react';
 interface CustomButtonProps {
 	onClick?: () => void;
 	disabled?: boolean;
+	type?: 'button' | 'reset' | 'submit' | undefined;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = (props) => {
@@ -31,6 +32,7 @@ const CustomButton: React.FC<CustomButtonProps> = (props) => {
 			className={classes.button}
 			onClick={props.onClick}
 			disabled={props.disabled}
+			type={props.type}
 		>
 			{props.children}
 		</Button>
