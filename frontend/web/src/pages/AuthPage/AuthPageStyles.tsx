@@ -11,13 +11,38 @@ const AuthStyles = makeStyles(() => ({
 		width: '100%',
 		marginLeft: 'auto',
 		marginRight: 'auto',
-		boxSizing: 'border-box',
-		padding: '80px 16px',
+		padding: '70px 16px',
 	},
-	authBox: {
-		borderRadius: '16px',
-		display: 'flex',
+
+	loginTitleLayout: {
 		padding: '32px',
+		display: 'flex',
+		flexDirection: 'row',
+		width: '100%',
+		justifyContent: 'space-between',
+	},
+	loginTitle: {
+		margin: '0px 0px 0.35em',
+		fontWeight: 600,
+		fontSize: '1.5rem',
+	},
+	imgLogo: {
+		maxHeight: '40px',
+		width: 'auto',
+	},
+	form: {
+		marginTop: '20px',
+		display: 'flex',
+		flexDirection: 'column',
+		padding: '16px 32px',
+	},
+	createAccountbutton: {
+		paddingLeft: '20px',
+		paddingTop: '10px',
+		'&:hover': {
+			cursor: 'pointer',
+			textDecoration: 'underline',
+		},
 	},
 }));
 

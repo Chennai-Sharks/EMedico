@@ -1,7 +1,7 @@
 # This is the image for building the server for this app.
 
 # Base Image is pulled from docker hub. In this case its node with alpine variant.
-FROM node:12-alpine
+FROM node:14-alpine
 
 # Working directory is made as home/server
 WORKDIR /home/server
@@ -19,4 +19,4 @@ COPY ./server/ .
 CMD node index.js
 
 # Expose this port to the outside world.
-EXPOSE 3000
+EXPOSE 4000
