@@ -1,3 +1,0 @@
-DB_CONNECT = mongodb+srv://nikhilesh:AvwKoAhDSHlzBqVE@medico.u9nkj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-TOKEN_SECRET = weAreTheChennaiSharks_EngaPottalumAdikkiranDaAvan
-PORT = 3000
