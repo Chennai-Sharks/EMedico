@@ -8,7 +8,8 @@ const HomePage: React.FC<HomePageProps> = (props) => {
 	return (
 		<>
 			<CustomDrawer />
-			<Form />
+			<Form /> 
+			<h1>Hello</h1>
 		</>
 	);
 };
