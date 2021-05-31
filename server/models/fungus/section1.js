@@ -19,7 +19,7 @@ const section1Schema = new mongoose.Schema({
     },
     "personalHistory": {
     type: String,
-    enum: ["single", "married", "divorce", "seperated", "widowed", "children"]
+    enum: ["single", "married", "divorce", "separated", "widowed", "children"]
     },
     "occupation": String,
     "allergiesToMedication": String,
