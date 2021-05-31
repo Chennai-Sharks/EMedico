@@ -1,16 +1,26 @@
 import React from 'react'
-import CustomAppBar from '../../widgets/CustomAppBar/CustomAppBar';
 import CustomTextField from 'widgets/CustomTextField/CustomTextField';
 import './Form.css';
 
 const Form = () => {
+    const myStyle = {
+        container: {
+            margin: 30,            
+            display: 'flex',
+            flexDirection: 'column'
+        },
+        field: {
+            margin: 30,            
+        }
+    }
+
     return (
-        <div>        
-            <CustomAppBar />
-            <CustomTextField className = "field" label = "First Name" />
-            <CustomTextField style = {{display: 'flex', margin: 30}} label = "First Name" />
-            <CustomTextField style = {{display: 'flex', margin: 30}} label = "First Name" />
-            <h1>Hello</h1>
+        <div>                    
+            <div style = {myStyle.container}>
+                <CustomTextField style = {myStyle.field} label = "First Name" />
+                <CustomTextField style = {myStyle.field} label = "First Name" />
+                <CustomTextField style = {myStyle.field} label = "First Name" />
+            </div>            
         </div>
     )
 }
