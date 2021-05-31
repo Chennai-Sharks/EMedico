@@ -41,7 +41,6 @@ const section1Schema = new mongoose.Schema({
     "Immunocompromised state": String,
     "SteroidHistory": String,
     "postCovidSymptoms":[String],
-    
     "mucormycosisSymptoms":{
         "sinusitis": ['yes','no'],
         "nasalBlockage": ['yes','no'],
