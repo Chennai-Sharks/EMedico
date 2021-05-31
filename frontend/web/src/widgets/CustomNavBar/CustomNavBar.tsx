@@ -1,17 +1,3 @@
-// import {
-// 	Accordion,
-// 	AccordionDetails,
-// 	AccordionSummary,
-// 	Drawer,
-// 	ListItem,
-// 	ListItemText,
-// 	makeStyles,
-// 	Typography,
-// } from '@material-ui/core';
-// import React from 'react';
-
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMoreRounded';
-
 import React from 'react';
 import clsx from 'clsx';
 import {
@@ -34,9 +20,15 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import { useMediaQuery } from '@material-ui/core';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import FaceIcon from '@material-ui/icons/Face';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
+import EditIcon from '@material-ui/icons/Edit';
+
+import { Collapse, useMediaQuery } from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -50,6 +42,7 @@ const useStyles = makeStyles((theme: Theme) =>
 				easing: theme.transitions.easing.sharp,
 				duration: theme.transitions.duration.leavingScreen,
 			}),
+			backgroundColor: '#5664D2',
 		},
 		appBarShift: {
 			marginLeft: drawerWidth,
@@ -69,13 +62,17 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: drawerWidth,
 			flexShrink: 0,
 			whiteSpace: 'nowrap',
+			overflow: 'hidden',
 		},
+
 		drawerOpen: {
 			width: drawerWidth,
 			transition: theme.transitions.create('width', {
 				easing: theme.transitions.easing.sharp,
 				duration: theme.transitions.duration.enteringScreen,
 			}),
+			marginLeft: '0px',
+			overflow: 'hidden',
 		},
 		drawerClose: {
 			transition: theme.transitions.create('width', {
@@ -94,10 +91,14 @@ const useStyles = makeStyles((theme: Theme) =>
 			justifyContent: 'flex-end',
 			padding: theme.spacing(0, 1),
 			...theme.mixins.toolbar,
+			backgroundColor: '#5664D2',
 		},
 		content: {
 			flexGrow: 1,
 			padding: theme.spacing(3),
+		},
+		nested: {
+			paddingLeft: theme.spacing(4),
 		},
 	})
 );
@@ -108,6 +109,12 @@ const CustomNavBar: React.FC<CustomNavBarProps> = () => {
 	const [open, setOpen] = React.useState(true);
 	const matches = useMediaQuery('(max-width:800px)');
 
+	const [openPatient, setOpenPatient] = React.useState(false);
+
+	const handleClickPatient = () => {
+		setOpenPatient(!openPatient);
+	};
+
 	React.useEffect(() => {
 		if (matches) {
 			setOpen(false);
@@ -117,7 +124,12 @@ const CustomNavBar: React.FC<CustomNavBarProps> = () => {
 	}, [matches]);
 
 	const handleDrawerOpen = () => {
-		setOpen(true);
+		console.log(matches);
+		if (!matches) {
+			setOpen(true);
+		} else {
+			return;
+		}
 	};
 
 	const handleDrawerClose = () => {
@@ -146,7 +158,7 @@ const CustomNavBar: React.FC<CustomNavBarProps> = () => {
 						<MenuIcon />
 					</IconButton>
 					<Typography variant='h6' noWrap>
-						Mini variant drawer
+						EMedico
 					</Typography>
 				</Toolbar>
 			</AppBar>
@@ -168,32 +180,58 @@ const CustomNavBar: React.FC<CustomNavBarProps> = () => {
 						{theme.direction === 'rtl' ? (
 							<ChevronRightIcon />
 						) : (
-							<ChevronLeftIcon />
+							<ChevronLeftIcon style={{ color: 'white' }} />
 						)}
 					</IconButton>
 				</div>
 				<Divider />
 				<List>
-					{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-						<ListItem button key={text}>
-							<ListItemIcon>
-								{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-							</ListItemIcon>
-							<ListItemText primary={text} />
-						</ListItem>
-					))}
+					<ListItem button>
+						<ListItemIcon>
+							<DashboardIcon />
+						</ListItemIcon>
+						<ListItemText primary='DashBoard' />
+					</ListItem>
+
+					<ListItem button onClick={handleClickPatient}>
+						<ListItemIcon>
+							<FaceIcon />
+						</ListItemIcon>
+						<ListItemText primary='Patients' />
+						{openPatient ? <ExpandLess /> : <ExpandMore />}
+					</ListItem>
+
+					<Collapse in={openPatient} timeout='auto' unmountOnExit>
+						<List component='div' disablePadding>
+							<ListItem button className={classes.nested}>
+								<ListItemIcon>
+									<FaceIcon />
+								</ListItemIcon>
+								<ListItemText primary='All Patients' />
+							</ListItem>
+							<ListItem button className={classes.nested}>
+								<ListItemIcon>
+									<AddIcon />
+								</ListItemIcon>
+								<ListItemText primary='Add Patient' />
+							</ListItem>
+							<ListItem button className={classes.nested}>
+								<ListItemIcon>
+									<EditIcon />
+								</ListItemIcon>
+								<ListItemText primary='Update Patient' />
+							</ListItem>
+							<ListItem button className={classes.nested}>
+								<ListItemIcon>
+									<RemoveIcon />
+								</ListItemIcon>
+								<ListItemText primary='Remove Patient' />
+							</ListItem>
+						</List>
+					</Collapse>
 				</List>
+
 				<Divider />
-				<List>
-					{['All mail', 'Trash', 'Spam'].map((text, index) => (
-						<ListItem button key={text}>
-							<ListItemIcon>
-								{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-							</ListItemIcon>
-							<ListItemText primary={text} />
-						</ListItem>
-					))}
-				</List>
 			</Drawer>
 		</>
 	);
