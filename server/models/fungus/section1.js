@@ -25,7 +25,7 @@ const section1Schema = new mongoose.Schema({
     "allergiesToMedication": String,
     "covidScreeningTest":{
         "testedPositiveForCovid": String,
-        "homeCare/hospitalised":{
+        "homeCare/hospitalized":{
             type: String,
             enum: ['Home care','Hospitalized']
         },
