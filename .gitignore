@@ -69,3 +69,6 @@ jspm_packages/
 
 # flutter
 app/
+
+# vscode
+.vscode/
