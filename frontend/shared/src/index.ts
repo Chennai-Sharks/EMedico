@@ -4,3 +4,4 @@ export const hello = () => {
 
 export * from './types/AuthTypes';
 export * from './providers/AuthProvider';
+export * from './stores/DoctorIdStore';

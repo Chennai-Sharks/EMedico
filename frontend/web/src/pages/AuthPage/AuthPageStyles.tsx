@@ -1,10 +1,12 @@
 import { makeStyles } from '@material-ui/core';
 
-const AuthStyles = makeStyles(() => ({
+const AuthStyles = makeStyles((theme) => ({
 	background: {
 		display: 'flex',
 		minHeight: '100vh',
 		flexDirection: 'column',
+		justifyContent: 'center',
+
 		backgroundColor: '#F4F5F7',
 	},
 	authBoxBg: {
@@ -12,6 +14,9 @@ const AuthStyles = makeStyles(() => ({
 		marginLeft: 'auto',
 		marginRight: 'auto',
 		padding: '70px 16px',
+		[theme.breakpoints.up('sm')]: {
+			maxWidth: '600px',
+		},
 	},
 
 	loginTitleLayout: {
