@@ -5,6 +5,7 @@ import AuthPage from 'pages/AuthPage/AuthPage';
 
 import './App.css';
 import HomePage from 'pages/HomePage/HomePage';
+import Form from 'pages/Form/Form';
 
 function App() {
 	const theme = createMuiTheme({
@@ -25,6 +26,7 @@ function App() {
 					<Switch>
 						<Route path='/auth' exact component={AuthPage} />
 						<Route path='/home' exact component={HomePage} />
+						<Route path='/form' exact component={Form} />
 						<Redirect to='/auth' path='/' />
 					</Switch>
 				</div>
