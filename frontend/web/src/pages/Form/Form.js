@@ -2,6 +2,7 @@ import React from 'react'
 import CustomDropdownSelect from 'widgets/CustomDropdownSelect/CustomDropdownSelect';
 import CustomTextField from 'widgets/CustomTextField/CustomTextField';
 import CustomRadioButton from 'widgets/CustomRadioButton/CustomRadioButton';
+import { TextField } from '@material-ui/core';
 
 const Form = () => {    
 
@@ -33,41 +34,26 @@ const Form = () => {
             <CustomTextField style = {customStyles.item} label = "Immuno Compromised" placeholder = "eg. Headache, Nausea"/>
             <CustomTextField style = {customStyles.item} label = "Steroid History" placeholder = "eg. Headache, Nausea"/>
             <CustomTextField style = {customStyles.item} label = "Allergies to Medication" placeholder = "eg. Headache, Nausea"/>
+            
+            <CustomTextField style = {customStyles.item} label = "Allergies to Medication" multiline placeholder = "eg. Headache, Nausea"/>
+
+            <CustomRadioButton  label = "sinusitis" array = {["yes", "no"]} />
+            <CustomRadioButton  label = "nasalBlockage" array = {["yes", "no"]} />
+            <CustomRadioButton  label = "blackishDiscoloration" array = {["yes", "no"]} />
+            <CustomRadioButton  label = "facialErythema" array = {["yes", "no"]} />
+            <CustomRadioButton  label = "eyeSymptoms" array = {["yes", "no"]} />
+            <CustomRadioButton  label = "facialPain/numbness" array = {["yes", "no"]} />
+            <CustomRadioButton  label = "toothache/mobileTooth" array = {["yes", "no"]} />
+            <CustomRadioButton  label = "palatalUlceration" array = {["yes", "no"]} />
+            <CustomRadioButton  label = "halitosis" array = {["yes", "no"]} />
+            <CustomRadioButton  label = "skinLesions" array = {["yes", "no"]} />
+            <CustomRadioButton  label = "fever" array = {["yes", "no"]} />
+            <CustomRadioButton  label = "headache" array = {["yes", "no"]} />
+            <CustomRadioButton  label = "alteredSensorium" array = {["yes", "no"]} />
+            
 
         </div>
     )
 }
 
 export default Form
-
-// "covidScreeningTest":{
-//     "testedPositiveForCovid": String,
-//     "homeCare/hospitalized":{
-//         type: String,
-//         enum: ['Home care','Hospitalized']
-//     },
-//     "ventilator/prolongedLifeSupport":{
-//     type: String,
-//     enum: ['yes','no'] 
-//     }
-// },
-// "diabeticStatus": String,
-// "Immunocompromised state": String,
-// "SteroidHistory": String,
-// "postCovidSymptoms":[String],
-
-// "mucormycosisSymptoms":{
-//     "sinusitis": ['yes','no'],
-//     "nasalBlockage": ['yes','no'],
-//     "blackishDiscoloration":['yes','no'],
-//     "facialErythema":['yes','no'],
-//     "eyeSymptoms":['yes','no'],
-//     "facialPain/numbness":['yes','no'],
-//     "toothache/mobileTooth":['yes','no'],
-//     "palatalUlceration":['yes','no'],
-//     "halitosis":['yes','no'],
-//     "skinLesions":['yes','no'],
-//     "fever":['yes','no'],
-//     "headache":['yes','no'],
-//     "alteredSensorium":['yes','no'],
-// }
