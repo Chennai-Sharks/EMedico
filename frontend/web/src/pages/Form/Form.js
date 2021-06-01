@@ -3,10 +3,10 @@ import CustomDropdownSelect from 'widgets/CustomDropdownSelect/CustomDropdownSel
 import CustomTextField from 'widgets/CustomTextField/CustomTextField';
 import CustomRadioButton from 'widgets/CustomRadioButton/CustomRadioButton';
 import CustomButton from 'widgets/CustomButton/CustomButton';
-import { Formik } from 'formik';
+import { Formik, Field, Form } from 'formik';
 
 
-const Form = () => {    
+const Form1 = () => {    
 
     const customStyles = {
         item: {
@@ -29,30 +29,31 @@ const Form = () => {
     return (    
         <div >     
             <Formik initialValues = {{
-                name: "",
-                dpid: "",
-                age: ""
+                name: "",                
+                sinus: "no"
             }} 
             onSubmit = {async (data, {setSubmitting, resetForm})  => {
-                setSubmitting(true);
-                
-                await console.log(data);
+                setSubmitting(true);                
+                console.log(data);
                 setSubmitting(false);
                 resetForm();
             }} >   
-            {({values, isSubmitting, handleChange, handleBlur, handleSubmit}) => (
-                <form onSubmit={handleSubmit} >
-                    <CustomTextField name = "name" value = {values.name} onChange = {handleChange} onBlur = {handleBlur} style = {customStyles.item} label = "Name" placeholder = "eg. John Doe" />
-                    <CustomTextField name = "dpid" value = {values.dpid} onChange = {handleChange} onBlur = {handleBlur} style = {customStyles.item} label = "Patient Id" placeholder = "eg. 123xyz"/>
-                    <CustomTextField name = "age" value = {values.age} onChange = {handleChange} onBlur = {handleBlur} style = {customStyles.item} label="Age" type="number" placeholder = "eg. 20"/> 
-                    <CustomButton disabled = {isSubmitting} children = "Submit" type ="submit" /> 
-                    <pre>{JSON.stringify(values, null, 2)}</pre>
-                </form>
+            {({values, isSubmitting}) => (
+                <Form>
+                    <Field name = "name" label = "Name" type = "input" as = {CustomTextField} style = {customStyles.item} placeholder = "eg. John Doe" />
+                    
+
+                    <Field name = "sinus" label = "sinusitis" type = "radio" as = {CustomRadioButton} array = {["yes", "no"]} />
+                                        
+                    <CustomButton style = {customStyles.item} disabled = {isSubmitting} children = "Submit" type ="submit" /> 
+                    <pre style = {customStyles.item}>{JSON.stringify(values, null, 2)}</pre>
+                </Form>
             )}                
             </Formik>
             
-            {/* <CustomDropdownSelect array = {["male", "female", "other"]}  label = {'Gender'}/>
-            <CustomDropdownSelect array = {["single", "married", "divorce", "separated", "widowed", "children"]}  label = {'Personal History'}/>
+            {/* 
+            <Field name = "dpid" label = "Patient ID" type = "input" as = {CustomTextField} style = {customStyles.item} placeholder = "eg. 123xyz" />
+                    <Field name = "age" label="Age" type="number" as = {CustomTextField} style = {customStyles.item} placeholder = "eg. 20" />
 
             <CustomTextField style = {customStyles.item} label = "Occupation" placeholder = "eg. Engineer"/>
             <CustomTextField style = {customStyles.item} label = "Allergies to Medication" placeholder = "eg. Headache, Nausea"/>
@@ -87,4 +88,4 @@ const Form = () => {
     )
 }
 
-export default Form
+export default Form1
