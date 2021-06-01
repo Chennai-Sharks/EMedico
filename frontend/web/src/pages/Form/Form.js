@@ -2,7 +2,9 @@ import React from 'react'
 import CustomDropdownSelect from 'widgets/CustomDropdownSelect/CustomDropdownSelect';
 import CustomTextField from 'widgets/CustomTextField/CustomTextField';
 import CustomRadioButton from 'widgets/CustomRadioButton/CustomRadioButton';
-import { TextField } from '@material-ui/core';
+import CustomButton from 'widgets/CustomButton/CustomButton';
+import { useFormik } from 'formik';
+
 
 const Form = () => {    
 
@@ -13,10 +15,21 @@ const Form = () => {
         }
     }
 
+    const formik = useFormik({
+        initialValues: {
+          Name: '',
+          PatientId: '',
+          Age: ''
+        },
+        onSubmit: values => {
+          alert(JSON.stringify(values, null, 2));
+        },
+      });
+
     return (    
         <div >        
-            
-            <CustomTextField style = {customStyles.item} label = "First Name" placeholder = "eg. John Doe" />
+            <form onSubmit = {formik.handleSubmit}>
+            <CustomTextField style = {customStyles.item} label = "Name" placeholder = "eg. John Doe" />
             <CustomTextField style = {customStyles.item} label = "Patient Id" placeholder = "eg. 123xyz"/>
             <CustomTextField style = {customStyles.item} label="Age" type="number" placeholder = "eg. 20"/>
             
@@ -33,9 +46,8 @@ const Form = () => {
             <CustomTextField style = {customStyles.item} label = "Diabetic Status" placeholder = "eg. Headache, Nausea"/>
             <CustomTextField style = {customStyles.item} label = "Immuno Compromised" placeholder = "eg. Headache, Nausea"/>
             <CustomTextField style = {customStyles.item} label = "Steroid History" placeholder = "eg. Headache, Nausea"/>
-            <CustomTextField style = {customStyles.item} label = "Allergies to Medication" placeholder = "eg. Headache, Nausea"/>
             
-            <CustomTextField style = {customStyles.item} label = "Allergies to Medication" multiline placeholder = "eg. Headache, Nausea"/>
+            <CustomTextField style = {customStyles.item} label = "Post Covid Symptoms" multiline placeholder = "eg. Headache, Nausea"/>
 
             <CustomRadioButton  label = "sinusitis" array = {["yes", "no"]} />
             <CustomRadioButton  label = "nasalBlockage" array = {["yes", "no"]} />
@@ -51,7 +63,8 @@ const Form = () => {
             <CustomRadioButton  label = "headache" array = {["yes", "no"]} />
             <CustomRadioButton  label = "alteredSensorium" array = {["yes", "no"]} />
             
-
+            <CustomButton children = "Submit" type ="submit" />
+            </form>
         </div>
     )
 }
