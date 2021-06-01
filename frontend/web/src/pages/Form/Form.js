@@ -5,28 +5,14 @@ import CustomTextField from 'widgets/CustomTextField/CustomTextField';
 import CustomRadioButton from 'widgets/CustomRadioButton/CustomRadioButton';
 import CustomButton from 'widgets/CustomButton/CustomButton';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { TextField } from '@material-ui/core';
-import { Formik, Field, Form, useField } from 'formik';
+import { Formik, Form, useField } from 'formik';
 import * as yup from 'yup';
 
-const MyRadio = ({label, ...props}) => {
-    const [field] = useField(props);
-    
-    return (
-        <FormControlLabel {...field} control={<Radio />} label = {label} />
-    )
-}
-
-const MyTextField = ({ placeholder, ...props }) => {
-    const [field, meta]  = useField(props);
-    const errorText = meta.error && meta.touched ? meta.error : ''; 
-    return(
-        <TextField placeholder = {placeholder} {...field} helperText = {errorText} error = {!!errorText} />
-    )
-}
 
 const validationSchema = yup.object({
-    name: yup.string().required().max(10)
+    name: yup.string().required().max(10),
+    gender: yup.string().required(),
+    personalHistory: yup.string().required()
 });
 
 const Form1 = () => {    
@@ -41,9 +27,12 @@ const Form1 = () => {
     return (    
         <div >     
             <Formik initialValues = {{
-                name: "",                
-                sinus: "",
-                covid: ""
+                name: "",  
+                dpid: "",
+                age: "",
+                covid: "",
+                gender: "",
+                personalHistory: ""
 
             }} 
             validationSchema = {validationSchema}
@@ -55,19 +44,16 @@ const Form1 = () => {
             }} >   
             {({values, errors, isSubmitting}) => (
                 <Form>
-                    {/* <Field name = "name" label = "Name" type = "input" as = {CustomTextField} style = {customStyles.item} placeholder = "eg. John Doe" /> */}
-                                        
-                    <div>                            
-                        <p>Sinus</p>
-                        <Field name = "sinus" type = "radio" value = "Yes" as = {Radio} />
-                    <Field name = "sinus" type = "radio" value = "No" as = {Radio} />
-                    </div>                                        
-
-                    <div>Covid?</div>
-                    <MyRadio name = "covid" type = "radio" value = "Yes" label = "Yes?" />
-                    <MyRadio name = "covid" type = "radio" value = "No" label = "No?" />
                     
-                    <MyTextField name = "name" type = "input" placeholder = "Name" />                                       
+                    <CustomTextField name = "name" label = "Name" type = "input" placeholder = "eg: John Doe" style = {customStyles.item} />
+                    <CustomTextField name = "dpid" label = "Patient ID" type = "input" placeholder = "eg: 123xyz" style = {customStyles.item} />                    
+                    <CustomTextField name = "age" label = "Age" type = "number" placeholder = "eg: 20" style = {customStyles.item} />                    
+                                                                                                   
+                    <CustomDropdownSelect name = "gender" label = "Gender" type = "select" array = {["male", "female", "other"]} />
+                    <CustomDropdownSelect name = "personalHistory" label = "Personal History" type = "select" array = {["single", "married", "divorce", "separated", "widowed", "children"]} />
+                    
+                    <CustomRadioButton head = {"Gender"} name = "covid" type = "radio" value = "Yes" label = "Yes?" />
+                    <CustomRadioButton name = "covid" type = "radio" value = "No" label = "No?" />                                                                                
                                                             
                     <CustomButton style = {customStyles.item} disabled = {isSubmitting} children = "Submit" type ="submit" /> 
 
@@ -77,9 +63,7 @@ const Form1 = () => {
             )}                
             </Formik>
             
-            {/* 
-            <Field name = "dpid" label = "Patient ID" type = "input" as = {CustomTextField} style = {customStyles.item} placeholder = "eg. 123xyz" />
-                    <Field name = "age" label="Age" type="number" as = {CustomTextField} style = {customStyles.item} placeholder = "eg. 20" />
+            {/*                         
 
             <CustomTextField style = {customStyles.item} label = "Occupation" placeholder = "eg. Engineer"/>
             <CustomTextField style = {customStyles.item} label = "Allergies to Medication" placeholder = "eg. Headache, Nausea"/>
