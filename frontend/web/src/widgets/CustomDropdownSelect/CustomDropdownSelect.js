@@ -12,7 +12,7 @@ const CustomDropdownSelect = ({array, label}) => {
                 <InputLabel id="demo-simple-select-outlined-label">{label}</InputLabel>
                     <Select
                     labelId="demo-simple-select-outlined-label"
-                    id="demo-simple-select-outlined"          
+                    id="demo-simple-select-outlined"
                     label="Tested positive for covid in the past?"                    
                     >                    
                     {

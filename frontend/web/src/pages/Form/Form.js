@@ -1,10 +1,33 @@
 import React from 'react'
+import {Radio} from "@material-ui/core"
 import CustomDropdownSelect from 'widgets/CustomDropdownSelect/CustomDropdownSelect';
 import CustomTextField from 'widgets/CustomTextField/CustomTextField';
 import CustomRadioButton from 'widgets/CustomRadioButton/CustomRadioButton';
 import CustomButton from 'widgets/CustomButton/CustomButton';
-import { Formik, Field, Form } from 'formik';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { TextField } from '@material-ui/core';
+import { Formik, Field, Form, useField } from 'formik';
+import * as yup from 'yup';
 
+const MyRadio = ({label, ...props}) => {
+    const [field] = useField(props);
+    
+    return (
+        <FormControlLabel {...field} control={<Radio />} label = {label} />
+    )
+}
+
+const MyTextField = ({ placeholder, ...props }) => {
+    const [field, meta]  = useField(props);
+    const errorText = meta.error && meta.touched ? meta.error : ''; 
+    return(
+        <TextField placeholder = {placeholder} {...field} helperText = {errorText} error = {!!errorText} />
+    )
+}
+
+const validationSchema = yup.object({
+    name: yup.string().required().max(10)
+});
 
 const Form1 = () => {    
 
@@ -20,29 +43,36 @@ const Form1 = () => {
             <Formik initialValues = {{
                 name: "",                
                 sinus: "",
-                gender: ""
+                covid: ""
+
             }} 
+            validationSchema = {validationSchema}
             onSubmit = {async (data, {setSubmitting, resetForm})  => {
                 setSubmitting(true);                
                 console.log(data);
                 setSubmitting(false);
                 resetForm();
             }} >   
-            {({values, isSubmitting}) => (
+            {({values, errors, isSubmitting}) => (
                 <Form>
-                    <Field name = "name" label = "Name" type = "input" as = {CustomTextField} style = {customStyles.item} placeholder = "eg. John Doe" />
+                    {/* <Field name = "name" label = "Name" type = "input" as = {CustomTextField} style = {customStyles.item} placeholder = "eg. John Doe" /> */}
                                         
-                    <Field name = "sinus" type = "radio" label = "sinus" as = {CustomRadioButton} value = {["Yes", "No"]} />
+                    <div>                            
+                        <p>Sinus</p>
+                        <Field name = "sinus" type = "radio" value = "Yes" as = {Radio} />
+                    <Field name = "sinus" type = "radio" value = "No" as = {Radio} />
+                    </div>                                        
 
-                    <Field name = "gender" label = "Gender" type = "input" array = {["male", "female", "other"]} as = {CustomDropdownSelect} style = {customStyles.item} />
-
+                    <div>Covid?</div>
+                    <MyRadio name = "covid" type = "radio" value = "Yes" label = "Yes?" />
+                    <MyRadio name = "covid" type = "radio" value = "No" label = "No?" />
                     
-                    <CustomDropdownSelect array = {["single", "married", "divorce", "separated", "widowed", "children"]}  label = {'Personal History'}/>
-                    
+                    <MyTextField name = "name" type = "input" placeholder = "Name" />                                       
                                                             
                     <CustomButton style = {customStyles.item} disabled = {isSubmitting} children = "Submit" type ="submit" /> 
 
                     <pre style = {customStyles.item}>{JSON.stringify(values, null, 2)}</pre>
+                    <pre style = {customStyles.item}>{JSON.stringify(errors, null, 2)}</pre>
                 </Form>
             )}                
             </Formik>
