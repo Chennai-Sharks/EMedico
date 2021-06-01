@@ -13,24 +13,14 @@ const Form1 = () => {
             display: 'flex', 
             margin: 30
         }
-    }
-
-    // const formik = useFormik({
-    //     initialValues: {
-    //       Name: '',
-    //       PatientId: '',
-    //       Age: ''
-    //     },
-    //     onSubmit: values => {
-    //       alert(JSON.stringify(values, null, 2));
-    //     },
-    //   });
+    }    
 
     return (    
         <div >     
             <Formik initialValues = {{
                 name: "",                
-                sinus: "no"
+                sinus: "",
+                gender: ""
             }} 
             onSubmit = {async (data, {setSubmitting, resetForm})  => {
                 setSubmitting(true);                
@@ -41,11 +31,17 @@ const Form1 = () => {
             {({values, isSubmitting}) => (
                 <Form>
                     <Field name = "name" label = "Name" type = "input" as = {CustomTextField} style = {customStyles.item} placeholder = "eg. John Doe" />
-                    
-
-                    <Field name = "sinus" label = "sinusitis" type = "radio" as = {CustomRadioButton} array = {["yes", "no"]} />
                                         
+                    <Field name = "sinus" type = "radio" label = "sinus" as = {CustomRadioButton} value = {["Yes", "No"]} />
+
+                    <Field name = "gender" label = "Gender" type = "input" array = {["male", "female", "other"]} as = {CustomDropdownSelect} style = {customStyles.item} />
+
+                    
+                    <CustomDropdownSelect array = {["single", "married", "divorce", "separated", "widowed", "children"]}  label = {'Personal History'}/>
+                    
+                                                            
                     <CustomButton style = {customStyles.item} disabled = {isSubmitting} children = "Submit" type ="submit" /> 
+
                     <pre style = {customStyles.item}>{JSON.stringify(values, null, 2)}</pre>
                 </Form>
             )}                

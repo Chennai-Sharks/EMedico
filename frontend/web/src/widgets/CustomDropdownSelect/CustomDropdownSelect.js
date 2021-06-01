@@ -23,7 +23,7 @@ const CustomDropdownSelect = ({array, label}) => {
                     </Select>
             </FormControl>
         </div>
-    )
+    ) 
 }
 
 export default CustomDropdownSelect

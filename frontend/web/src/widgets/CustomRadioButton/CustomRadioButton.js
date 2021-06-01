@@ -5,14 +5,14 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 
-const CustomRadioButton = ({array, label}) => {
+const CustomRadioButton = ({name, value, label}) => {
     return (
         <div>
             <FormControl component="fieldset">
                 <FormLabel component="legend">{label}</FormLabel>
                 <RadioGroup aria-label="gender" name="gender1"  >
-                    {array.map((item) => (
-                        <FormControlLabel value={item} control={<Radio />} label={item} />
+                    {value.map((item) => (
+                        <FormControlLabel name = {name} value={item} control={<Radio />} label={item} />
                     ))}                    
                 </RadioGroup>
             </FormControl>
