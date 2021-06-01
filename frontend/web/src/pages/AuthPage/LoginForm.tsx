@@ -23,9 +23,9 @@ const LoginForm: React.FC<LoginFormProps> = () => {
 	};
 	return (
 		<Formik
-			// validateOnChange={false}
-			// validateOnBlur={false}
-			// validateOnMount={false}
+			validateOnChange={false}
+			validateOnBlur={false}
+			validateOnMount={false}
 			initialValues={initialSignInValue}
 			validate={(values) => {
 				const errors: Record<string, string> = {};
