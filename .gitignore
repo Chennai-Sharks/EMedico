@@ -69,6 +69,5 @@ jspm_packages/
 
 # flutter
 app/
+.vscode/settings.json
 
-# vscode
-.vscode/
