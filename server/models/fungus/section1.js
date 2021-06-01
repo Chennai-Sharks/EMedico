@@ -19,13 +19,16 @@ const section1Schema = new mongoose.Schema({
     },
     "personalHistory": {
     type: String,
-    enum: ["single", "married", "divorce", "seperated", "widowed", "children"]
+    enum: ["single", "married", "divorce", "separated", "widowed", "children"]
     },
     "occupation": String,
     "allergiesToMedication": String,
     "covidScreeningTest":{
-        "testedPositiveForCovid": String,
-        "homeCare/hospitalised":{
+        "testedPositiveForCovid":{
+            String,
+            enum: ['yes','no'] 
+        }, 
+        "homeCare/hospitalized":{
             type: String,
             enum: ['Home care','Hospitalized']
         },
@@ -38,7 +41,6 @@ const section1Schema = new mongoose.Schema({
     "Immunocompromised state": String,
     "SteroidHistory": String,
     "postCovidSymptoms":[String],
-    
     "mucormycosisSymptoms":{
         "sinusitis": ['yes','no'],
         "nasalBlockage": ['yes','no'],
