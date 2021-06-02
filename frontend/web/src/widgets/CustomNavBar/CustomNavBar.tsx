@@ -27,10 +27,13 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import EditIcon from '@material-ui/icons/Edit';
 import { Collapse } from '@material-ui/core';
 
+// import DrawerLogo from '../../assets/drawerlogo.svg';
+
 const drawerWidth = 240;
 
 interface CustomNavBarProps {
 	pageName: string;
+	children?: React.ReactNode;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -39,13 +42,13 @@ const useStyles = makeStyles((theme: Theme) =>
 			display: 'flex',
 		},
 		drawer: {
-			[theme.breakpoints.up('sm')]: {
+			[theme.breakpoints.up('md')]: {
 				width: drawerWidth,
 				flexShrink: 0,
 			},
 		},
 		appBar: {
-			[theme.breakpoints.up('sm')]: {
+			[theme.breakpoints.up('md')]: {
 				width: `calc(100% - ${drawerWidth}px)`,
 				marginLeft: drawerWidth,
 				backgroundColor: '#5664D2',
@@ -54,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		menuButton: {
 			marginRight: theme.spacing(2),
-			[theme.breakpoints.up('sm')]: {
+			[theme.breakpoints.up('md')]: {
 				display: 'none',
 			},
 		},
@@ -68,6 +71,16 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		nested: {
 			paddingLeft: theme.spacing(4),
+		},
+		imgLogo: {
+			maxHeight: '40px',
+			width: 'auto',
+			marginLeft: theme.spacing(2),
+		},
+		title: {
+			marginTop: '10px',
+			paddingLeft: theme.spacing(2),
+			marginBottom: '10px',
 		},
 	})
 );
@@ -89,7 +102,16 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
 
 	const drawer = (
 		<div>
-			<div className={classes.toolbar} style={{ backgroundColor: '#5664D2' }} />
+			<div
+				className={classes.toolbar}
+				style={{
+					backgroundColor: '#5664D2',
+					display: 'flex',
+					alignItems: 'center',
+				}}
+			>
+				{/* <img src={DrawerLogo} alt="Logo" className={classes.imgLogo} /> */}
+			</div>
 			<Divider />
 			<List>
 				<ListItem button>
@@ -98,7 +120,8 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
 					</ListItemIcon>
 					<ListItemText primary='DashBoard' />
 				</ListItem>
-
+				<Divider />
+				<Typography className={classes.title}>Black Fungus</Typography>
 				<ListItem button onClick={handleClickPatient}>
 					<ListItemIcon>
 						<FaceIcon />
@@ -162,8 +185,7 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
 				</Toolbar>
 			</AppBar>
 			<nav className={classes.drawer} aria-label='mailbox folders'>
-				{/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-				<Hidden smUp implementation='css'>
+				<Hidden mdDown implementation='css'>
 					<Drawer
 						variant='temporary'
 						anchor={theme.direction === 'rtl' ? 'right' : 'left'}
@@ -179,7 +201,7 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
 						{drawer}
 					</Drawer>
 				</Hidden>
-				<Hidden xsDown implementation='css'>
+				<Hidden xsDown smDown implementation='css'>
 					<Drawer
 						classes={{
 							paper: classes.drawerPaper,
@@ -191,6 +213,10 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
 					</Drawer>
 				</Hidden>
 			</nav>
+			<main className={classes.content}>
+				<div className={classes.toolbar} />
+				{props.children}
+			</main>
 		</div>
 	);
 };
