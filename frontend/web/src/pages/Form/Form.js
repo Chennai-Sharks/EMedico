@@ -139,12 +139,7 @@ const Form1 = () => {
                 </Form>
             )}                
             </Formik>
-            
-            {/*                             
-                                    
-            
-             */}
-            
+                        
             
         </div>
     )

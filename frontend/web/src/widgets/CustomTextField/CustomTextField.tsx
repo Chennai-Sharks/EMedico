@@ -20,5 +20,3 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({placeholder, ...props}
     )
 };
 export default CustomTextField;
-
-
