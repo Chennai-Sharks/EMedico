@@ -1,29 +1,35 @@
 import React from 'react'
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
+import { TextField } from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
+import { useField } from 'formik';
 
-const CustomDropdownSelect = ({array, label}) => {    
-
+const CustomDropdownSelect = ({array, ...props}) => {    
+    const [field, meta]  = useField(props);
+    const errorText = (meta.error && meta.touched) ? meta.error : ''; 
     return (
         <div>
-            <FormControl variant="outlined" style = {{display: 'flex', margin: 30}}>                    
-                <InputLabel id="demo-simple-select-outlined-label">{label}</InputLabel>
-                    <Select
-                    labelId="demo-simple-select-outlined-label"
-                    id="demo-simple-select-outlined"          
-                    label="Tested positive for covid in the past?"                    
-                    >                    
-                    {
-                        array.map((item) => (
-                            <MenuItem key = {item} value={item}>{item}</MenuItem>
-                        ))
-                    }                                                                           
-                    </Select>
-            </FormControl>
+            <TextField
+          id="outlined-select-currency"
+          select
+                                                     
+          variant="outlined" 
+          InputProps={{
+			style: {
+				borderRadius: '16px',
+			},
+		}}
+		style={{
+			paddingBottom: '20px',
+		}} label={props.label} {...field} helperText = {errorText} error = {!!errorText}
+        >
+          {array.map((option) => (
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
+          ))}
+        </TextField>
         </div>
-    )
+    ) 
 }
 
 export default CustomDropdownSelect

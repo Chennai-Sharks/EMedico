@@ -6,7 +6,7 @@ interface HomePageProps {}
 const HomePage: React.FC<HomePageProps> = (props) => {
 	return (
 		<>
-			<CustomDrawer />
+			<CustomDrawer pageName='Dashboard' />
 		</>
 	);
 };

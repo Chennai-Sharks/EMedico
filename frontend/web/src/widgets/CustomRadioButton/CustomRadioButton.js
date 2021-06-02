@@ -1,22 +1,18 @@
 import React from 'react'
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Radio from '@material-ui/core/Radio';
+import FormLabel from '@material-ui/core/FormLabel';
 
-const CustomRadioButton = ({array, label}) => {
+import Radio from '@material-ui/core/Radio';
+import { useField } from 'formik';
+
+const CustomRadioButton = ({label, ...props}) => {
+    const [field] = useField(props);
+    
     return (
-        <div>
-            <FormControl component="fieldset">
-                <FormLabel component="legend">{label}</FormLabel>
-                <RadioGroup aria-label="gender" name="gender1"  >
-                    {array.map((item) => (
-                        <FormControlLabel value={item} control={<Radio />} label={item} />
-                    ))}                    
-                </RadioGroup>
-            </FormControl>
-        </div>
+        <> 
+            <FormLabel component="legend">{props.head}</FormLabel>
+            <FormControlLabel {...field} control={<Radio />} label = {label} />
+        </>
     )
 }
 
