@@ -1,11 +1,9 @@
 import React from 'react'
-import {Radio} from "@material-ui/core"
 import CustomDropdownSelect from 'widgets/CustomDropdownSelect/CustomDropdownSelect';
 import CustomTextField from 'widgets/CustomTextField/CustomTextField';
 import CustomRadioButton from 'widgets/CustomRadioButton/CustomRadioButton';
 import CustomButton from 'widgets/CustomButton/CustomButton';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { Formik, Form, useField } from 'formik';
+import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 
 
@@ -20,7 +18,7 @@ const Form1 = () => {
     const customStyles = {
         item: {
             display: 'flex', 
-            margin: 30
+            margin: 30,            
         }
     }    
 
@@ -29,10 +27,18 @@ const Form1 = () => {
             <Formik initialValues = {{
                 name: "",  
                 dpid: "",
-                age: "",
-                covid: "",
+                age: "",                
                 gender: "",
-                personalHistory: ""
+                personalHistory: "",
+                occupation: "",
+                allergiesToMedication: "",
+                covid: "",
+                homecareHospitalized: "",
+                VentilatorProlongedLifeSupport: "",
+                diabeticStatus: "",
+                immunoCompromised: "",
+                steroidHistory: "",
+                postCovidSymptoms: ""
 
             }} 
             validationSchema = {validationSchema}
@@ -45,15 +51,36 @@ const Form1 = () => {
             {({values, errors, isSubmitting}) => (
                 <Form>
                     
-                    <CustomTextField name = "name" label = "Name" type = "input" placeholder = "eg: John Doe" style = {customStyles.item} />
-                    <CustomTextField name = "dpid" label = "Patient ID" type = "input" placeholder = "eg: 123xyz" style = {customStyles.item} />                    
-                    <CustomTextField name = "age" label = "Age" type = "number" placeholder = "eg: 20" style = {customStyles.item} />                    
+                    <CustomTextField name = "name" label = "Name" type = "input" placeholder = "eg: John Doe"  />
+                    <CustomTextField name = "dpid" label = "Patient ID" type = "input" placeholder = "eg: 123xyz"  />                    
+                    <CustomTextField name = "age" label = "Age" type = "number" placeholder = "eg: 20"  />                    
                                                                                                    
                     <CustomDropdownSelect name = "gender" label = "Gender" type = "select" array = {["male", "female", "other"]} />
                     <CustomDropdownSelect name = "personalHistory" label = "Personal History" type = "select" array = {["single", "married", "divorce", "separated", "widowed", "children"]} />
                     
-                    <CustomRadioButton head = {"Gender"} name = "covid" type = "radio" value = "Yes" label = "Yes?" />
-                    <CustomRadioButton name = "covid" type = "radio" value = "No" label = "No?" />                                                                                
+                    <CustomTextField name = "occupation" label = "Occupation" placeholder = "eg: Engineer"  />
+                    <CustomTextField name = "allergiesToMedication" label = "Allergies to Medication" type = "number" placeholder = "eg: Headache, Nausea" />
+
+
+                    <CustomRadioButton head = {"Tested Positive for Covid in the past?"} name = "covid" type = "radio" value = "Yes" label = "Yes" />
+                    <CustomRadioButton name = "covid" type = "radio" value = "No" label = "No" />                    
+
+
+                    <CustomRadioButton head = {"Home Care or Hospitalized?"} name = "homecareHospitalized" type = "radio" value = "Home Care" label = "Home Care" />
+                    <CustomRadioButton name = "homecareHospitalized" type = "radio" value = "Hospitalized" label = "Hospitalized" />                    
+
+
+                    <CustomRadioButton head = {"Ventilator/Prolonged Life Support"} name = "VentilatorProlongedLifeSupport" type = "radio" value = "Yes" label = "Yes" />
+                    <CustomRadioButton name = "VentilatorProlongedLifeSupport" type = "radio" value = "No" label = "No" />                
+
+
+                    <CustomTextField name = "diabeticStatus" label = "Diabetic Status" placeholder = "eg: IDK LOL" />
+                    <CustomTextField name = "immunoCompromised" label = "Immuno Compromised" placeholder = "eg: IDK LOL" />
+                    <CustomTextField name = "steroidHistory" label = "Steroid History" placeholder = "eg: IDK LOL" />                    
+
+                    <CustomTextField name = "postCovidSymptoms" label = "Post Covid Symptoms" multiline placeholder = "eg: IDK LOL" />                    
+                
+                    
                                                             
                     <CustomButton style = {customStyles.item} disabled = {isSubmitting} children = "Submit" type ="submit" /> 
 
@@ -65,12 +92,7 @@ const Form1 = () => {
             
             {/*                         
 
-            <CustomTextField style = {customStyles.item} label = "Occupation" placeholder = "eg. Engineer"/>
-            <CustomTextField style = {customStyles.item} label = "Allergies to Medication" placeholder = "eg. Headache, Nausea"/>
-
-            <CustomRadioButton  label = "Tested Positive for Covid in the past?" array = {["yes", "no"]} />
-            <CustomRadioButton  label = "Home Care or Hospitalized" array = {["Home Care", "Hospitalized"]} />
-            <CustomRadioButton  label = "Ventilator/Prolonged Life Support" array = {["yes", "no"]} />
+        
 
             <CustomTextField style = {customStyles.item} label = "Diabetic Status" placeholder = "eg. Headache, Nausea"/>
             <CustomTextField style = {customStyles.item} label = "Immuno Compromised" placeholder = "eg. Headache, Nausea"/>
