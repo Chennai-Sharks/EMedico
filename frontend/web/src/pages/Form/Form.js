@@ -38,7 +38,20 @@ const Form1 = () => {
                 diabeticStatus: "",
                 immunoCompromised: "",
                 steroidHistory: "",
-                postCovidSymptoms: ""
+                postCovidSymptoms: "",
+                sinusitis: "",
+                nasalBlockage: "",
+                blackishDiscoloration: "",
+                facialErythema: "",
+                eyeSymptoms: "",
+                facialPainNumbness: "",
+                toothacheMobileTooth: "",
+                palatalUlceration: "",
+                halitosis: "",
+                skinLesions: "",
+                fever: "",
+                headache: "",
+                alteredSensorium: ""
 
             }} 
             validationSchema = {validationSchema}
@@ -79,8 +92,45 @@ const Form1 = () => {
                     <CustomTextField name = "steroidHistory" label = "Steroid History" placeholder = "eg: IDK LOL" />                    
 
                     <CustomTextField name = "postCovidSymptoms" label = "Post Covid Symptoms" multiline placeholder = "eg: IDK LOL" />                    
-                
-                    
+
+                    <CustomRadioButton head = {"Sinusitis"} name = "sinusitis" type = "radio" value = "Yes" label = "Yes" />
+                    <CustomRadioButton name = "sinusitis" type = "radio" value = "No" label = "No" />                
+
+                    <CustomRadioButton head = {"Nasal Blockage"} name = "nasalBlockage" type = "radio" value = "Yes" label = "Yes" />
+                    <CustomRadioButton name = "nasalBlockage" type = "radio" value = "No" label = "No" />  
+
+                    <CustomRadioButton head = {"Blackish Discoloration"} name = "blackishDiscoloration" type = "radio" value = "Yes" label = "Yes" />
+                    <CustomRadioButton name = "blackishDiscoloration" type = "radio" value = "No" label = "No" />  
+
+                    <CustomRadioButton head = {"Facial Erythema"} name = "facialErythema" type = "radio" value = "Yes" label = "Yes" />
+                    <CustomRadioButton name = "facialErythema" type = "radio" value = "No" label = "No" />  
+
+                    <CustomRadioButton head = {"Eye Symptoms"} name = "eyeSymptoms" type = "radio" value = "Yes" label = "Yes" />
+                    <CustomRadioButton name = "eyeSymptoms" type = "radio" value = "No" label = "No" />  
+
+                    <CustomRadioButton head = {"Facial Pain/ Numbness"} name = "facialPainNumbness" type = "radio" value = "Yes" label = "Yes" />
+                    <CustomRadioButton name = "facialPainNumbness" type = "radio" value = "No" label = "No" />  
+
+                    <CustomRadioButton head = {"Toothache/MobileTooth"} name = "toothacheMobileTooth" type = "radio" value = "Yes" label = "Yes" />
+                    <CustomRadioButton name = "toothacheMobileTooth" type = "radio" value = "No" label = "No" />  
+
+                    <CustomRadioButton head = {"Palatal Ul Ceration"} name = "palatalUlceration" type = "radio" value = "Yes" label = "Yes" />
+                    <CustomRadioButton name = "palatalUlceration" type = "radio" value = "No" label = "No" />  
+
+                    <CustomRadioButton head = {"Halitosis"} name = "halitosis" type = "radio" value = "Yes" label = "Yes" />
+                    <CustomRadioButton name = "halitosis" type = "radio" value = "No" label = "No" />  
+
+                    <CustomRadioButton head = {"Skin Lesions"} name = "skinLesions" type = "radio" value = "Yes" label = "Yes" />
+                    <CustomRadioButton name = "skinLesions" type = "radio" value = "No" label = "No" />  
+
+                    <CustomRadioButton head = {"Fever"} name = "fever" type = "radio" value = "Yes" label = "Yes" />
+                    <CustomRadioButton name = "fever" type = "radio" value = "No" label = "No" />  
+
+                    <CustomRadioButton head = {"Headache"} name = "headache" type = "radio" value = "Yes" label = "Yes" />
+                    <CustomRadioButton name = "headache" type = "radio" value = "No" label = "No" />  
+
+                    <CustomRadioButton head = {"Altered Sensorium"} name = "alteredSensorium" type = "radio" value = "Yes" label = "Yes" />
+                    <CustomRadioButton name = "alteredSensorium" type = "radio" value = "No" label = "No" />                                          
                                                             
                     <CustomButton style = {customStyles.item} disabled = {isSubmitting} children = "Submit" type ="submit" /> 
 
@@ -90,29 +140,9 @@ const Form1 = () => {
             )}                
             </Formik>
             
-            {/*                         
-
-        
-
-            <CustomTextField style = {customStyles.item} label = "Diabetic Status" placeholder = "eg. Headache, Nausea"/>
-            <CustomTextField style = {customStyles.item} label = "Immuno Compromised" placeholder = "eg. Headache, Nausea"/>
-            <CustomTextField style = {customStyles.item} label = "Steroid History" placeholder = "eg. Headache, Nausea"/>
+            {/*                             
+                                    
             
-            <CustomTextField style = {customStyles.item} label = "Post Covid Symptoms" multiline placeholder = "eg. Headache, Nausea"/>
-
-            <CustomRadioButton  label = "sinusitis" array = {["yes", "no"]} />
-            <CustomRadioButton  label = "nasalBlockage" array = {["yes", "no"]} />
-            <CustomRadioButton  label = "blackishDiscoloration" array = {["yes", "no"]} />
-            <CustomRadioButton  label = "facialErythema" array = {["yes", "no"]} />
-            <CustomRadioButton  label = "eyeSymptoms" array = {["yes", "no"]} />
-            <CustomRadioButton  label = "facialPain/numbness" array = {["yes", "no"]} />
-            <CustomRadioButton  label = "toothache/mobileTooth" array = {["yes", "no"]} />
-            <CustomRadioButton  label = "palatalUlceration" array = {["yes", "no"]} />
-            <CustomRadioButton  label = "halitosis" array = {["yes", "no"]} />
-            <CustomRadioButton  label = "skinLesions" array = {["yes", "no"]} />
-            <CustomRadioButton  label = "fever" array = {["yes", "no"]} />
-            <CustomRadioButton  label = "headache" array = {["yes", "no"]} />
-            <CustomRadioButton  label = "alteredSensorium" array = {["yes", "no"]} />
              */}
             
             
