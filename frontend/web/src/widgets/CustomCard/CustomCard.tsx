@@ -1,7 +1,9 @@
 import { Card, makeStyles } from '@material-ui/core';
 import React from 'react';
 
-interface CustomCardProps {}
+type CustomCardProps = {
+	customStyle?: React.CSSProperties | undefined;
+};
 
 const CustomCard: React.FC<CustomCardProps> = (props) => {
 	const useStyles = makeStyles(() => ({
@@ -15,7 +17,7 @@ const CustomCard: React.FC<CustomCardProps> = (props) => {
 	const classes = useStyles();
 
 	return (
-		<Card className={classes.cardStyle} elevation={1}>
+		<Card className={classes.cardStyle} style={props.customStyle} elevation={1}>
 			{props.children}
 		</Card>
 	);
