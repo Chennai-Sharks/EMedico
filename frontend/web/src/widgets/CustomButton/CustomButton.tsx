@@ -5,6 +5,7 @@ interface CustomButtonProps {
 	onClick?: () => void;
 	disabled?: boolean;
 	type?: 'button' | 'reset' | 'submit' | undefined;
+	customStyle?: React.CSSProperties | undefined;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = (props) => {
@@ -33,6 +34,7 @@ const CustomButton: React.FC<CustomButtonProps> = (props) => {
 			onClick={props.onClick}
 			disabled={props.disabled}
 			type={props.type}
+			style={props.customStyle}
 		>
 			{props.children}
 		</Button>

@@ -5,7 +5,6 @@ import AuthPage from 'pages/AuthPage/AuthPage';
 
 import './App.css';
 import HomePage from 'pages/HomePage/HomePage';
-import Form from 'pages/Form/Form';
 import BFSection1Form from 'pages/BlackFungus/BFSection1Form';
 
 function App() {
@@ -27,8 +26,11 @@ function App() {
 					<Switch>
 						<Route path='/auth' exact component={AuthPage} />
 						<Route path='/home' exact component={HomePage} />
-						<Route path='/form' exact component={Form} />
-						<Route path='/black-fungus/add-patient' exact component={BFSection1Form} />
+						<Route
+							path='/black-fungus/add-patient'
+							exact
+							component={BFSection1Form}
+						/>
 						<Redirect path='/' to='/auth' />
 					</Switch>
 				</div>
