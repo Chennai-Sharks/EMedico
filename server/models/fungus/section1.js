@@ -24,22 +24,22 @@ const section1Schema = new mongoose.Schema({
     "occupation": String,
     "allergiesToMedication": String,
     "covidScreeningTest":{
-        "testedPositiveForCovid":{
+        "Covid":{
             String,
             enum: ['yes','no'] 
         }, 
-        "homeCare/hospitalized":{
+        "homecareHospitalized":{
             type: String,
             enum: ['Home care','Hospitalized']
         },
-        "ventilator/prolongedLifeSupport":{
+        "ventilatorProlongedLifeSupport":{
         type: String,
         enum: ['yes','no'] 
         }
     },
     "diabeticStatus": String,
-    "Immunocompromised state": String,
-    "SteroidHistory": String,
+    "ImmunoCompromised": ['yes','no'],
+    "steroidHistory": String,
     "postCovidSymptoms":[String],
     "mucormycosisSymptoms":{
         "sinusitis": ['yes','no'],
@@ -47,8 +47,8 @@ const section1Schema = new mongoose.Schema({
         "blackishDiscoloration":['yes','no'],
         "facialErythema":['yes','no'],
         "eyeSymptoms":['yes','no'],
-        "facialPain/numbness":['yes','no'],
-        "toothache/mobileTooth":['yes','no'],
+        "facialPainNumbness":['yes','no'],
+        "toothacheMobileTooth":['yes','no'],
         "palatalUlceration":['yes','no'],
         "halitosis":['yes','no'],
         "skinLesions":['yes','no'],
