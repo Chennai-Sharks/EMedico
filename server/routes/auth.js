@@ -5,7 +5,7 @@ const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 
-const sendEmail = (email,token) => {
+const sendEmail = (user,token) => {
 	var Transport = nodemailer.createTransport({
 		service: 'gmail',
 		auth: {
@@ -17,9 +17,19 @@ const sendEmail = (email,token) => {
 	let sender = 'EMedico';
 	mailOptions = {
 		from : sender,
-		to : email,
+		to : user.email,
 		subject : " Email verification",
-		html: `<a href=http://localhost:4000/api/users/verify/${token}> Click this link to verify your email </a>`
+		html: ` <html>
+					<head>
+						<style>
+						</style>
+					</head>
+					<body>
+						<p>Hi ${user.name},</p>
+						<p> Please, click the link below to verify your email</p>
+						<a href="https://localhost:4000/api/users/verify/${token}">Reset Password</a>
+					</body>
+				</html>`
 	}
 
 	Transport.sendMail(mailOptions,(error,res)=>{
@@ -52,7 +62,7 @@ router.post('/register', async (req, res) => {
 	});
 	try {
 		const savedUser = await user.save();
-		sendEmail(req.body.email,emailToken)
+		sendEmail(user,emailToken)
 		res.send({
 			userId: savedUser._id,
 			name: savedUser.name,
@@ -93,6 +103,6 @@ router.get('/verify/:token', async(req,res)=>{
 	if(!user)
 	res.status(400).send("User not found");
 	else
-	res.status(200).send("Email verified");
+	res.status(200).send("Email verified");     // add redirect 
 })
 module.exports = router;
