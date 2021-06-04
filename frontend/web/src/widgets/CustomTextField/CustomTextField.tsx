@@ -16,9 +16,8 @@ const CustomTextField: React.FC<CustomTextFieldProps> = (props) => {
 				paddingBottom: '20px',
 				width: '100%',
 			}}
+			{...props}
 			className={props.padding}
-			label={props.label}
-			type={props.type}
 		/>
 	);
 };
