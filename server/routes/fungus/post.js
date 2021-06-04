@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const User = require('../../models/User');
 const Section1 = require('../../models/fungus/section1');
-const Section4 = require('../../models/fungus/section4');
+
  
 router.post('/addPatient/:did', async (req,res) =>{
 
