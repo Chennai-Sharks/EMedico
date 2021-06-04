@@ -63,7 +63,7 @@ router.post('/register', async (req, res) => {
 	try {
 		const savedUser = await user.save();
 		sendEmail(user,emailToken)
-		res.send({
+		res.status(200).send({
 			userId: savedUser._id,
 			name: savedUser.name,
 			email: savedUser.email,
@@ -81,7 +81,7 @@ router.post('/login', async (req, res) => {
 	const user = await User.findOne({
 		email: req.body.email,
 	});
-	if (!user) return res.status(400).send('Email not found'); //if the email entered isn't found in the DB
+	if (!user) return res.status(404).send('Email not found'); //if the email entered isn't found in the DB
 
 	//if(!user.isVerified) return res.status(400).send("Please confirm your email to login");
 
@@ -90,12 +90,12 @@ router.post('/login', async (req, res) => {
 		req.body.password,
 		user.password
 	);
-	if (!validPassword) return res.status(400).send('Invalid password');
+	if (!validPassword) return res.status(401).send('Invalid password');
 
 	//create and assigning the tokens
 	// const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
 	// res.header('auth_Token', token).send(token);
-	res.send({ _id: user._id });
+	res.status(200).send({ _id: user._id });
 });
 
 router.get('/verify/:token', async(req,res)=>{
