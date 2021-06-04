@@ -3,27 +3,50 @@ import { Field, Form, Formik } from 'formik';
 import React from 'react';
 import CustomNavBar from 'widgets/CustomNavBar/CustomNavBar';
 
-import { section1FormInitialValues } from '@emedico/shared';
+import {
+	section1FormInitialValues,
+	AddBFSection1FormProvider,
+	AddPatientProvider,
+	BFSection1BeforeFormSubmit,
+} from '@emedico/shared';
+
 import CustomCard from 'widgets/CustomCard/CustomCard';
 import CustomTextField from 'widgets/CustomTextField/CustomTextField';
 import CustomDropDown from 'widgets/CustomDropdown/CustomDropDown';
 import CustomRadio from 'widgets/CustomRadio/CustomRadio';
 import CustomButton from 'widgets/CustomButton/CustomButton';
 import CustomChipInput from 'widgets/CustomChipInput/CustomChipInput';
+import { CircularProgress } from '@material-ui/core';
 
 interface BFSection1FormProps {}
 
 const BFSection1Form: React.FC<BFSection1FormProps> = () => {
 	const classes = useStyles();
+	const addPatientProvider = AddPatientProvider();
+	const bfSection1FormProvider = AddBFSection1FormProvider();
+
 	return (
 		<CustomNavBar pageName='Black Fungus - Add Patients'>
 			<Formik
 				initialValues={section1FormInitialValues}
-				onSubmit={(values) => {
+				onSubmit={async (values) => {
 					console.log(values);
+					const data = BFSection1BeforeFormSubmit(values);
+					console.log(data);
+					const response = await addPatientProvider.mutateAsync({
+						name: values.name,
+						dpid: values.dpid,
+					});
+					const mongoId: string = response.data._id;
+					const response1 = await bfSection1FormProvider.mutateAsync({
+						mongoId,
+						data,
+					});
+
+					console.log(response1.data);
 				}}
 			>
-				{({values}) => (
+				{({ values, isSubmitting }) => (
 					<Form>
 						<CustomCard
 							customStyle={{
@@ -150,7 +173,7 @@ const BFSection1Form: React.FC<BFSection1FormProps> = () => {
 										name='homecareHospitalized'
 										topMargin={true}
 										label='Home Care or Hospitalized?'
-										items={['Home Care', 'Hospita-\nlized']}
+										items={['Home Care', 'Hospitalized']}
 									/>
 									<CustomRadio
 										name='sinusitis'
@@ -170,6 +193,12 @@ const BFSection1Form: React.FC<BFSection1FormProps> = () => {
 										label='Post Covid Symptoms'
 										value={values.postCovidSymptoms}
 										padding={classes.textFieldPadding}
+									/>
+									<Field
+										name='occupation'
+										label='Occupation'
+										padding={classes.textFieldPadding}
+										as={CustomTextField}
 									/>
 									<CustomRadio
 										name='nasalBlockage'
@@ -206,16 +235,11 @@ const BFSection1Form: React.FC<BFSection1FormProps> = () => {
 										label='Headache'
 										items={['yes', 'no']}
 									/>
-									{/* <CustomRadio
-										name='alteredSensorium'
-
-										label='Altered Sensorium'
-										items={['yes', 'no']}
-									/> */}
 								</Grid>
 							</Grid>
 							<Divider />
 							<CustomButton
+								disabled={isSubmitting}
 								customStyle={{
 									marginLeft: '40%',
 									marginRight: '40%',
@@ -223,7 +247,11 @@ const BFSection1Form: React.FC<BFSection1FormProps> = () => {
 								}}
 								type='submit'
 							>
-								submit
+								{bfSection1FormProvider.isLoading ? (
+									<CircularProgress />
+								) : (
+									'submit'
+								)}
 							</CustomButton>
 						</CustomCard>
 					</Form>
