@@ -13,7 +13,7 @@ import CustomChipInput from 'widgets/CustomChipInput/CustomChipInput';
 
 interface BFSection1FormProps {}
 
-const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
+const BFSection1Form: React.FC<BFSection1FormProps> = () => {
 	const classes = useStyles();
 	return (
 		<CustomNavBar pageName='Black Fungus - Add Patients'>
@@ -23,7 +23,7 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 					console.log(values);
 				}}
 			>
-				{() => (
+				{({values}) => (
 					<Form>
 						<CustomCard
 							customStyle={{
@@ -168,6 +168,7 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 									<CustomChipInput
 										name='postCovidSymptoms'
 										label='Post Covid Symptoms'
+										value={values.postCovidSymptoms}
 										padding={classes.textFieldPadding}
 									/>
 									<CustomRadio

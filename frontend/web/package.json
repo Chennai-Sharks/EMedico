@@ -17,7 +17,6 @@
     "formik": "^2.2.8",
     "formik-material-ui-lab": "^0.0.8",
     "material-ui-chip-input": "^1.1.0",
-    "material-ui-formik-components": "^0.7.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-perfect-scrollbar": "^1.5.8",
@@ -30,7 +29,7 @@
     "yup": "^0.32.9"
   },
   "scripts": {
-    "startbyshared": "cd .. && cd shared && yarn build && cd .. && cd web && react-scripts start",
+    "startbyshared": "cd .. && cd shared && yarn build && cd .. && cd web && react-scripts build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
