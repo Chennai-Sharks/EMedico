@@ -27,7 +27,6 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
 			<Formik
 				initialValues={section1FormInitialValues}
 				onSubmit={async (values) => {
-					console.log(values);
 					const data = BFSection1BeforeFormSubmit(values);
 					console.log(data);
 					const response = await addPatientProvider.mutateAsync({
@@ -35,6 +34,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
 						dpid: values.dpid,
 					});
 					const mongoId: string = response.data._id;
+					console.log(mongoId);
 					const response1 = await bfSection1FormProvider.mutateAsync({
 						mongoId,
 						data,
