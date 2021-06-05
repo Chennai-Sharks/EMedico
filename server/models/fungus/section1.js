@@ -24,7 +24,7 @@ const section1Schema = new mongoose.Schema({
 	allergiesToMedication: String,
 	covidScreeningTest: {
 		covid: {
-			String,
+			type: String,
 			enum: ['yes', 'no'],
 		},
 		homecareHospitalized: {
@@ -34,26 +34,68 @@ const section1Schema = new mongoose.Schema({
 		ventilatorProlongedLifeSupport: {
 			type: String,
 			enum: ['yes', 'no'],
-		},
+		}
 	},
 	diabeticStatus: String,
-	immunoCompromised: ['yes', 'no'],
+	immunoCompromised: {
+			type: String,
+			enum: ['yes', 'no']
+		},
 	steroidHistory: String,
 	postCovidSymptoms: [String],
 	mucormycosisSymptoms: {
-		sinusitis: ['yes', 'no'],
-		nasalBlockage: ['yes', 'no'],
-		blackishDiscoloration: ['yes', 'no'],
-		facialErythema: ['yes', 'no'],
-		eyeSymptoms: ['yes', 'no'],
-		facialPainNumbness: ['yes', 'no'],
-		toothacheMobileTooth: ['yes', 'no'],
-		palatalUlceration: ['yes', 'no'],
-		halitosis: ['yes', 'no'],
-		skinLesions: ['yes', 'no'],
-		fever: ['yes', 'no'],
-		headache: ['yes', 'no'],
-		alteredSensorium: ['yes', 'no'],
+		sinusitis: {
+			type: String,
+			enum: ['yes', 'no']
+		},
+		nasalBlockage: {
+			type: String,
+			enum: ['yes', 'no'],
+		},
+		blackishDiscoloration: {
+			type: String,
+			enum: ['yes', 'no'],
+		},
+		facialErythema: {
+			type: String,
+			enum: ['yes', 'no'],
+		},
+		eyeSymptoms: {
+			type: String,
+			enum: ['yes', 'no'],
+		},
+		facialPainNumbness: {
+			type: String,
+			enum: ['yes', 'no'],
+		},
+		toothacheMobileTooth: {
+			type: String,
+			enum: ['yes', 'no'],
+		},
+		palatalUlceration: {
+			type: String,
+			enum: ['yes', 'no'],
+		},
+		halitosis: {
+			type: String,
+			enum: ['yes', 'no'],
+		},
+		skinLesions: {
+			type: String,
+			enum: ['yes', 'no'],
+		},
+		fever: {
+			type: String,
+			enum: ['yes', 'no'],
+		},
+		headache: {
+			type: String,
+			enum: ['yes', 'no'],
+		},
+		alteredSensorium: {
+			type: String,
+			enum: ['yes', 'no'],
+		}
 	},
 });
 
