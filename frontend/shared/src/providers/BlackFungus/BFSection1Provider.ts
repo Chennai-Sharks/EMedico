@@ -6,7 +6,7 @@ import { covidScreeningTest, mucormycosisSymptoms } from '../../utils/Utils';
 export const BFSection1BeforeFormSubmit = (data: Record<string, any>) => {
 	let covid: Record<string, string> = {};
 	let mucormycosis: Record<string, string> = {};
- 
+
 	covidScreeningTest.forEach((item) => {
 		covid[item] = data[item];
 		delete data[item];
@@ -38,15 +38,13 @@ export const AddBFSection1FormProvider = () => {
 			{
 				...data.data,
 			}
-		) 
+		)
 	);
 };
 
-export const GetBFSection1FormProvider = () => {
+export const GetBFSection1Provider = () => {
 	const docId = doctorIdStore((state) => state.docId);
-	return useQuery('getData', () => 
-		axios.get(
-			`http://localhost:4000/api/fungus/get/getPatients/${docId}`
-		)
-	);	
+	return useQuery<any, Error>(`getSection1Data${docId}`, () =>
+		axios.get(`http://localhost:4000/api/fungus/get/getPatients/${docId}`)
+	);
 };
