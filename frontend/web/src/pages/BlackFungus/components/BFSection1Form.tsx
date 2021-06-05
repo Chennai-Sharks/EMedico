@@ -53,11 +53,10 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 					label='Ventilator or in prolonged life support'
 					items={['yes', 'no']}
 				/>
-				<Field
+				<CustomRadio
 					name='immunoCompromised'
-					label='Immuno Compromised State'
-					padding={classes.textFieldPadding}
-					as={CustomTextField}
+					label='Immuno Compromised?'
+					items={['yes', 'no']}
 				/>
 				<Field
 					name='steroidHistory'
