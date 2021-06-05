@@ -2,7 +2,7 @@ const router = require('express').Router();
 const User = require('../../models/User');
 const Section1 = require('../../models/fungus/section1');
 
-//this block of code is to display all f-patients inside a particular doctor
+//this block of code is to display all ofp-patients inside a particular doctor
 router.get('/getPatients/:did', async (req, res) => {
 	try {
 		let allPatients = await User.findById(req.params.did);
@@ -32,20 +32,20 @@ router.get('/getOnePatient/:did/:mongoid', async (req, res) => {
 router.get('/section1/:mongoid', async (req, res) => {
 	try {
 		let data = await Section1.findOne({ mongoid: req.params.mongoid }).exec();
-		let allPatients = await User.findById(req.headers.did);
-		allPatients = allPatients.fPatients;
-		for (i in allPatients) {
-			if (allPatients[i]._id == req.params.mongoid) {
-				if (data)
+		// let allPatients = await User.findById(req.headers.did);
+		// allPatients = allPatients.fPatients;
+		// for (i in allPatients) {
+		// 	if (allPatients[i]._id == req.params.mongoid) {
+		// 		if (data)
 					res.json({
-						name: allPatients[i].name,
-						dpid: allPatients[i].dpid,
+						// name: allPatients[i].name,
+						// dpid: allPatients[i].dpid,
 						...data._doc,
 					});
-				else res.status(404).json({ message: 'No patient.' });
-				break;
-			}
-		}
+			// 	else res.status(404).json({ message: 'No patient.' });
+			// 	break;
+			// }
+		// }
 	} catch (err) {
 		res.status(400).json({ message: err });
 	}
