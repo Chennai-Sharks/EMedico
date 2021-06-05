@@ -81,7 +81,7 @@ router.post('/login', async (req, res) => {
 	const user = await User.findOne({
 		email: req.body.email,
 	});
-	if (!user) return res.status(404).send('Email not found'); //if the email entered isn't found in the DB
+	if (!user) return res.status(404).send({message:'Email not found'}); //if the email entered isn't found in the DB
 
 	//if(!user.isVerified) return res.status(400).send("Please confirm your email to login");
 
@@ -90,19 +90,19 @@ router.post('/login', async (req, res) => {
 		req.body.password,
 		user.password
 	);
-	if (!validPassword) return res.status(401).send('Invalid password');
+	if (!validPassword) return res.status(401).send({message:'Invalid password'});
 
 	//create and assigning the tokens
-	// const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-	// res.header('auth_Token', token).send(token);
+	const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
+	res.header('auth_Token', token);
 	res.status(200).send({ _id: user._id });
 });
 
 router.get('/verify/:token', async(req,res)=>{
 	const user = await User.findOneAndUpdate({ emailToken: req.params.token }, { isVerified: true },{useFindAndModify:false});
 	if(!user)
-	res.status(400).send("User not found");
+	res.status(400).send({message:"User not found"});
 	else
-	res.status(200).send("Email verified");     // add redirect 
+	res.status(200).send({message:"Email verified"});     // add redirect 
 })
 module.exports = router;
