@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useMutation, useQuery } from 'react-query';
 import { doctorIdStore } from '../../stores/DoctorIdStore';
 import { covidScreeningTest, mucormycosisSymptoms } from '../../utils/Utils';
@@ -44,7 +44,7 @@ export const AddBFSection1FormProvider = () => {
 
 export const GetBFAllPatients = () => {
 	const docId = doctorIdStore((state) => state.docId);
-	return useQuery<AxiosResponse<any>, Error>(
+	return useQuery<AxiosResponse<any>, AxiosError>(
 		`get All Patients for ${docId}`,
 		() => axios.get(`http://localhost:4000/api/fungus/get/getPatients/${docId}`)
 	);
@@ -52,15 +52,14 @@ export const GetBFAllPatients = () => {
 
 export const GetBFSection1Data = (patientId: string) => {
 	console.log(patientId);
-	return useQuery<AxiosResponse<any>, Error>(
-		`get All section 1 BF data`,
+	return useQuery<AxiosResponse<any>, AxiosError>(
+		[`get All section 1 BF data`, patientId],
 		() =>
 			axios.get(`http://localhost:4000/api/fungus/get/section1/${patientId}`),
 		{
-			enabled: false,
+			enabled: !!patientId,
 			refetchOnWindowFocus: false,
 			staleTime: 1200000,
-			retry: false,
 		}
 	);
 };
