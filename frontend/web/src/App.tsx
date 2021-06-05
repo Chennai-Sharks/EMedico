@@ -6,6 +6,8 @@ import AuthPage from 'pages/AuthPage/AuthPage';
 import './App.css';
 import HomePage from 'pages/HomePage/HomePage';
 import BFSection1Form from 'pages/BlackFungus/BFSection1Form';
+import BFSection1FormGet from 'pages/BlackFungus/BFSection1FormGet';
+
 
 function App() {
 	const theme = createMuiTheme({
@@ -30,6 +32,11 @@ function App() {
 							path='/black-fungus/add-patient'
 							exact
 							component={BFSection1Form}
+						/>
+						<Route 
+							path = '/black-fungus/get-patient'
+							exact 
+							component = {BFSection1FormGet}
 						/>
 						<Redirect path='/' to='/auth' />
 					</Switch>

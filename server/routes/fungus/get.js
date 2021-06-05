@@ -2,7 +2,7 @@ const router = require('express').Router();
 const User = require('../../models/User');
 const Section1 = require('../../models/fungus/section1');
 
-//this block of code is to display all ofp-patients inside a particular doctor
+//this block of code is to display all f-patients inside a particular doctor
 router.get('/getPatients/:did', async (req, res) => {
 	try {
 		let allPatients = await User.findById(req.params.did);

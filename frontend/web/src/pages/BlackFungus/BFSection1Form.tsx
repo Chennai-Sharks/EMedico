@@ -3,6 +3,7 @@ import { Field, Form, Formik } from 'formik';
 import React from 'react';
 import CustomNavBar from 'widgets/CustomNavBar/CustomNavBar';
 
+
 import {
 	section1FormInitialValues,
 	AddBFSection1FormProvider,
@@ -24,7 +25,7 @@ const BFSection1Form: React.FC<BFSection1FormProps> = () => {
 	const classes = useStyles();
 	const addPatientProvider = AddPatientProvider();
 	const bfSection1FormProvider = AddBFSection1FormProvider();
-
+	
 	return (
 		<CustomNavBar pageName='Black Fungus - Add Patients'>
 			<Formik
