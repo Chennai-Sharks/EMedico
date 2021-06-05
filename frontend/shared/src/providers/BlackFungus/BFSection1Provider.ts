@@ -3,6 +3,7 @@ import { useMutation, useQuery } from 'react-query';
 import { doctorIdStore } from '../../stores/DoctorIdStore';
 import { covidScreeningTest, mucormycosisSymptoms } from '../../utils/Utils';
 
+// This is used to change the data from form schema that niki did to server schema.
 export const BFSection1BeforeFormSubmit = (data: Record<string, any>) => {
 	let covid: Record<string, string> = {};
 	let mucormycosis: Record<string, string> = {};
@@ -20,6 +21,36 @@ export const BFSection1BeforeFormSubmit = (data: Record<string, any>) => {
 
 	data['mucormycosisSymptoms'] = mucormycosis;
 	return data;
+};
+
+// This is used to change the data from server to form schema that niki did.
+export const BFSection1DataTransformation = (data: Record<string, any>) => {
+	let oldData = { ...data };
+	let covidScreeningTest: {} = {
+		...oldData['covidScreeningTest'],
+	};
+
+	delete oldData['covidScreeningTest'];
+	let mucormycosisSymptoms: {} = {
+		...oldData['mucormycosisSymptoms'],
+	};
+
+	delete oldData['mucormycosisSymptoms'];
+
+	let newData: Record<string, any> = {
+		...oldData,
+		...covidScreeningTest,
+		...mucormycosisSymptoms,
+	};
+	console.log('newdata');
+	delete newData['__v'];
+	delete newData['date'];
+
+	delete newData['_id'];
+	delete newData['age'];
+	delete newData['mongoid'];
+
+	return newData;
 };
 
 export const AddPatientProvider = () => {
@@ -46,12 +77,16 @@ export const GetBFAllPatients = () => {
 	const docId = doctorIdStore((state) => state.docId);
 	return useQuery<AxiosResponse<any>, AxiosError>(
 		`get All Patients for ${docId}`,
-		() => axios.get(`http://localhost:4000/api/fungus/get/getPatients/${docId}`)
+		() =>
+			axios.get(`http://localhost:4000/api/fungus/get/getPatients/${docId}`),
+		{
+			staleTime: 120000,
+			refetchOnWindowFocus: false,
+		}
 	);
 };
 
 export const GetBFSection1Data = (patientId: string) => {
-	console.log(patientId);
 	return useQuery<AxiosResponse<any>, AxiosError>(
 		[`get All section 1 BF data`, patientId],
 		() =>
