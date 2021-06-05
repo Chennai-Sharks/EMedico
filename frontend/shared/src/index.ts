@@ -3,6 +3,7 @@ export const hello = () => {
 };
 
 export * from './types/AuthTypes';
+export * from './types/Section1Types';
 
 export * from './stores/DoctorIdStore';
 
