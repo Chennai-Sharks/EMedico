@@ -1,27 +1,13 @@
 const express = require('express');
 const app = express();
-const User = require('./models/User');
 const dotenv = require('dotenv');
 var cors = require('cors');
-const colors = require('colors');
+const verify = require('./routes/verifyToken');
+const router =  require('./routes/index');
 
 //Import Routes
 const authRoute = require('./routes/auth');
-const doctorRoute = require('./routes/doctor');
 
-const ofpCreateRoute = require('./routes/ofp/post');
-const ofpGetRoute = require('./routes/ofp/get');
-const ofpDeleteRoute = require('./routes/ofp/delete');
-const ofpUpdateRoute = require('./routes/ofp/patch');
-const ofpPdfRoute = require('./routes/ofp/pdf');
-const ofpSearchRoute = require('./routes/ofp/search');
-
-const fGetRoute = require('./routes/fungus/get');
-const fPostRoute = require('./routes/fungus/post');
-const fPatchRoute = require('./routes/fungus/patch');
-const fDeleteRoute = require('./routes/fungus/delete');
-
-const mongoose = require('mongoose');
 dotenv.config(); //To access/config the DB connection token
 
 //Connect to DB
@@ -33,21 +19,13 @@ const port = process.env.PORT;
 app.use(express.json());
 app.use(cors());
 
-
-//Route Middlewares
 app.use('/api/users', authRoute);
-app.use('/api/doctor',doctorRoute);
 
-app.use('/api/fungus/get',fGetRoute);
-app.use('/api/fungus/post',fPostRoute);
-app.use('/api/fungus/patch',fPatchRoute);
-app.use('/api/fungus/delete',fDeleteRoute);
+// use 'M2' if u want jwt verification , else use 'M1'  
+// M1
+app.use('/api', router);
 
-app.use('/api/ofp/create',ofpCreateRoute);
-app.use('/api/ofp/get', ofpGetRoute);
-app.use('/api/ofp/delete', ofpDeleteRoute);
-app.use('/api/ofp/update', ofpUpdateRoute);
-app.use('/api/ofp/pdf', ofpPdfRoute);
-app.use('/api/ofp/search', ofpSearchRoute);
+// M2
+//app.use('/api',verify, router);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`.yellow.bold));

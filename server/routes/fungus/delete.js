@@ -7,7 +7,7 @@ router.delete('/patient/:did', async (req, res)=>{
 
     try {
         // deleting the patient from doctor collection
-        const doc = await User.findOne({ _id : req.params.did});
+        const doc = await User.findOne({ _id : req.params.did});        
         doc.fPatients.id( req.body.mongoid).remove();
         const del = await doc.save();
 
