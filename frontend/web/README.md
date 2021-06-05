@@ -8,7 +8,7 @@
 
 ## Some more info about the black fungus folder structure
 
---page
+--pages
 |
 --BlackFungus  
  |
