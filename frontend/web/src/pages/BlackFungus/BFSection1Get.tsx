@@ -6,7 +6,7 @@ import { LinearProgress, makeStyles } from '@material-ui/core';
 import { useState } from 'react';
 
 interface BFSection1GetProps {}
-
+	
 const BFSection1Get: React.FC<BFSection1GetProps> = () => {
 	console.log('hello');
 	const classes = useStyles();
@@ -25,7 +25,7 @@ const BFSection1Get: React.FC<BFSection1GetProps> = () => {
 		console.log(data?.data);
 		console.log(error?.name);
 	}
-	// Performance improvements to be maka for GetBFAllPatients. Change react
+	// Performance improvements to be made for GetBFAllPatients. Change react
 	// Query config afterwards.
 
 	return (
