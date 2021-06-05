@@ -19,7 +19,7 @@ router.post('/addPatient/:did', async (req, res) => {
 		savedPatient = await doc.save();
 		res.send(savedPatient.fPatients.pop());
 	} catch (err) {
-		res.status(400).send({ message: err });
+		res.status(400).json({ message: err });
 	}
 });
 
