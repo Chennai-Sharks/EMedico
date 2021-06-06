@@ -118,7 +118,7 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 					name='homecareHospitalized'
 					topMargin={true}
 					label='Home Care or Hospitalized?'
-					items={['Home Care', 'Hospitalized']}
+					items={['Home care', 'Hospitalized']}
 				/>
 				<CustomRadio
 					name='sinusitis'
