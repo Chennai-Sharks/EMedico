@@ -99,13 +99,14 @@ const BFSection1Delete: React.FC<BFSection1GetProps> = () => {
 							</GridList>
 						</CustomCard>
 					)}
-					<CustomButton onClick={async () => {	
-															
-					const response = await deletePatient.mutateAsync({
-						mongoId: patientMongoId
-					});		
-												
+					<CustomButton 
+						onClick={ async () => {																
+						const response = await deletePatient.mutateAsync({
+							mongoid: patientMongoId,
+						});	
+						console.log("Hello");
 				}}
+
 					children = {"Delete Patient"} />
 				</div>
 			)}
