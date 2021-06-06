@@ -17,6 +17,8 @@ import {
 import React, { useState } from 'react';
 import CustomCard from 'widgets/CustomCard/CustomCard';
 
+import { toHeaderCase } from 'js-convert-case';
+
 interface BFSection1GetProps {}
 
 const BFSection1Get: React.FC<BFSection1GetProps> = () => {
@@ -24,7 +26,7 @@ const BFSection1Get: React.FC<BFSection1GetProps> = () => {
 	const classes = useStyles();
 	const [patientMongoId, setPatientMongoId] = useState('');
 
-	const allPatients = GetBFAllPatients(); 
+	const allPatients = GetBFAllPatients();
 	const { data, isLoading, isError, refetch } =
 		GetBFSection1Data(patientMongoId);
 
@@ -86,7 +88,7 @@ const BFSection1Get: React.FC<BFSection1GetProps> = () => {
 													key={index}
 												>
 													<Typography className={classes.title} style={{}}>
-														{item}:
+														{toHeaderCase(item)}:
 													</Typography>
 													<Typography>{newData[item]}</Typography>
 												</div>
