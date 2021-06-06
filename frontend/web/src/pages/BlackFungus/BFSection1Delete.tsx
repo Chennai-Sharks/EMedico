@@ -103,10 +103,9 @@ const BFSection1Delete: React.FC<BFSection1GetProps> = () => {
 						onClick={ async () => {																
 						const response = await deletePatient.mutateAsync({
 							mongoid: patientMongoId,
-						});	
-						console.log("Hello");
+						});							
 				}}
-
+				
 					children = {"Delete Patient"} />
 				</div>
 			)}

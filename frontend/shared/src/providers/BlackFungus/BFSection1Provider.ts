@@ -102,7 +102,7 @@ export const GetBFSection1Data = (patientId: string) => {
 export const DeletePatientData = () => {
 	const docId = doctorIdStore((state) => state.docId);
 	return useMutation((data: Record<string, any>) =>
-		axios.delete(`http://localhost:4000/api/fungus/post/addPatient/${docId}`, {
+		axios.delete(`http://localhost:4000/api/fungus/delete/patient/${docId}`, {
 			...data,
 		})
 	);
