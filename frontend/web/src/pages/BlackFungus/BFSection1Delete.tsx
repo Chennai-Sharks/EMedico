@@ -4,6 +4,7 @@ import {
 	GetBFAllPatients,
 	GetBFSection1Data,
 	BFSection1DataTransformation,
+	DeletePatientData,
 } from '@emedico/shared';
 import CustomAutoComplete from 'widgets/CustomAutoComplete/CustomAutoComplete';
 import {
@@ -20,13 +21,13 @@ import CustomButton from 'widgets/CustomButton/CustomButton';
 
 interface BFSection1GetProps {}
 
-const BFSection1Get: React.FC<BFSection1GetProps> = () => {
+const BFSection1Delete: React.FC<BFSection1GetProps> = () => {
 	console.log('hello');
 	const classes = useStyles();
 	const [patientMongoId, setPatientMongoId] = useState('');
+	const deletePatient = DeletePatientData();
 
-	const allPatients = GetBFAllPatients();
-
+	const allPatients = GetBFAllPatients(); 
 	const { data, isLoading, isError, refetch } =
 		GetBFSection1Data(patientMongoId);
 
@@ -51,7 +52,7 @@ const BFSection1Get: React.FC<BFSection1GetProps> = () => {
 						label='Enter Patient name'
 						data={allPatients.data?.data}
 						onChange={(_: any, value: any) => {
-							console.log('vallue' + value);
+							console.log('value' + value);
 							if (value) {
 								setPatientMongoId(value._id);
 								refetch();
@@ -98,7 +99,14 @@ const BFSection1Get: React.FC<BFSection1GetProps> = () => {
 							</GridList>
 						</CustomCard>
 					)}
-					<CustomButton children = "Delete Patient" />
+					<CustomButton onClick={async () => {	
+															
+					const response = await deletePatient.mutateAsync({
+						mongoId: patientMongoId
+					});		
+												
+				}}
+					children = {"Delete Patient"} />
 				</div>
 			)}
 		</CustomNavBar>
@@ -116,4 +124,4 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default BFSection1Get;
+export default BFSection1Delete;
