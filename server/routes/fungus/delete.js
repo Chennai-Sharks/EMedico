@@ -3,7 +3,7 @@ const User = require('../../models/User');
 const fsection1 = require('../../models/fungus/section1');
 
 
-router.delete('/patient/:did', async (req, res)=>{
+router.delete('/patient/:did/:mongoid', async (req, res)=>{
 
     try {
         // deleting the patient from doctor collection
@@ -12,7 +12,7 @@ router.delete('/patient/:did', async (req, res)=>{
         const del = await doc.save();        
 
         // deleting from sections      //Deletes all the sections in one go   //Smart move nanba by Nikhilesh        
-          const deleted = await fsection1.findOneAndDelete({ mongoid: req.body.mongoid });
+          const deleted = await fsection1.findOneAndDelete({ mongoid: req.params.mongoid });
           const fdel = await deleted.save();
           console.log(fdel);  
 
