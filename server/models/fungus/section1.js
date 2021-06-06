@@ -27,26 +27,26 @@ const section1Schema = new mongoose.Schema({
 			type: String,
 			enum: ['yes', 'no'],
 		},
-		homecareHospitalized: {
+		homecareOrHospitalized: {
 			type: String,
 			enum: ['Home care', 'Hospitalized'],
 		},
-		ventilatorProlongedLifeSupport: {
+		ventilatorOrProlongedLifeSupport: {
 			type: String,
 			enum: ['yes', 'no'],
-		}
+		},
 	},
 	diabeticStatus: String,
-	immunoCompromised: {
-			type: String,
-			enum: ['yes', 'no']
-		},
+	immunoCompromisedState: {
+		type: String,
+		enum: ['yes', 'no'],
+	},
 	steroidHistory: String,
 	postCovidSymptoms: [String],
 	mucormycosisSymptoms: {
 		sinusitis: {
 			type: String,
-			enum: ['yes', 'no']
+			enum: ['yes', 'no'],
 		},
 		nasalBlockage: {
 			type: String,
@@ -68,7 +68,7 @@ const section1Schema = new mongoose.Schema({
 			type: String,
 			enum: ['yes', 'no'],
 		},
-		toothacheMobileTooth: {
+		toothacheOrMobileTooth: {
 			type: String,
 			enum: ['yes', 'no'],
 		},
@@ -95,7 +95,7 @@ const section1Schema = new mongoose.Schema({
 		alteredSensorium: {
 			type: String,
 			enum: ['yes', 'no'],
-		}
+		},
 	},
 });
 
