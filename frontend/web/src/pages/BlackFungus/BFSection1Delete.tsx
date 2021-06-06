@@ -4,7 +4,7 @@ import {
 	GetBFAllPatients,
 	GetBFSection1Data,
 	BFSection1DataTransformation,
-	DeletePatientData,
+	DeleteBFSection1Data,
 } from '@emedico/shared';
 import CustomAutoComplete from 'widgets/CustomAutoComplete/CustomAutoComplete';
 import {
@@ -25,7 +25,7 @@ const BFSection1Delete: React.FC<BFSection1GetProps> = () => {
 	console.log('hello');
 	const classes = useStyles();
 	const [patientMongoId, setPatientMongoId] = useState('');
-	const deletePatient = DeletePatientData();
+	const deletePatient = DeleteBFSection1Data();
 
 	const allPatients = GetBFAllPatients();
 	const { data, isLoading, isError, refetch } =
@@ -108,7 +108,7 @@ const BFSection1Delete: React.FC<BFSection1GetProps> = () => {
 
 								console.log(response);
 							} catch (error) {
-								console.log(error.response);
+								console.log(error);
 							}
 						}}
 						children={'Delete Patient'}

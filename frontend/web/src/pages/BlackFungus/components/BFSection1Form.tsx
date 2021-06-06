@@ -77,7 +77,7 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 					label='Eye Symptoms'
 					items={['yes', 'no']}
 				/>
-				<CustomRadio
+				<CustomRadio 
 					name='toothacheOrMobileTooth'
 					label='Toothache or MobileTooth'
 					items={['yes', 'no']}
