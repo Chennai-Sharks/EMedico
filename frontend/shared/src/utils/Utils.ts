@@ -1,7 +1,7 @@
 export const covidScreeningTest = [
 	'covid',
-	'homecareHospitalized',
-	'ventilatorProlongedLifeSupport',
+	'homecareOrHospitalized',
+	'ventilatorOrProlongedLifeSupport',
 ];
 
 export const mucormycosisSymptoms = [
@@ -11,7 +11,7 @@ export const mucormycosisSymptoms = [
 	'facialErythema',
 	'eyeSymptoms',
 	'facialPainNumbness',
-	'toothacheMobileTooth',
+	'toothacheOrMobileTooth',
 	'palatalUlceration',
 	'halitosis',
 	'skinLesions',
