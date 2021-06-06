@@ -7,6 +7,7 @@ import './App.css';
 import HomePage from 'pages/HomePage/HomePage';
 import BFSection1Create from 'pages/BlackFungus/BFSectionCreate';
 import BFSection1Get from 'pages/BlackFungus/BFSection1Get';
+import BFSection1Delete from 'pages/BlackFungus/BFSection1Delete';
 
 function App() {
 	const theme = createMuiTheme({
@@ -36,6 +37,11 @@ function App() {
 							path='/black-fungus/get-patient'
 							exact
 							component={BFSection1Get}
+						/>
+						<Route
+							path='/black-fungus/delete-patient'
+							exact
+							component={BFSection1Delete}
 						/>
 						<Redirect path='/' to='/auth' />
 					</Switch>
