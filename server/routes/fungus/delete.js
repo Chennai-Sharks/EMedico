@@ -17,7 +17,7 @@ router.delete('/patient/:did/:mongoid', async (req, res)=>{
           console.log(fdel);  
 
           res.status(200).send("Patient deleted");
-        
+         
     } catch (err) {
         res.status(400).send(err)
     }
