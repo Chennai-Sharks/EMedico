@@ -24,8 +24,7 @@ const BFSection1Get: React.FC<BFSection1GetProps> = () => {
 	const classes = useStyles();
 	const [patientMongoId, setPatientMongoId] = useState('');
 
-	const allPatients = GetBFAllPatients();
-
+	const allPatients = GetBFAllPatients(); 
 	const { data, isLoading, isError, refetch } =
 		GetBFSection1Data(patientMongoId);
 
@@ -50,7 +49,7 @@ const BFSection1Get: React.FC<BFSection1GetProps> = () => {
 						label='Enter Patient name'
 						data={allPatients.data?.data}
 						onChange={(_: any, value: any) => {
-							console.log('vallue' + value);
+							console.log('value' + value);
 							if (value) {
 								setPatientMongoId(value._id);
 								refetch();
