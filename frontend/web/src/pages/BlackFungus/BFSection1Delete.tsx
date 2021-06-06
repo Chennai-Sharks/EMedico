@@ -27,7 +27,7 @@ const BFSection1Delete: React.FC<BFSection1GetProps> = () => {
 	const [patientMongoId, setPatientMongoId] = useState('');
 	const deletePatient = DeletePatientData();
 
-	const allPatients = GetBFAllPatients(); 
+	const allPatients = GetBFAllPatients();
 	const { data, isLoading, isError, refetch } =
 		GetBFSection1Data(patientMongoId);
 
@@ -99,14 +99,20 @@ const BFSection1Delete: React.FC<BFSection1GetProps> = () => {
 							</GridList>
 						</CustomCard>
 					)}
-					<CustomButton 
-						onClick={ async () => {																
-						const response = await deletePatient.mutateAsync({
-							mongoid: patientMongoId,
-						});							
-				}}
-				
-					children = {"Delete Patient"} />
+					<CustomButton
+						onClick={async () => {
+							try {
+								const response = await deletePatient.mutateAsync({
+									mongoid: patientMongoId,
+								});
+
+								console.log(response);
+							} catch (error) {
+								console.log(error.response);
+							}
+						}}
+						children={'Delete Patient'}
+					/>
 				</div>
 			)}
 		</CustomNavBar>
