@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CustomNavBar from 'widgets/CustomNavBar/CustomNavBar';
 
 import CustomAutoComplete from 'widgets/CustomAutoComplete/CustomAutoComplete';
@@ -16,17 +16,21 @@ import {
 	GetBFSection1Data,
 	BFSection1DataTransformation,
 	section1FormInitialValues,
+	UpdateBFSection1Data,
+	BFSection1BeforeFormSubmit,
 	getPatientStore,
+	snackBarStore,
 } from '@emedico/shared';
 import { Form, Formik } from 'formik';
 import BFSection1Form from './components/BFSection1Form';
 import CustomButton from 'widgets/CustomButton/CustomButton';
+import CustomDialog from 'widgets/CustomDialog/CustomDialog';
+import CustomSnackBar from 'widgets/CustomSnackBar/CustomSnackBar';
 
 interface BFSection1UpdateProps {}
 
 const BFSection1Update: React.FC<BFSection1UpdateProps> = (props) => {
 	const classes = useStyles();
-	// const [patientMongoId, setPatientMongoId] = useState('');
 
 	const getPatient = getPatientStore((state) => state);
 
@@ -35,14 +39,13 @@ const BFSection1Update: React.FC<BFSection1UpdateProps> = (props) => {
 		getPatient.mongoId
 	);
 
-	// if (patientMongoId && !isLoading && !isError) {
-	// 	console.log(isError);
-	// 	const ndata = BFSection1DataTransformation(data?.data);
-	// 	setpd((olddata) => {
-	// 		if (olddata === patientdata) return;
-	// 		else return ndata;
-	// 	}); // console.log(BFSection1DataTransformation(data?.data));
-	// }
+	const updateForm = UpdateBFSection1Data();
+
+	const snackBar = snackBarStore((state) => state);
+
+	const [loading, setLoading] = useState(false);
+	const [openDialog, setOpenDialog] = useState(false);
+
 	return (
 		<Formik
 			enableReinitialize={true}
@@ -55,13 +58,38 @@ const BFSection1Update: React.FC<BFSection1UpdateProps> = (props) => {
 							dpid: getPatient.dpid,
 					  }
 			}
-			onSubmit={() => {}}
+			onSubmit={async (values, action) => {
+				action.setSubmitting(true);
+				setLoading(true);
+
+				try {
+					const data = BFSection1BeforeFormSubmit({ ...values });
+					console.log(data);
+
+					console.log(
+						await updateForm.mutateAsync({ data, mongoId: getPatient.mongoId })
+					);
+
+					setLoading(false);
+					setOpenDialog(true);
+				} catch (error) {
+					setLoading(false);
+					console.log(error.response.data.message);
+					snackBar.setOpen(true);
+					snackBar.setmessage(error.response.data.message);
+				}
+				action.setSubmitting(false);
+			}}
 		>
 			{({ values, isSubmitting }) => {
-				console.log(values);
 				return (
 					<CustomNavBar pageName='Black Fungus - Update Details of Patient'>
 						{allPatients.isLoading && <LinearProgress />}
+						{allPatients.isError && (
+							<Typography style={{ marginTop: '40%', marginLeft: '40%' }}>
+								No Patients there
+							</Typography>
+						)}
 
 						{!allPatients.isLoading && !allPatients.isError && (
 							<div className={classes.content}>
@@ -77,7 +105,6 @@ const BFSection1Update: React.FC<BFSection1UpdateProps> = (props) => {
 											getPatient.setDpid(value.dpid);
 											refetch();
 										} else {
-											// setPatientMongoId('');
 											getPatient.setMongoId('');
 										}
 									}}
@@ -108,13 +135,32 @@ const BFSection1Update: React.FC<BFSection1UpdateProps> = (props) => {
 												}}
 												type='submit'
 											>
-												{false ? <CircularProgress /> : 'Update'}
+												{loading ? <CircularProgress /> : 'Update'}
 											</CustomButton>
 										</CustomCard>
 									</Form>
 								) : (
 									isLoading && <LinearProgress />
 								)}
+								<CustomDialog
+									open={openDialog}
+									notOkButtonText={undefined}
+									okButtonText='Okay'
+									onOkHandled={() => {
+										setOpenDialog(false);
+										getPatient.setMongoId('');
+										window.location.reload();
+									}}
+									title='Success'
+									content='Patient Details are updated successfully.'
+									onClose={() => {}}
+								/>
+								<CustomSnackBar
+									open={snackBar.open}
+									handleClose={() => snackBar.setOpen(false)}
+									message={snackBar.message}
+									severity='error'
+								/>
 							</div>
 						)}
 					</CustomNavBar>

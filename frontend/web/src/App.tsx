@@ -2,13 +2,17 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import AuthPage from 'pages/AuthPage/AuthPage';
+import { withStyles } from '@material-ui/core';
 
-import './App.css';
+import { scrollBarStyle } from './ScrollBarStyle';
+
 import HomePage from 'pages/HomePage/HomePage';
 import BFSection1Create from 'pages/BlackFungus/BFSectionCreate';
 import BFSection1Get from 'pages/BlackFungus/BFSection1Get';
 import BFSection1Delete from 'pages/BlackFungus/BFSection1Delete';
 import BFSection1Update from 'pages/BlackFungus/BFSection1Update';
+
+import './App.css';
 
 function App() {
 	const theme = createMuiTheme({
@@ -57,4 +61,5 @@ function App() {
 	);
 }
 
-export default App;
+export default withStyles(scrollBarStyle)(App);
+// export default App;

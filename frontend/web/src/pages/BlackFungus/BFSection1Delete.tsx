@@ -5,12 +5,13 @@ import {
 	GetBFSection1Data,
 	BFSection1DataTransformation,
 	DeleteBFSection1Data,
+	snackBarStore,
 } from '@emedico/shared';
 import CustomAutoComplete from 'widgets/CustomAutoComplete/CustomAutoComplete';
 import {
+	CircularProgress,
 	Divider,
 	GridList,
-	// GridListTile,
 	LinearProgress,
 	makeStyles,
 	Typography,
@@ -18,6 +19,9 @@ import {
 import React, { useState } from 'react';
 import CustomCard from 'widgets/CustomCard/CustomCard';
 import CustomButton from 'widgets/CustomButton/CustomButton';
+import CustomSnackBar from 'widgets/CustomSnackBar/CustomSnackBar';
+import CustomDialog from 'widgets/CustomDialog/CustomDialog';
+import { toHeaderCase } from 'js-convert-case';
 
 interface BFSection1GetProps {}
 
@@ -31,6 +35,11 @@ const BFSection1Delete: React.FC<BFSection1GetProps> = () => {
 	const { data, isLoading, isError, refetch } =
 		GetBFSection1Data(patientMongoId);
 
+	const snackBar = snackBarStore((state) => state);
+
+	const [loading, setLoading] = useState(false);
+	const [openDialog, setOpenDialog] = useState(false);
+
 	// if (!allPatients.isLoading) {
 	// 	console.log(allPatients.data?.data);
 	// 	console.log(allPatients.error?.message);
@@ -43,8 +52,13 @@ const BFSection1Delete: React.FC<BFSection1GetProps> = () => {
 	// Performance improvements to be made in Object.keys() thing.
 
 	return (
-		<CustomNavBar pageName='Black Fungus - View Details of Patient'>
+		<CustomNavBar pageName='Black Fungus - Delete Details of Patient'>
 			{allPatients.isLoading && <LinearProgress />}
+			{allPatients.isError && (
+				<Typography style={{ marginTop: '40%', marginLeft: '40%' }}>
+					No Patients there
+				</Typography>
+			)}
 
 			{!allPatients.isLoading && !allPatients.isError && (
 				<div className={classes.content}>
@@ -65,6 +79,11 @@ const BFSection1Delete: React.FC<BFSection1GetProps> = () => {
 						<CustomCard
 							customStyle={{
 								marginTop: '15px',
+								marginBottom: '30px',
+
+								display: 'flex',
+								flexDirection: 'column',
+								justifyContent: 'center',
 							}}
 						>
 							<Typography className={classes.title} variant='h5'>
@@ -89,32 +108,85 @@ const BFSection1Delete: React.FC<BFSection1GetProps> = () => {
 													key={index}
 												>
 													<Typography className={classes.title} style={{}}>
-														{item}:
+														{toHeaderCase(item)}:
 													</Typography>
-													<Typography>{newData[item]}</Typography>
+													{
+														/// Post covid symptoms is array, so this the hack to bring
+														/// - if array is empty.
+														toHeaderCase(item) === 'Post Covid Symptoms' ? (
+															(newData[item] as string[]).length > 0 ? (
+																(newData[item] as string[]).map(
+																	(item, index) => (
+																		<Typography key={index}>
+																			{item ? `${item},` : '-'}
+																		</Typography>
+																	)
+																)
+															) : (
+																<Typography> - </Typography>
+															)
+														) : (
+															<Typography>
+																{newData[item] ? newData[item] : '-'}
+															</Typography>
+														)
+													}
 												</div>
 											);
 										}
 									)}
 							</GridList>
+							<Divider />
+							<CustomButton
+								customStyle={{
+									marginLeft: '30%',
+									marginRight: '30%',
+									marginBottom: '20px',
+								}}
+								disabled={loading}
+								onClick={async () => {
+									// setLoading(true);
+									try {
+										await deletePatient.mutateAsync({
+											mongoid: patientMongoId,
+										});
+										setPatientMongoId('');
+
+										setLoading(false);
+										setOpenDialog(true);
+									} catch (error) {
+										setLoading(false);
+										console.log(error.response.data);
+										snackBar.setmessage('Some error with delete');
+										snackBar.setOpen(true);
+									}
+								}}
+							>
+								{loading ? <CircularProgress /> : 'Delete patient'}
+							</CustomButton>
 						</CustomCard>
 					)}
-					<CustomButton
-						onClick={async () => {
-							try {
-								const response = await deletePatient.mutateAsync({
-									mongoid: patientMongoId,
-								});
-								
-								console.log(response);
-							} catch (error) {
-								console.log(error);
-							}
-						}}
-						children={'Delete Patient'}
-					/>
 				</div>
 			)}
+			<CustomDialog
+				open={openDialog}
+				notOkButtonText={undefined}
+				okButtonText='Okay'
+				onOkHandled={() => {
+					setOpenDialog(false);
+					setPatientMongoId('');
+					window.location.reload();
+				}}
+				title='Success'
+				content='Patient Details are delete successfully.'
+				onClose={() => {}}
+			/>
+			<CustomSnackBar
+				open={snackBar.open}
+				handleClose={() => snackBar.setOpen(false)}
+				message={snackBar.message}
+				severity='error'
+			/>
 		</CustomNavBar>
 	);
 };

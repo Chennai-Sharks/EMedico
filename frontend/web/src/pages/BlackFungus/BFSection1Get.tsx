@@ -9,7 +9,6 @@ import CustomAutoComplete from 'widgets/CustomAutoComplete/CustomAutoComplete';
 import {
 	Divider,
 	GridList,
-	// GridListTile,
 	LinearProgress,
 	makeStyles,
 	Typography,
@@ -22,7 +21,6 @@ import { toHeaderCase } from 'js-convert-case';
 interface BFSection1GetProps {}
 
 const BFSection1Get: React.FC<BFSection1GetProps> = () => {
-	console.log('hello');
 	const classes = useStyles();
 	const [patientMongoId, setPatientMongoId] = useState('');
 
@@ -44,6 +42,11 @@ const BFSection1Get: React.FC<BFSection1GetProps> = () => {
 	return (
 		<CustomNavBar pageName='Black Fungus - View Details of Patient'>
 			{allPatients.isLoading && <LinearProgress />}
+			{allPatients.isError && (
+				<Typography style={{ marginTop: '40%', marginLeft: '40%' }}>
+					No Patients there
+				</Typography>
+			)}
 
 			{!allPatients.isLoading && !allPatients.isError && (
 				<div className={classes.content}>
@@ -90,7 +93,27 @@ const BFSection1Get: React.FC<BFSection1GetProps> = () => {
 													<Typography className={classes.title} style={{}}>
 														{toHeaderCase(item)}:
 													</Typography>
-													<Typography>{newData[item]}</Typography>
+													{
+														/// Post covid symptoms is array, so this the hack to bring
+														/// - if array is empty.
+														toHeaderCase(item) === 'Post Covid Symptoms' ? (
+															(newData[item] as string[]).length > 0 ? (
+																(newData[item] as string[]).map(
+																	(item, index) => (
+																		<Typography key={index}>
+																			{item ? `${item},` : '-'}
+																		</Typography>
+																	)
+																)
+															) : (
+																<Typography> - </Typography>
+															)
+														) : (
+															<Typography>
+																{newData[item] ? newData[item] : '-'}
+															</Typography>
+														)
+													}
 												</div>
 											);
 										}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AuthSignUpModel, LogUpProvider } from '@emedico/shared';
+import { AuthSignUpModel, LogUpProvider, snackBarStore } from '@emedico/shared';
 
 import CustomTextField from 'widgets/CustomTextField/CustomTextField';
 import CustomButton from 'widgets/CustomButton/CustomButton';
@@ -9,6 +9,7 @@ import useStyles from './AuthPageStyles';
 import { CircularProgress } from '@material-ui/core';
 import { Field, Form, Formik } from 'formik';
 import CustomDialog from 'widgets/CustomDialog/CustomDialog';
+import CustomSnackBar from 'widgets/CustomSnackBar/CustomSnackBar';
 
 interface LogUpFormProps {
 	setLoginState: () => void;
@@ -17,6 +18,8 @@ interface LogUpFormProps {
 const LogUpForm: React.FC<LogUpFormProps> = (props) => {
 	const classes = useStyles();
 	const LogUpMutation = LogUpProvider();
+
+	const snackBar = snackBarStore((state) => state);
 	const [openDialog, setOpenDialog] = React.useState(false);
 
 	const initialSignUpValue: AuthSignUpModel = {
@@ -56,6 +59,8 @@ const LogUpForm: React.FC<LogUpFormProps> = (props) => {
 						setOpenDialog(true);
 					} catch (error) {
 						console.log(error.response.data);
+						snackBar.setOpen(true);
+						snackBar.setmessage(error.response.data);
 					}
 
 					actions.setSubmitting(false);
@@ -102,6 +107,12 @@ const LogUpForm: React.FC<LogUpFormProps> = (props) => {
 				title='Success'
 				content='Registration done successfully. Click on Okay to Sign In.'
 				onClose={() => {}}
+			/>
+			<CustomSnackBar
+				open={snackBar.open}
+				handleClose={() => snackBar.setOpen(false)}
+				message={snackBar.message}
+				severity='error'
 			/>
 		</>
 	);
