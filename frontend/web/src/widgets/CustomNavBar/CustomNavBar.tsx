@@ -26,8 +26,8 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import EditIcon from '@material-ui/icons/Edit';
 import { Collapse } from '@material-ui/core';
-
-// import DrawerLogo from '../../assets/drawerlogo.svg';
+import { useHistory } from 'react-router-dom';
+import DrawerLogo from '../../assets/drawer.svg';
 
 const drawerWidth = 240;
 
@@ -67,15 +67,16 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		content: {
 			flexGrow: 1,
-			padding: theme.spacing(3),
+			paddingLeft: theme.spacing(3),
+			paddingRight: theme.spacing(3),
 		},
 		nested: {
 			paddingLeft: theme.spacing(4),
 		},
 		imgLogo: {
-			maxHeight: '40px',
+			height: '25px',
 			width: 'auto',
-			marginLeft: theme.spacing(2),
+			marginLeft: theme.spacing(3),
 		},
 		title: {
 			marginTop: '10px',
@@ -88,6 +89,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
 	const classes = useStyles();
 	const theme = useTheme();
+	const router = useHistory();
 	const [mobileOpen, setMobileOpen] = React.useState(false);
 
 	const [openPatient, setOpenPatient] = React.useState(false);
@@ -100,6 +102,10 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
 		setMobileOpen(!mobileOpen);
 	};
 
+	const handleRouteChange = (path: string) => {
+		router.push(path);
+	};
+
 	const drawer = (
 		<div>
 			<div
@@ -110,11 +116,11 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
 					alignItems: 'center',
 				}}
 			>
-				{/* <img src={DrawerLogo} alt="Logo" className={classes.imgLogo} /> */}
+				<img src={DrawerLogo} alt='Logo' className={classes.imgLogo} />
 			</div>
 			<Divider />
 			<List>
-				<ListItem button>
+				<ListItem button onClick={() => handleRouteChange('/home')}>
 					<ListItemIcon>
 						<DashboardIcon />
 					</ListItemIcon>
@@ -132,25 +138,41 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
 
 				<Collapse in={openPatient} timeout='auto' unmountOnExit>
 					<List component='div' disablePadding>
-						<ListItem button className={classes.nested}>
+						<ListItem
+							button
+							onClick={() => handleRouteChange('/black-fungus/get-patient')}
+							className={classes.nested}
+						>
 							<ListItemIcon>
 								<FaceIcon />
 							</ListItemIcon>
-							<ListItemText primary='All Patients' />
+							<ListItemText primary='Patient Detail' />
 						</ListItem>
-						<ListItem button className={classes.nested}>
+						<ListItem
+							button
+							onClick={() => handleRouteChange('/black-fungus/add-patient')}
+							className={classes.nested}
+						>
 							<ListItemIcon>
 								<AddIcon />
 							</ListItemIcon>
 							<ListItemText primary='Add Patient' />
 						</ListItem>
-						<ListItem button className={classes.nested}>
+						<ListItem
+							button
+							onClick={() => handleRouteChange('/black-fungus/update-patient')}
+							className={classes.nested}
+						>
 							<ListItemIcon>
 								<EditIcon />
 							</ListItemIcon>
 							<ListItemText primary='Update Patient' />
 						</ListItem>
-						<ListItem button className={classes.nested}>
+						<ListItem
+							button
+							onClick={() => handleRouteChange('/black-fungus/delete-patient')}
+							className={classes.nested}
+						>
 							<ListItemIcon>
 								<RemoveIcon />
 							</ListItemIcon>

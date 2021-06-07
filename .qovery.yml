@@ -1,0 +1,11 @@
+---
+application:
+  name: "emedico"
+  project: "EMedico"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-emedico"
+  routes:
+  - application_name: "emedico"
+    paths:
+    - "/*"

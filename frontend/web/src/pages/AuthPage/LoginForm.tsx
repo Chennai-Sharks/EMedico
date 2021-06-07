@@ -42,7 +42,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
 			}}
 			onSubmit={async (values, actions) => {
 				actions.setSubmitting(true);
-				console.log(values);
+				// console.log(values);
 				try {
 					const response = await LoginInMutation.mutateAsync(values);
 					console.log(response.data._id);
