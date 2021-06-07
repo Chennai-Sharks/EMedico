@@ -8,8 +8,3 @@ services:
       - '4000:4000'
     links:
       - mongo
-  mongo:
-    container_name: mongo-db
-    image: mongo
-    ports:
-      - '27017:27017'
