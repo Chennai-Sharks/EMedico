@@ -103,7 +103,7 @@ export const DeleteBFSection1Data = () => {
 	return useMutation((data: Record<string, any>) => {
 		console.log(data);
 		return axios.delete(
-			`http://localhost:4000/api/fungus/delete/patient/${docId}`,
+			`http://localhost:4000/api/fungus/delete/patient/${docId}/${data.mongoid}`,
 			{
 				data: { ...data },
 			}

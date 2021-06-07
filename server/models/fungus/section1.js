@@ -10,91 +10,106 @@ const section1Schema = new mongoose.Schema({
 	age: {
 		type: Number,
 		required: true,
+		trim: true
 	},
 	gender: {
 		type: String,
 		enum: ['male', 'female', 'other'],
 		required: true,
+		trim: true
 	},
 	personalHistory: {
 		type: String,
-		enum: ['single', 'married', 'divorce', 'separated', 'widowed', 'children'],
+		enum: ['single', 'married', 'divorce', 'separated', 'widowed', 'children',''],
+		trim: true
 	},
-	occupation: String,
-	allergiesToMedication: String,
+	occupation: {
+		type: String,
+		trim: true
+	},
+	allergiesToMedication: {
+		type: String,
+		trim: true
+	},
 	covidScreeningTest: {
 		covid: {
 			type: String,
-			enum: ['yes', 'no'],
+			enum: ['yes', 'no',''],
 		},
 		homecareOrHospitalized: {
 			type: String,
-			enum: ['Home care', 'Hospitalized'],
+			enum: ['Home care', 'Hospitalized',''],
 		},
 		ventilatorOrProlongedLifeSupport: {
 			type: String,
-			enum: ['yes', 'no'],
+			enum: ['yes', 'no',''],
 		},
 	},
-	diabeticStatus: String,
+	diabeticStatus: {
+		type: String,
+		trim: true
+	},
 	immunoCompromisedState: {
 		type: String,
-		enum: ['yes', 'no'],
+		enum: ['yes', 'no',''],
 	},
-	steroidHistory: String,
+	steroidHistory: {
+		type: String,
+		trim: true
+	},
 	postCovidSymptoms: [String],
 	mucormycosisSymptoms: {
 		sinusitis: {
 			type: String,
-			enum: ['yes', 'no'],
+			enum: ['yes', 'no',''],
 		},
 		nasalBlockage: {
 			type: String,
-			enum: ['yes', 'no'],
+			enum: ['yes', 'no',''],
 		},
 		blackishDiscoloration: {
 			type: String,
-			enum: ['yes', 'no'],
+			enum: ['yes', 'no',''],
 		},
 		facialErythema: {
 			type: String,
-			enum: ['yes', 'no'],
+			enum: ['yes', 'no',''],
 		},
 		eyeSymptoms: {
 			type: String,
-			enum: ['yes', 'no'],
+			enum: ['yes', 'no',''],
 		},
 		facialPainNumbness: {
 			type: String,
-			enum: ['yes', 'no'],
+			enum: ['yes', 'no',''],
 		},
 		toothacheOrMobileTooth: {
 			type: String,
-			enum: ['yes', 'no'],
+			enum: ['yes', 'no',''],
 		},
 		palatalUlceration: {
 			type: String,
-			enum: ['yes', 'no'],
+			enum: ['yes', 'no',''],
 		},
 		halitosis: {
 			type: String,
-			enum: ['yes', 'no'],
+			enum: ['yes', 'no',''],
 		},
 		skinLesions: {
 			type: String,
-			enum: ['yes', 'no'],
+			enum: ['yes', 'no',''],
 		},
 		fever: {
 			type: String,
-			enum: ['yes', 'no'],
+			enum: ['yes', 'no',''],
 		},
 		headache: {
 			type: String,
-			enum: ['yes', 'no'],
+			enum: ['yes', 'no',''],
 		},
 		alteredSensorium: {
 			type: String,
-			enum: ['yes', 'no'],
+			enum: ['yes', 'no',''],
 		},
 	},
 });

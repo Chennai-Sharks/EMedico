@@ -8,7 +8,7 @@ router.delete('/patient/:did/:mongoid', async (req, res)=>{
     try {
         // deleting the patient from doctor collection
         const doc = await User.findOne({ _id : req.params.did});        
-        doc.fPatients.id( req.body.mongoid).remove();
+        doc.fPatients.id( req.params.mongoid).remove();
         const del = await doc.save();        
 
         // deleting from sections      //Deletes all the sections in one go   //Smart move nanba by Nikhilesh        
@@ -17,7 +17,7 @@ router.delete('/patient/:did/:mongoid', async (req, res)=>{
           console.log(fdel);  
 
           res.status(200).send("Patient deleted");
-        
+         
     } catch (err) {
         res.status(400).send(err)
     }

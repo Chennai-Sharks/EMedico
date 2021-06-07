@@ -105,7 +105,7 @@ const BFSection1Delete: React.FC<BFSection1GetProps> = () => {
 								const response = await deletePatient.mutateAsync({
 									mongoid: patientMongoId,
 								});
-
+								
 								console.log(response);
 							} catch (error) {
 								console.log(error);
