@@ -47,7 +47,6 @@ export const BFSection1DataTransformation = (data: Record<string, any>) => {
 	delete newData['date'];
 
 	delete newData['_id'];
-	delete newData['age'];
 	delete newData['mongoid'];
 
 	return newData;
@@ -96,5 +95,29 @@ export const GetBFSection1Data = (patientId: string) => {
 			refetchOnWindowFocus: false,
 			staleTime: 1200000,
 		}
+	);
+};
+
+export const DeleteBFSection1Data = () => {
+	const docId = doctorIdStore((state) => state.docId);
+	return useMutation((data: Record<string, any>) => {
+		console.log(data);
+		return axios.delete(
+			`http://localhost:4000/api/fungus/delete/patient/${docId}/${data.mongoid}`,
+			{
+				data: { ...data },
+			}
+		);
+	});
+};
+
+export const UpdateBFSection1Data = () => {
+	return useMutation((data: Record<string, any>) =>
+		axios.patch(
+			`http://localhost:4000/api/fungus/patch/section1/${data.mongoId}`,
+			{
+				...data,
+			}
+		)
 	);
 };

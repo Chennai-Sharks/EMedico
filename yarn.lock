@@ -7515,6 +7515,11 @@ joi@^17.2.1:
     "@sideway/formula" "^3.0.0"
     "@sideway/pinpoint" "^2.0.0"
 
+js-convert-case@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/js-convert-case/-/js-convert-case-4.1.2.tgz#3573c0c746c741818f7ff5de0625ce2df086d9f0"
+  integrity sha512-52SdLgNyT50oZwrPSv9LvD3g4OykGnl6yKZDYC2obBWpm3dHUG5ZuQXk8xqNdn4vH1sj6CxpOxVrAYdF6THBIg==
+
 js-sha3@0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/js-sha3/-/js-sha3-0.8.0.tgz#b9b7a5da73afad7dedd0f8c463954cbde6818840"

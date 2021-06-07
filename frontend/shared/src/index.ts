@@ -6,6 +6,7 @@ export * from './types/AuthTypes';
 export * from './types/Section1Types';
 
 export * from './stores/DoctorIdStore';
+export * from './stores/getPatientStore';
 
 export * from './schema/BlackFungus/Section1';
 

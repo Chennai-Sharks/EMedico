@@ -23,7 +23,7 @@ const Section1 = require('../../models/fungus/section1');
 // });
 
 //this is to update the section 1 details
-router.patch('/section1/:mongoid', async (req,res) => {
+router.patch('/section1/:did/:mongoid', async (req,res) => {
   try {
     const conditions = {mongoid: req.params.mongoid};
     const update = req.body;

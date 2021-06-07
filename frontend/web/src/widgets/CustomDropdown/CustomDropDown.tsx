@@ -19,6 +19,7 @@ const CustomDropDown: React.FC<CustomDropDownProps> = (props) => {
 		<>
 			<TextField
 				select
+				defaultValue=''
 				{...props}
 				variant='outlined'
 				InputProps={{
