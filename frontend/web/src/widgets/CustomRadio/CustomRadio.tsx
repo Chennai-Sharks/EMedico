@@ -34,6 +34,7 @@ const CustomRadio: React.FC<CustomRadioProps> = (props) => {
 						key={index}
 						value={item}
 						size='medium'
+						defaultValue=''
 					>
 						{item}
 					</ToggleButton>

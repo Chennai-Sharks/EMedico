@@ -10,7 +10,6 @@ interface BFSection1FormProps {
 	values: any;
 }
 
-
 const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 	const classes = useStyles();
 
@@ -47,12 +46,12 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 				<CustomRadio
 					name='covid'
 					label='Tested Positive for Covid in the past?'
-					items={['yes', 'no',' ']}
+					items={['yes', 'no']}
 				/>
 				<CustomRadio
 					name='ventilatorOrProlongedLifeSupport'
 					label='Ventilator or in prolonged life support'
-					items={['yes', 'no',' ']}
+					items={['yes', 'no']}
 				/>
 
 				<Field
@@ -71,38 +70,26 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 					name='blackishDiscoloration'
 					// topMargin={true}
 					label='Blackish Discoloration'
-					items={['yes', 'no',' ']}
+					items={['yes', 'no']}
 				/>
 				<CustomRadio
 					name='eyeSymptoms'
 					label='Eye Symptoms'
-					items={['yes', 'no',' ']}
+					items={['yes', 'no']}
 				/>
-				<CustomRadio 
+				<CustomRadio
 					name='toothacheOrMobileTooth'
 					label='Toothache or MobileTooth'
-					items={['yes', 'no',' ']}
+					items={['yes', 'no']}
 				/>
-				<CustomRadio 
-					name='halitosis' 
-					label='Halitosis' 
-					items={['yes', 'no',' ']} 
-				/>
-				<CustomRadio 
-					name='fever' 
-					label='Fever' 
-					items={['yes', 'no',' ']} 
-				/>
+				<CustomRadio name='halitosis' label='Halitosis' items={['yes', 'no']} />
+				<CustomRadio name='fever' label='Fever' items={['yes', 'no']} />
 				<CustomRadio
 					name='alteredSensorium'
 					label='Altered Sensorium'
-					items={['yes', 'no',' ']}
+					items={['yes', 'no']}
 				/>
-				<CustomRadio 
-					name='headache' 
-					label='Headache' 
-					items={['yes', 'no',' ']} 
-				/>
+				<CustomRadio name='headache' label='Headache' items={['yes', 'no']} />
 			</Grid>
 			<Grid item xs={12} sm={6}>
 				<Field
@@ -134,7 +121,7 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 					name='sinusitis'
 					label='Sinusitis'
 					topMargin={true}
-					items={['yes', 'no',' ']}
+					items={['yes', 'no']}
 				/>
 
 				<CustomChipInput
@@ -152,37 +139,37 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 				<CustomRadio
 					name='immunoCompromisedState'
 					label='Immuno Compromised?'
-					items={['yes', 'no',' ']}
+					items={['yes', 'no']}
 				/>
 				<CustomRadio
 					name='nasalBlockage'
 					label='Nasal Blockage'
 					topMargin={true}
-					items={['yes', 'no',' ']}
+					items={['yes', 'no']}
 				/>
 				<CustomRadio
 					name='facialErythema'
 					label='Facial Erythema'
 					topMargin={true}
-					items={['yes', 'no',' ']}
+					items={['yes', 'no']}
 				/>
 				<CustomRadio
 					name='facialPainNumbness'
 					label='Facial Pain or Numbness'
 					topMargin={true}
-					items={['yes', 'no',' ']}
+					items={['yes', 'no']}
 				/>
 				<CustomRadio
 					name='palatalUlceration'
 					label='Palatal Ul Ceration'
 					// topMargin={false}
-					items={['yes', 'no',' ']}
+					items={['yes', 'no']}
 				/>
 				<CustomRadio
 					name='skinLesions'
 					label='Skin Lesions'
 					topMargin={true}
-					items={['yes', 'no',' ']}
+					items={['yes', 'no']}
 				/>
 			</Grid>
 		</Grid>
