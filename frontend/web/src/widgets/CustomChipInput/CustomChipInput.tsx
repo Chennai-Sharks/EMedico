@@ -16,6 +16,7 @@ const CustomChipInput: React.FC<CustomChipInputProps> = (props) => {
 					component={() => (
 						<ChipInput
 							blurBehavior='add'
+							defaultValue={[]}
 							label={props.label}
 							InputProps={{
 								style: {
