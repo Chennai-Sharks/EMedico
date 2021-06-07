@@ -14,8 +14,7 @@ router.delete('/patient/:did/:mongoid', async (req, res)=>{
         // deleting from sections      //Deletes all the sections in one go   //Smart move nanba by Nikhilesh        
           const deleted = await fsection1.findOneAndDelete({ mongoid: req.params.mongoid });
           const fdel = await deleted.save();
-          console.log(fdel);  
-
+           
           res.status(200).send("Patient deleted");
          
     } catch (err) {
