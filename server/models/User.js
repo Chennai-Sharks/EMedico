@@ -16,23 +16,16 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  userId:{
+    type:String,
+    required: true
+  },
   ofpPatients:[patientSchema],
   fPatients:[patientSchema],
   email: {
     type: String,
     required: true,
     lowercase: true
-  },
-  password: {
-    type: String,
-    required: true,
-    max: 1000,
-    min: 8
-  },
-  emailToken: String,
-  isVerified: {
-    type: Boolean,
-    default: false
   },
   date: {
     type: Date,
