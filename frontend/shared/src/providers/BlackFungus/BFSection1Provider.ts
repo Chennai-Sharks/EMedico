@@ -5,6 +5,7 @@ import {
 	APIURL,
 	covidScreeningTest,
 	mucormycosisSymptoms,
+	predisposingFactors
 } from '../../utils/Utils';
 
 // This is used to change the data from form schema that niki did to server schema.

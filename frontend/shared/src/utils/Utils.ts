@@ -9,6 +9,21 @@ export const covidScreeningTest = [
 	'ventilatorOrProlongedLifeSupport',
 ];
 
+export const predisposingFactors = [
+	"concurrentCovid",
+	"recentCovid",
+	"diabetesMellitus",
+	"longtermSteroids",
+	"highDoseOfSteroids",
+	"immunocompromised",
+	"malignancy",
+	"transplant",
+	"broadspectrumAntibiotics",
+	"longtermOxygenTherapy",
+	"prolongedICU",
+	"mechanicalVentilation"
+]
+
 export const mucormycosisSymptoms = [
 	'sinusitis',
 	'nasalBlockage',

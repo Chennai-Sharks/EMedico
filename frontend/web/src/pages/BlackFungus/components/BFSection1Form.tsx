@@ -43,7 +43,7 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 					]}
 					as={CustomDropDown}
 				/>
-				<CustomRadio
+				{/* <CustomRadio
 					name='covid'
 					label='Tested Positive for Covid in the past?'
 					items={['yes', 'no']}
@@ -82,14 +82,64 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 					label='Toothache or MobileTooth'
 					items={['yes', 'no']}
 				/>
-				<CustomRadio name='halitosis' label='Halitosis' items={['yes', 'no']} />
-				<CustomRadio name='fever' label='Fever' items={['yes', 'no']} />
+				<CustomRadio 
+					name='halitosis' 
+					label='Halitosis' 
+					items={['yes', 'no']} 
+				/>
+				<CustomRadio 
+					name='fever' 
+					label='Fever' 
+					items={['yes', 'no']} 
+				/>
 				<CustomRadio
 					name='alteredSensorium'
 					label='Altered Sensorium'
 					items={['yes', 'no']}
 				/>
-				<CustomRadio name='headache' label='Headache' items={['yes', 'no']} />
+				<CustomRadio 
+					name='headache' 
+					label='Headache' 
+					items={['yes', 'no']} 
+				/> */}
+
+				<CustomRadio
+					name='concurrentCovid'
+					label='Concurrent Covid'
+					topMargin={true}
+					items={['yes', 'no']}
+				/>
+				<CustomRadio
+					name='diabetesMellitus'
+					label='Uncontrolled Diabetes Mellitus'
+					topMargin={true}
+					items={['yes', 'no']}
+				/>
+				<CustomRadio
+					name='highDoseOfSteroids'
+					label='High Dose Of Steroids'
+					topMargin={true}
+					items={['yes', 'no']}
+				/>
+				<CustomRadio
+					name='malignancy'
+					label='Malignancy'
+					topMargin={true}
+					items={['yes', 'no']}
+				/>
+				<CustomRadio
+					name='broadspectrumAntibiotics'
+					label='Prolonged use of broad-spectrum antibiotics'
+					topMargin={true}
+					items={['yes', 'no']}
+				/>
+				<CustomRadio
+					name='prolongedICU'
+					label='Prolonged ICU stays'
+					topMargin={true}
+					items={['yes', 'no']}
+				/>
+				
 			</Grid>
 			<Grid item xs={12} sm={6}>
 				<Field
@@ -106,6 +156,49 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 					as={CustomDropDown}
 				/>
 				<Field
+					name='occupation'
+					label='Occupation'
+					padding={classes.textFieldPadding}
+					as={CustomTextField}
+				/>
+				<CustomRadio
+					name='recentCovid'
+					label='Recently treated COVID -19'
+					topMargin={true}
+					items={['yes', 'no']}
+				/>
+				<CustomRadio
+					name='longtermSteroids'
+					label='Long-term Steroids'
+					topMargin={true}
+					items={['yes', 'no']}
+				/>
+				<CustomRadio
+					name='immunocompromised'
+					label='Immunocompromised Individuals'
+					topMargin={true}
+					items={['yes', 'no']}
+				/>
+				<CustomRadio
+					name='transplant'
+					label='transplant'
+					topMargin={true}
+					items={['yes', 'no']}
+				/>
+				<CustomRadio
+					name='longtermOxygenTherapy'
+					label='Long term Oxygen Therapy'
+					topMargin={true}
+					items={['yes', 'no']}
+				/>
+				<CustomRadio
+					name='mechanicalVentilation'
+					label='People under Mechanical Ventilation'
+					topMargin={true}
+					items={['yes', 'no']}
+				/>
+
+				{/* <Field
 					name='allergiesToMedication'
 					label='Allergies to Medication'
 					padding={classes.textFieldPadding}
@@ -129,13 +222,7 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 					label='Post Covid Symptoms'
 					value={props.values.postCovidSymptoms}
 					padding={classes.textFieldPadding}
-				/>
-				<Field
-					name='occupation'
-					label='Occupation'
-					padding={classes.textFieldPadding}
-					as={CustomTextField}
-				/>
+				/>				
 				<CustomRadio
 					name='immunoCompromisedState'
 					label='Immuno Compromised?'
@@ -170,7 +257,10 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 					label='Skin Lesions'
 					topMargin={true}
 					items={['yes', 'no']}
-				/>
+				/> */}
+
+					
+
 			</Grid>
 		</Grid>
 	);
