@@ -97,7 +97,7 @@ const section1Schema = new mongoose.Schema({
 		},
 		"nasaldischarge":{
 			type:String,
-			enum:['bloody','brownish','blackish','']
+			enum:['bloody','brownish','blackish','None']
 		},
 		"eyeRedness":{
 			type:String,
@@ -147,11 +147,11 @@ const section1Schema = new mongoose.Schema({
 			type:String,
 			enum:['yes','no']
 		},
-		"toothAche":{
+		"toothache":{
 			type:String,
 			enum:['yes','no']
 		},
-		"loosingTeeth":{
+		"teethLoosening":{
 			type:String,
 			enum:['yes','no']
 		},

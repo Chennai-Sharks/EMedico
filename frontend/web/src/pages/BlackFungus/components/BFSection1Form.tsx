@@ -15,14 +15,14 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 	const fieldName = ["headache", "lowFever", "malaiseAndLethargy", "nasalObstruction", "nasaldischarge",
 				  "eyeRedness", "eyeWatering", "periorbitalSwelling", "eyeDiscoloration","proptosis",
 				  "diplopia", "visionDiminution", "ptosis", "ophthalmoplegia", "facialSwellingOrPain",
-				  "parenthesia", "infraOrbitalNumbness", "toothAche", "loosingTeeth", "oralMucosaDiscoloration",
+				  "parenthesia", "infraOrbitalNumbness", "toothache", "teethLoosening", "oralMucosaDiscoloration",
 				  "teethSensationLoss", "teethNumbness", "ulceration", "palatalPerforation"];
 
-	const fieldLabel = ["headache", "lowFever", "malaiseAndLethargy", "nasalObstruction", "nasaldischarge",
-				  "eyeRedness", "eyeWatering", "periorbitalSwelling", "eyeDiscoloration","proptosis",
-				  "diplopia", "visionDiminution", "ptosis", "ophthalmoplegia", "facialSwellingOrPain",
-				  "parenthesia", "infraOrbitalNumbness", "toothAche", "loosingTeeth", "oralMucosaDiscoloration",
-				  "teethSensationLoss", "teethNumbness", "ulceration", "palatalPerforation"];
+	const fieldLabel = ["Headache", "Low grade fever", "Malaise & Lethargy", "Nasal Obstruction", "Nasal discharge often bloody",
+				  "Pain and redness around eyes", "Eyes Watering", "Periorbital Swelling", "Eye Discoloration","Proptosis",
+				  "Diplopia", "Diminution of vision", "Ptosis", "Ophthalmoplegia", "Facial Swelling & Pain",
+				  "Parenthesia", "Numbness in infra Orbital region", "Toothache", "Loosening of teeth", "Blackish discoloration of oral mucosa",
+				  "Loss of sensation in teeth", "Teeth Numbness", "Ulceration", "Perforation over palatal region"];
 
 	return (
 		<Grid container spacing={3} className={classes.layout}>
