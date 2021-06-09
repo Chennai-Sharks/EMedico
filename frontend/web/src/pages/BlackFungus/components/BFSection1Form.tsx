@@ -12,6 +12,18 @@ interface BFSection1FormProps {
 
 const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 	const classes = useStyles();
+	const fieldName = ["headache", "lowFever", "malaiseAndLethargy", "nasalObstruction", "nasaldischarge",
+				  "eyeRedness", "eyeWatering", "periorbitalSwelling", "eyeDiscoloration","proptosis",
+				  "diplopia", "visionDiminution", "ptosis", "ophthalmoplegia", "facialSwellingOrPain",
+				  "parenthesia", "infraOrbitalNumbness", "toothAche", "loosingTeeth", "oralMucosaDiscoloration",
+				  "teethSensationLoss", "teethNumbness", "ulceration", "palatalPerforation"];
+
+	const fieldLabel = ["headache", "lowFever", "malaiseAndLethargy", "nasalObstruction", "nasaldischarge",
+	"eyeRedness", "eyeWatering", "periorbitalSwelling", "eyeDiscoloration","proptosis",
+	"diplopia", "visionDiminution", "ptosis", "ophthalmoplegia", "facialSwellingOrPain",
+	"parenthesia", "infraOrbitalNumbness", "toothAche", "loosingTeeth", "oralMucosaDiscoloration",
+	"teethSensationLoss", "teethNumbness", "ulceration", "palatalPerforation"];
+
 
 	return (
 		<Grid container spacing={3} className={classes.layout}>
@@ -42,7 +54,108 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 						'children',
 					]}
 					as={CustomDropDown}
+				/>				
+				<h1 style = {{marginLeft: "0.8em", textDecoration: "underline"}} >
+					Predisposing Factors: 
+				</h1>			{/* I've summa made these styles, feel free it change it :3 */}
+				<CustomRadio
+					name='concurrentCovid'
+					label='Concurrent Covid'
+					topMargin={true}
+					items={['yes', 'no']}
 				/>
+				<CustomRadio
+					name='diabetesMellitus'
+					label='Uncontrolled Diabetes Mellitus'
+					topMargin={true}
+					items={['yes', 'no']}
+				/>
+				<CustomRadio
+					name='highDoseOfSteroids'
+					label='High Dose Of Steroids'
+					topMargin={true}
+					items={['yes', 'no']}
+				/>
+				<CustomRadio
+					name='malignancy'
+					label='Malignancy'
+					topMargin={true}
+					items={['yes', 'no']}
+				/>
+				<CustomRadio
+					name='broadspectrumAntibiotics'
+					label='Prolonged use of broad-spectrum antibiotics'
+					topMargin={true}
+					items={['yes', 'no']}
+				/>
+				<CustomRadio
+					name='prolongedICU'
+					label='Prolonged ICU stays'
+					topMargin={true}
+					items={['yes', 'no']}
+				/>	
+				<h1 style = {{marginLeft: "0.8em", textDecoration: "underline"}} >
+					Clinical Presentation: 
+				</h1>
+				{fieldName.map(
+					(item, index) => {	
+							const fieldLabelContent = fieldLabel[index]					
+							return (
+								<CustomRadio
+									name={item}
+									label={fieldLabelContent}
+									topMargin={true}
+									items={['yes', 'no']}
+									key = {index}
+								/>	
+								)																				
+						}
+					)
+				}
+{/* 
+Object.keys(BFSection1DataTransformation(data?.data)).map(
+										(item, index) => {
+											console.log(item);
+											const newData = BFSection1DataTransformation(data?.data);
+											return (
+												<div
+													style={{
+														width: '50%',
+														display: 'flex',
+														flexDirection: 'row',
+														alignItems: 'center',
+													}}
+													key={index}
+												>
+													<Typography className={classes.title} style={{}}>
+														{toHeaderCase(item)}:
+													</Typography>
+													{
+														/// Post covid symptoms is array, so this the hack to bring
+														/// - if array is empty.
+														toHeaderCase(item) === 'Post Covid Symptoms' ? (
+															(newData[item] as string[]).length > 0 ? (
+																(newData[item] as string[]).map(
+																	(item, index) => (
+																		<Typography key={index}>
+																			{item ? `${item},` : '-'}
+																		</Typography>
+																	)
+																)
+															) : (
+																<Typography> - </Typography>
+															)
+														) : (
+															<Typography>
+																{newData[item] ? newData[item] : '-'}
+															</Typography>
+														)
+													}
+												</div>
+											);
+										}
+									)} */}
+
 				{/* <CustomRadio
 					name='covid'
 					label='Tested Positive for Covid in the past?'
@@ -102,44 +215,6 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 					label='Headache' 
 					items={['yes', 'no']} 
 				/> */}
-
-				<CustomRadio
-					name='concurrentCovid'
-					label='Concurrent Covid'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='diabetesMellitus'
-					label='Uncontrolled Diabetes Mellitus'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='highDoseOfSteroids'
-					label='High Dose Of Steroids'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='malignancy'
-					label='Malignancy'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='broadspectrumAntibiotics'
-					label='Prolonged use of broad-spectrum antibiotics'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='prolongedICU'
-					label='Prolonged ICU stays'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-				
 			</Grid>
 			<Grid item xs={12} sm={6}>
 				<Field
@@ -161,6 +236,10 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 					padding={classes.textFieldPadding}
 					as={CustomTextField}
 				/>
+				<br />
+				<br />
+				<br />
+				<br />
 				<CustomRadio
 					name='recentCovid'
 					label='Recently treated COVID -19'
