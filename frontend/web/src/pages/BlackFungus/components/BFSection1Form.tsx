@@ -19,10 +19,10 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 				  "teethSensationLoss", "teethNumbness", "ulceration", "palatalPerforation"];
 
 	const fieldLabel = ["headache", "lowFever", "malaiseAndLethargy", "nasalObstruction", "nasaldischarge",
-	"eyeRedness", "eyeWatering", "periorbitalSwelling", "eyeDiscoloration","proptosis",
-	"diplopia", "visionDiminution", "ptosis", "ophthalmoplegia", "facialSwellingOrPain",
-	"parenthesia", "infraOrbitalNumbness", "toothAche", "loosingTeeth", "oralMucosaDiscoloration",
-	"teethSensationLoss", "teethNumbness", "ulceration", "palatalPerforation"];
+				  "eyeRedness", "eyeWatering", "periorbitalSwelling", "eyeDiscoloration","proptosis",
+				  "diplopia", "visionDiminution", "ptosis", "ophthalmoplegia", "facialSwellingOrPain",
+				  "parenthesia", "infraOrbitalNumbness", "toothAche", "loosingTeeth", "oralMucosaDiscoloration",
+				  "teethSensationLoss", "teethNumbness", "ulceration", "palatalPerforation"];
 
 
 	return (
