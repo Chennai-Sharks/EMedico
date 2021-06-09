@@ -5,11 +5,18 @@ const AuthStyles = makeStyles((theme) => ({
 		display: 'flex',
 		minHeight: '100vh',
 		flexDirection: 'column',
-		justifyContent: 'center',
-
-		backgroundColor: '#F4F5F7',
+		backgroundColor: '#ECF0FD',
 	},
-	authBoxBg: {
+	loginBox: {
+		width: '100%',
+		marginLeft: 'auto',
+		marginRight: 'auto',
+		padding: '70px 16px',
+		[theme.breakpoints.up('sm')]: {
+			maxWidth: '600px',
+		},
+	},
+	imageBox: {
 		width: '100%',
 		marginLeft: 'auto',
 		marginRight: 'auto',

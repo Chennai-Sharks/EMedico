@@ -1,23 +1,28 @@
-import { Divider, Link, Typography } from '@material-ui/core';
+// import { Divider, Link, Typography } from '@material-ui/core';
 import React from 'react';
-import CustomCard from 'widgets/CustomCard/CustomCard';
+// import CustomCard from 'widgets/CustomCard/CustomCard';
 
 import useStyles from './AuthPageStyles';
 
-import LogoImg from '../../assets/logo.svg';
-import LoginForm from './LoginForm';
-import LogUpForm from './LogUpForm';
+// import LogoImg from '../../assets/logo.svg';
+// import LoginForm from './LoginForm';
+// import LogUpForm from './LogUpForm';
 
 interface AuthPageProps {}
 
 const AuthPage: React.FC<AuthPageProps> = () => {
 	const classes = useStyles();
-	const [isLogin, setIslogin] = React.useState(true);
 
 	return (
 		<div className={classes.background}>
-			<div className={classes.authBoxBg}>
-				<CustomCard>
+			<div className={classes.loginBox}></div>
+		</div>
+	);
+};
+
+export default AuthPage;
+
+/* 	<CustomCard>
 					<div className={classes.loginTitleLayout}>
 						<div>
 							<Typography className={classes.loginTitle}>
@@ -66,9 +71,4 @@ const AuthPage: React.FC<AuthPageProps> = () => {
 						</Link>
 					</div>
 				</CustomCard>
-			</div>
-		</div>
-	);
-};
-
-export default AuthPage;
+				*/
