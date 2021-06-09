@@ -24,7 +24,6 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 				  "parenthesia", "infraOrbitalNumbness", "toothAche", "loosingTeeth", "oralMucosaDiscoloration",
 				  "teethSensationLoss", "teethNumbness", "ulceration", "palatalPerforation"];
 
-
 	return (
 		<Grid container spacing={3} className={classes.layout}>
 			<Grid item xs={12} sm={6}>
