@@ -2,33 +2,32 @@ const mongoose = require('mongoose');
 
 const section1Schema = new mongoose.Schema({
 	mongoid: String,
-	patientDetails:{
-		date: {
+		"date": {
 			type: Date,
 			default: Date.now,
 		},
-		age: {
+		"age": {
 			type: Number,
 			required: true,
 			trim: true
 		},
-		gender: {
+		"gender": {
 			type: String,
 			enum: ['male', 'female', 'other'],
 			required: true,
 			trim: true
 		},
-		personalHistory: {
+		"personalHistory": {
 			type: String,
 			enum: ['single', 'married', 'divorce', 'separated', 'widowed', 'children',''],
 			trim: true
 		},
-		occupation: {
+		"occupation": {
 			type: String,
 			trim: true
-		}
-	},	
-	"predisposingFactors":{
+		}, 
+
+		// Predisposing factors
 		"concurrentCovid":{
 			type:String,
 			enum:['yes','no']
@@ -76,9 +75,9 @@ const section1Schema = new mongoose.Schema({
 		"mechanicalVentilation":{
 			type:String,
 			enum:['yes','no']
-		}
-	},
-	"clinicalPresentation":{
+		},
+// "clinicalPresentation"
+	// "Generalised Symptoms"
 		"headache":{
 			type:String,
 			enum:['yes','no']
@@ -91,14 +90,16 @@ const section1Schema = new mongoose.Schema({
 			type:String,
 			enum:['yes','no']
 		},
+	// "Nasal Symptoms"
 		"nasalObstruction":{
 			type:String,
 			enum:['yes','no']
 		},
 		"nasaldischarge":{
 			type:String,
-			enum:['bloody','brownish','blackish','']
+			enum:['bloody','brownish','blackish','None']
 		},
+	// "Ocular Manifestations"
 		"eyeRedness":{
 			type:String,
 			enum:['yes','no']
@@ -147,11 +148,12 @@ const section1Schema = new mongoose.Schema({
 			type:String,
 			enum:['yes','no']
 		},
-		"toothAche":{
+	// "Oral Manifestations"
+		"toothache":{
 			type:String,
 			enum:['yes','no']
 		},
-		"loosingTeeth":{
+		"teethLoosening":{
 			type:String,
 			enum:['yes','no']
 		},
@@ -175,7 +177,6 @@ const section1Schema = new mongoose.Schema({
 			type:String,
 			enum:['yes','no']
 		}
-	}
 });
 
 module.exports = mongoose.model('fSection1', section1Schema);
