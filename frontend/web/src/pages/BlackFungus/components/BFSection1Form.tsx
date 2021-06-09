@@ -1,119 +1,157 @@
-import { Grid, makeStyles } from '@material-ui/core';
-import { Field } from 'formik';
-import React from 'react';
-import CustomChipInput from 'widgets/CustomChipInput/CustomChipInput';
-import CustomDropDown from 'widgets/CustomDropdown/CustomDropDown';
-import CustomRadio from 'widgets/CustomRadio/CustomRadio';
-import CustomTextField from 'widgets/CustomTextField/CustomTextField';
+import { Grid, makeStyles } from "@material-ui/core";
+import { Field } from "formik";
+import React from "react";
+import CustomChipInput from "widgets/CustomChipInput/CustomChipInput";
+import CustomDropDown from "widgets/CustomDropdown/CustomDropDown";
+import CustomRadio from "widgets/CustomRadio/CustomRadio";
+import CustomTextField from "widgets/CustomTextField/CustomTextField";
 
 interface BFSection1FormProps {
-	values: any;
+  values: any;
 }
 
 const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
-	const classes = useStyles();
-	const fieldName = ["headache", "lowFever", "malaiseAndLethargy", "nasalObstruction", "nasaldischarge",
-				  "eyeRedness", "eyeWatering", "periorbitalSwelling", "eyeDiscoloration","proptosis",
-				  "diplopia", "visionDiminution", "ptosis", "ophthalmoplegia", "facialSwellingOrPain",
-				  "parenthesia", "infraOrbitalNumbness", "toothache", "teethLoosening", "oralMucosaDiscoloration",
-				  "teethSensationLoss", "teethNumbness", "ulceration", "palatalPerforation"];
+  const classes = useStyles();
+  const fieldName = [
+    "headache",
+    "lowFever",
+    "malaiseAndLethargy",
+    "nasalObstruction",
+    "nasaldischarge",
+    "eyeRedness",
+    "eyeWatering",
+    "periorbitalSwelling",
+    "eyeDiscoloration",
+    "proptosis",
+    "diplopia",
+    "visionDiminution",
+    "ptosis",
+    "ophthalmoplegia",
+    "facialSwellingOrPain",
+    "parenthesia",
+    "infraOrbitalNumbness",
+    "toothache",
+    "teethLoosening",
+    "oralMucosaDiscoloration",
+    "teethSensationLoss",
+    "teethNumbness",
+    "ulceration",
+    "palatalPerforation",
+  ];
 
-	const fieldLabel = ["Headache", "Low grade fever", "Malaise & Lethargy", "Nasal Obstruction", "Nasal discharge often bloody",
-				  "Pain and redness around eyes", "Eyes Watering", "Periorbital Swelling", "Eye Discoloration","Proptosis",
-				  "Diplopia", "Diminution of vision", "Ptosis", "Ophthalmoplegia", "Facial Swelling & Pain",
-				  "Parenthesia", "Numbness in infra Orbital region", "Toothache", "Loosening of teeth", "Blackish discoloration of oral mucosa",
-				  "Loss of sensation in teeth", "Teeth Numbness", "Ulceration", "Perforation over palatal region"];
+  const fieldLabel = [
+    "Headache",
+    "Low grade `fever",
+    "Malaise & Lethargy",
+    "Nasal Obstruction",
+    "Nasal discharge often bloody",
+    "Pain and redness around eyes",
+    "Eyes Watering",
+    "Periorbital Swelling",
+    "Eye Discoloration",
+    "Proptosis",
+    "Diplopia",
+    "Diminution of vision",
+    "Ptosis",
+    "Ophthalmoplegia",
+    "Facial Swelling & Pain",
+    "Parenthesia",
+    "Numbness in infra Orbital region",
+    "Toothache",
+    "Loosening of teeth",
+    "Blackish discoloration of oral mucosa",
+    "Loss of sensation in teeth",
+    "Teeth Numbness",
+    "Ulceration",
+    "Perforation over palatal region",
+  ];
 
-	return (
-		<Grid container spacing={3} className={classes.layout}>
-			<Grid item xs={12} sm={6}>
-				<Field
-					name='name'
-					label='Name'
-					padding={classes.textFieldPadding}
-					as={CustomTextField}
-				/>
-				<Field
-					name='age'
-					label='Age'
-					type='number'
-					padding={classes.textFieldPadding}
-					as={CustomTextField}
-				/>
-				<Field
-					name='personalHistory'
-					label='Personal History'
-					type='select'
-					items={[
-						'single',
-						'married',
-						'divorce',
-						'separated',
-						'widowed',
-						'children',
-					]}
-					as={CustomDropDown}
-				/>				
-				<h1 style = {{marginLeft: "0.8em", textDecoration: "underline"}} >
-					Predisposing Factors: 
-				</h1>			{/* I've summa made these styles, feel free it change it :3 */}
-				<CustomRadio
-					name='concurrentCovid'
-					label='Concurrent Covid'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='diabetesMellitus'
-					label='Uncontrolled Diabetes Mellitus'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='highDoseOfSteroids'
-					label='High Dose Of Steroids'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='malignancy'
-					label='Malignancy'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='broadspectrumAntibiotics'
-					label='Prolonged use of broad-spectrum antibiotics'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='prolongedICU'
-					label='Prolonged ICU stays'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>	
-				<h1 style = {{marginLeft: "0.8em", textDecoration: "underline"}} >
-					Clinical Presentation: 
-				</h1>
-				{fieldName.map(
-					(item, index) => {	
-							const fieldLabelContent = fieldLabel[index]					
-							return (
-								<CustomRadio
-									name={item}
-									label={fieldLabelContent}
-									topMargin={true}
-									items={['yes', 'no']}
-									key = {index}
-								/>	
-								)																				
-						}
-					)
-				}
-
-
-				{/* <CustomRadio
+  return (
+    <Grid container spacing={3} className={classes.layout}>
+      <Grid item xs={12} sm={6}>
+        <Field
+          name="name"
+          label="Name"
+          padding={classes.textFieldPadding}
+          as={CustomTextField}
+        />
+        <Field
+          name="age"
+          label="Age"
+          type="number"
+          padding={classes.textFieldPadding}
+          as={CustomTextField}
+        />
+        <Field
+          name="personalHistory"
+          label="Personal History"
+          type="select"
+          items={[
+            "single",
+            "married",
+            "divorce",
+            "separated",
+            "widowed",
+            "children",
+          ]}
+          as={CustomDropDown}
+        />
+        <h1 style={{ marginLeft: "0.8em", textDecoration: "underline" }}>
+          Predisposing Factors:
+        </h1>{" "}
+        {/* I've summa made these styles, feel free it change it :3 */}
+        <CustomRadio
+          name="concurrentCovid"
+          label="Concurrent Covid"
+          topMargin={true}
+          items={["yes", "no"]}
+        />
+        <CustomRadio
+          name="diabetesMellitus"
+          label="Uncontrolled Diabetes Mellitus"
+          topMargin={true}
+          items={["yes", "no"]}
+        />
+        <CustomRadio
+          name="highDoseOfSteroids"
+          label="High Dose Of Steroids"
+          topMargin={true}
+          items={["yes", "no"]}
+        />
+        <CustomRadio
+          name="malignancy"
+          label="Malignancy"
+          topMargin={true}
+          items={["yes", "no"]}
+        />
+        <CustomRadio
+          name="broadspectrumAntibiotics"
+          label="Prolonged use of broad-spectrum antibiotics"
+          topMargin={true}
+          items={["yes", "no"]}
+        />
+        <CustomRadio
+          name="prolongedICU"
+          label="Prolonged ICU stays"
+          topMargin={true}
+          items={["yes", "no"]}
+        />
+        <h1 style={{ marginLeft: "0.8em", textDecoration: "underline" }}>
+          Clinical Presentation:
+        </h1>
+        {fieldName.map((item, index) => {
+          const fieldLabelContent = fieldLabel[index];
+          return (
+            <CustomRadio
+              name={item}
+              label={fieldLabelContent}
+              topMargin={true}
+              items={["yes", "no"]}
+              key={index}
+            />
+          );
+        })}
+        {/* <CustomRadio
 					name='covid'
 					label='Tested Positive for Covid in the past?'
 					items={['yes', 'no']}
@@ -172,69 +210,69 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 					label='Headache' 
 					items={['yes', 'no']} 
 				/> */}
-			</Grid>
-			<Grid item xs={12} sm={6}>
-				<Field
-					name='dpid'
-					label='Patient ID'
-					padding={classes.textFieldPadding}
-					as={CustomTextField}
-				/>
-				<Field
-					name='gender'
-					label='Gender'
-					type='select'
-					items={['male', 'female', 'other']}
-					as={CustomDropDown}
-				/>
-				<Field
-					name='occupation'
-					label='Occupation'
-					padding={classes.textFieldPadding}
-					as={CustomTextField}
-				/>
-				<br />
-				<br />
-				<br />
-				<br />
-				<CustomRadio
-					name='recentCovid'
-					label='Recently treated COVID -19'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='longtermSteroids'
-					label='Long-term Steroids'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='immunocompromised'
-					label='Immunocompromised Individuals'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='transplant'
-					label='transplant'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='longtermOxygenTherapy'
-					label='Long term Oxygen Therapy'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='mechanicalVentilation'
-					label='People under Mechanical Ventilation'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <Field
+          name="dpid"
+          label="Patient ID"
+          padding={classes.textFieldPadding}
+          as={CustomTextField}
+        />
+        <Field
+          name="gender"
+          label="Gender"
+          type="select"
+          items={["male", "female", "other"]}
+          as={CustomDropDown}
+        />
+        <Field
+          name="occupation"
+          label="Occupation"
+          padding={classes.textFieldPadding}
+          as={CustomTextField}
+        />
+        <br />
+        <br />
+        <br />
+        <br />
+        <CustomRadio
+          name="recentCovid"
+          label="Recently treated COVID -19"
+          topMargin={true}
+          items={["yes", "no"]}
+        />
+        <CustomRadio
+          name="longtermSteroids"
+          label="Long-term Steroids"
+          topMargin={true}
+          items={["yes", "no"]}
+        />
+        <CustomRadio
+          name="immunocompromised"
+          label="Immunocompromised Individuals"
+          topMargin={true}
+          items={["yes", "no"]}
+        />
+        <CustomRadio
+          name="transplant"
+          label="transplant"
+          topMargin={true}
+          items={["yes", "no"]}
+        />
+        <CustomRadio
+          name="longtermOxygenTherapy"
+          label="Long term Oxygen Therapy"
+          topMargin={true}
+          items={["yes", "no"]}
+        />
+        <CustomRadio
+          name="mechanicalVentilation"
+          label="People under Mechanical Ventilation"
+          topMargin={true}
+          items={["yes", "no"]}
+        />
 
-				{/* <Field
+        {/* <Field
 					name='allergiesToMedication'
 					label='Allergies to Medication'
 					padding={classes.textFieldPadding}
@@ -294,24 +332,21 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 					topMargin={true}
 					items={['yes', 'no']}
 				/> */}
-
-					
-
-			</Grid>
-		</Grid>
-	);
+      </Grid>
+    </Grid>
+  );
 };
 
 const useStyles = makeStyles(() => ({
-	layout: {
-		width: '100%',
-	},
+  layout: {
+    width: "100%",
+  },
 
-	textFieldPadding: {
-		margin: '20px',
-		paddingRight: '20px',
-		marginBottom: '0px',
-	},
+  textFieldPadding: {
+    margin: "20px",
+    paddingRight: "20px",
+    marginBottom: "0px",
+  },
 }));
 
 export default BFSection1Form;
