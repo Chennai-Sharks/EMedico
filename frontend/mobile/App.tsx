@@ -1,7 +1,7 @@
 import React from 'react';
-import {SafeAreaView, View} from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 
-import {hello} from '@emedico/shared';
+import { hello } from '@emedico/shared';
 
 const App = () => {
   return (
