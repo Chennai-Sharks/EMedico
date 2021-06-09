@@ -15,14 +15,14 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 	const fieldName = ["headache", "lowFever", "malaiseAndLethargy", "nasalObstruction", "nasaldischarge",
 				  "eyeRedness", "eyeWatering", "periorbitalSwelling", "eyeDiscoloration","proptosis",
 				  "diplopia", "visionDiminution", "ptosis", "ophthalmoplegia", "facialSwellingOrPain",
-				  "parenthesia", "infraOrbitalNumbness", "toothAche", "loosingTeeth", "oralMucosaDiscoloration",
+				  "parenthesia", "infraOrbitalNumbness", "toothache", "teethLoosening", "oralMucosaDiscoloration",
 				  "teethSensationLoss", "teethNumbness", "ulceration", "palatalPerforation"];
 
-	const fieldLabel = ["Headache", "lowFever", "malaiseAndLethargy", "nasalObstruction", "nasaldischarge",
-				  "eyeRedness", "eyeWatering", "periorbitalSwelling", "eyeDiscoloration","proptosis",
-				  "diplopia", "visionDiminution", "ptosis", "ophthalmoplegia", "facialSwellingOrPain",
-				  "parenthesia", "infraOrbitalNumbness", "toothAche", "loosingTeeth", "oralMucosaDiscoloration",
-				  "teethSensationLoss", "teethNumbness", "ulceration", "palatalPerforation"];
+	const fieldLabel = ["Headache", "Low grade fever", "Malaise & Lethargy", "Nasal Obstruction", "Nasal discharge often bloody",
+				  "Pain and redness around eyes", "Eyes Watering", "Periorbital Swelling", "Eye Discoloration","Proptosis",
+				  "Diplopia", "Diminution of vision", "Ptosis", "Ophthalmoplegia", "Facial Swelling & Pain",
+				  "Parenthesia", "Numbness in infra Orbital region", "Toothache", "Loosening of teeth", "Blackish discoloration of oral mucosa",
+				  "Loss of sensation in teeth", "Teeth Numbness", "Ulceration", "Perforation over palatal region"];
 
 	return (
 		<Grid container spacing={3} className={classes.layout}>
@@ -111,49 +111,7 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 						}
 					)
 				}
-{/* 
-Object.keys(BFSection1DataTransformation(data?.data)).map(
-										(item, index) => {
-											console.log(item);
-											const newData = BFSection1DataTransformation(data?.data);
-											return (
-												<div
-													style={{
-														width: '50%',
-														display: 'flex',
-														flexDirection: 'row',
-														alignItems: 'center',
-													}}
-													key={index}
-												>
-													<Typography className={classes.title} style={{}}>
-														{toHeaderCase(item)}:
-													</Typography>
-													{
-														/// Post covid symptoms is array, so this the hack to bring
-														/// - if array is empty.
-														toHeaderCase(item) === 'Post Covid Symptoms' ? (
-															(newData[item] as string[]).length > 0 ? (
-																(newData[item] as string[]).map(
-																	(item, index) => (
-																		<Typography key={index}>
-																			{item ? `${item},` : '-'}
-																		</Typography>
-																	)
-																)
-															) : (
-																<Typography> - </Typography>
-															)
-														) : (
-															<Typography>
-																{newData[item] ? newData[item] : '-'}
-															</Typography>
-														)
-													}
-												</div>
-											);
-										}
-									)} */}
+
 
 				{/* <CustomRadio
 					name='covid'

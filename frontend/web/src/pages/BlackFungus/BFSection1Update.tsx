@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import CustomNavBar from 'widgets/CustomNavBar/CustomNavBar';
 
 import CustomAutoComplete from 'widgets/CustomAutoComplete/CustomAutoComplete';
 import {
@@ -83,7 +82,7 @@ const BFSection1Update: React.FC<BFSection1UpdateProps> = (props) => {
 		>
 			{({ values, isSubmitting }) => {
 				return (
-					<CustomNavBar pageName='Black Fungus - Update Details of Patient'>
+					<>
 						{allPatients.isLoading && <LinearProgress />}
 						{allPatients.isError && (
 							<Typography style={{ marginTop: '40%', marginLeft: '40%' }}>
@@ -163,7 +162,7 @@ const BFSection1Update: React.FC<BFSection1UpdateProps> = (props) => {
 								/>
 							</div>
 						)}
-					</CustomNavBar>
+					</>
 				);
 			}}
 		</Formik>

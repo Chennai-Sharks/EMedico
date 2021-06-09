@@ -1,5 +1,3 @@
-import CustomNavBar from 'widgets/CustomNavBar/CustomNavBar';
-
 import {
 	GetBFAllPatients,
 	GetBFSection1Data,
@@ -28,19 +26,10 @@ const BFSection1Get: React.FC<BFSection1GetProps> = () => {
 	const { data, isLoading, isError, refetch } =
 		GetBFSection1Data(patientMongoId);
 
-	// if (!allPatients.isLoading) {
-	// 	console.log(allPatients.data?.data);
-	// 	console.log(allPatients.error?.message);
-	// }
-	// if (!isLoading) {
-	// 	console.log(isError);
-	// 	console.log(BFSection1DataTransformation(data?.data));
-	// }
-
 	// Performance improvements to be made in Object.keys() thing.
 
 	return (
-		<CustomNavBar pageName='Black Fungus - View Details of Patient'>
+		<>
 			{allPatients.isLoading && <LinearProgress />}
 			{allPatients.isError && (
 				<Typography style={{ marginTop: '40%', marginLeft: '40%' }}>
@@ -123,7 +112,7 @@ const BFSection1Get: React.FC<BFSection1GetProps> = () => {
 					)}
 				</div>
 			)}
-		</CustomNavBar>
+		</>
 	);
 };
 

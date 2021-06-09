@@ -27,12 +27,13 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import EditIcon from '@material-ui/icons/Edit';
 import { Collapse } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import DrawerLogo from '../../assets/drawer.svg';
+
+import { mapRoutesToTitle } from '../../constant/MapRoutesToTitle';
 
 const drawerWidth = 240;
 
 interface CustomNavBarProps {
-	pageName: string;
+	pageName?: string;
 	children?: React.ReactNode;
 }
 
@@ -49,8 +50,9 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		appBar: {
 			[theme.breakpoints.up('md')]: {
-				width: `calc(100% - ${drawerWidth}px)`,
-				marginLeft: drawerWidth,
+				width: `calc(100% - ${0}px)`,
+				// marginLeft: drawerWidth,
+				zIndex: theme.zIndex.drawer + 1,
 				backgroundColor: '#5664D2',
 			},
 			backgroundColor: '#5664D2',
@@ -108,16 +110,7 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
 
 	const drawer = (
 		<div>
-			<div
-				className={classes.toolbar}
-				style={{
-					backgroundColor: '#5664D2',
-					display: 'flex',
-					alignItems: 'center',
-				}}
-			>
-				<img src={DrawerLogo} alt='Logo' className={classes.imgLogo} />
-			</div>
+			<div className={classes.toolbar} />
 			<Divider />
 			<List>
 				<ListItem button onClick={() => handleRouteChange('/home')}>
@@ -202,7 +195,11 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
 						<MenuIcon />
 					</IconButton>
 					<Typography variant='h6' noWrap>
-						{props.pageName}
+						{
+							mapRoutesToTitle.find(
+								(item) => item.route === router.location.pathname
+							)?.title
+						}
 					</Typography>
 				</Toolbar>
 			</AppBar>
