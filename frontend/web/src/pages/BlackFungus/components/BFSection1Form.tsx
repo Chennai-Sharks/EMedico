@@ -82,14 +82,26 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 					label='Toothache or MobileTooth'
 					items={['yes', 'no']}
 				/>
-				<CustomRadio name='halitosis' label='Halitosis' items={['yes', 'no']} />
-				<CustomRadio name='fever' label='Fever' items={['yes', 'no']} />
+				<CustomRadio 
+					name='halitosis' 
+					label='Halitosis' 
+					items={['yes', 'no']} 
+				/>
+				<CustomRadio 
+					name='fever' 
+					label='Fever' 
+					items={['yes', 'no']} 
+				/>
 				<CustomRadio
 					name='alteredSensorium'
 					label='Altered Sensorium'
 					items={['yes', 'no']}
 				/>
-				<CustomRadio name='headache' label='Headache' items={['yes', 'no']} />
+				<CustomRadio 
+					name='headache' 
+					label='Headache' 
+					items={['yes', 'no']} 
+				/>
 			</Grid>
 			<Grid item xs={12} sm={6}>
 				<Field
@@ -104,6 +116,12 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 					type='select'
 					items={['male', 'female', 'other']}
 					as={CustomDropDown}
+				/>
+				<Field
+					name='occupation'
+					label='Occupation'
+					padding={classes.textFieldPadding}
+					as={CustomTextField}
 				/>
 				<Field
 					name='allergiesToMedication'
@@ -129,13 +147,7 @@ const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
 					label='Post Covid Symptoms'
 					value={props.values.postCovidSymptoms}
 					padding={classes.textFieldPadding}
-				/>
-				<Field
-					name='occupation'
-					label='Occupation'
-					padding={classes.textFieldPadding}
-					as={CustomTextField}
-				/>
+				/>				
 				<CustomRadio
 					name='immunoCompromisedState'
 					label='Immuno Compromised?'
