@@ -2,31 +2,32 @@ const mongoose = require('mongoose');
 
 const section1Schema = new mongoose.Schema({
 	mongoid: String,
-
-	date: {
-		type: Date,
-		default: Date.now,
-	},
-	age: {
-		type: Number,
-		required: true,
-		trim: true
-	},
-	gender: {
-		type: String,
-		enum: ['male', 'female', 'other'],
-		required: true,
-		trim: true
-	},
-	personalHistory: {
-		type: String,
-		enum: ['single', 'married', 'divorce', 'separated', 'widowed', 'children',''],
-		trim: true
-	},
-	occupation: {
-		type: String,
-		trim: true
-	},
+	patientDetails:{
+		date: {
+			type: Date,
+			default: Date.now,
+		},
+		age: {
+			type: Number,
+			required: true,
+			trim: true
+		},
+		gender: {
+			type: String,
+			enum: ['male', 'female', 'other'],
+			required: true,
+			trim: true
+		},
+		personalHistory: {
+			type: String,
+			enum: ['single', 'married', 'divorce', 'separated', 'widowed', 'children',''],
+			trim: true
+		},
+		occupation: {
+			type: String,
+			trim: true
+		}
+	},	
 	"predisposingFactors":{
 		"concurrentCovid":{
 			type:String,
