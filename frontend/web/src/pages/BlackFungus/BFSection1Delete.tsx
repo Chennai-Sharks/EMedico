@@ -1,5 +1,3 @@
-import CustomNavBar from 'widgets/CustomNavBar/CustomNavBar';
-
 import {
 	GetBFAllPatients,
 	GetBFSection1Data,
@@ -40,19 +38,10 @@ const BFSection1Delete: React.FC<BFSection1GetProps> = () => {
 	const [loading, setLoading] = useState(false);
 	const [openDialog, setOpenDialog] = useState(false);
 
-	// if (!allPatients.isLoading) {
-	// 	console.log(allPatients.data?.data);
-	// 	console.log(allPatients.error?.message);
-	// }
-	// if (!isLoading) {
-	// 	console.log(isError);
-	// 	console.log(BFSection1DataTransformation(data?.data));
-	// }
-
 	// Performance improvements to be made in Object.keys() thing.
 
 	return (
-		<CustomNavBar pageName='Black Fungus - Delete Details of Patient'>
+		<>
 			{allPatients.isLoading && <LinearProgress />}
 			{allPatients.isError && (
 				<Typography style={{ marginTop: '40%', marginLeft: '40%' }}>
@@ -187,7 +176,7 @@ const BFSection1Delete: React.FC<BFSection1GetProps> = () => {
 				message={snackBar.message}
 				severity='error'
 			/>
-		</CustomNavBar>
+		</>
 	);
 };
 
