@@ -151,7 +151,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
         }
       }}
     >
-      {({ values, isSubmitting, resetForm }) => (
+      {({ errors, touched, values, isSubmitting, resetForm }) => (
         <>
           <Form className={classes.content}>
             <CustomCard
@@ -171,12 +171,12 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                   <Field
                     name="name"
                     label="Name"
-                    padding={classes.textFieldPadding}
-                    // {errors.firstName && touched.firstName ? (
-                    //   <div>{errors.firstName}</div>
-                    // ) : null}
+                    padding={classes.textFieldPadding}                    
                     as={CustomTextField}
+                    error={errors.name && touched.name}
+                    helperText={errors.name}
                   />
+                  
                   <Field
                     name="age"
                     label="Age"

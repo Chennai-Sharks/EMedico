@@ -7,7 +7,7 @@ import LoginPhoto from '../../assets/login.svg';
 
 import LogoImg from '../../assets/logo.svg';
 import { Typography } from '@material-ui/core';
-import CustomButton from 'widgets/CustomButton/CustomButton';
+// import CustomButton from 'widgets/CustomButton/CustomButton';
 import GoogleLogin from 'react-google-login';
 // import LoginForm from './LoginForm';
 // import LogUpForm from './LogUpForm';
