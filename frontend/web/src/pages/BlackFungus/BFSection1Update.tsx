@@ -21,7 +21,7 @@ import {
 	snackBarStore,
 } from '@emedico/shared';
 import { Form, Formik } from 'formik';
-import BFSection1Form from './components/BFSection1Form';
+// import BFSection1Form from './components/BFSection1Form';
 import CustomButton from 'widgets/CustomButton/CustomButton';
 import CustomDialog from 'widgets/CustomDialog/CustomDialog';
 import CustomSnackBar from 'widgets/CustomSnackBar/CustomSnackBar';
@@ -122,7 +122,7 @@ const BFSection1Update: React.FC<BFSection1UpdateProps> = (props) => {
 											</Typography>
 											<Divider />
 
-											<BFSection1Form values={values} />
+											{/* <BFSection1Form values={values} /> */}
 
 											<Divider />
 											<CustomButton
