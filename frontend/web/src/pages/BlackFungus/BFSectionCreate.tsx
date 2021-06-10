@@ -259,9 +259,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
 						topMargin={true}
 						items={["yes", "no"]}
 					/> */}
-
-                     
-                  
+                                       
                     {fieldName.map((item, index) => {
                       const fieldLabelContent = fieldLabel[index];
                       return (
@@ -270,7 +268,8 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                           label={fieldLabelContent}
                           topMargin={true}
                           items={["yes", "no"]}
-                          key={index}                                                                       
+                          key={index}      
+                                                                                           
                         />
                       );
                     })}
