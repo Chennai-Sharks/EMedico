@@ -3,8 +3,12 @@ import React from 'react';
 // import CustomCard from 'widgets/CustomCard/CustomCard';
 
 import useStyles from './AuthPageStyles';
+import LoginPhoto from '../../assets/login.svg';
 
-// import LogoImg from '../../assets/logo.svg';
+import LogoImg from '../../assets/logo.svg';
+import { Typography } from '@material-ui/core';
+import CustomButton from 'widgets/CustomButton/CustomButton';
+import GoogleLogin from 'react-google-login';
 // import LoginForm from './LoginForm';
 // import LogUpForm from './LogUpForm';
 
@@ -15,7 +19,28 @@ const AuthPage: React.FC<AuthPageProps> = () => {
 
 	return (
 		<div className={classes.background}>
-			<div className={classes.loginBox}></div>
+			<div className={classes.loginBox}>
+				<div className={classes.loginTitleLayout}>
+					<img src={LogoImg} className={classes.imgLogo} alt='logo' />
+					<Typography variant='h4' style={{ paddingLeft: '10px' }}>
+						EMedico
+					</Typography>
+				</div>
+				<Typography
+					style={{
+						marginTop: '15px',
+						paddingLeft: '45px',
+						fontWeight: 'bold',
+					}}
+					variant='h5'
+				>
+					Login in to you account
+				</Typography>
+				<div style={{ paddingTop: '50px', paddingLeft: '25%' }}>
+					<GoogleLogin clientId='2' />
+				</div>
+			</div>
+			<img src={LoginPhoto} className={classes.imageBox} alt='main cover' />
 		</div>
 	);
 };
