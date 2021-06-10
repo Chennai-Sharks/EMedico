@@ -1,5 +1,6 @@
 import { Divider, makeStyles, Typography } from '@material-ui/core';
 import { Form, Formik } from 'formik';
+import * as Yup from 'yup';
 import React from 'react';
 
 import {
@@ -19,6 +20,13 @@ import CustomDialog from 'widgets/CustomDialog/CustomDialog';
 
 interface BFSection1CreateProps {}
 
+const SignupSchema = Yup.object().shape({
+	name: Yup.string()
+	  .min(2, 'Too Short!')
+	  .max(50, 'Too Long!')
+	  .required('Required'),		
+  });
+
 const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
 	const classes = useStyles();
 	const addPatientProvider = AddPatientProvider();
@@ -32,6 +40,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
 	return (
 		<Formik
 			initialValues={section1FormInitialValues}
+			validationSchema={SignupSchema}
 			onSubmit={async (values) => {
 				try {
 					setLoading(true);
