@@ -25,11 +25,32 @@ import CustomTextField from "widgets/CustomTextField/CustomTextField";
 
 interface BFSection1CreateProps {}
 
+const summa = [
+	"dpid",
+	"gender",
+	"personalHistory",
+	"occupation",
+	"allergiesToMedication"
+]
+
+
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
-    .min(2, "Too Short!")
+    .min(3, "Too Short!")
     .max(50, "Too Long!")
-    .required("Required"),
+    .required(),
+  age: Yup.number()
+    .required()
+    .positive()
+    .integer(),
+  personalHistory: Yup.string()
+    .required(),
+  gender: Yup.string()
+  .required(),
+  dpid: Yup.string()
+  .required(),
+  occupation: Yup.string()
+  .required()
 });
 
 const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
@@ -142,9 +163,8 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
           setOpenDialog(!openDialog);
 
           console.log(response1.data);
-        } catch (error) {
+        } catch (error: any) {
           setLoading(false);
-
           console.log(error.response.data.message);
           snackBar.setOpen(true);
           snackBar.setmessage(error.response.data.message);
@@ -168,7 +188,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
 
               <Grid container spacing={3} className={classes.layout}>
                 <Grid item xs={12} sm={6}>
-                  <Field
+                  <Field                    
                     name="name"
                     label="Name"
                     padding={classes.textFieldPadding}                    
@@ -183,6 +203,8 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                     type="number"
                     padding={classes.textFieldPadding}
                     as={CustomTextField}
+                    error={errors.age && touched.age}
+                    helperText={errors.age}
                   />
                   <Field
                     name="personalHistory"
@@ -197,6 +219,8 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                       "children",
                     ]}
                     as={CustomDropDown}
+                    error={errors.personalHistory && touched.personalHistory}
+                    helperText={errors.personalHistory}
                   />
 
                   {/* <CustomRadio
@@ -236,19 +260,21 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
 						items={["yes", "no"]}
 					/> */}
 
-                  {fieldName.map((item, index) => {
-                    const fieldLabelContent = fieldLabel[index];
-                    return (
-                      <CustomRadio
-                        name={item}
-                        label={fieldLabelContent}
-                        topMargin={true}
-                        items={["yes", "no"]}
-                        key={index}
-                        required
-                      />
-                    );
-                  })}
+                     
+                  
+                    {fieldName.map((item, index) => {
+                      const fieldLabelContent = fieldLabel[index];
+                      return (
+                        <CustomRadio
+                          name={item}
+                          label={fieldLabelContent}
+                          topMargin={true}
+                          items={["yes", "no"]}
+                          key={index}                                                                       
+                        />
+                      );
+                    })}
+                  
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <Field
@@ -256,6 +282,8 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                     label="Patient ID"
                     padding={classes.textFieldPadding}
                     as={CustomTextField}
+                    error={errors.dpid && touched.dpid}
+                    helperText={errors.dpid}
                   />
                   <Field
                     name="gender"
@@ -263,12 +291,16 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                     type="select"
                     items={["male", "female", "other"]}
                     as={CustomDropDown}
+                    error={errors.gender && touched.gender}
+                    helperText={errors.gender}
                   />
                   <Field
                     name="occupation"
                     label="Occupation"
                     padding={classes.textFieldPadding}
                     as={CustomTextField}
+                    error={errors.occupation && touched.occupation}
+                    helperText={errors.occupation}
                   />
 
                   {/* <CustomRadio
