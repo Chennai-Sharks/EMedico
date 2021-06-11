@@ -1,10 +1,5 @@
-export interface AuthSignInModel {
-	email: string;
-	password: string;
-}
-
-export interface AuthSignUpModel {
+export interface AuthModel {
+	userId: string;
 	email: string;
 	name: string;
-	password: string;
 }
