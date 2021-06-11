@@ -1,11 +1,11 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useMutation, useQuery } from 'react-query';
-import { doctorIdStore } from '../../stores/DoctorIdStore';
+import { credentialStore } from '../../stores/CredentialStore';
 import {
 	APIURL,
 	covidScreeningTest,
 	mucormycosisSymptoms,
-	predisposingFactors
+	predisposingFactors,
 } from '../../utils/Utils';
 
 // This is used to change the data from form schema that niki did to server schema.
@@ -58,7 +58,7 @@ export const BFSection1DataTransformation = (data: Record<string, any>) => {
 };
 
 export const AddPatientProvider = () => {
-	const docId = doctorIdStore((state) => state.docId);
+	const docId = credentialStore((state) => state.docId);
 	return useMutation((data: Record<string, any>) =>
 		axios.post(`${APIURL}/api/fungus/post/addPatient/${docId}`, {
 			...data,
@@ -75,7 +75,7 @@ export const AddBFSection1FormProvider = () => {
 };
 
 export const GetBFAllPatients = () => {
-	const docId = doctorIdStore((state) => state.docId);
+	const docId = credentialStore((state) => state.docId);
 	return useQuery<AxiosResponse<any>, AxiosError>(
 		`get All Patients for ${docId}`,
 		() => axios.get(`${APIURL}/api/fungus/get/getPatients/${docId}`),
@@ -99,7 +99,7 @@ export const GetBFSection1Data = (patientId: string) => {
 };
 
 export const DeleteBFSection1Data = () => {
-	const docId = doctorIdStore((state) => state.docId);
+	const docId = credentialStore((state) => state.docId);
 	return useMutation((data: Record<string, any>) => {
 		console.log(data);
 		return axios.delete(
@@ -109,7 +109,7 @@ export const DeleteBFSection1Data = () => {
 };
 
 export const UpdateBFSection1Data = () => {
-	const docId = doctorIdStore((state) => state.docId);
+	const docId = credentialStore((state) => state.docId);
 	return useMutation((data: Record<string, any>) =>
 		axios.patch(
 			`${APIURL}/api/fungus/patch/section1/${docId}/${data.mongoId}`,
