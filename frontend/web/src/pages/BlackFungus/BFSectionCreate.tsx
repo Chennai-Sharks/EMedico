@@ -25,15 +25,6 @@ import CustomTextField from "widgets/CustomTextField/CustomTextField";
 
 interface BFSection1CreateProps {}
 
-const summa = [
-	"dpid",
-	"gender",
-	"personalHistory",
-	"occupation",
-	"allergiesToMedication"
-]
-
-
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "Too Short!")
@@ -48,7 +39,7 @@ const SignupSchema = Yup.object().shape({
   gender: Yup.string()
   .required(),
   dpid: Yup.string()
-  .required(),
+  .required("Patient ID is a required field"),
   occupation: Yup.string()
   .required()
 });
