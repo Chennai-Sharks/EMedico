@@ -268,7 +268,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
           </CustomCard>
         </FormikStep>
         
-        <FormikStep>
+        <FormikStep validationSchema={validationSchema2}>
           <CustomCard
             customStyle={{
               display: "flex",
@@ -287,7 +287,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
           </CustomCard>
         </FormikStep>
               
-        <FormikStep validationSchema={validationSchema2}>
+        <FormikStep >
           <CustomCard
             customStyle={{
               display: "flex",
