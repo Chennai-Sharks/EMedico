@@ -1,14 +1,21 @@
-import { Divider, makeStyles, Typography } from "@material-ui/core";
+import {
+  Divider,
+  makeStyles,
+  Typography,
+  Step,
+  StepLabel,
+  Stepper,
+} from "@material-ui/core";
 import { Grid } from "@material-ui/core";
-import { Form, Formik, Field } from "formik";
+import { Form, Formik, Field, FormikConfig, FormikValues } from "formik";
 import * as Yup from "yup";
+import { useState } from "react";
 import React from "react";
 
 import {
   section1FormInitialValues,
   AddBFSection1FormProvider,
   AddPatientProvider,
-  BFSection1BeforeFormSubmit,
   snackBarStore,
 } from "@emedico/shared";
 
@@ -25,23 +32,13 @@ import CustomTextField from "widgets/CustomTextField/CustomTextField";
 
 interface BFSection1CreateProps {}
 
-const SignupSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(3, "Too Short!")
-    .max(50, "Too Long!")
-    .required(),
-  age: Yup.number()
-    .required()
-    .positive()
-    .integer(),
-  personalHistory: Yup.string()
-    .required(),
-  gender: Yup.string()
-  .required(),
-  dpid: Yup.string()
-  .required("Patient ID is a required field"),
-  occupation: Yup.string()
-  .required()
+const validationSchema = Yup.object().shape({
+  name: Yup.string().min(3, "Too Short!").max(50, "Too Long!").required(),
+  age: Yup.number().required().positive().integer(),
+  personalHistory: Yup.string().required(),
+  gender: Yup.string().required(),
+  dpid: Yup.string().required("Patient ID is a required field"),
+  occupation: Yup.string().required(),
 });
 
 const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
@@ -133,141 +130,179 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
   ];
 
   return (
-    <Formik
-      initialValues={section1FormInitialValues}
-      validationSchema={SignupSchema}
-      onSubmit={async (values) => {
-        try {
-          setLoading(true);
-          const data = BFSection1BeforeFormSubmit({ ...values });
-          const response = await addPatientProvider.mutateAsync({
-            name: values.name,
-            dpid: values.dpid,
-          });
-          const mongoId: string = response.data._id;
-          console.log(mongoId);
-          const response1 = await bfSection1FormProvider.mutateAsync({
-            mongoId,
-            data,
-          });
-          setLoading(false);
-          setOpenDialog(!openDialog);
+    <>
+      <FormikStepper
+        initialValues={section1FormInitialValues}
+        // validationSchema={validationSchema}
+        onSubmit={async (values) => {
+          try {
+            setLoading(true);
+            const response = await addPatientProvider.mutateAsync({
+              name: values.name,
+              dpid: values.dpid,
+            });
+            const mongoId: string = response.data._id;
+            // console.log(mongoId);
+            const response1 = await bfSection1FormProvider.mutateAsync({
+              mongoId,
+              ...values,
+            });
+            setLoading(false);
+            setOpenDialog(!openDialog);
 
-          console.log(response1.data);
-        } catch (error: any) {
-          setLoading(false);
-          console.log(error.response.data.message);
-          snackBar.setOpen(true);
-          snackBar.setmessage(error.response.data.message);
-        }
-      }}
-    >
-      {({ errors, touched, values, isSubmitting, resetForm }) => (
-        <>
-          <Form className={classes.content}>
-            <CustomCard
-              customStyle={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-              }}
-            >
-              <Typography className={classes.title} variant="h5">
-                Section 1
-              </Typography>
-              <Divider />
+            console.log(response1.data);
+          } catch (error: any) {
+            setLoading(false);
+            console.log(error.response.data.message);
+            snackBar.setOpen(true);
+            snackBar.setmessage(error.response.data.message);
+          }
+        }}
+      >
+        {/* {({ errors, touched, values, isSubmitting, resetForm }) => (
+        <> */}
+           
+        <FormikStep>
+          <CustomCard
+            customStyle={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
+            <Typography className={classes.title} variant="h5">
+              Section 1
+            </Typography>
+            <Divider />
 
-              <Grid container spacing={3} className={classes.layout}>
-                <Grid item xs={12} sm={6}>
-                  <Field                    
-                    name="name"
-                    label="Name"
-                    padding={classes.textFieldPadding}                    
-                    as={CustomTextField}
-                    error={errors.name && touched.name}
-                    helperText={errors.name}
-                  />
-                  
-                  <Field
-                    name="age"
-                    label="Age"
-                    type="number"
-                    padding={classes.textFieldPadding}
-                    as={CustomTextField}
-                    error={errors.age && touched.age}
-                    helperText={errors.age}
-                  />
-                  <Field
-                    name="personalHistory"
-                    label="Personal History"
-                    type="select"
-                    items={[
-                      "single",
-                      "married",
-                      "divorce",
-                      "separated",
-                      "widowed",
-                      "children",
-                    ]}
-                    as={CustomDropDown}
-                    error={errors.personalHistory && touched.personalHistory}
-                    helperText={errors.personalHistory}
-                  />
+            <Grid container spacing={3} className={classes.layout}>
+              <Grid item xs={12} sm={6}>
+                <Field
+                  name="name"
+                  label="Name"
+                  padding={classes.textFieldPadding}
+                  as={CustomTextField}
+                  // error={errors.name && touched.name}
+                  // helperText={errors.name}
+                />
 
-                   {/* <CustomRadio
+                <Field
+                  name="age"
+                  label="Age"
+                  type="number"
+                  padding={classes.textFieldPadding}
+                  as={CustomTextField}
+                  // error={errors.age && touched.age}
+                  // helperText={errors.age}
+                />
+                <Field
+                  name="personalHistory"
+                  label="Personal History"
+                  type="select"
+                  items={[
+                    "single",
+                    "married",
+                    "divorce",
+                    "separated",
+                    "widowed",
+                    "children",
+                  ]}
+                  as={CustomDropDown}
+                  // error={errors.personalHistory && touched.personalHistory}
+                  // helperText={errors.personalHistory}
+                />
+
+                {/* <CustomRadio
 						name="concurrentCovid"
 						label="Concurrent Covid"
 						topMargin={true}
 						items={["yes", "no"]}
 						/>
 						 */}
-                                       
-                    {fieldName.map((item, index) => {
-                      const fieldLabelContent = fieldLabel[index];
-                      return (
-                        <CustomRadio
-                          name={item}
-                          label={fieldLabelContent}
-                          topMargin={true}
-                          items={["yes", "no"]}
-                          key={index}      
-                                                                                           
-                        />
-                      );
-                    })}
-                  
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <Field
-                    name="dpid"
-                    label="Patient ID"
-                    padding={classes.textFieldPadding}
-                    as={CustomTextField}
-                    error={errors.dpid && touched.dpid}
-                    helperText={errors.dpid}
-                  />
-                  <Field
-                    name="gender"
-                    label="Gender"
-                    type="select"
-                    items={["male", "female", "other"]}
-                    as={CustomDropDown}
-                    error={errors.gender && touched.gender}
-                    helperText={errors.gender}
-                  />
-                  <Field
-                    name="occupation"
-                    label="Occupation"
-                    padding={classes.textFieldPadding}
-                    as={CustomTextField}
-                    error={errors.occupation && touched.occupation}
-                    helperText={errors.occupation}
-                  />                  
-                </Grid>
-              </Grid>
 
-              <Divider />
-              <CustomButton
+                {fieldName.map((item, index) => {
+                  const fieldLabelContent = fieldLabel[index];
+                  return (
+                    <CustomRadio
+                      name={item}
+                      label={fieldLabelContent}
+                      topMargin={true}
+                      items={["yes", "no"]}
+                      key={index}
+                    />
+                  );
+                })}
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Field
+                  name="dpid"
+                  label="Patient ID"
+                  padding={classes.textFieldPadding}
+                  as={CustomTextField}
+                  // error={errors.dpid && touched.dpid}
+                  // helperText={errors.dpid}
+                />
+                <Field
+                  name="gender"
+                  label="Gender"
+                  type="select"
+                  items={["male", "female", "other"]}
+                  as={CustomDropDown}
+                  // error={errors.gender && touched.gender}
+                  // helperText={errors.gender}
+                />
+                <Field
+                  name="occupation"
+                  label="Occupation"
+                  padding={classes.textFieldPadding}
+                  as={CustomTextField}
+                  // error={errors.occupation && touched.occupation}
+                  // helperText={errors.occupation}
+                />
+              </Grid>
+            </Grid>
+          </CustomCard>
+        </FormikStep>
+        
+        <FormikStep>
+          <CustomCard
+            customStyle={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
+            <Divider />
+            
+            <Field
+              name="Page 2"
+              label="Page 2"
+              padding={classes.textFieldPadding}
+              as={CustomTextField}
+            />
+          </CustomCard>
+        </FormikStep>
+              
+        <FormikStep>
+          <CustomCard
+            customStyle={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
+            <Divider />
+            
+            <Field
+              name="Page 3"
+              label="Page 3"
+              padding={classes.textFieldPadding}
+              as={CustomTextField}
+            />
+          </CustomCard>
+        </FormikStep>
+  
+        {/* <CustomButton
                 disabled={isSubmitting}
                 customStyle={{
                   marginLeft: "40%",
@@ -276,33 +311,76 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                 }}
                 type="submit"
               >
-                {loading ? <CircularProgress /> : "submit"}
-              </CustomButton>
-            </CustomCard>
-          </Form>
-          <CustomDialog
-            open={openDialog}
-            notOkButtonText={undefined}
-            okButtonText="Okay"
-            onOkHandled={() => {
-              setOpenDialog(false);
-              resetForm();
-            }}
-            title="Success"
-            content="Patient Added Successfully."
-            onClose={() => {}}
-          />
-          <CustomSnackBar
-            open={snackBar.open}
-            handleClose={() => snackBar.setOpen(false)}
-            message={snackBar.message}
-            severity="error"
-          />
-        </>
-      )}
-    </Formik>
+          {loading ? <CircularProgress /> : "submit"}
+              </CustomButton> */}
+
+        {/* <CustomDialog
+          open={openDialog}
+          notOkButtonText={undefined}
+          okButtonText="Okay"
+          onOkHandled={() => {
+            setOpenDialog(false);
+            // resetForm();
+          }}
+          title="Success"
+          content="Patient Added Successfully."
+          onClose={() => {}}
+        />
+        <CustomSnackBar
+          open={snackBar.open}
+          handleClose={() => snackBar.setOpen(false)}
+          message={snackBar.message}
+          severity="error"
+        /> */}
+        {/*   </>
+      // )} */}
+      </FormikStepper>
+    </>
   );
 };
+
+export interface FormikStepProps
+  extends Pick<FormikConfig<FormikValues>, "children" | "validationSchema"> {
+      
+}
+  
+export function FormikStep({ children }: FormikStepProps) {
+  return <>{children}</>;
+}
+
+
+export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>) {
+  const childrenArray = React.Children.toArray(
+    children
+  ) as React.ReactElement<FormikStepProps>[];
+  const [step, setStep] = useState(0);
+  const currentChild = childrenArray[step];
+
+  function isLastStep() {
+    return step === childrenArray.length - 1;
+  }
+  return (
+    <Formik 
+      {...props} 
+      onSubmit={async (values, helpers) => {
+        if (isLastStep()) {
+          await props.onSubmit(values, helpers);
+          // setCompleted(true);
+        } else {
+          setStep((s) => s + 1);          
+          // helpers.setTouched({});
+        }
+      }}
+    >
+      <Form> 
+        {currentChild} 
+        {step > 0 ? <CustomButton onClick ={() => setStep(s => s-1)}> Back </CustomButton> : null }
+        <CustomButton type = "submit" > {isLastStep() ? 'Add Patient' : "Next Section"} </CustomButton>
+      </Form>
+      
+    </Formik>
+  );
+}
 
 const useStyles = makeStyles((theme) => ({
   layout: {
