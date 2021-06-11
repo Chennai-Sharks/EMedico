@@ -42,8 +42,8 @@ const validationSchema = Yup.object().shape({
 });
 
 const validationSchema2 = Yup.object().shape({
-  Page2: Yup.string().required()
-})
+  Page2: Yup.string().required(),
+});
 
 const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
   const classes = useStyles();
@@ -137,7 +137,6 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
     <>
       <FormikStepper
         initialValues={section1FormInitialValues}
-        
         onSubmit={async (values) => {
           try {
             setLoading(true);
@@ -165,7 +164,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
       >
         {/* {({ errors, touched, values, isSubmitting, resetForm }) => (
         <> */}
-           
+
         <FormikStep validationSchema={validationSchema}>
           <CustomCard
             customStyle={{
@@ -267,7 +266,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
             </Grid>
           </CustomCard>
         </FormikStep>
-        
+
         <FormikStep validationSchema={validationSchema2}>
           <CustomCard
             customStyle={{
@@ -277,7 +276,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
             }}
           >
             <Divider />
-            
+
             <Field
               name="Page2"
               label="Page 2"
@@ -286,8 +285,8 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
             />
           </CustomCard>
         </FormikStep>
-              
-        <FormikStep >
+
+        <FormikStep>
           <CustomCard
             customStyle={{
               display: "flex",
@@ -296,7 +295,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
             }}
           >
             <Divider />
-            
+
             <Field
               name="Page 3"
               label="Page 3"
@@ -305,7 +304,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
             />
           </CustomCard>
         </FormikStep>
-  
+
         {/* <CustomButton
                 disabled={isSubmitting}
                 customStyle={{
@@ -344,43 +343,54 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
 };
 
 export interface FormikStepProps
-  extends Pick<FormikConfig<FormikValues>, "children" | "validationSchema"> {
-      
-}
-  
+  extends Pick<FormikConfig<FormikValues>, "children" | "validationSchema"> {}
+
 export function FormikStep({ children }: FormikStepProps) {
   return <>{children}</>;
 }
 
-
-export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>) {
-  const childrenArray = React.Children.toArray(children) as React.ReactElement<FormikStepProps>[];
+export function FormikStepper({
+  children,
+  ...props
+}: FormikConfig<FormikValues>) {
+  const childrenArray = React.Children.toArray(
+    children
+  ) as React.ReactElement<FormikStepProps>[];
   const [step, setStep] = useState(0);
-  const currentChild = childrenArray[step] as React.ReactElement<FormikStepProps>;
+  const currentChild = childrenArray[
+    step
+  ] as React.ReactElement<FormikStepProps>;
 
   function isLastStep() {
     return step === childrenArray.length - 1;
   }
   return (
-    <Formik 
-      {...props} 
-      validationSchema = {currentChild.props.validationSchema}
+    <Formik
+      {...props}
+      validationSchema={currentChild.props.validationSchema}
       onSubmit={async (values, helpers) => {
         if (isLastStep()) {
           await props.onSubmit(values, helpers);
           // setCompleted(true);
         } else {
-          setStep((s) => s + 1);          
+          setStep((s) => s + 1);
           // helpers.setTouched({});
         }
       }}
     >
-      <Form> 
-        {currentChild} 
-        {step > 0 ? <CustomButton onClick ={() => setStep(s => s-1)}> Back </CustomButton> : null }
-        <CustomButton type = "submit" > {isLastStep() ? 'Add Patient' : "Next Section"} </CustomButton>
+      <Form>
+        {currentChild}
+        {step > 0 ? (
+          <CustomButton onClick={() => setStep((s) => s - 1)}>
+            {" "}
+            Back{" "}
+          </CustomButton>
+        ) : null}
+        <CustomButton type="submit">
+          {" "}
+          {isLastStep() ? "Add Patient" : "Next Section"}{" "}
+        </CustomButton>
       </Form>
-      
     </Formik>
   );
 }
