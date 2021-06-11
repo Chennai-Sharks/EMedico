@@ -17,6 +17,9 @@ const section1Schema = new mongoose.Schema({
 			required: true,
 			trim: true
 		},
+		"phoneNumber":String,
+		"email":String,
+		"city":String,
 		"personalHistory": {
 			type: String,
 			enum: ['single', 'married', 'divorce', 'separated', 'widowed', 'children',''],
