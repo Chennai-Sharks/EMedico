@@ -41,6 +41,10 @@ const validationSchema = Yup.object().shape({
   occupation: Yup.string().required(),
 });
 
+const validationSchema2 = Yup.object().shape({
+  Page2: Yup.string().required()
+})
+
 const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
   const classes = useStyles();
   const addPatientProvider = AddPatientProvider();
@@ -133,7 +137,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
     <>
       <FormikStepper
         initialValues={section1FormInitialValues}
-        // validationSchema={validationSchema}
+        
         onSubmit={async (values) => {
           try {
             setLoading(true);
@@ -162,7 +166,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
         {/* {({ errors, touched, values, isSubmitting, resetForm }) => (
         <> */}
            
-        <FormikStep>
+        <FormikStep validationSchema={validationSchema}>
           <CustomCard
             customStyle={{
               display: "flex",
@@ -275,7 +279,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
             <Divider />
             
             <Field
-              name="Page 2"
+              name="Page2"
               label="Page 2"
               padding={classes.textFieldPadding}
               as={CustomTextField}
@@ -283,7 +287,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
           </CustomCard>
         </FormikStep>
               
-        <FormikStep>
+        <FormikStep validationSchema={validationSchema2}>
           <CustomCard
             customStyle={{
               display: "flex",
@@ -350,11 +354,9 @@ export function FormikStep({ children }: FormikStepProps) {
 
 
 export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>) {
-  const childrenArray = React.Children.toArray(
-    children
-  ) as React.ReactElement<FormikStepProps>[];
+  const childrenArray = React.Children.toArray(children) as React.ReactElement<FormikStepProps>[];
   const [step, setStep] = useState(0);
-  const currentChild = childrenArray[step];
+  const currentChild = childrenArray[step] as React.ReactElement<FormikStepProps>;
 
   function isLastStep() {
     return step === childrenArray.length - 1;
@@ -362,6 +364,7 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
   return (
     <Formik 
       {...props} 
+      validationSchema = {currentChild.props.validationSchema}
       onSubmit={async (values, helpers) => {
         if (isLastStep()) {
           await props.onSubmit(values, helpers);
