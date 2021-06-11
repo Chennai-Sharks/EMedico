@@ -4,43 +4,42 @@ const AuthStyles = makeStyles((theme) => ({
 	background: {
 		display: 'flex',
 		minHeight: '100vh',
-		flexDirection: 'column',
-		justifyContent: 'center',
-
-		backgroundColor: '#F4F5F7',
+		minWidht: '100vw',
+		overflow: 'none',
+		flexDirection: 'column-reverse',
+		backgroundColor: '#ECF0FD',
 	},
-	authBoxBg: {
+	loginBox: {
 		width: '100%',
-		marginLeft: 'auto',
-		marginRight: 'auto',
-		padding: '70px 16px',
-		[theme.breakpoints.up('sm')]: {
-			maxWidth: '600px',
-		},
+		paddingLeft: '32px',
+		height: '40vh',
+		// [theme.breakpoints.up('sm')]: {
+		// 	maxWidth: '600px',
+		// },
+	},
+	imageBox: {
+		width: '100%',
+		height: '60vh',
+		backgroundColor: 'white',
+
+		// [theme.breakpoints.up('sm')]: {
+		// 	maxWidth: '600px',
+		// },
 	},
 
 	loginTitleLayout: {
-		padding: '32px',
+		paddingTop: '20px',
 		display: 'flex',
 		flexDirection: 'row',
+		alignItems: 'center',
 		width: '100%',
-		justifyContent: 'space-between',
 	},
-	loginTitle: {
-		margin: '0px 0px 0.35em',
-		fontWeight: 600,
-		fontSize: '1.5rem',
-	},
+
 	imgLogo: {
-		maxHeight: '40px',
+		maxHeight: '35px',
 		width: 'auto',
 	},
-	form: {
-		marginTop: '20px',
-		display: 'flex',
-		flexDirection: 'column',
-		padding: '16px 32px',
-	},
+
 	createAccountbutton: {
 		paddingLeft: '20px',
 		paddingTop: '10px',

@@ -28,6 +28,8 @@ export const section1FormInitialValues = {
 	alteredSensorium: '',
 };
 
+
+
 // export const section1Schema = [
 // 	{
 // 		type: 'textfield',
