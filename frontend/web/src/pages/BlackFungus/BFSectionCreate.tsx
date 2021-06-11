@@ -214,42 +214,13 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                     helperText={errors.personalHistory}
                   />
 
-                  {/* <CustomRadio
+                   {/* <CustomRadio
 						name="concurrentCovid"
 						label="Concurrent Covid"
 						topMargin={true}
 						items={["yes", "no"]}
 						/>
-						<CustomRadio
-						name="diabetesMellitus"
-						label="Uncontrolled Diabetes Mellitus"
-						topMargin={true}
-						items={["yes", "no"]}
-						/>
-						<CustomRadio
-						name="highDoseOfSteroids"
-						label="High Dose Of Steroids"
-						topMargin={true}
-						items={["yes", "no"]}
-						/>
-						<CustomRadio
-						name="malignancy"
-						label="Malignancy"
-						topMargin={true}
-						items={["yes", "no"]}
-						/>
-						<CustomRadio
-						name="broadspectrumAntibiotics"
-						label="Prolonged use of broad-spectrum antibiotics"
-						topMargin={true}
-						items={["yes", "no"]}
-						/>
-						<CustomRadio
-						name="prolongedICU"
-						label="Prolonged ICU stays"
-						topMargin={true}
-						items={["yes", "no"]}
-					/> */}
+						 */}
                                        
                     {fieldName.map((item, index) => {
                       const fieldLabelContent = fieldLabel[index];
@@ -291,44 +262,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                     as={CustomTextField}
                     error={errors.occupation && touched.occupation}
                     helperText={errors.occupation}
-                  />
-
-                  {/* <CustomRadio
-						name="recentCovid"
-						label="Recently treated COVID -19"
-						topMargin={true}
-						items={["yes", "no"]}
-						/>
-						<CustomRadio
-						name="longtermSteroids"
-						label="Long-term Steroids"
-						topMargin={true}
-						items={["yes", "no"]}
-						/>
-						<CustomRadio
-						name="immunocompromised"
-						label="Immunocompromised Individuals"
-						topMargin={true}
-						items={["yes", "no"]}
-						/>
-						<CustomRadio
-						name="transplant"
-						label="transplant"
-						topMargin={true}
-						items={["yes", "no"]}
-						/>
-						<CustomRadio
-						name="longtermOxygenTherapy"
-						label="Long term Oxygen Therapy"
-						topMargin={true}
-						items={["yes", "no"]}
-						/>
-						<CustomRadio
-						name="mechanicalVentilation"
-						label="People under Mechanical Ventilation"
-						topMargin={true}
-						items={["yes", "no"]}
-        		/> */}
+                  />                  
                 </Grid>
               </Grid>
 
