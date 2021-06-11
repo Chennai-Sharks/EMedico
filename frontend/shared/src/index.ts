@@ -3,11 +3,11 @@ export const hello = () => {
 };
 
 export * from './types/AuthTypes';
-// export * from './types/Section1Types';
 
-export * from './stores/DoctorIdStore';
+export * from './stores/CredentialStore';
 export * from './stores/getPatientStore';
 export * from './stores/SnackbarStore';
+export * from './stores/DoctorDetailsStore';
 
 export * from './schema/BlackFungus/Section1';
 
