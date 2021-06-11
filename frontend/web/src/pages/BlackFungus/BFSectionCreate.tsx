@@ -1,7 +1,8 @@
-import { Divider, makeStyles, Typography } from "@material-ui/core";
+import { Divider, makeStyles, Typography, Step, StepLabel, Stepper } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
-import { Form, Formik, Field } from "formik";
+import { Form, Formik, Field, FormikConfig, FormikValues } from "formik";
 import * as Yup from "yup";
+import { useState } from 'react';
 import React from "react";
 
 import {
@@ -25,7 +26,7 @@ import CustomTextField from "widgets/CustomTextField/CustomTextField";
 
 interface BFSection1CreateProps {}
 
-const SignupSchema = Yup.object().shape({
+const validationSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "Too Short!")
     .max(50, "Too Long!")
@@ -135,20 +136,20 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
   return (
     <Formik
       initialValues={section1FormInitialValues}
-      validationSchema={SignupSchema}
+      validationSchema={validationSchema}
       onSubmit={async (values) => {
         try {
           setLoading(true);
-          const data = BFSection1BeforeFormSubmit({ ...values });
+          
           const response = await addPatientProvider.mutateAsync({
             name: values.name,
             dpid: values.dpid,
           });
           const mongoId: string = response.data._id;
-          console.log(mongoId);
+          // console.log(mongoId);
           const response1 = await bfSection1FormProvider.mutateAsync({
             mongoId,
-            data,
+            ...values,
           });
           setLoading(false);
           setOpenDialog(!openDialog);
@@ -303,6 +304,29 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
     </Formik>
   );
 };
+
+export interface FormikStepProps
+  extends Pick<FormikConfig<FormikValues>, 'children' | 'validationSchema'> {
+  label: string;
+}
+
+export function FormikStep({ children }: FormikStepProps) {
+  return <>{children}</>;
+}
+
+export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>) {
+  
+
+  return (
+      <Formik {...props} >
+        <Form> {children} </Form>
+      </Formik>
+       );
+  }
+      
+    
+    
+ 
 
 const useStyles = makeStyles((theme) => ({
   layout: {
