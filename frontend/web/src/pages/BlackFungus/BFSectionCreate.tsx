@@ -166,7 +166,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
         <> */}
 
         <FormikStep validationSchema = {validationSchema} label = "Section 1">
-          {({errors, touched}) => {          
+          {({errors, touched }) => {          
           <CustomCard
             customStyle={{
               display: "flex",
@@ -385,7 +385,7 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
 
                 </CustomButton>
               ) : null}
-              
+
               <CustomButton                   
                   disabled={isSubmitting}
                   type="submit"                  
