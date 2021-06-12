@@ -165,7 +165,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
         {/* {({ errors, touched, values, isSubmitting, resetForm }) => (
         <> */}
 
-        <FormikStep validationSchema = {validationSchema} label = "Section 1">
+        <FormikStep validationSchema={validationSchema} label = "Section 1">
           <CustomCard
             customStyle={{
               display: "flex",
@@ -278,7 +278,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
           </CustomCard>
         </FormikStep>
 
-        <FormikStep label = "Section 3">
+        <FormikStep validationSchema={validationSchema2} label = "Section 3">
           <CustomCard
             customStyle={{
               display: "flex",
@@ -296,9 +296,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
             />
           </CustomCard>
         </FormikStep>
-
-        
-
+      
         {/* <CustomDialog
           open={openDialog}
           notOkButtonText={undefined}
@@ -345,18 +343,18 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
   return (
     <Formik
       {...props}
-      validationSchema={currentChild.props.validationSchema}
+      validationSchema={currentChild.props.validationSchema!}
       onSubmit={async (values, helpers) => {
         if (isLastStep()) {
           await props.onSubmit(values, helpers);
-          // setCompleted(true);
+          setCompleted(true);
         } else {
           setStep((s) => s + 1);
-          // helpers.setTouched({});
+          helpers.setTouched({});
         }
       }}
     >     
-    {({ isSubmitting }) => (
+    {({ isSubmitting, errors, touched }) => (
           <Form>          
             <Stepper alternativeLabel activeStep={step}>
               {childrenArray.map((child, index) => (
@@ -385,7 +383,7 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
               <CustomButton 
                   
                   disabled={isSubmitting}
-                  onClick={() => setStep((s) => s - 1)}
+                  type="submit"                  
                   customStyle={{
                     marginLeft: "40%",
                     marginRight: "40%",
