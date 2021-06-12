@@ -337,7 +337,7 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
   const childrenArray = React.Children.toArray( children ) as React.ReactElement<FormikStepProps>[];
   const [step, setStep] = useState(0);
   const currentChild = childrenArray[ step ] as React.ReactElement<FormikStepProps>;
-  // const [completed, setCompleted] = useState(false);
+  const [completed, setCompleted] = useState(false);
 
   function isLastStep() {
     return step === childrenArray.length - 1;
@@ -355,12 +355,12 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
           // helpers.setTouched({});
         }
       }}
-    >      
+    >     
     {({ isSubmitting }) => (
           <Form>          
             <Stepper alternativeLabel activeStep={step}>
               {childrenArray.map((child, index) => (
-                <Step key={child.props.label} completed={step > index }>
+                <Step key={child.props.label} completed={step > index || completed}>
                   <StepLabel>{child.props.label}</StepLabel>
                 </Step>
               ))}
@@ -383,7 +383,7 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
                 </CustomButton>
               ) : null}
               <CustomButton 
-                  // startIcon={isSubmitting ? <CircularProgress size="1rem" /> : null}
+                  
                   disabled={isSubmitting}
                   onClick={() => setStep((s) => s - 1)}
                   customStyle={{
@@ -400,14 +400,6 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
     </Formik>
   );
 }
-
-// <CustomButton
-//                 // disabled={isSubmitting}
-//                 
-//                 type="submit"
-//               >
-//           {loading ? <CircularProgress /> : "submit"}
-//               </CustomButton>
 
 const useStyles = makeStyles((theme) => ({
   layout: {
