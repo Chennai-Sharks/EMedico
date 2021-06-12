@@ -21,10 +21,10 @@ import {
 
 import CustomCard from "widgets/CustomCard/CustomCard";
 import CustomButton from "widgets/CustomButton/CustomButton";
-// import { CircularProgress } from "@material-ui/core";
-// import BFSection1Form from './components/BFSection1Form';
-// import CustomSnackBar from "widgets/CustomSnackBar/CustomSnackBar";
-// import CustomDialog from "widgets/CustomDialog/CustomDialog";
+import { CircularProgress } from "@material-ui/core";
+import BFSection1Form from './components/BFSection1Form';
+import CustomSnackBar from "widgets/CustomSnackBar/CustomSnackBar";
+import CustomDialog from "widgets/CustomDialog/CustomDialog";
 
 import CustomDropDown from "widgets/CustomDropdown/CustomDropDown";
 import CustomRadio from "widgets/CustomRadio/CustomRadio";
@@ -145,7 +145,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
               dpid: values.dpid,
             });
             const mongoId: string = response.data._id;
-            // console.log(mongoId);
+            console.log(mongoId);
             const response1 = await bfSection1FormProvider.mutateAsync({
               mongoId,
               ...values,
@@ -165,7 +165,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
         {/* {({ errors, touched, values, isSubmitting, resetForm }) => (
         <> */}
 
-        <FormikStep validationSchema={validationSchema}>
+        <FormikStep validationSchema = {validationSchema} label = "Section 1">
           <CustomCard
             customStyle={{
               display: "flex",
@@ -213,15 +213,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                   as={CustomDropDown}
                   // error={errors.personalHistory && touched.personalHistory}
                   // helperText={errors.personalHistory}
-                />
-
-                {/* <CustomRadio
-						name="concurrentCovid"
-						label="Concurrent Covid"
-						topMargin={true}
-						items={["yes", "no"]}
-						/>
-						 */}
+                />                
 
                 {fieldName.map((item, index) => {
                   const fieldLabelContent = fieldLabel[index];
@@ -267,7 +259,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
           </CustomCard>
         </FormikStep>
 
-        <FormikStep validationSchema={validationSchema2}>
+        <FormikStep validationSchema={validationSchema2} label = "Section 2">
           <CustomCard
             customStyle={{
               display: "flex",
@@ -286,7 +278,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
           </CustomCard>
         </FormikStep>
 
-        <FormikStep>
+        <FormikStep label = "Section 3">
           <CustomCard
             customStyle={{
               display: "flex",
@@ -305,17 +297,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
           </CustomCard>
         </FormikStep>
 
-        {/* <CustomButton
-                disabled={isSubmitting}
-                customStyle={{
-                  marginLeft: "40%",
-                  marginRight: "40%",
-                  marginBottom: "20px",
-                }}
-                type="submit"
-              >
-          {loading ? <CircularProgress /> : "submit"}
-              </CustomButton> */}
+        
 
         {/* <CustomDialog
           open={openDialog}
@@ -324,7 +306,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
           onOkHandled={() => {
             setOpenDialog(false);
             // resetForm();
-          }}
+           }}
           title="Success"
           content="Patient Added Successfully."
           onClose={() => {}}
@@ -343,23 +325,19 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
 };
 
 export interface FormikStepProps
-  extends Pick<FormikConfig<FormikValues>, "children" | "validationSchema"> {}
+  extends Pick<FormikConfig<FormikValues>, "children" | "validationSchema"> {
+    label: string;
+  }
 
 export function FormikStep({ children }: FormikStepProps) {
   return <>{children}</>;
 }
 
-export function FormikStepper({
-  children,
-  ...props
-}: FormikConfig<FormikValues>) {
-  const childrenArray = React.Children.toArray(
-    children
-  ) as React.ReactElement<FormikStepProps>[];
+export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>) {
+  const childrenArray = React.Children.toArray( children ) as React.ReactElement<FormikStepProps>[];
   const [step, setStep] = useState(0);
-  const currentChild = childrenArray[
-    step
-  ] as React.ReactElement<FormikStepProps>;
+  const currentChild = childrenArray[ step ] as React.ReactElement<FormikStepProps>;
+  // const [completed, setCompleted] = useState(false);
 
   function isLastStep() {
     return step === childrenArray.length - 1;
@@ -377,23 +355,59 @@ export function FormikStepper({
           // helpers.setTouched({});
         }
       }}
-    >
-      <Form>
-        {currentChild}
-        {step > 0 ? (
-          <CustomButton onClick={() => setStep((s) => s - 1)}>
-            {" "}
-            Back{" "}
-          </CustomButton>
-        ) : null}
-        <CustomButton type="submit">
-          {" "}
-          {isLastStep() ? "Add Patient" : "Next Section"}{" "}
-        </CustomButton>
-      </Form>
+    >      
+    {({ isSubmitting }) => (
+          <Form>          
+            <Stepper alternativeLabel activeStep={step}>
+              {childrenArray.map((child, index) => (
+                <Step key={child.props.label} completed={step > index }>
+                  <StepLabel>{child.props.label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+
+              {currentChild}
+
+              {step > 0 ? (
+                <CustomButton 
+                  disabled={isSubmitting}
+                  onClick={() => setStep((s) => s - 1)}
+                  customStyle={{
+                    marginLeft: "40%",
+                    marginRight: "40%",
+                    marginBottom: "20px",
+                  }}>  
+
+                  Back
+
+                </CustomButton>
+              ) : null}
+              <CustomButton 
+                  // startIcon={isSubmitting ? <CircularProgress size="1rem" /> : null}
+                  disabled={isSubmitting}
+                  onClick={() => setStep((s) => s - 1)}
+                  customStyle={{
+                    marginLeft: "40%",
+                    marginRight: "40%",
+                    marginBottom: "20px",
+                  }}>  
+
+                  {isSubmitting ? 'Adding Patient' : isLastStep() ? 'Add Patient' : 'Next Section'}
+
+              </CustomButton>
+          </Form>       
+          )} 
     </Formik>
   );
 }
+
+// <CustomButton
+//                 // disabled={isSubmitting}
+//                 
+//                 type="submit"
+//               >
+//           {loading ? <CircularProgress /> : "submit"}
+//               </CustomButton>
 
 const useStyles = makeStyles((theme) => ({
   layout: {
