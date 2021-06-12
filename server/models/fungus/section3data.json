@@ -5,22 +5,22 @@
             "label": "Nasal endoscopy"
         },
         {
-            "name":"ulceration",
+            "name":"section3.ulceration",
             "type":"radio",
             "props":["yes","no"]
         },
         {
-            "name":"blackishNecroticEschar",
+            "name":"section3.blackishNecroticEschar",
             "type":"radio",
             "props":["yes","no"]
         },
         {
-            "name":"nasalNotes",
+            "name":"section3.nasalNotes",
             "type": "textfield",
             "label": "Notes"
         },
         {
-            "name":"oralExamination",
+            "name":"section3.oralExamination",
             "type": "textfield",
             "label": "Oral Examination "
         },
@@ -29,71 +29,62 @@
             "label": "Ocular Examination"
         },    
         {
-            "name":"eyeRedness",
+            "name":"section3.eyeRedness",
             "type":"radio",
             "props":["yes","no"]
             },
         {
-            "name":
-            "eyeWatering",
+            "name":"section3.eyeWatering",
             "type":"radio",
             "props":["yes","no"]
         },
         {
-            "name":
-            "proptosis",
+            "name":"section3.proptosis",
             "type":"radio",
             "props":["yes","no"]
         },
         {
-            "name":
-            "periorbitalEdema",
+            "name":"section3.periorbitalEdema",
             "type":"radio",
             "props":["yes","no"]
         },
         {
-            "name":
-            "ecchymosis",
+            "name":"section3.ecchymosis",
             "type":"radio",
             "props":["yes","no"]
         },
         {
-            "name":
-            "restrictedEyeMovement",
+            "name":"section3.restrictedEyeMovement",
             "type":"radio",
             "props":["yes","no"]
         },
         {
-            "name":
-            "ophthalmoplegia",
+            "name":"section3.ophthalmoplegia",
             "type":"radio",
             "props":["yes","no"]
         },
         {
-            "name":
-            "decreasedCornealSensation",
+            "name":"section3.decreasedCornealSensation",
             "type":"radio",
             "props":["yes","no"]
         },
         {
-            "name":
-            "fundusRedSpot",
+            "name":"section3.fundusRedSpot",
             "type":"radio",
             "props":["yes","no"]
         },
         {
-            "name":
-            "fundusDiscEdema",
+            "name":"section3.fundusDiscEdema",
             "type":"radio",
             "props":["yes","no"]
         },
         {
-            "name":"ocularNotes",
+            "name":"section3.ocularNotes",
             "type": "textfield",
             "label": "Notes"
         },
         {
-            "name":"microbiology",
+            "name":"section3.microbiology",
             "type":"checkbox",
             "label":"Microbiology",
             "props":["KOH smear",
@@ -103,13 +94,13 @@
                 ]
         },
         {
-            "name":"pathology",
+            "name":"section3.pathology",
             "type":"checkbox",
             "label":"Pathology",
             "props":[ "Specimen: Debrided tissue in 10% Formalin" ]
         },
         {
-            "name":"radiology",
+            "name":"section3.radiology",
             "type":"checkbox",
             "label":"Radiology",
             "props":[ "HRCT Scan of Orbit, Paranasal sinuses & Brain, with contrast if renal status permits",
@@ -117,7 +108,7 @@
                 ]
         },
         {
-            "name":"generalInvestigation",
+            "name":"section3.generalInvestigation",
             "type":"checkbox",
             "label":"General Investigation",
             "props":[ 

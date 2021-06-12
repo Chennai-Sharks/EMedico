@@ -5,25 +5,25 @@
         "label": "Pulmonary Manifestations"
     },
     {
-        "name":"feverOnBroadAntibiotics",
+        "name":"section2.feverOnBroadAntibiotics",
         "label":"Refractory fever on broad-spectrum antibiotics",
         "type":"radio",
         "props":["yes","no"]
     },
     {
-        "name":"nonproductiveCough",
+        "name":"section2.nonproductiveCough",
         "label":"Non-productive cough",
         "type":"radio",
         "props":["yes","no"]
     },
     {
-        "name":"progressiveDyspnea",
+        "name":"section2.progressiveDyspnea",
         "label":"Progressive dyspnea",
         "type":"radio",
         "props":["yes","no"]
     },
     {
-        "name":"pleuriticChestPain",
+        "name":"section2.pleuriticChestPain",
         "label":"Pleuritic Chest Pain",
         "type":"radio",
         "props":["yes","no"]
@@ -33,25 +33,25 @@
         "label": "Cutaneous and soft tissue mucormycosis"
     },
     {
-        "name":"erythema",
+        "name":"section2.erythema",
         "label":"Erythema",
         "type":"radio",
         "props":["yes","no"]
     },
     {
-        "name":"induration",
+        "name":"section2.induration",
         "label":"Induration",
         "type":"radio",
         "props":["yes","no"]
     },
     {
-        "name":"blackEscharAtTrauma",
+        "name":"section2.blackEscharAtTrauma",
         "label":"Black Eschar at trauma/puncture site",
         "type":"radio",
         "props":["yes","no"]
     },
     {
-        "name":"musclePain",
+        "name":"section2.musclePain",
         "label":"Muscle pain with deeper involvement",
         "type":"radio",
         "props":["yes","no"]
@@ -61,25 +61,25 @@
         "label": "Gastrointestinal mucormycosis"
     },
     {
-        "name":"fever",
+        "name":"section2.fever",
         "label":"Fever",
         "type":"radio",
         "props":["yes","no"]
     },
     {
-        "name":"bleedingPerAnus",
+        "name":"section2.bleedingPerAnus",
         "label":"Bleeding per anus",
         "type":"radio",
         "props":["yes","no"]
     },
     {
-        "name":"massLikeLesions",
+        "name":"section2.massLikeLesions",
         "label":"Mass like lesions",
         "type":"radio",
         "props":["yes","no"]
     },
     {
-        "name":"gutPerforation",
+        "name":"section2.gutPerforation",
         "label":"Perforation of gut",
         "type":"radio",
         "props":["yes","no"]
@@ -89,13 +89,13 @@
         "label": "Mucormycosis of bones and joints"
     },
     {
-        "name":"localPainAndTenderness",
+        "name":"section2.localPainAndTenderness",
         "label":"Local pain and tenderness",
         "type":"radio",
         "props":["yes","no"]
     },
     {
-        "name":"cellulitis",
+        "name":"section2.cellulitis",
         "label":"Cellulitis",
         "type":"radio",
         "props":["yes","no"]
@@ -105,7 +105,7 @@
         "label": "Cerebral involvement"
     },
     {
-        "name":"alteredSensorium",
+        "name":"section2.alteredSensorium",
         "label":"Altered sensorium",
         "type":"radio",
         "props":["yes","no"]
