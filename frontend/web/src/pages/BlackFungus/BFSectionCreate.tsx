@@ -166,6 +166,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
         <> */}
 
         <FormikStep validationSchema = {validationSchema} label = "Section 1">
+          {({errors, touched}) => {          
           <CustomCard
             customStyle={{
               display: "flex",
@@ -176,6 +177,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
             <Typography className={classes.title} variant="h5">
               Section 1
             </Typography>
+
             <Divider />
 
             <Grid container spacing={3} className={classes.layout}>
@@ -185,8 +187,8 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                   label="Name"
                   padding={classes.textFieldPadding}
                   as={CustomTextField}
-                  // error={errors.name && touched.name}
-                  // helperText={errors.name}
+                  error={errors.name && touched.name}
+                  helperText={errors.name}
                 />
 
                 <Field
@@ -195,8 +197,8 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                   type="number"
                   padding={classes.textFieldPadding}
                   as={CustomTextField}
-                  // error={errors.age && touched.age}
-                  // helperText={errors.age}
+                  error={errors.age && touched.age}
+                  helperText={errors.age}
                 />
                 <Field
                   name="personalHistory"
@@ -211,8 +213,8 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                     "children",
                   ]}
                   as={CustomDropDown}
-                  // error={errors.personalHistory && touched.personalHistory}
-                  // helperText={errors.personalHistory}
+                  error={errors.personalHistory && touched.personalHistory}
+                  helperText={errors.personalHistory}
                 />                
 
                 {fieldName.map((item, index) => {
@@ -234,8 +236,8 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                   label="Patient ID"
                   padding={classes.textFieldPadding}
                   as={CustomTextField}
-                  // error={errors.dpid && touched.dpid}
-                  // helperText={errors.dpid}
+                  error={errors.dpid && touched.dpid}
+                  helperText={errors.dpid}
                 />
                 <Field
                   name="gender"
@@ -243,20 +245,21 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                   type="select"
                   items={["male", "female", "other"]}
                   as={CustomDropDown}
-                  // error={errors.gender && touched.gender}
-                  // helperText={errors.gender}
+                  error={errors.gender && touched.gender}
+                  helperText={errors.gender}
                 />
                 <Field
                   name="occupation"
                   label="Occupation"
                   padding={classes.textFieldPadding}
                   as={CustomTextField}
-                  // error={errors.occupation && touched.occupation}
-                  // helperText={errors.occupation}
+                  error={errors.occupation && touched.occupation}
+                  helperText={errors.occupation}
                 />
               </Grid>
             </Grid>
           </CustomCard>
+          }}
         </FormikStep>
 
         <FormikStep validationSchema={validationSchema2} label = "Section 2">
@@ -355,7 +358,7 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
         }
       }}
     >     
-    {({ isSubmitting, errors, touched }) => (
+    {({ isSubmitting }) => (
           <Form>          
             <Stepper alternativeLabel activeStep={step}>
               {childrenArray.map((child, index) => (
@@ -382,6 +385,7 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
 
                 </CustomButton>
               ) : null}
+              
               <CustomButton                   
                   disabled={isSubmitting}
                   type="submit"                  
