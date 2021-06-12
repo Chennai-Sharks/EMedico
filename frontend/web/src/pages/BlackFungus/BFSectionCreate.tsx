@@ -165,7 +165,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
         {/* {({ errors, touched, values, isSubmitting, resetForm }) => (
         <> */}
 
-        <FormikStep validationSchema={validationSchema} label = "Section 1">
+        <FormikStep validationSchema = {validationSchema} label = "Section 1">
           <CustomCard
             customStyle={{
               display: "flex",
@@ -346,8 +346,7 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
       validationSchema={currentChild.props.validationSchema!}
       onSubmit={async (values, helpers) => {
         if (isLastStep()) {
-          await props.onSubmit(values, helpers);
-          helpers.resetForm();
+          await props.onSubmit(values, helpers);                  
           setStep(0);
           setCompleted(true);
         } else {
@@ -356,11 +355,12 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
         }
       }}
     >     
-    {({ isSubmitting }) => (
+    {({ isSubmitting, errors, touched }) => (
           <Form>          
             <Stepper alternativeLabel activeStep={step}>
               {childrenArray.map((child, index) => (
-                <Step key={child.props.label} completed={step > index || completed}>
+                <Step  
+                 key={child.props.label} completed={step > index || completed}>
                   <StepLabel>{child.props.label}</StepLabel>
                 </Step>
               ))}
@@ -382,8 +382,7 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
 
                 </CustomButton>
               ) : null}
-              <CustomButton 
-                  
+              <CustomButton                   
                   disabled={isSubmitting}
                   type="submit"                  
                   customStyle={{
