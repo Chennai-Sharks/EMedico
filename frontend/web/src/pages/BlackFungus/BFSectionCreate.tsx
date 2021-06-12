@@ -347,6 +347,8 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
       onSubmit={async (values, helpers) => {
         if (isLastStep()) {
           await props.onSubmit(values, helpers);
+          helpers.resetForm();
+          setStep(0);
           setCompleted(true);
         } else {
           setStep((s) => s + 1);
@@ -354,7 +356,7 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
         }
       }}
     >     
-    {({ isSubmitting, errors, touched }) => (
+    {({ isSubmitting }) => (
           <Form>          
             <Stepper alternativeLabel activeStep={step}>
               {childrenArray.map((child, index) => (
