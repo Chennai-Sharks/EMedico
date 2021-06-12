@@ -21,10 +21,10 @@ import {
 
 import CustomCard from "widgets/CustomCard/CustomCard";
 import CustomButton from "widgets/CustomButton/CustomButton";
-// import { CircularProgress } from "@material-ui/core";
-// import BFSection1Form from './components/BFSection1Form';
-// import CustomSnackBar from "widgets/CustomSnackBar/CustomSnackBar";
-// import CustomDialog from "widgets/CustomDialog/CustomDialog";
+import { CircularProgress } from "@material-ui/core";
+import BFSection1Form from './components/BFSection1Form';
+import CustomSnackBar from "widgets/CustomSnackBar/CustomSnackBar";
+import CustomDialog from "widgets/CustomDialog/CustomDialog";
 
 import CustomDropDown from "widgets/CustomDropdown/CustomDropDown";
 import CustomRadio from "widgets/CustomRadio/CustomRadio";
@@ -145,7 +145,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
               dpid: values.dpid,
             });
             const mongoId: string = response.data._id;
-            // console.log(mongoId);
+            console.log(mongoId);
             const response1 = await bfSection1FormProvider.mutateAsync({
               mongoId,
               ...values,
@@ -165,7 +165,8 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
         {/* {({ errors, touched, values, isSubmitting, resetForm }) => (
         <> */}
 
-        <FormikStep validationSchema={validationSchema}>
+        <FormikStep validationSchema = {validationSchema} label = "Section 1">
+          {({errors, touched }) => {          
           <CustomCard
             customStyle={{
               display: "flex",
@@ -176,6 +177,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
             <Typography className={classes.title} variant="h5">
               Section 1
             </Typography>
+
             <Divider />
 
             <Grid container spacing={3} className={classes.layout}>
@@ -185,8 +187,8 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                   label="Name"
                   padding={classes.textFieldPadding}
                   as={CustomTextField}
-                  // error={errors.name && touched.name}
-                  // helperText={errors.name}
+                  error={errors.name && touched.name}
+                  helperText={errors.name}
                 />
 
                 <Field
@@ -195,8 +197,8 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                   type="number"
                   padding={classes.textFieldPadding}
                   as={CustomTextField}
-                  // error={errors.age && touched.age}
-                  // helperText={errors.age}
+                  error={errors.age && touched.age}
+                  helperText={errors.age}
                 />
                 <Field
                   name="personalHistory"
@@ -211,17 +213,9 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                     "children",
                   ]}
                   as={CustomDropDown}
-                  // error={errors.personalHistory && touched.personalHistory}
-                  // helperText={errors.personalHistory}
-                />
-
-                {/* <CustomRadio
-						name="concurrentCovid"
-						label="Concurrent Covid"
-						topMargin={true}
-						items={["yes", "no"]}
-						/>
-						 */}
+                  error={errors.personalHistory && touched.personalHistory}
+                  helperText={errors.personalHistory}
+                />                
 
                 {fieldName.map((item, index) => {
                   const fieldLabelContent = fieldLabel[index];
@@ -242,8 +236,8 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                   label="Patient ID"
                   padding={classes.textFieldPadding}
                   as={CustomTextField}
-                  // error={errors.dpid && touched.dpid}
-                  // helperText={errors.dpid}
+                  error={errors.dpid && touched.dpid}
+                  helperText={errors.dpid}
                 />
                 <Field
                   name="gender"
@@ -251,23 +245,24 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
                   type="select"
                   items={["male", "female", "other"]}
                   as={CustomDropDown}
-                  // error={errors.gender && touched.gender}
-                  // helperText={errors.gender}
+                  error={errors.gender && touched.gender}
+                  helperText={errors.gender}
                 />
                 <Field
                   name="occupation"
                   label="Occupation"
                   padding={classes.textFieldPadding}
                   as={CustomTextField}
-                  // error={errors.occupation && touched.occupation}
-                  // helperText={errors.occupation}
+                  error={errors.occupation && touched.occupation}
+                  helperText={errors.occupation}
                 />
               </Grid>
             </Grid>
           </CustomCard>
+          }}
         </FormikStep>
 
-        <FormikStep validationSchema={validationSchema2}>
+        <FormikStep validationSchema={validationSchema2} label = "Section 2">
           <CustomCard
             customStyle={{
               display: "flex",
@@ -286,7 +281,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
           </CustomCard>
         </FormikStep>
 
-        <FormikStep>
+        <FormikStep validationSchema={validationSchema2} label = "Section 3">
           <CustomCard
             customStyle={{
               display: "flex",
@@ -304,19 +299,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
             />
           </CustomCard>
         </FormikStep>
-
-        {/* <CustomButton
-                disabled={isSubmitting}
-                customStyle={{
-                  marginLeft: "40%",
-                  marginRight: "40%",
-                  marginBottom: "20px",
-                }}
-                type="submit"
-              >
-          {loading ? <CircularProgress /> : "submit"}
-              </CustomButton> */}
-
+      
         {/* <CustomDialog
           open={openDialog}
           notOkButtonText={undefined}
@@ -324,7 +307,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
           onOkHandled={() => {
             setOpenDialog(false);
             // resetForm();
-          }}
+           }}
           title="Success"
           content="Patient Added Successfully."
           onClose={() => {}}
@@ -343,23 +326,19 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
 };
 
 export interface FormikStepProps
-  extends Pick<FormikConfig<FormikValues>, "children" | "validationSchema"> {}
+  extends Pick<FormikConfig<FormikValues>, "children" | "validationSchema"> {
+    label: string;
+  }
 
 export function FormikStep({ children }: FormikStepProps) {
   return <>{children}</>;
 }
 
-export function FormikStepper({
-  children,
-  ...props
-}: FormikConfig<FormikValues>) {
-  const childrenArray = React.Children.toArray(
-    children
-  ) as React.ReactElement<FormikStepProps>[];
+export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>) {
+  const childrenArray = React.Children.toArray( children ) as React.ReactElement<FormikStepProps>[];
   const [step, setStep] = useState(0);
-  const currentChild = childrenArray[
-    step
-  ] as React.ReactElement<FormikStepProps>;
+  const currentChild = childrenArray[ step ] as React.ReactElement<FormikStepProps>;
+  const [completed, setCompleted] = useState(false);
 
   function isLastStep() {
     return step === childrenArray.length - 1;
@@ -367,30 +346,60 @@ export function FormikStepper({
   return (
     <Formik
       {...props}
-      validationSchema={currentChild.props.validationSchema}
+      validationSchema={currentChild.props.validationSchema!}
       onSubmit={async (values, helpers) => {
         if (isLastStep()) {
-          await props.onSubmit(values, helpers);
-          // setCompleted(true);
+          await props.onSubmit(values, helpers);                  
+          setStep(0);
+          setCompleted(true);
         } else {
           setStep((s) => s + 1);
-          // helpers.setTouched({});
+          helpers.setTouched({});
         }
       }}
-    >
-      <Form>
-        {currentChild}
-        {step > 0 ? (
-          <CustomButton onClick={() => setStep((s) => s - 1)}>
-            {" "}
-            Back{" "}
-          </CustomButton>
-        ) : null}
-        <CustomButton type="submit">
-          {" "}
-          {isLastStep() ? "Add Patient" : "Next Section"}{" "}
-        </CustomButton>
-      </Form>
+    >     
+    {({ isSubmitting }) => (
+          <Form>          
+            <Stepper alternativeLabel activeStep={step}>
+              {childrenArray.map((child, index) => (
+                <Step  
+                 key={child.props.label} completed={step > index || completed}>
+                  <StepLabel>{child.props.label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+
+              {currentChild}
+
+              {step > 0 ? (
+                <CustomButton 
+                  disabled={isSubmitting}
+                  onClick={() => setStep((s) => s - 1)}
+                  customStyle={{
+                    marginLeft: "40%",
+                    marginRight: "40%",
+                    marginBottom: "20px",
+                  }}>  
+
+                  Back
+
+                </CustomButton>
+              ) : null}
+
+              <CustomButton                   
+                  disabled={isSubmitting}
+                  type="submit"                  
+                  customStyle={{
+                    marginLeft: "40%",
+                    marginRight: "40%",
+                    marginBottom: "20px",
+                  }}>  
+
+                  {isSubmitting ? 'Adding Patient' : isLastStep() ? 'Add Patient' : 'Next Section'}
+
+              </CustomButton>
+          </Form>       
+          )} 
     </Formik>
   );
 }
