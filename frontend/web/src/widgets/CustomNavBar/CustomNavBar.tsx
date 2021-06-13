@@ -24,7 +24,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
-import EditIcon from '@material-ui/icons/Edit';
+// import EditIcon from '@material-ui/icons/Edit';
 import { Collapse } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
@@ -151,7 +151,7 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
 							</ListItemIcon>
 							<ListItemText primary='Add Patient' />
 						</ListItem>
-						<ListItem
+						{/* <ListItem
 							button
 							onClick={() => handleRouteChange('/black-fungus/update-patient')}
 							className={classes.nested}
@@ -160,7 +160,7 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
 								<EditIcon />
 							</ListItemIcon>
 							<ListItemText primary='Update Patient' />
-						</ListItem>
+						</ListItem> */}
 						<ListItem
 							button
 							onClick={() => handleRouteChange('/black-fungus/delete-patient')}

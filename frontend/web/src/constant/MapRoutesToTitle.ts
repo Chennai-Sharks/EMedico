@@ -11,10 +11,10 @@ export const mapRoutesToTitle = [
 		route: '/black-fungus/add-patient',
 		title: 'Black Fungus - Add Patient Details',
 	},
-	{
-		route: '/black-fungus/update-patient',
-		title: 'Black Fungus - Update Patient Details',
-	},
+	// {
+	// 	route: '/black-fungus/update-patient',
+	// 	title: 'Black Fungus - Update Patient Details',
+	// },
 	{
 		route: '/black-fungus/delete-patient',
 		title: 'Black Fungus - Delete Patient Details',

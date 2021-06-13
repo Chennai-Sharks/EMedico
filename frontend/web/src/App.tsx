@@ -57,13 +57,13 @@ function App() {
 										() => import('./pages/BlackFungus/BFSection1Delete')
 									)}
 								/>
-								<Route
+								{/* <Route
 									path='/black-fungus/update-patient'
 									exact
 									component={lazy(
 										() => import('./pages/BlackFungus/BFSection1Update')
 									)}
-								/>
+								/> */}
 							</React.Suspense>
 						</CustomNavBar>
 					</Switch>
