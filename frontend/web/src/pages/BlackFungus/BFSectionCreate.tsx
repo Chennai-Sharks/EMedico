@@ -21,12 +21,13 @@ import CustomDialog from 'widgets/CustomDialog/CustomDialog';
 import CustomTextField from 'widgets/CustomTextField/CustomTextField';
 import { formStyles } from './components/BFSection1FormStyles';
 import BFSection2Form from './components/BFSection2Form';
+import BFSection3Form from './components/BFSection3Form';
 
 import { Section2ValidationSchema } from '@emedico/shared';
 
 interface BFSection1CreateProps {}
 
-const validationSchema = Yup.object().shape({
+const validationSchema1 = Yup.object().shape({
 	section1: Yup.object().shape({
 		name: Yup.string()
 			.min(3, 'Too Short!')
@@ -85,31 +86,20 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
 					}
 				}}
 			>
-				<FormikStep validationSchema={validationSchema} label='Section 1'>
+				<FormikStep 
+          // validationSchema = {validationSchema1} 
+          label='Section 1'>
 					<BFSection1Form />
 				</FormikStep>
 
-				<FormikStep validationSchema={validationSchema2} label='Section 2'>
+				<FormikStep 
+          // validationSchema = {validationSchema1} 
+          label='Section 2'>
 					<BFSection2Form />
 				</FormikStep>
 
-				<FormikStep validationSchema={validationSchema2} label='Section 3'>
-					<CustomCard
-						customStyle={{
-							display: 'flex',
-							flexDirection: 'column',
-							justifyContent: 'center',
-						}}
-					>
-						<Divider />
-
-						<Field
-							name='Page 3'
-							label='Page 3'
-							padding={classes.textFieldPadding}
-							as={CustomTextField}
-						/>
-					</CustomCard>
+				<FormikStep  label='Section 3'>
+          <BFSection3Form/>
 				</FormikStep>
 			</FormikStepper>
 			<CustomDialog
