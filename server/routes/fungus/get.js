@@ -1,11 +1,13 @@
 const router = require('express').Router();
 const User = require('../../models/User');
 const Section1 = require('../../models/fungus/section1');
+const Section2 = require('../../models/fungus/section2');
+const Section3 = require('../../models/fungus/section3');
 
 //this block of code is to display all ofp-patients inside a particular doctor
-router.get('/getPatients/:did', async (req, res) => {
+router.get('/getPatients', async (req, res) => {
 	try {
-		let allPatients = await User.findById(req.params.did);
+		let allPatients = await User.findById(req.user.did);
 		allPatients = allPatients.fPatients;
 		if (allPatients.length === 0)
 			res.status(400).send('There are no patients to display');
@@ -16,12 +18,13 @@ router.get('/getPatients/:did', async (req, res) => {
 });
 
 //this is to get a particular patient under a particular doctor
-router.get('/getOnePatient/:did/:mongoid', async (req, res) => {
+router.get('/getOnePatient/:mongoid', async (req, res) => {
 	try {
-		let allPatients = await User.findById(req.params.did);
+		let allPatients = await User.findById(req.user.did);
 		allPatients = allPatients.fPatients;
 		for (i in allPatients) {
-			if (allPatients[i]._id == req.params.mongoid) res.json(allPatients[i]);
+			if (allPatients[i]._id == req.user.mongoid) 
+				res.json(allPatients[i]);
 		}
 	} catch (err) {
 		res.status(400).send(err);
@@ -31,21 +34,47 @@ router.get('/getOnePatient/:did/:mongoid', async (req, res) => {
 // this is to GET the details of section 1
 router.get('/section1/:mongoid', async (req, res) => {
 	try {
-		let data = await Section1.findOne({ mongoid: req.params.mongoid }).exec();
-		// let allPatients = await User.findById(req.headers.did);
+		let data = await Section1.findOne({ mongoid: req.user.mongoid }).exec();
+		// let allPatients = await User.findById(req.user.did);
 		// allPatients = allPatients.fPatients;
 		// for (i in allPatients) {
 		// 	if (allPatients[i]._id == req.params.mongoid) {
-		// 		if (data)
+				if (data)
 					res.json({
 						// name: allPatients[i].name,
 						// dpid: allPatients[i].dpid,
 						...data._doc,
 					});
-			// 	else res.status(404).json({ message: 'No patient.' });
+				else res.status(404).json({ message: 'No patient.' });
 			// 	break;
 			// }
 		// }
+	} catch (err) {
+		res.status(400).json({ message: err });
+	}
+});
+
+router.get('/section2/:mongoid', async (req, res) => {
+	try {
+		let data = await Section2.findOne({ mongoid: req.user.mongoid }).exec();
+		if (data)
+			res.json({
+				...data._doc,
+			});
+		else res.status(404).json({ message: 'No patient.' });
+	} catch (err) {
+		res.status(400).json({ message: err });
+	}
+});
+
+router.get('/section3/:mongoid', async (req, res) => {
+	try {
+		let data = await Section3.findOne({ mongoid: req.user.mongoid }).exec();
+		if (data)
+			res.json({
+				...data._doc,
+			});
+		else res.status(404).json({ message: 'No patient.' });
 	} catch (err) {
 		res.status(400).json({ message: err });
 	}

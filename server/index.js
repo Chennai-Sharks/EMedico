@@ -23,9 +23,9 @@ app.use('/api/users', authRoute);
 
 // use 'M2' if u want jwt verification , else use 'M1'  
 // M1
-app.use('/api', router);
+//app.use('/api', router);
 
 // M2
-//app.use('/api',verify, router);
+app.use('/api',verify, router);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`.yellow.bold));
