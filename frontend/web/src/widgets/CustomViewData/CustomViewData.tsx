@@ -6,12 +6,14 @@ interface CustomViewDataProps {
 	data: string;
 }
 
-const useStyles = makeStyles(() => ({}));
+const useStyles = makeStyles(() => ({
+	h: {},
+}));
 
 const CustomViewData: React.FC<CustomViewDataProps> = (props) => {
 	const classes = useStyles();
 	return (
-		<List>
+		<List className={classes.h}>
 			<ListItem> hello</ListItem>
 		</List>
 	);
