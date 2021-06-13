@@ -12,6 +12,7 @@
 	"dependencies": {
 		"axios": "^0.21.1",
 		"react-query": "^3.16.0",
+		"yup": "^0.32.9",
 		"zustand": "^3.5.1"
 	}
 }
