@@ -1,12 +1,10 @@
-# EMedico
+# Maxillo
 
+**Code-Named Emedico**
 In Progress
 
 Visit us back again and hopefully we've finished the project by then xD
 Or else look at our other works. Oh wait there ain't any lol
-
-## Mock Ui
-### [Here](http://sample-emedico.web.app/)
 
 ## Api blueprint
 
@@ -65,11 +63,5 @@ DELETE '/section1/:mongoID' => overwrites the entire document
     same to be repeated for all other sections...
 
 }
-
----
-
-## Basic FrontEnd architecture
-
-Click here to check [that](https://github.com/Chennai-Sharks/EMedico/blob/main/docs/basic_frontend_arch.svg)
 
 ---
