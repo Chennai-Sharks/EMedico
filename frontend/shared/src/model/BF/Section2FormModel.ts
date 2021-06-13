@@ -4,7 +4,7 @@ export const section2FormModel: Array<Record<string, any>> = [
 	{
 		type: 'title',
 		label: 'Pulmonary Manifestations',
-	},
+	}, 
 	{
 		name: 'feverOnBroadAntibiotics',
 		label: 'Refractory fever on broad-spectrum antibiotics',

@@ -7,7 +7,7 @@ export const section3FormModel: Array<Record<string, any>> = [
 		name: 'ulceration',
 		type: 'radio',
 		props: ['yes', 'no'],
-	},
+	}, 
 	{
 		name: 'blackishNecroticEschar',
 		type: 'radio',
