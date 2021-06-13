@@ -2,14 +2,14 @@ import React from 'react';
 import { Field } from 'formik';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import { ToggleButtonGroup } from 'formik-material-ui-lab';
-import { FormHelperText, makeStyles, Typography } from '@material-ui/core';
+import { makeStyles, Typography } from '@material-ui/core';
 
 type CustomRadioProps = any;
 
 const CustomRadio: React.FC<CustomRadioProps> = (props) => {
 	const classes = useStyles();
 	return (
-		<div className={classes.layout}>
+		<>
 			<div className={classes.layout1}>
 				<Typography variant='h6' className={classes.labelStyle}>
 					{props.label}
@@ -41,34 +41,31 @@ const CustomRadio: React.FC<CustomRadioProps> = (props) => {
 				</Field>
 			</div>
 
-			{props.error && (
-				<FormHelperText error={props.error} style={{ fontWeight: 'bold' }}>
+			{/* {props.error && (
+				<FormHelperText
+					error={props.error}
+					style={{
+						display: 'flex',
+						justifyContent: 'center',
+						fontWeight: 'bold',
+						marginTop: '5px',
+					}}
+				>
 					{props.helperText}
 				</FormHelperText>
-			)}
-		</div>
+			)} */}
+		</>
 	);
 };
 
 const useStyles = makeStyles((theme) => ({
-	layout: {
-		display: 'flex',
-		// alignItems: 'center',
-		flexDirection: 'column',
-		// margin: '30px',
-		// marginBottom: '20px',
-		// backgroundColor: 'red',
-		marginTop: '30px',
-	},
 	layout1: {
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		flexDirection: 'row',
-		// margin: '30px',
 
-		// marginBottom: '20px',
-		marginTop: '30px',
+		marginTop: '10px',
 	},
 
 	labelStyle: {
