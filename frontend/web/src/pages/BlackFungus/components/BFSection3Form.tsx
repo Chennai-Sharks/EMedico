@@ -63,7 +63,7 @@ const BFSection3Form: React.FC<BFSection3FormProps> = () => {
 								<CustomTextField
 									name = {`section3.${item.name}`}
 									padding={classes.textFieldPadding}
-									label = "Name"
+									label = {item.label}
 									error = {!!getIn(errors.section3, item.name)}
 									helperText = {getIn(errors.section3, item.name)}
 								/>

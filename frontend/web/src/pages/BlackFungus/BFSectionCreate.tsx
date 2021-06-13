@@ -1,6 +1,6 @@
 import React from 'react';
-import { Divider, Step, StepLabel, Stepper } from '@material-ui/core';
-import { Form, Formik, Field, FormikConfig, FormikValues } from 'formik';
+import { Step, StepLabel, Stepper } from '@material-ui/core';
+import { Form, Formik, FormikConfig, FormikValues } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
 
@@ -11,14 +11,14 @@ import {
 	snackBarStore,
 } from '@emedico/shared';
 
-import CustomCard from 'widgets/CustomCard/CustomCard';
+// import CustomCard from 'widgets/CustomCard/CustomCard';
 import CustomButton from 'widgets/CustomButton/CustomButton';
 // import { CircularProgress } from '@material-ui/core';
 import BFSection1Form from './components/BFSection1Form';
 import CustomSnackBar from 'widgets/CustomSnackBar/CustomSnackBar';
 import CustomDialog from 'widgets/CustomDialog/CustomDialog';
 
-import CustomTextField from 'widgets/CustomTextField/CustomTextField';
+// import CustomTextField from 'widgets/CustomTextField/CustomTextField';
 import { formStyles } from './components/BFSection1FormStyles';
 import BFSection2Form from './components/BFSection2Form';
 import BFSection3Form from './components/BFSection3Form';
