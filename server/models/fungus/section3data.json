@@ -7,12 +7,14 @@
         {
             "name":"section3.ulceration",
             "type":"radio",
-            "props":["yes","no"]
+            "props":["yes","no"],
+            "label":"Ulceration"
         },
         {
             "name":"section3.blackishNecroticEschar",
             "type":"radio",
-            "props":["yes","no"]
+            "props":["yes","no"],
+            "label":"Blackish necrotic eschar"
         },
         {
             "name":"section3.nasalNotes",
@@ -31,52 +33,62 @@
         {
             "name":"section3.eyeRedness",
             "type":"radio",
-            "props":["yes","no"]
-            },
+            "props":["yes","no"],
+            "label":"Eye redness"
+        },
         {
             "name":"section3.eyeWatering",
             "type":"radio",
-            "props":["yes","no"]
+            "props":["yes","no"],
+            "label":"Eye watering"
         },
         {
             "name":"section3.proptosis",
             "type":"radio",
-            "props":["yes","no"]
+            "props":["yes","no"],
+            "label":"Proptosis"
         },
         {
             "name":"section3.periorbitalEdema",
             "type":"radio",
-            "props":["yes","no"]
+            "props":["yes","no"],
+            "label":"Periorbital edema"
         },
         {
             "name":"section3.ecchymosis",
             "type":"radio",
-            "props":["yes","no"]
+            "props":["yes","no"],
+            "label":"Ecchymosis"
         },
         {
             "name":"section3.restrictedEyeMovement",
             "type":"radio",
-            "props":["yes","no"]
+            "props":["yes","no"],
+            "label":"Restricted eye movement"
         },
         {
             "name":"section3.ophthalmoplegia",
             "type":"radio",
-            "props":["yes","no"]
+            "props":["yes","no"],
+            "label":"Ophthalmoplegia"
         },
         {
             "name":"section3.decreasedCornealSensation",
             "type":"radio",
-            "props":["yes","no"]
+            "props":["yes","no"],
+            "label":"Decreased corneal sensation"
         },
         {
             "name":"section3.fundusRedSpot",
             "type":"radio",
-            "props":["yes","no"]
+            "props":["yes","no"],
+            "label":"Cherry Red spot in fundus"
         },
         {
             "name":"section3.fundusDiscEdema",
             "type":"radio",
-            "props":["yes","no"]
+            "props":["yes","no"],
+            "label":"Disc edema in fundus"
         },
         {
             "name":"section3.ocularNotes",
