@@ -28,7 +28,7 @@ router.post('/login', async (req, res) => {
 				message: err,
 			});
 		}
-	}
+	} 
 	else{
 		const token = jwt.sign({_id: emailExist._id}, process.env.TOKEN_SECRET);
 		res.status(200).send({
