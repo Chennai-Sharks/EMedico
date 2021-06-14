@@ -74,11 +74,10 @@ export const AddPatientProvider = () => {
 	);
 };
 
-// auth_Token
-
 export const AddBFSection1FormProvider = () => {
 	return useMutation((data: Record<string, any>) =>
-		axios.post(`${APIURL}/api/fungus/post/section1/${data.mongoId}`, {
+		axios.post(`${APIURL}/fungus/post/section1/${data.mongoId}`, 		
+		{
 			...data.data,
 		})
 	);
