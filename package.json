@@ -8,10 +8,7 @@
 			"frontend/*"
 		],
 		"nohoist": [
-			"**/react-native",
-			"**/react-native/**",
-			"**/react",
-			"**react/**"
+			"**"
 		]
 	},
 	"scripts": {
