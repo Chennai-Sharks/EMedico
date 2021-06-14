@@ -93,7 +93,7 @@ export const BFFormInitialValues = {
 // 		name: '', // this is used for formik. for title there will be not be this field
 // 		label: '', // label for ui
 // 		props: {
-// 			// this object has differnt values for different types. no props for title.
+// 			// this object has different values for different types. no props for title.
 // 		},
 // 	},
 // ];

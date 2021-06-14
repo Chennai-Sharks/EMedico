@@ -34,6 +34,7 @@ const BFSection3Form: React.FC<BFSection3FormProps> = () => {
 					if(item.type === 'title') {
 						return (
 							<Grid item xs = {12} className = {classes.formTitle} key = {index}>								
+								{index !== 0 && <Divider style={{ marginTop: '20px' }} />}
 								<Typography 
 									className = {classes.title}
 									style={{
@@ -57,7 +58,7 @@ const BFSection3Form: React.FC<BFSection3FormProps> = () => {
 								/>								
 							</Grid>
 						)
-					} else if(item.type === 'textfield') {
+					 } else if(item.type === 'textfield') {
 						return (
 							<Grid item xs = {12} sm = {6} key = {index}>
 								<CustomTextField
@@ -65,7 +66,7 @@ const BFSection3Form: React.FC<BFSection3FormProps> = () => {
 									padding={classes.textFieldPadding}
 									label = {item.label}
 									error = {!!getIn(errors.section3, item.name)}
-									helperText = {!!getIn(errors.section3, item.name)}
+									helperText = {getIn(errors.section3, item.name)}
 								/>
 							</Grid>
 						)
