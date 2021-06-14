@@ -71,22 +71,26 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
         onSubmit={async (values) => {
           try {
             setLoading(true);
-			console.log(values);
-			
-            // const response = await addPatientProvider.mutateAsync({
-            //   name: values.name,
-            //   dpid: values.dpid,
-            // });
-            // const mongoId: string = response.data._id;
-            // console.log(mongoId);
-            // const response1 = await bfSection1FormProvider.mutateAsync({
-            //   mongoId,
-            //   ...values,
-            // });
-            // setLoading(false);
-            // setOpenDialog(!openDialog);
+			      console.log(values);
+            
+            const response = await addPatientProvider.mutateAsync({
+              name: values.name,
+              dpid: values.dpid,
+            });
+            const mongoId: string = response.data._id;            
+            console.log(mongoId);
 
-            // console.log(response1.data);
+            delete values.name;
+            delete values.dpid;
+
+            const response1 = await bfSection1FormProvider.mutateAsync({
+              mongoId,
+              ...values,
+            });
+            setLoading(false);
+            setOpenDialog(!openDialog);
+
+            console.log(response1.data);
           } catch (error: any) {
             setLoading(false);
             console.log(error.response.data.message);
