@@ -59,27 +59,38 @@ export const BFSection1DataTransformation = (data: Record<string, any>) => {
 
 export const AddPatientProvider = () => {
 	// const docId = credentialStore((state) => state.docId);
-	const jwt = credentialStore((state) => state.token)
+	const jwt = credentialStore((state) => state.token);
 	return useMutation((data: Record<string, any>) =>
-		axios.post(`${APIURL}/api/fungus/post/addPatient`, 
-			{ headers: {
-				"auth_Token": `${jwt}`,
-				'Accept' : 'application/json',
-        		'Content-Type': 'application/json'
-			}},			
+		axios.post(
+			`${APIURL}/api/fungus/post/addPatient`,
+
 			{
 				...data,
+			},
+			{
+				headers: {
+					auth_Token: jwt,
+				},
 			}
 		)
 	);
 };
 
-export const AddBFSection1FormProvider = () => {
+export const AddBFPatientSectionData = () => {
+	const jwt = credentialStore((state) => state.token);
+
 	return useMutation((data: Record<string, any>) =>
-		axios.post(`${APIURL}/fungus/post/section1/${data.mongoId}`, 		
-		{
-			...data.data,
-		})
+		axios.post(
+			`${APIURL}/api/fungus/post/section/${data.mongoId}`,
+			{
+				...data.data,
+			},
+			{
+				headers: {
+					auth_Token: jwt,
+				},
+			}
+		)
 	);
 };
 
