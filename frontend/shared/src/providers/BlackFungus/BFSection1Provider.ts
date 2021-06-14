@@ -9,53 +9,53 @@ import {
 } from '../../utils/Utils';
 
 // This is used to change the data from form schema that niki did to server schema.
-// export const BFSection1BeforeFormSubmit = (data: Record<string, any>) => {
-// 	let covid: Record<string, string> = {};
-// 	let mucormycosis: Record<string, string> = {};
+export const BFSection1BeforeFormSubmit = (data: Record<string, any>) => {
+	let covid: Record<string, string> = {};
+	let mucormycosis: Record<string, string> = {};
 
-// 	covidScreeningTest.forEach((item) => {
-// 		covid[item] = data[item];
-// 		delete data[item];
-// 	});
-// 	data['covidScreeningTest'] = covid;
+	covidScreeningTest.forEach((item) => {
+		covid[item] = data[item];
+		delete data[item];
+	});
+	data['covidScreeningTest'] = covid;
 
-// 	mucormycosisSymptoms.forEach((item) => {
-// 		mucormycosis[item] = data[item];
-// 		delete data[item];
-// 	});
+	mucormycosisSymptoms.forEach((item) => {
+		mucormycosis[item] = data[item];
+		delete data[item];
+	});
 
-// 	data['mucormycosisSymptoms'] = mucormycosis;
-// 	return data;
-// };
+	data['mucormycosisSymptoms'] = mucormycosis;
+	return data;
+};
 
 // This is used to change the data from server to form schema that niki did.
-// export const BFSection1DataTransformation = (data: Record<string, any>) => {
-// 	let oldData = { ...data };
-// 	let covidScreeningTest: {} = {
-// 		...oldData['covidScreeningTest'],
-// 	};
+export const BFSection1DataTransformation = (data: Record<string, any>) => {
+	let oldData = { ...data };
+	let covidScreeningTest: {} = {
+		...oldData['covidScreeningTest'],
+	};
 
-// 	delete oldData['covidScreeningTest'];
-// 	let mucormycosisSymptoms: {} = {
-// 		...oldData['mucormycosisSymptoms'],
-// 	};
+	delete oldData['covidScreeningTest'];
+	let mucormycosisSymptoms: {} = {
+		...oldData['mucormycosisSymptoms'],
+	};
 
-// 	delete oldData['mucormycosisSymptoms'];
+	delete oldData['mucormycosisSymptoms'];
 
-// 	let newData: Record<string, any> = {
-// 		...oldData,
-// 		...covidScreeningTest,
-// 		...mucormycosisSymptoms,
-// 	};
-// 	console.log('newdata');
-// 	delete newData['__v'];
-// 	delete newData['date'];
+	let newData: Record<string, any> = {
+		...oldData,
+		...covidScreeningTest,
+		...mucormycosisSymptoms,
+	};
+	console.log('newdata');
+	delete newData['__v'];
+	delete newData['date'];
 
-// 	delete newData['_id'];
-// 	delete newData['mongoid'];
+	delete newData['_id'];
+	delete newData['mongoid'];
 
-// 	return newData;
-// };
+	return newData;
+};
 
 export const AddPatientProvider = () => {
 	const docId = credentialStore((state) => state.docId);

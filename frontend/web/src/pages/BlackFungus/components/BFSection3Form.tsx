@@ -51,7 +51,7 @@ const BFSection3Form: React.FC<BFSection3FormProps> = () => {
 							<Grid item xs = {12} sm = {6} key = {index}>
 								<CustomRadio
 									name = {item.name}
-									label = {item.name}
+									label = {item.label}
 									items = {item.props}
 									error = {!!getIn(errors.section3, item.name)}									
 								/>								

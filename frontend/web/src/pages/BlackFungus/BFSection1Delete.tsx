@@ -143,7 +143,7 @@ const BFSection1Delete: React.FC<BFSection1GetProps> = () => {
 
 										setLoading(false);
 										setOpenDialog(true);
-									} catch (error) {
+									} catch (error: any) {
 										setLoading(false);
 										console.log(error.response.data);
 										snackBar.setmessage('Some error with delete');
