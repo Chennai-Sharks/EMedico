@@ -9,7 +9,7 @@ router.post('/addPatient', async (req, res) => {
 	var doctor = await User.findOne({ _id: req.user.did });
 	try {
 		if (!doctor) res.status(404).send({ message: 'No doctor available' });
-
+ 
 		patient = doctor.fPatients;
 		for (var i = 0; i < patient.length; i++)
 			if (patient[i].dpid == req.body.dpid)
