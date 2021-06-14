@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 import {
 	BFFormInitialValues,
-	AddBFSection1FormProvider,
+	AddBFPatientSectionData,
 	AddPatientProvider,
 	snackBarStore,
 } from '@emedico/shared';
@@ -19,7 +19,6 @@ import CustomSnackBar from 'widgets/CustomSnackBar/CustomSnackBar';
 import CustomDialog from 'widgets/CustomDialog/CustomDialog';
 
 // import CustomTextField from 'widgets/CustomTextField/CustomTextField';
-import { formStyles } from './components/BFSection1FormStyles';
 import BFSection2Form from './components/BFSection2Form';
 import BFSection3Form from './components/BFSection3Form';
 
@@ -55,9 +54,8 @@ const validationSchema3 = Yup.object().shape({
 });
 
 const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
-	const classes = formStyles();
 	const addPatientProvider = AddPatientProvider();
-	const bfSection1FormProvider = AddBFSection1FormProvider();
+	const addPatientFormData = AddBFPatientSectionData();
 
 	const [openDialog, setOpenDialog] = React.useState(false);
 	const [, setLoading] = React.useState(false);
@@ -70,25 +68,27 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
 				initialValues={BFFormInitialValues}
 				onSubmit={async (values) => {
 					try {
-						setLoading(true);
+						// setLoading(true);
 						console.log(values);
+						const data = { ...values };
 
 						const response = await addPatientProvider.mutateAsync({
-							name: values.name,
-							dpid: values.dpid,
+							name: data.section1.name,
+							dpid: data.section1.dpid,
 						});
 						const mongoId: string = response.data._id;
 						console.log(mongoId);
 
-						delete values.name;
-						delete values.dpid;
+						delete data.section1.name;
+						delete data.section1.dpid;
 
-						const response1 = await bfSection1FormProvider.mutateAsync({
+						const response1 = await addPatientFormData.mutateAsync({
 							mongoId,
-							...values,
+							data,
 						});
-						setLoading(false);
-						setOpenDialog(!openDialog);
+
+						// setLoading(false);
+						// setOpenDialog(!openDialog);
 
 						console.log(response1.data);
 					} catch (error: any) {
@@ -99,17 +99,11 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
 					}
 				}}
 			>
-				<FormikStep
-					//   validationSchema = {validationSchema1}
-					label='Section 1'
-				>
+				<FormikStep validationSchema={validationSchema1} label='Section 1'>
 					<BFSection1Form />
 				</FormikStep>
 
-				<FormikStep
-					//   validationSchema = {validationSchema2}
-					label='Section 2'
-				>
+				<FormikStep validationSchema={validationSchema2} label='Section 2'>
 					<BFSection2Form />
 				</FormikStep>
 
