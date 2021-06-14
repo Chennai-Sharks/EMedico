@@ -61,7 +61,7 @@ export const AddPatientProvider = () => {
 	// const docId = credentialStore((state) => state.docId);
 	const jwt = credentialStore((state) => state.token)
 	return useMutation((data: Record<string, any>) =>
-		axios.post(`${APIURL}/fungus/post/addPatient`, 
+		axios.post(`${APIURL}/api/fungus/post/addPatient`, 
 			{ headers: {
 				"auth_Token": `${jwt}`,
 				'Accept' : 'application/json',
