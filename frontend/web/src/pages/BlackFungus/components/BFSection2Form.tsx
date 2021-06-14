@@ -1,5 +1,5 @@
 import React from 'react';
- 
+
 import { section2FormModel, BFFormInitialValues } from '@emedico/shared';
 import { getIn, useFormikContext } from 'formik';
 import CustomCard from 'widgets/CustomCard/CustomCard';
