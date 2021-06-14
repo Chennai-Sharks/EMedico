@@ -96,23 +96,23 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
         }}
       >
         <FormikStep
-          validationSchema = {validationSchema1}
+        //   validationSchema = {validationSchema1}
           label="Section 1"
         >
           <BFSection1Form />
         </FormikStep>
 
         <FormikStep
-          validationSchema = {validationSchema2}
+        //   validationSchema = {validationSchema2}
           label="Section 2"
         >
           <BFSection2Form />
         </FormikStep>
 
         <FormikStep 
-			validationSchema={validationSchema3} 
-			label="Section 3"
-		>
+          // validationSchema={validationSchema3} 
+          label="Section 3"
+        >
           <BFSection3Form />
         </FormikStep>
       </FormikStepper>
