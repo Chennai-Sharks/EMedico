@@ -71,15 +71,18 @@ const BFSection3Form: React.FC<BFSection3FormProps> = () => {
 								/>
 							</Grid>
 						)
-					} else if(item.type === 'checkbox') {
-						return (
-							<Grid item xs = {12} sm = {6}  key = {index}>
-								<CustomCheckBox 
-									
-								/>
-							</Grid>
-						)
 					}
+					//  else if(item.type === 'checkbox') {
+					// 	return (
+					// 		<Grid item xs = {12} sm = {6}  key = {index}>
+					// 			<CustomCheckBox 
+					// 				name = {item.name}
+					// 				label = {item.label}
+					// 				items = {item.props}
+					// 			/>
+					// 		</Grid>
+					// 	)
+					// }
 				})}
 			</Grid>
 		</CustomCard>

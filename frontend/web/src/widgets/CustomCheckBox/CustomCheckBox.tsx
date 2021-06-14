@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
+
 type CustomCheckBoxProps = any;
 
 const CustomCheckBox: React.FC<CustomCheckBoxProps> = (props) => {
@@ -30,8 +31,7 @@ const CustomCheckBox: React.FC<CustomCheckBoxProps> = (props) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
-
-  const { gilad, jason, antoine } = state;
+  
 
   return (
     <div className={classes.root}>
@@ -40,33 +40,25 @@ const CustomCheckBox: React.FC<CustomCheckBoxProps> = (props) => {
         // error={error}
         component="fieldset"
         className={classes.formControl}
+		name = {props.name}
       >
-        <FormLabel component="legend">Pick two</FormLabel>
+        <FormLabel component="legend">{props.label} </FormLabel>
+
         <FormGroup>
+		{(props.items as string[]).map((item, index) => (
           <FormControlLabel
             control={
-              <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
+              <Checkbox 
+			  	// checked = {item}
+			   	onChange={handleChange} 
+				key = {index}
+			  />
             }
-            label="Gilad Gray"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox checked={jason} onChange={handleChange} name="jason" />
-            }
-            label="Jason Killian"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={antoine}
-                onChange={handleChange}
-                name="antoine"
-              />
-            }
-            label="Antoine Llorca"
-          />
-        </FormGroup>
-        <FormHelperText>You can display an error</FormHelperText>
+            label= {item}
+          />          
+		  ))}
+        </FormGroup>		
+        {/* <FormHelperText>You can display an error</FormHelperText> */}
       </FormControl>
     </div>
   );
