@@ -7,6 +7,7 @@ import { formStyles } from "./BFSection1FormStyles";
 import { Typography, Divider, Grid } from "@material-ui/core";
 import CustomRadio from "../../../widgets/CustomRadio/CustomRadio";
 import CustomTextField from "../../../widgets/CustomTextField/CustomTextField";
+import CustomCheckBox from "../../../widgets/CustomCheckBox/CustomCheckBox"
 
 interface BFSection3FormProps {}
 
@@ -67,6 +68,14 @@ const BFSection3Form: React.FC<BFSection3FormProps> = () => {
 									label = {item.label}
 									error = {!!getIn(errors.section3, item.name)}
 									helperText = {getIn(errors.section3, item.name)}
+								/>
+							</Grid>
+						)
+					} else if(item.type === 'checkbox') {
+						return (
+							<Grid item xs = {12} sm = {6}  key = {index}>
+								<CustomCheckBox 
+									
 								/>
 							</Grid>
 						)
