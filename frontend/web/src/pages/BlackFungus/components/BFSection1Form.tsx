@@ -7,7 +7,7 @@ import CustomRadio from 'widgets/CustomRadio/CustomRadio';
 import CustomTextField from 'widgets/CustomTextField/CustomTextField';
 import { BFFormInitialValues } from '@emedico/shared';
 import { formStyles } from './BFSection1FormStyles';
-
+      
 interface BFSection1FormProps {}
 
 const fieldName = [
