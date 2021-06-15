@@ -60,6 +60,12 @@
     "label":"Recently treated for Covid"
 },
 {
+    "name":"hospitalizedHomecare",
+    "type": "radio",
+    "props":["Hospitalized","Home care","None"],
+    "label":"Hospitalized or Home care"
+},
+{
     "name":"diabetesMellitus",
     "type": "radio",
     "props":["yes","no"],
