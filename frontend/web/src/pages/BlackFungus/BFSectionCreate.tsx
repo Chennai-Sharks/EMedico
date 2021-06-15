@@ -11,18 +11,17 @@ import {
 	snackBarStore,
 } from '@emedico/shared';
 
-// import CustomCard from 'widgets/CustomCard/CustomCard';
 import CustomButton from 'widgets/CustomButton/CustomButton';
-// import { CircularProgress } from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 import BFSection1Form from './components/BFSection1Form';
 import CustomSnackBar from 'widgets/CustomSnackBar/CustomSnackBar';
 import CustomDialog from 'widgets/CustomDialog/CustomDialog';
 
-// import CustomTextField from 'widgets/CustomTextField/CustomTextField';
 import BFSection2Form from './components/BFSection2Form';
 import BFSection3Form from './components/BFSection3Form';
 
 import {
+	Section1ValidationSchema,
 	Section2ValidationSchema,
 	Section3ValidationSchema,
 } from '@emedico/shared';
@@ -30,18 +29,10 @@ import {
 interface BFSection1CreateProps {}
 
 const validationSchema1 = Yup.object().shape({
-	section1: Yup.object().shape({
-		name: Yup.string()
-			.min(3, 'Too Short!')
-			.max(50, 'Too Long!')
-			.required('Required'),
-		age: Yup.number().required('Required').positive().integer(),
-		personalHistory: Yup.string().required('Required'),
-		gender: Yup.string().required('Required'),
-		dpid: Yup.string().required('Patient ID is a required field'),
-		occupation: Yup.string().required('Required'),
-		diplopia: Yup.string().required('Required'),
-	} as any),
+	section1: Yup.object()
+		.shape(Section1ValidationSchema)
+		.default(undefined)
+		.nullable(),
 });
 
 const validationSchema2 = Yup.object().shape({
@@ -58,7 +49,6 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
 	const addPatientFormData = AddBFPatientSectionData();
 
 	const [openDialog, setOpenDialog] = React.useState(false);
-	const [, setLoading] = React.useState(false);
 
 	const snackBar = snackBarStore((state) => state);
 
@@ -68,7 +58,6 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
 				initialValues={BFFormInitialValues}
 				onSubmit={async (values) => {
 					try {
-						// setLoading(true);
 						console.log(values);
 						const data = { ...values };
 
@@ -87,34 +76,25 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
 							data,
 						});
 
-						// setLoading(false);
-						// setOpenDialog(!openDialog);
+						setOpenDialog(!openDialog);
 
 						console.log(response1.data);
 					} catch (error: any) {
-						setLoading(false);
 						console.log(error.response.data.message);
 						snackBar.setOpen(true);
 						snackBar.setmessage(error.response.data.message);
 					}
 				}}
 			>
-				<FormikStep 
-				// validationSchema={validationSchema1} 
-				label='Section 1'>
+				<FormikStep validationSchema={validationSchema1} label='Section 1'>
 					<BFSection1Form />
 				</FormikStep>
 
-				<FormikStep 
-				// validationSchema={validationSchema2} 
-				label='Section 2'>
+				<FormikStep validationSchema={validationSchema2} label='Section 2'>
 					<BFSection2Form />
 				</FormikStep>
 
-				<FormikStep
-					validationSchema={validationSchema3}
-					label='Section 3'
-				>
+				<FormikStep validationSchema={validationSchema3} label='Section 3'>
 					<BFSection3Form />
 				</FormikStep>
 			</FormikStepper>
@@ -125,6 +105,7 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
 				onOkHandled={() => {
 					setOpenDialog(false);
 					// resetForm();
+					window.location.reload();
 				}}
 				title='Success'
 				content='Patient Added Successfully.'
@@ -168,7 +149,7 @@ export function FormikStepper({
 	return (
 		<Formik
 			{...props}
-			validationSchema={currentChild.props.validationSchema!}
+			validationSchema={currentChild.props.validationSchema}
 			validate={() => {
 				console.log('error');
 				window.scrollTo({
@@ -224,11 +205,13 @@ export function FormikStepper({
 							</CustomButton>
 						) : null}
 						<CustomButton disabled={isSubmitting} type='submit'>
-							{isSubmitting
-								? 'Adding Patient'
-								: isLastStep()
-								? 'Add Patient'
-								: 'Next Section'}
+							{isSubmitting ? (
+								<CircularProgress />
+							) : isLastStep() ? (
+								'Add Patient'
+							) : (
+								'Next Section'
+							)}
 						</CustomButton>
 					</div>
 				</Form>
