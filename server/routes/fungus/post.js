@@ -28,15 +28,15 @@ router.post('/addPatient', async (req, res) => {
 router.post('/section/:mongoid', async (req, res) => {
 	// add section1 data to db
 	const sec1 = new Section1({
-		mongoid: req.user.mongoid,
+		mongoid: req.params.mongoid,
 		...req.body.section1,
 	});
 	const sec2 = new Section2({
-		mongoid: req.user.mongoid,
+		mongoid: req.params.mongoid,
 		...req.body.section2,
 	});
 	const sec3 = new Section3({
-		mongoid: req.user.mongoid,
+		mongoid: req.params.mongoid,
 		...req.body.section3,
 	});
 

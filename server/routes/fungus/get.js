@@ -7,7 +7,7 @@ const Section3 = require('../../models/fungus/section3');
 //this block of code is to display all ofp-patients inside a particular doctor
 router.get('/getPatients', async (req, res) => {
 	try {
-		let allPatients = await User.findById(req.user.did);
+		let allPatients = await User.findById(req.user._id);
 		allPatients = allPatients.fPatients;
 		if (allPatients.length === 0)
 			res.status(400).send('There are no patients to display');
@@ -20,10 +20,10 @@ router.get('/getPatients', async (req, res) => {
 //this is to get a particular patient under a particular doctor
 router.get('/getOnePatient/:mongoid', async (req, res) => {
 	try {
-		let allPatients = await User.findById(req.user.did);
+		let allPatients = await User.findById(req.user._id);
 		allPatients = allPatients.fPatients;
 		for (i in allPatients) {
-			if (allPatients[i]._id == req.user.mongoid) 
+			if (allPatients[i]._id == req.params.mongoid) 
 				res.json(allPatients[i]);
 		}
 	} catch (err) {
@@ -34,8 +34,8 @@ router.get('/getOnePatient/:mongoid', async (req, res) => {
 // this is to GET the details of section 1
 router.get('/section1/:mongoid', async (req, res) => {
 	try {
-		let data = await Section1.findOne({ mongoid: req.user.mongoid }).exec();
-		// let allPatients = await User.findById(req.user.did);
+		let data = await Section1.findOne({ mongoid: req.params.mongoid }).exec();
+		// let allPatients = await User.findById(req.user._id);
 		// allPatients = allPatients.fPatients;
 		// for (i in allPatients) {
 		// 	if (allPatients[i]._id == req.params.mongoid) {
@@ -56,7 +56,7 @@ router.get('/section1/:mongoid', async (req, res) => {
 
 router.get('/section2/:mongoid', async (req, res) => {
 	try {
-		let data = await Section2.findOne({ mongoid: req.user.mongoid }).exec();
+		let data = await Section2.findOne({ mongoid: req.params.mongoid }).exec();
 		if (data)
 			res.json({
 				...data._doc,
@@ -69,7 +69,7 @@ router.get('/section2/:mongoid', async (req, res) => {
 
 router.get('/section3/:mongoid', async (req, res) => {
 	try {
-		let data = await Section3.findOne({ mongoid: req.user.mongoid }).exec();
+		let data = await Section3.findOne({ mongoid: req.params.mongoid }).exec();
 		if (data)
 			res.json({
 				...data._doc,
