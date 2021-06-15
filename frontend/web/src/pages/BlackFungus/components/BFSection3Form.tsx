@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { section3FormModel, BFFormInitialValues } from '@emedico/shared';
-import { getIn, useFormikContext } from 'formik';
+import { Field, getIn, useFormikContext } from 'formik';
 import CustomCard from '../../../widgets/CustomCard/CustomCard';
 import { formStyles } from './BFSection1FormStyles';
 import { Typography, Divider, Grid } from '@material-ui/core';
@@ -15,6 +15,7 @@ const BFSection3Form: React.FC<BFSection3FormProps> = () => {
 	const classes = formStyles();
 
 	const { errors } = useFormikContext<typeof BFFormInitialValues>();
+
 	return (
 		<CustomCard
 			customStyle={{
@@ -61,30 +62,29 @@ const BFSection3Form: React.FC<BFSection3FormProps> = () => {
 					} else if (item.type === 'textfield') {
 						return (
 							<Grid item xs={12} sm={6} key={index}>
-								<CustomTextField
+								<Field
 									name={`section3.${item.name}`}
-									padding={classes.textFieldPadding}
 									label={item.label}
+									padding={classes.textFieldPadding}
+									as={CustomTextField}
 									error={!!getIn(errors.section3, item.name)}
 									helperText={getIn(errors.section3, item.name)}
 								/>
 							</Grid>
 						);
-					}
-					 else if(item.type === 'checkbox') {
+					} else if (item.type === 'checkbox') {
 						return (
-							<Grid item xs = {12} sm = {6}  key = {index}>
+							<Grid item xs={12} key={index}>
 								<CustomCheckBox
-									name = {item.name}
-									label = {item.label}
-									items = {item.props}
-									error = {!!getIn(errors.section3, item.name)}
-									FormHelperText = {getIn(errors.section3, item.name)}
+									name={`section3.${item.name}`}
+									label={item.label}
+									items={item.props}
+									error={!!getIn(errors.section3, item.name)}
+									FormHelperText={getIn(errors.section3, item.name)}
 								/>
 							</Grid>
-						)
-					}
-					else return null;
+						);
+					} else return null;
 				})}
 			</Grid>
 		</CustomCard>
