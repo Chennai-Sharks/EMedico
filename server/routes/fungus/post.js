@@ -26,6 +26,59 @@ router.post('/addPatient', async (req, res) => {
 });
 
 router.post('/section/:mongoid', async (req, res) => {
+
+	var doctor = await User.findOne({ _id: req.user._id });
+	if(!("fungus" in doctor.dash))
+	{
+		doctor.dash.fungus={
+			complaints:{
+				e:0,
+				n:0,
+				m:0,
+				f:0
+			},
+			covid:{ y:0 , n:0 },
+			diabetes:{ y:0 , n:0 },
+			immuno_comp:{ y:0 , n:0 },
+			steriods:{ y:0 , n:0 },
+			hospitalized:{ y:0 , n:0 },
+			ventilation:{ y:0 , n:0 }
+		}
+	}
+	fungus=doctor.dash.fungus
+	section1=req.body.section1
+	if(section1.recentCovid =='yes')
+		fungus.covid.y++
+	else 
+		fungus.covid.n++
+	
+	if(section1.diabetesMellitus =='yes')
+		fungus.diabetes.y++
+	else 
+		fungus.diabetes.n++
+	
+	if(section1.immunocompromised =='yes')
+		fungus.immuno_comp.y++
+	else 
+		fungus.immuno_comp.n++
+	
+	if(section1.longtermSteriods =='yes')
+		fungus.steriods.y++
+	else 
+		fungus.steriods.n++
+
+	if(section1.hospitalizedHomecare =='Hospitalized')
+		fungus.hospitalized.y++
+	else if(section1.hospitalizedHomecare =='Home care')
+		fungus.hospitalized.n++
+
+	if(section1.mechanicalVentilation =='yes')
+		fungus.ventilation.y++
+	else 
+		fungus.ventilation.n++
+
+	doctor.dash.fungus=fungus;
+	await doctor.save()
 	// add section1 data to db
 	const sec1 = new Section1({
 		mongoid: req.params.mongoid,
