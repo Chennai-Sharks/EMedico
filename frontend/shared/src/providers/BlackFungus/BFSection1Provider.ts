@@ -70,13 +70,15 @@ export const AddBFPatientSectionData = () => {
 export const GetBFAllPatients = () => {
 	const docId = credentialStore((state) => state.docId);
 	const jwt = credentialStore((state) => state.token);
+
 	return useQuery<AxiosResponse<any>, AxiosError>(
 		`get All Patients for ${docId}`,
-		() => axios.get(`${APIURL}/api/fungus/get/getPatients`),			
-		{	
+		() => axios.get(`${APIURL}/api/fungus/get/getPatients`),
+		{	      
 			staleTime: 120000,
 			refetchOnWindowFocus: false,
-		}					
+      
+		}
 	);
 };
 
@@ -118,10 +120,16 @@ export const GetBFSection3Data = (patientId: string) => {
 
 export const DeleteBFSection1Data = () => {
   const docId = credentialStore((state) => state.docId);
+  const jwt = credentialStore((state) => state.token);
   return useMutation((data: Record<string, any>) => {
     console.log(data);
     return axios.delete(
-      `${APIURL}/api/fungus/delete/patient/${docId}/${data.mongoid}`
+      `${APIURL}/api/fungus/delete/patient/${docId}/${data.mongoid}`, 
+        {
+          headers: {
+            auth_Token: jwt,
+          },
+        }      
     );
   });
 };
