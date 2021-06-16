@@ -4,6 +4,18 @@ const Section1 = require('../../models/fungus/section1');
 const Section2 = require('../../models/fungus/section2');
 const Section3 = require('../../models/fungus/section3');
 
+router.get('/dashboard', async (req,res)=>{
+	try {
+		let user = await User.findById(req.user._id);
+		res.send({
+			recent : user.fPatients.slice(-3), 
+			noOfPatients : user.fPatients.length,
+			dash : user.dash
+		})	
+	} catch (error) {
+		res.status(400).send({ message:error});
+	}
+})
 //this block of code is to display all ofp-patients inside a particular doctor
 router.get('/getPatients', async (req, res) => {
 	try {

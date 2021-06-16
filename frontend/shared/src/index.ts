@@ -1,5 +1,5 @@
 export const hello = () => {
-	return 'This is coming from shared folder noice right!!';
+  return 'This is coming from shared folder noice right!!';
 };
 import { QueryClient, QueryClientProvider } from 'react-query';
 
