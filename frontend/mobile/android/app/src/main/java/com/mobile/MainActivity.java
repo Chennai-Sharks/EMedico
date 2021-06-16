@@ -1,4 +1,4 @@
-package com.mobile;
+package com.maxillo;
 
 import com.facebook.react.ReactActivity;
 
