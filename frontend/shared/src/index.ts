@@ -1,10 +1,11 @@
 export const hello = () => {
-	return 'This is coming from shared folder noice right!!';
+  return 'This is coming from shared folder noice right!!';
 };
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 export * from './types/AuthTypes';
 
+export * from './model/BF/Section1FormModel';
 export * from './model/BF/Section2FormModel';
 export * from './model/BF/Section3FormModel';
 

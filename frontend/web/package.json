@@ -1,65 +1,65 @@
 {
-	"name": "web",
-	"version": "0.1.0",
-	"private": true,
-	"dependencies": {
-		"@emedico/shared": "1.0.0",
-		"@material-ui/core": "^4.11.4",
-		"@material-ui/icons": "^4.11.2",
-		"@material-ui/lab": "^4.0.0-alpha.58",
-		"@testing-library/jest-dom": "^5.11.4",
-		"@testing-library/react": "^11.1.0",
-		"@testing-library/user-event": "^12.1.10",
-		"@types/jest": "^26.0.15",
-		"@types/node": "^12.0.0",
-		"@types/react": "^17.0.0",
-		"@types/react-dom": "^17.0.0",
-		"formik": "2.2.9",
-		"formik-material-ui-lab": "^0.0.8",
-		"js-convert-case": "^4.1.2",
-		"material-ui-chip-input": "^1.1.0",
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2",
-		"react-google-login": "^5.2.2",
-		"react-perfect-scrollbar": "^1.5.8",
-		"react-router": "^5.2.0",
-		"react-router-dom": "^5.2.0",
-		"react-scripts": "4.0.3",
-		"typescript": "^4.1.2",
-		"web-vitals": "^1.0.1",
-		"yup": "^0.32.9"
-	},
-	"scripts": {
-		"startbyshared": "cd .. && cd shared && yarn build && cd .. && cd web && react-scripts build",
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject"
-	},
-	"eslintConfig": {
-		"extends": [
-			"react-app",
-			"react-app/jest"
-		]
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	},
-	"devDependencies": {
-		"@types/react-router": "^5.1.14",
-		"@types/react-router-dom": "^5.1.7"
-	},
-	"description": "",
-	"main": "index.js",
-	"author": "",
-	"license": "ISC"
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emedico/shared": "1.0.0",
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.58",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "formik": "2.2.9",
+    "formik-material-ui-lab": "^0.0.8",
+    "js-convert-case": "^4.1.2",
+    "material-ui-chip-input": "^1.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-google-login": "^5.2.2",
+    "react-perfect-scrollbar": "^1.5.8",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "typescript": "^4.1.2",
+    "web-vitals": "^1.0.1",
+    "yup": "^0.32.9"
+  },
+  "scripts": {
+    "startbyshared": "cd .. && cd shared && yarn build && cd .. && cd web && react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/react-router": "^5.1.14",
+    "@types/react-router-dom": "^5.1.7"
+  },
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }

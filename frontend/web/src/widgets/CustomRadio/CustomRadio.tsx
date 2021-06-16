@@ -16,7 +16,7 @@ const CustomRadio: React.FC<CustomRadioProps> = (props) => {
 				</Typography>
 				<Field
 					type='checkbox'
-					exclusive
+					exclusive // exclusive makes it radio button
 					name={props.name}
 					component={ToggleButtonGroup}
 				>
@@ -29,6 +29,7 @@ const CustomRadio: React.FC<CustomRadioProps> = (props) => {
 							className={classes.btWidth}
 							style={{
 								borderColor: props.error ? 'red' : undefined,
+								// borderWidth: props.error ? '2px' : undefined,
 							}}
 							key={index}
 							value={item}

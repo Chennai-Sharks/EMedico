@@ -1,35 +1,35 @@
 {
-	"name": "emedico",
-	"version": "1.0.0",
-	"description": "In Progress",
-	"private": true,
-	"workspaces": {
-		"packages": [
-			"frontend/*"
-		],
-		"nohoist": [
-			"**/react-native",
-			"**/react-native/**",
-			"**/react",
-			"**/react/**",
-			"**/react-dom",
-			"**/react-dom/**"
-		]
-	},
-	"scripts": {
-		"web": "cd frontend && cd web",
-		"mobile": "cd frontend && cd mobile",
-		"server": "cd server"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/Chennai-Sharks/EMedico.git"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "",
-	"bugs": {
-		"url": "https://github.com/Chennai-Sharks/EMedico/issues"
-	},
-	"homepage": "https://github.com/Chennai-Sharks/EMedico#readme"
+  "name": "emedico",
+  "version": "1.0.0",
+  "description": "In Progress",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "frontend/*"
+    ],
+    "nohoist": [
+      "**/react-native",
+      "**/react-native/**",
+      "**/react",
+      "**/react/**",
+      "**/react-dom",
+      "**/react-dom/**"
+    ]
+  },
+  "scripts": {
+    "web": "cd frontend && cd web",
+    "mobile": "cd frontend && cd mobile",
+    "server": "cd server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chennai-Sharks/EMedico.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/Chennai-Sharks/EMedico/issues"
+  },
+  "homepage": "https://github.com/Chennai-Sharks/EMedico#readme"
 }

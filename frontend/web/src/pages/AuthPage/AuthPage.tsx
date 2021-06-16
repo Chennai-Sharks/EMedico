@@ -8,101 +8,101 @@ import { Box, Typography, LinearProgress } from '@material-ui/core';
 import GoogleLogin, { GoogleLoginResponse } from 'react-google-login';
 import CustomSnackBar from 'widgets/CustomSnackBar/CustomSnackBar';
 import {
-	snackBarStore,
-	docDetailsStore,
-	credentialStore,
-	AuthProvider,
+  snackBarStore,
+  docDetailsStore,
+  credentialStore,
+  AuthProvider,
 } from '@emedico/shared';
 
 import { useHistory } from 'react-router-dom';
 interface AuthPageProps {}
 
 const AuthPage: React.FC<AuthPageProps> = () => {
-	const classes = useStyles();
+  const classes = useStyles();
 
-	const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
-	const snackBar = snackBarStore((state) => state);
-	const cred = credentialStore((state) => state);
-	const docDetails = docDetailsStore((state) => state);
+  const snackBar = snackBarStore((state) => state);
+  const cred = credentialStore((state) => state);
+  const docDetails = docDetailsStore((state) => state);
 
-	const authMutation = AuthProvider();
+  const authMutation = AuthProvider();
 
-	const router = useHistory();
+  const router = useHistory();
 
-	return (
-		<Box className={classes.background} overflow='hidden'>
-			<div className={classes.loginBox}>
-				{loading && <LinearProgress />}
-				<div className={classes.titlePadding} />
+  return (
+    <Box className={classes.background} overflow='hidden'>
+      <div className={classes.loginBox}>
+        {loading && <LinearProgress />}
+        <div className={classes.titlePadding} />
 
-				<div className={classes.loginTitleLayout}>
-					<img src={LogoImg} className={classes.imgLogo} alt='logo' />
-					<Typography
-						variant='h4'
-						style={{ paddingLeft: '10px', fontWeight: 'bold' }}
-					>
-						EMedico
-					</Typography>
-				</div>
-				<Box m={3.5} />
+        <div className={classes.loginTitleLayout}>
+          <img src={LogoImg} className={classes.imgLogo} alt='logo' />
+          <Typography
+            variant='h4'
+            style={{ paddingLeft: '10px', fontWeight: 'bold' }}
+          >
+            EMedico
+          </Typography>
+        </div>
+        <Box m={3.5} />
 
-				<div className={classes.loginButtonLayout}>
-					<Typography variant='h5' style={{ fontWeight: 'bold' }}>
-						Login in to you account
-					</Typography>
-					<Box m={2} />
-					<GoogleLogin
-						clientId='373451025957-0un7stu5blrn47pr8vj240uu5i4u7ap7.apps.googleusercontent.com'
-						cookiePolicy={'single_host_origin'}
-						onRequest={() => {
-							setLoading(true);
-						}}
-						onSuccess={async (response) => {
-							const finalResponse = response as GoogleLoginResponse;
-							try {
-								const serverResponse = await authMutation.mutateAsync({
-									email: finalResponse.profileObj.email,
-									name: finalResponse.profileObj.name,
-									userId: finalResponse.profileObj.googleId,
-								});
-								cred.setDocId(serverResponse.data.did);
-								cred.setToken(serverResponse.data.jwt);
+        <div className={classes.loginButtonLayout}>
+          <Typography variant='h5' style={{ fontWeight: 'bold' }}>
+            Login in to you account
+          </Typography>
+          <Box m={2} />
+          <GoogleLogin
+            clientId='373451025957-0un7stu5blrn47pr8vj240uu5i4u7ap7.apps.googleusercontent.com'
+            cookiePolicy={'single_host_origin'}
+            onRequest={() => {
+              setLoading(true);
+            }}
+            onSuccess={async (response) => {
+              const finalResponse = response as GoogleLoginResponse;
+              try {
+                const serverResponse = await authMutation.mutateAsync({
+                  email: finalResponse.profileObj.email,
+                  name: finalResponse.profileObj.name,
+                  userId: finalResponse.profileObj.googleId,
+                });
+                cred.setDocId(serverResponse.data.did);
+                cred.setToken(serverResponse.data.jwt);
 
-								docDetails.setEmail(finalResponse.profileObj.email);
-								docDetails.setProfileUrl(finalResponse.profileObj.imageUrl);
-								docDetails.setName(finalResponse.profileObj.name);
+                docDetails.setEmail(finalResponse.profileObj.email);
+                docDetails.setProfileUrl(finalResponse.profileObj.imageUrl);
+                docDetails.setName(finalResponse.profileObj.name);
 
-								setLoading(false);
-								router.replace('/home');
-							} catch (error: any) {
-								snackBar.setOpen(true);
-								snackBar.setmessage(error.response.data.message);
-								setLoading(false);
-							}
-						}}
-						onFailure={(response) => {
-							setLoading(false);
-							snackBar.setOpen(true);
-							snackBar.setmessage(response.error);
-						}}
-					/>
-					<Box m={2} />
+                setLoading(false);
+                router.replace('/home');
+              } catch (error: any) {
+                snackBar.setOpen(true);
+                snackBar.setmessage(error.response.data.message);
+                setLoading(false);
+              }
+            }}
+            onFailure={(response) => {
+              setLoading(false);
+              snackBar.setOpen(true);
+              snackBar.setmessage(response.error);
+            }}
+          />
+          <Box m={2} />
 
-					<Typography variant='subtitle2'>
-						Copyright 2021, Chennai Sharks
-					</Typography>
-				</div>
-			</div>
-			<img src={LoginPhoto} className={classes.imageBox} alt='main cover' />
-			<CustomSnackBar
-				open={snackBar.open}
-				handleClose={() => snackBar.setOpen(false)}
-				message={snackBar.message}
-				severity='error'
-			/>
-		</Box>
-	);
+          <Typography variant='subtitle2'>
+            Copyright 2021, Chennai Sharks
+          </Typography>
+        </div>
+      </div>
+      <img src={LoginPhoto} className={classes.imageBox} alt='main cover' />
+      <CustomSnackBar
+        open={snackBar.open}
+        handleClose={() => snackBar.setOpen(false)}
+        message={snackBar.message}
+        severity='error'
+      />
+    </Box>
+  );
 };
 
 export default AuthPage;
