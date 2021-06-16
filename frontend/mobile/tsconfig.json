@@ -22,9 +22,9 @@
     "isolatedModules": true /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */,
     "baseUrl": ".",
     "paths": {
-      "@screens/*": ["screens/*"],
-      "@widgets/*": ["widgets/*"],
-      "@assets/*": ["assets/*"]
+      // "@screens/*": ["screens/*"],
+      // "@widgets/*": ["widgets/*"],
+      // "@assets/*": ["assets/*"]
     },
 
     /* Strict Type-Checking Options */
