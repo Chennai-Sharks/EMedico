@@ -1,4 +1,5 @@
 import React from 'react';
+import DashboardGet from './Dashboard'
 
 import { Typography } from '@material-ui/core';
 interface HomePageProps {}
@@ -16,6 +17,7 @@ const HomePage: React.FC<HomePageProps> = (props) => {
         in the left. Click on patients to do all operations like create, update,
         delete and see the patient details.
       </Typography>
+      <DashboardGet />
     </>
   );
 };
