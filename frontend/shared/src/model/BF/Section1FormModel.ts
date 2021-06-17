@@ -65,6 +65,12 @@ export const section1FormModel: Array<Record<string, any>> = [
     label: 'Recently treated for Covid',
   },
   {
+    name: 'vaccination',
+    type:'radio',
+    props: ['None','1 dose','2 doses'],
+    label: 'Vaccinated'
+  },
+  {
     name: 'diabetesMellitus',
     type: 'radio',
     props: ['yes', 'no'],
