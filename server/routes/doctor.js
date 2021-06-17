@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
 });
 
 // to DELETE a doctor from db 
-router.delete('/:did',async (req,res)=>{
+router.delete('/',async (req,res)=>{
     try {
         const del = await User.findByIdAndDelete(req.user._id)
         res.status(200).send(del)
@@ -20,9 +20,31 @@ router.delete('/:did',async (req,res)=>{
         res.status(400).send(err)
     }
 });
-
+router.patch('/schema',async (req, res)=>{
+	try {
+		await User.updateMany({},{dash:{
+			fungus:{
+				complaints:{
+					e:0,
+					n:0,
+					m:0,
+					f:0
+				},
+				covid:{ y:0 , n:0 },
+				diabetes:{ y:0 , n:0 },
+				immuno_comp:{ y:0 , n:0 },
+				steriods:{ y:0 , n:0 },
+				hospitalized:{ y:0 , n:0 },
+				ventilation:{ y:0 , n:0 }
+			}
+		}})
+		res.send("User schema updated!!")
+	} catch (error) {
+		res.send({message:error})
+	}
+})
 //Updates doctor details
-router.patch('/:did', async (req, res) => {
+router.patch('/', async (req, res) => {
 
     try {
       const id = req.user._id;

@@ -28,25 +28,8 @@ router.post('/addPatient', async (req, res) => {
 router.post('/section/:mongoid', async (req, res) => {
 
 	var doctor = await User.findOne({ _id: req.user._id });
-	if(!("fungus" in doctor.dash))
-	{
-		doctor.dash.fungus={
-			complaints:{
-				e:0,
-				n:0,
-				m:0,
-				f:0
-			},
-			covid:{ y:0 , n:0 },
-			diabetes:{ y:0 , n:0 },
-			immuno_comp:{ y:0 , n:0 },
-			steriods:{ y:0 , n:0 },
-			hospitalized:{ y:0 , n:0 },
-			ventilation:{ y:0 , n:0 }
-		}
-	}
-	fungus=doctor.dash.fungus
-	section1=req.body.section1
+	fungus = doctor.dash.fungus
+	section1 = req.body.section1
 	if(section1.recentCovid =='yes')
 		fungus.covid.y++
 	else 
@@ -78,7 +61,7 @@ router.post('/section/:mongoid', async (req, res) => {
 		fungus.ventilation.n++
 
 	doctor.dash.fungus=fungus;
-	await doctor.save()
+
 	// add section1 data to db
 	const sec1 = new Section1({
 		mongoid: req.params.mongoid,
@@ -94,9 +77,10 @@ router.post('/section/:mongoid', async (req, res) => {
 	});
 
 	try {
-		const savedSec1 = await sec1.save();
-		const savedSec2 = await sec2.save();
-		const savedSec3 = await sec3.save();
+		await doctor.save()
+		await sec1.save();
+		await sec2.save();
+		await sec3.save();
 		res.send('Data added');
 	} catch (err) {
 		console.log(err);

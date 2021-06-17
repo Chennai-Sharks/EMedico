@@ -14,7 +14,23 @@ router.post('/login', async (req, res) => {
 		const user = new User({
 			userId: req.body.userId,
 			name: req.body.name,
-			email: req.body.email
+			email: req.body.email,
+			dash:{
+				fungus:{
+					complaints:{
+						e:0,
+						n:0,
+						m:0,
+						f:0
+					},
+					covid:{ y:0 , n:0 },
+					diabetes:{ y:0 , n:0 },
+					immuno_comp:{ y:0 , n:0 },
+					steriods:{ y:0 , n:0 },
+					hospitalized:{ y:0 , n:0 },
+					ventilation:{ y:0 , n:0 }
+				}
+			}
 		});
 		try {
 			const savedUser = await user.save();
