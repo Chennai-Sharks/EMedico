@@ -15,7 +15,8 @@ router.get('/dashboard', async (req,res)=>{
 	} catch (error) {
 		res.status(400).send({ message:error});
 	}
-})
+});
+
 //this block of code is to display all ofp-patients inside a particular doctor
 router.get('/getPatients', async (req, res) => {
 	try {

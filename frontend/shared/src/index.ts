@@ -20,3 +20,4 @@ export * from './schema/BlackFungus/FormInitialValues';
 
 export * from './providers/AuthProvider';
 export * from './providers/BlackFungus/BFSection1Provider';
+export * from './providers/HomeDashboard/DashboardProvider';
