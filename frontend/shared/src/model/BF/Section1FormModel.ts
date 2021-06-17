@@ -53,6 +53,12 @@ export const section1FormModel: Array<Record<string, any>> = [
     label: 'Occupation',
   },
   {
+    name: 'vaccination',
+    type: 'dropdown',
+    props: ['None', '1 dose', '2 doses'],
+    label: 'Vaccinated',
+  },
+  {
     name: 'concurrentCovid',
     type: 'radio',
     props: ['yes', 'no'],
@@ -64,12 +70,7 @@ export const section1FormModel: Array<Record<string, any>> = [
     props: ['yes', 'no'],
     label: 'Recently treated for Covid',
   },
-  {
-    name: 'vaccination',
-    type:'radio',
-    props: ['None','1 dose','2 doses'],
-    label: 'Vaccinated'
-  },
+
   {
     name: 'diabetesMellitus',
     type: 'radio',
