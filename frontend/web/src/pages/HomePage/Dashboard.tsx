@@ -29,8 +29,23 @@ const DashboardGet: React.FC<BFSection1GetProps> = (props: any) => {
 
   console.log(data);
 
+  const dashboardData = {
+      patientCount: data?.data?.noOfPatients,
+      recent: data?.data?.recent,
+  }
+
   if (isLoading) {
     return <LinearProgress />;
+  }
+
+  if(isError) {
+      return (
+          <>
+            <Typography>
+                Error had occured!
+            </Typography>
+          </>
+      )
   }
 
 //   if (isError) {
@@ -66,6 +81,20 @@ const DashboardGet: React.FC<BFSection1GetProps> = (props: any) => {
           Dashboard
       </Typography>
       <Grid container style={{ width: '100%' }}>
+          <Typography>
+              No. of Patients: {dashboardData.patientCount}
+          </Typography>
+
+          <Divider/>
+        
+{/*           
+        {(dashboardData.recent).forEach((item, index) => {
+            <Typography>
+                item.name
+            </Typography>
+        })} */}
+              
+         
         {/* {section1FormModel.map((item, index) => {
           if (item.type === 'title') {
             return (
