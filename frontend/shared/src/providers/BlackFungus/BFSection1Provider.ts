@@ -109,7 +109,7 @@ export const GetBFSection2Data = (patientId: string) => {
   const jwt = credentialStore((state) => state.token);
 
   return useQuery<AxiosResponse<any>, AxiosError>(
-    [`get All section 1 BF data`, patientId],
+    [`get All section 2 BF data`, patientId],
     () =>
       axios.get(`${APIURL}/api/fungus/get/section2/${patientId}`, {
         headers: {
@@ -128,7 +128,7 @@ export const GetBFSection3Data = (patientId: string) => {
   const jwt = credentialStore((state) => state.token);
 
   return useQuery<AxiosResponse<any>, AxiosError>(
-    [`get All section 1 BF data`, patientId],
+    [`get All section 3 BF data`, patientId],
     () =>
       axios.get(`${APIURL}/api/fungus/get/section3/${patientId}`, {
         headers: {
