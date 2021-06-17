@@ -47,16 +47,37 @@ function App() {
                   path='/black-fungus/get-patient'
                   exact
                   component={lazy(
+                    () => import('./pages/BlackFungus/BFSearchPatient')
+                  )}
+                />
+                <Route
+                  path='/black-fungus/get-patient/section1/:patientid'
+                  exact
+                  component={lazy(
                     () => import('./pages/BlackFungus/BFSection1Get')
                   )}
                 />
                 <Route
+                  path='/black-fungus/get-patient/section2/:patientid'
+                  exact
+                  component={lazy(
+                    () => import('./pages/BlackFungus/BFSection2Get')
+                  )}
+                />
+                <Route
+                  path='/black-fungus/get-patient/section3/:patientid'
+                  exact
+                  component={lazy(
+                    () => import('./pages/BlackFungus/BFSection3Get')
+                  )}
+                />
+                {/* <Route
                   path='/black-fungus/delete-patient'
                   exact
                   component={lazy(
                     () => import('./pages/BlackFungus/BFSection1Delete')
                   )}
-                />
+                /> */}
                 {/* <Route
                   path='/black-fungus/update-patient'
                   exact
