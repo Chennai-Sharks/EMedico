@@ -1,4 +1,4 @@
-import { GetBFSection1Data, section1FormModel } from '@emedico/shared';
+import { GetBFSection3Data, section3FormModel } from '@emedico/shared';
 import {
   Divider,
   Grid,
@@ -17,9 +17,9 @@ import { toHeaderCase } from 'js-convert-case';
 import CustomButton from 'widgets/CustomButton/CustomButton';
 import { useHistory } from 'react-router-dom';
 
-interface BFSection1GetProps {}
+interface BFSection3GetProps {}
 
-const BFSection1Get: React.FC<BFSection1GetProps> = (props: any) => {
+const BFSection3Get: React.FC<BFSection3GetProps> = (props: any) => {
   const classes = useStyles();
   const match = useMediaQuery('(min-width:1100px)');
 
@@ -49,14 +49,14 @@ const BFSection1Get: React.FC<BFSection1GetProps> = (props: any) => {
     );
   }
 
-  return <BFSection1GetAllowed {...props} />;
+  return <BFSection3GetAllowed {...props} />;
 };
 
-const BFSection1GetAllowed: React.FC<any> = (props) => {
+const BFSection3GetAllowed: React.FC<any> = (props) => {
   const classes = useStyles();
   const router = useHistory();
 
-  const { data, isLoading, isError, error } = GetBFSection1Data(
+  const { data, isLoading, isError, error } = GetBFSection3Data(
     props.match.params.patientid
   );
 
@@ -75,12 +75,6 @@ const BFSection1GetAllowed: React.FC<any> = (props) => {
     );
   }
 
-  const section1Data = {
-    name: props.location.state.name,
-    dpid: props.location.state.dpid,
-    ...data?.data,
-  };
-
   return (
     <CustomCard
       customStyle={{
@@ -92,11 +86,11 @@ const BFSection1GetAllowed: React.FC<any> = (props) => {
       }}
     >
       <Typography className={classes.title} variant='h5'>
-        Section 1
+        Section 3
       </Typography>
       <Divider />
       <Grid container style={{ width: '100%' }}>
-        {section1FormModel.map((item, index) => {
+        {section3FormModel.map((item, index) => {
           if (item.type === 'title') {
             return (
               <Grid
@@ -119,19 +113,17 @@ const BFSection1GetAllowed: React.FC<any> = (props) => {
                 <Divider />
               </Grid>
             );
-          } else if (item.type === 'bigtitle') {
+          } else if (item.type === 'checkbox') {
             return (
-              <Grid item xs={12} className={classes.title} key={index}>
-                {index !== 0 && <Divider />}
-                <Typography
-                  className={classes.title}
-                  style={{
-                    textAlign: 'center',
-                  }}
-                  variant='h4'
-                >
-                  {item.label}
-                </Typography>
+              <Grid item xs={12} key={index}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <Typography className={classes.title} variant='h6'>
+                    {toHeaderCase(item.label)}:
+                  </Typography>
+                  <Box className={classes.subtitle} fontWeight={500}>
+                    {data?.data[item.name]}
+                  </Box>
+                </div>
               </Grid>
             );
           } else {
@@ -142,7 +134,7 @@ const BFSection1GetAllowed: React.FC<any> = (props) => {
                     {toHeaderCase(item.label)}:
                   </Typography>
                   <Box className={classes.subtitle} fontWeight={500}>
-                    {section1Data[item.name]}
+                    {data?.data[item.name]}
                   </Box>
                 </div>
               </Grid>
@@ -153,7 +145,7 @@ const BFSection1GetAllowed: React.FC<any> = (props) => {
       <CustomButton
         onClick={() => {
           router.push(
-            `/black-fungus/get-patient/section2/${props.match.params.patientid}`,
+            `/black-fungus/get-patient/section1/${props.match.params.patientid}`,
             {
               ...props.location.state,
             }
@@ -161,7 +153,7 @@ const BFSection1GetAllowed: React.FC<any> = (props) => {
         }}
         customStyle={{ margin: ' 10px 30%' }}
       >
-        Next
+        Back
       </CustomButton>
     </CustomCard>
   );
@@ -193,4 +185,4 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default BFSection1Get;
+export default BFSection3Get;

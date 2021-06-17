@@ -38,7 +38,6 @@ export const AddPatientProvider = () => {
   return useMutation((data: Record<string, any>) =>
     axios.post(
       `${APIURL}/api/fungus/post/addPatient`,
-
       {
         ...data,
       },
@@ -50,7 +49,6 @@ export const AddPatientProvider = () => {
     )
   );
 };
-
 export const AddBFPatientSectionData = () => {
   const jwt = credentialStore((state) => state.token);
 
@@ -71,9 +69,16 @@ export const AddBFPatientSectionData = () => {
 
 export const GetBFAllPatients = () => {
   const docId = credentialStore((state) => state.docId);
+  const jwt = credentialStore((state) => state.token);
+
   return useQuery<AxiosResponse<any>, AxiosError>(
     `get All Patients for ${docId}`,
-    () => axios.get(`${APIURL}/api/fungus/get/getPatients/${docId}`),
+    () =>
+      axios.get(`${APIURL}/api/fungus/get/getPatients`, {
+        headers: {
+          auth_Token: jwt,
+        },
+      }),
     {
       staleTime: 120000,
       refetchOnWindowFocus: false,
@@ -82,9 +87,54 @@ export const GetBFAllPatients = () => {
 };
 
 export const GetBFSection1Data = (patientId: string) => {
+  const jwt = credentialStore((state) => state.token);
+
   return useQuery<AxiosResponse<any>, AxiosError>(
     [`get All section 1 BF data`, patientId],
-    () => axios.get(`${APIURL}/api/fungus/get/section1/${patientId}`),
+    () =>
+      axios.get(`${APIURL}/api/fungus/get/section1/${patientId}`, {
+        headers: {
+          auth_Token: jwt,
+        },
+      }),
+    {
+      enabled: !!patientId,
+      refetchOnWindowFocus: false,
+      staleTime: 1200000,
+    }
+  );
+};
+
+export const GetBFSection2Data = (patientId: string) => {
+  const jwt = credentialStore((state) => state.token);
+
+  return useQuery<AxiosResponse<any>, AxiosError>(
+    [`get All section 1 BF data`, patientId],
+    () =>
+      axios.get(`${APIURL}/api/fungus/get/section2/${patientId}`, {
+        headers: {
+          auth_Token: jwt,
+        },
+      }),
+    {
+      enabled: !!patientId,
+      refetchOnWindowFocus: false,
+      staleTime: 1200000,
+    }
+  );
+};
+
+export const GetBFSection3Data = (patientId: string) => {
+  const jwt = credentialStore((state) => state.token);
+
+  return useQuery<AxiosResponse<any>, AxiosError>(
+    [`get All section 1 BF data`, patientId],
+    () =>
+      axios.get(`${APIURL}/api/fungus/get/section3/${patientId}`, {
+        headers: {
+          auth_Token: jwt,
+        },
+      }),
     {
       enabled: !!patientId,
       refetchOnWindowFocus: false,
@@ -95,10 +145,16 @@ export const GetBFSection1Data = (patientId: string) => {
 
 export const DeleteBFSection1Data = () => {
   const docId = credentialStore((state) => state.docId);
+  const jwt = credentialStore((state) => state.token);
   return useMutation((data: Record<string, any>) => {
     console.log(data);
     return axios.delete(
-      `${APIURL}/api/fungus/delete/patient/${docId}/${data.mongoid}`
+      `${APIURL}/api/fungus/delete/patient/${docId}/${data.mongoid}`,
+      {
+        headers: {
+          auth_Token: jwt,
+        },
+      }
     );
   });
 };
