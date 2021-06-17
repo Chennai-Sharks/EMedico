@@ -10,7 +10,7 @@ router.get('/dashboard', async (req,res)=>{
 		res.send({
 			recent : user.fPatients.slice(-3), 
 			noOfPatients : user.fPatients.length,
-			dash : user.dash
+			dash : user.dash.fungus
 		})	
 	} catch (error) {
 		res.status(400).send({ message:error});
