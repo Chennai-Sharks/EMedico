@@ -27,12 +27,14 @@ const DashboardGet: React.FC<BFSection1GetProps> = (props: any) => {
 
   const { data, isLoading, isError, error } = GetDashboardData();
 
-  console.log(data);
-
   const dashboardData = {
       patientCount: data?.data?.noOfPatients,
       recent: data?.data?.recent,
+      dash: data?.data?.dash
   }
+
+  console.log(dashboardData);
+
 
   if (isLoading) {
     return <LinearProgress />;
@@ -86,16 +88,22 @@ const DashboardGet: React.FC<BFSection1GetProps> = (props: any) => {
           </Typography>
 
           <Divider/>
-                  
+          
           {(dashboardData.recent as any[]).forEach((item, index) => {
               <Typography>
                   {item.name}
+                  {/* {console.log(item.name)} */}
               </Typography>
           })}        
 
           <Divider/>
 
-          {/* <CustomDashboardCard/> */}
+          {Object.keys(dashboardData.dash).forEach(key => {
+            <CustomDashboardCard head = {key} />
+            // {console.log(key)}
+            // {console.log(dashboardData.dash[key])}
+          })}
+          
       </Grid>
       
     </CustomCard>
