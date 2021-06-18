@@ -19,6 +19,7 @@ import Error from '../../assets/error.svg';
 // import { toHeaderCase } from 'js-convert-case';
 
 import CustomDashboardCard from '../../widgets/CustomDashboardCard/CustomDashboardCard';
+import CustomTable from '../../widgets/CustomTable/CustomTable';
 // import { useHistory } from 'react-router-dom';
 
 interface BFSection1GetProps {}
@@ -84,15 +85,10 @@ const DashboardGet: React.FC<BFSection1GetProps> = (props: any) => {
 
           <Divider/>
           
-          {(dashboardData.recent as any[]).map((item, index) => {
-            return(
-              <Typography>
-                  {item.name}                                    
-              </Typography>
-            )
-              
-          })}        
-
+          
+          <CustomTable dashboardData = {dashboardData.recent} />
+          
+          
           <Divider/>
 
           {Object.keys(dashboardData.dash).map((item, index) => {    
@@ -105,7 +101,7 @@ const DashboardGet: React.FC<BFSection1GetProps> = (props: any) => {
             
           })}
           
-      </Grid>
+      </Grid>      
       
     </CustomCard>
   );
