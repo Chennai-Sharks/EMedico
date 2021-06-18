@@ -6,6 +6,7 @@ type State = {
   token: string;
   setToken: (token: string) => void;
   setDocId: (docId: string) => void;
+  deleteEverything: () => void;
 };
 
 export const credentialStore = create<State>(
@@ -23,6 +24,7 @@ export const credentialStore = create<State>(
           ...state,
           docId: docId,
         })),
+      deleteEverything: () => set({}, true),
     }),
 
     {

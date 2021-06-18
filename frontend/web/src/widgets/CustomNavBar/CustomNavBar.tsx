@@ -9,6 +9,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -25,10 +26,12 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import AddIcon from '@material-ui/icons/Add';
 // import RemoveIcon from '@material-ui/icons/Remove';
 // import EditIcon from '@material-ui/icons/Edit';
-import { Collapse } from '@material-ui/core';
+import { Avatar, Button, Collapse } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 import { mapRoutesToTitle } from '../../constant/MapRoutesToTitle';
+import { Signout } from '../../utils/Signout';
+import { credentialStore, docDetailsStore } from '@emedico/shared';
 
 const drawerWidth = 240;
 
@@ -50,7 +53,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     appBar: {
       [theme.breakpoints.up('md')]: {
-        width: `calc(100% - ${0}px)`,
+        width: `100%`,
         // marginLeft: drawerWidth,
         zIndex: theme.zIndex.drawer + 1,
         backgroundColor: '#5664D2',
@@ -62,6 +65,9 @@ const useStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up('md')]: {
         display: 'none',
       },
+    },
+    flexGrow: {
+      flexGrow: 1,
     },
     toolbar: theme.mixins.toolbar,
     drawerPaper: {
@@ -80,10 +86,33 @@ const useStyles = makeStyles((theme: Theme) =>
       width: 'auto',
       marginLeft: theme.spacing(3),
     },
+    logoutIcon: {
+      marginRight: theme.spacing(1),
+    },
     title: {
       marginTop: '10px',
       paddingLeft: theme.spacing(2),
       marginBottom: '10px',
+    },
+    profile: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      minHeight: 'fit-content',
+    },
+    avatar: {
+      width: 60,
+      height: 60,
+      marginTop: theme.spacing(2),
+    },
+    name: {
+      marginTop: theme.spacing(1),
+    },
+    marginTop: {
+      marginTop: theme.spacing(2),
+    },
+    marginBottom: {
+      marginBottom: theme.spacing(1),
     },
   })
 );
@@ -92,7 +121,9 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const router = useHistory();
-  console.log(router.location.pathname);
+  const deleteCred = credentialStore((state) => state.deleteEverything);
+  const docDetails = docDetailsStore((state) => state);
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const [openPatient, setOpenPatient] = React.useState(false);
@@ -112,6 +143,18 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
+      <div className={classes.profile}>
+        <Avatar
+          alt='Profile Pic'
+          className={classes.avatar}
+          src={docDetails.profileUrl}
+        />
+        <Typography className={classes.name} variant='h6'>
+          {docDetails.name}
+        </Typography>
+        <Typography variant='body2'>{docDetails.email}</Typography>
+      </div>
+      <div className={classes.marginTop} />
       <Divider />
       <List>
         <ListItem button onClick={() => handleRouteChange('/home')}>
@@ -120,6 +163,8 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
           </ListItemIcon>
           <ListItemText primary='DashBoard' />
         </ListItem>
+        <div className={classes.marginBottom} />
+
         <Divider />
         <Typography className={classes.title}>Black Fungus</Typography>
         <ListItem button onClick={handleClickPatient}>
@@ -177,7 +222,13 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
       </List>
 
       <Divider />
-      <List></List>
+      {/* <List>
+        <ListItem>
+          <Typography className={classes.title}>OFP</Typography>
+          <ListItemText primary=', Coming Soon' />
+        </ListItem>
+      </List>
+      <Divider /> */}
     </div>
   );
 
@@ -196,12 +247,25 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
             <MenuIcon />
           </IconButton>
           <Typography variant='h6' noWrap>
+            Maxillo
+          </Typography>
+          <div className={classes.flexGrow} />
+
+          <Typography variant='h6' noWrap>
             {
               mapRoutesToTitle.find(
                 (item) => item.route === router.location.pathname
               )?.title
             }
           </Typography>
+          <div className={classes.flexGrow} />
+          <Button
+            color='inherit'
+            onClick={() => Signout({ deleteCred, router })}
+          >
+            <ExitToAppIcon className={classes.logoutIcon} />
+            Sign out
+          </Button>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label='mailbox folders'>

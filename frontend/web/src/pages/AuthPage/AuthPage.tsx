@@ -15,12 +15,15 @@ import {
 } from '@emedico/shared';
 
 import { useHistory } from 'react-router-dom';
+import { CheckAuthState } from '../../utils/CheckAuthState';
+
 interface AuthPageProps {}
 
-const AuthPage: React.FC<AuthPageProps> = () => {
+const AuthPage: React.FC<AuthPageProps> = (props: any) => {
   const classes = useStyles();
 
   const [loading, setLoading] = React.useState(false);
+  const isAuth = CheckAuthState();
 
   const snackBar = snackBarStore((state) => state);
   const cred = credentialStore((state) => state);
@@ -29,6 +32,12 @@ const AuthPage: React.FC<AuthPageProps> = () => {
   const authMutation = AuthProvider();
 
   const router = useHistory();
+
+  React.useEffect(() => {
+    if (isAuth) {
+      router.replace('/home');
+    }
+  }, [isAuth, router]);
 
   return (
     <Box className={classes.background} overflow='hidden'>
@@ -42,7 +51,7 @@ const AuthPage: React.FC<AuthPageProps> = () => {
             variant='h4'
             style={{ paddingLeft: '10px', fontWeight: 'bold' }}
           >
-            EMedico
+            Maxillo
           </Typography>
         </div>
         <Box m={3.5} />
@@ -74,7 +83,9 @@ const AuthPage: React.FC<AuthPageProps> = () => {
                 docDetails.setName(finalResponse.profileObj.name);
 
                 setLoading(false);
-                router.replace('/home');
+                router.replace(
+                  props.location.state ? props.location.state.goTo : '/home'
+                );
               } catch (error: any) {
                 snackBar.setOpen(true);
                 snackBar.setmessage(error.response.data.message);
