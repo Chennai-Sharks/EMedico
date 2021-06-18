@@ -89,19 +89,30 @@ const DashboardGet: React.FC<BFSection1GetProps> = (props: any) => {
 
           <Divider/>
           
-          {(dashboardData.recent as any[]).forEach((item, index) => {
+          {(dashboardData.recent as any[]).map((item, index) => {
+            return(
               <Typography>
                   {item.name}
+                  <br />
                   {/* {console.log(item.name)} */}
               </Typography>
+            )
+              
           })}        
 
           <Divider/>
 
-          {Object.keys(dashboardData.dash).forEach(key => {
-            <CustomDashboardCard head = {key} />
-            // {console.log(key)}
-            // {console.log(dashboardData.dash[key])}
+          {Object.keys(dashboardData.dash).map((item, index) => {
+            return(
+              <>
+                <CustomDashboardCard head = {item} key = {index} />
+                <br />
+               {/* {console.log(key)}
+               {console.log(dashboardData.dash[key])} */}
+              </>
+              
+            )
+            
           })}
           
       </Grid>
