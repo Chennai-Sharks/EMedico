@@ -9,6 +9,8 @@ import {
   Box,
   useMediaQuery,
 } from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 import React from "react";
 // import CustomCard from 'widgets/CustomCard/CustomCard';
 
@@ -73,7 +75,13 @@ const DashboardGet: React.FC<BFSection1GetProps> = (props: any) => {
       <Divider />
       <Typography>Dashboard</Typography>
       <Grid container style={{ width: "100%" }}>
-        <Typography>No. of Patients: {dashboardData.patientCount}</Typography>
+        <Card >
+          <CardContent>                        
+                  <Typography >
+                    No. of Patients: {dashboardData.patientCount}
+                  </Typography>               
+          </CardContent>
+        </Card>        
 
         <Divider />
 
