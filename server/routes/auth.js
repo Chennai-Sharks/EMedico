@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const { timeStamp } = require('console');
 
 //register auth route
 router.post('/login', async (req, res) => {
@@ -34,10 +35,11 @@ router.post('/login', async (req, res) => {
 		});
 		try {
 			const savedUser = await user.save();
-			const token = jwt.sign({_id: savedUser._id}, process.env.TOKEN_SECRET);
+			const token = jwt.sign({_id: savedUser._id}, process.env.TOKEN_SECRET,{ expiresIn: '2h'});
 			res.status(200).send({
 				did: savedUser._id,
-				jwt: token 
+				jwt: token ,
+				exp : Date.now() + 7200
 			});
 		} catch (err) {
 			res.status(400).send({
@@ -46,10 +48,11 @@ router.post('/login', async (req, res) => {
 		}
 	} 
 	else{
-		const token = jwt.sign({_id: emailExist._id}, process.env.TOKEN_SECRET);
+		const token = jwt.sign({_id: emailExist._id}, process.env.TOKEN_SECRET,{ expiresIn: '2h'});
 		res.status(200).send({
 			did: emailExist._id,
-			jwt: token 
+			jwt: token ,
+			exp : Date.now() + 7200
 		});
 	}
 });
