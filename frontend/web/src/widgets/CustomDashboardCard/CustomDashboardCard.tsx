@@ -32,6 +32,18 @@ export default function CustomDashboardCard(props:any) {
         <Typography>
             {props.head}
         </Typography>
+        {Object.keys(props.items).map((item, index) => {    
+                        
+         return(
+           <>
+             <Typography key = {index} >
+               {item} : {props.items[item]}
+             </Typography>
+           </>
+           
+         )
+         
+       })}
       </CardContent>
       
     </Card>

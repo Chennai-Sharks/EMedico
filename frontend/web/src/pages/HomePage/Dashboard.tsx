@@ -1,3 +1,4 @@
+/* eslint-disable no-lone-blocks */
 import { GetDashboardData } from '@emedico/shared';
 import {
   Divider,
@@ -61,12 +62,6 @@ const DashboardGet: React.FC<BFSection1GetProps> = (props: any) => {
 //     );
 //   }
 
-//   const section1Data = {
-//     name: props.location.state.name,
-//     dpid: props.location.state.dpid,
-//     ...data?.data,
-//   };
-
   return (
     <CustomCard
       customStyle={{
@@ -92,9 +87,7 @@ const DashboardGet: React.FC<BFSection1GetProps> = (props: any) => {
           {(dashboardData.recent as any[]).map((item, index) => {
             return(
               <Typography>
-                  {item.name}
-                  <br />
-                  {/* {console.log(item.name)} */}
+                  {item.name}                                    
               </Typography>
             )
               
@@ -102,15 +95,12 @@ const DashboardGet: React.FC<BFSection1GetProps> = (props: any) => {
 
           <Divider/>
 
-          {Object.keys(dashboardData.dash).map((item, index) => {
+          {Object.keys(dashboardData.dash).map((item, index) => {    
+                           
             return(
               <>
-                <CustomDashboardCard head = {item} key = {index} />
-                <br />
-               {/* {console.log(key)}
-               {console.log(dashboardData.dash[key])} */}
-              </>
-              
+                <CustomDashboardCard  head = {item} items = {dashboardData.dash[item]} key = {index} />               
+              </>               
             )
             
           })}
