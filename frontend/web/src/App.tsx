@@ -6,6 +6,7 @@ import AuthPage from 'pages/AuthPage/AuthPage';
 import { LinearProgress, withStyles } from '@material-ui/core';
 
 import { scrollBarStyle } from './ScrollBarStyle';
+import PrivateRoute from './widgets/PrivateRoute/PrivateRoute';
 
 import './App.css';
 import CustomNavBar from 'widgets/CustomNavBar/CustomNavBar';
@@ -31,18 +32,13 @@ function App() {
             <Route path='/auth' exact component={AuthPage} />
             <CustomNavBar>
               <React.Suspense fallback={<LinearProgress />}>
-                <Route
-                  path='/home'
-                  exact
-                  component={lazy(() => import('./pages/HomePage/HomePage'))}
-                />
-                <Route
-                  path='/black-fungus/add-patient'
-                  exact
-                  component={lazy(
-                    () => import('./pages/BlackFungus/BFSectionCreate')
-                  )}
-                />
+                <PrivateRoute path='/home' exact>
+                  {lazy(() => import('./pages/HomePage/HomePage'))}
+                </PrivateRoute>
+                <PrivateRoute path='/black-fungus/add-patient' exact>
+                  {lazy(() => import('./pages/BlackFungus/BFSectionCreate'))}
+                </PrivateRoute>
+
                 <Route
                   path='/black-fungus/get-patient'
                   exact
@@ -95,4 +91,3 @@ function App() {
 }
 
 export default withStyles(scrollBarStyle)(App);
-// export default App;
