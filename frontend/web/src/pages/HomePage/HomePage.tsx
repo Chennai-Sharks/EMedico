@@ -14,6 +14,8 @@ import Error from '../../assets/error.svg';
 import AllPatients from './components/AllPatients';
 import CustomTooltip from '../../widgets/CustomTooltip/CustomTooltip';
 
+import { Redirect, Route } from 'react-router-dom';
+
 interface HomePageProps {}
 
 const HomePage: React.FC<HomePageProps> = () => {
@@ -142,10 +144,21 @@ const HomePage: React.FC<HomePageProps> = () => {
           <AllPatients />
         </Grid>
       </Grid>
-      <CustomTooltip />
+      <CustomTooltip
+        interactive
+        onClick={() => (
+          <Route exact path='/'>
+            {<Redirect to='/black-fungus/add-patient' />}
+          </Route>
+        )}
+      />
     </>
   );
 };
+
+// <Route exact path="/">
+//   {<Redirect to="/black-fungus/add-patient" />}
+// </Route>
 
 const useStyles = makeStyles((theme) => ({
   content: {

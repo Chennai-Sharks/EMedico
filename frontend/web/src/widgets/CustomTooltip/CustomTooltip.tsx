@@ -20,8 +20,9 @@ const CustomTooltip: React.FC<CustomTooltip> = (props) => {
   const classes = useStyles();
 
   return (
-    <div>               
-      <Tooltip title="Click here to Add Patient" aria-label="add" placement="left-end" >
+    <div>         
+      
+      <Tooltip {...props} title="Click here to Add Patient" aria-label="add" placement="right-end" >
         <Fab color="primary" className={classes.absolute}>
           <AddIcon />
         </Fab>
