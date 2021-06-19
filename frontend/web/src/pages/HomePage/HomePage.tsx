@@ -88,7 +88,7 @@ const HomePage: React.FC<HomePageProps> = () => {
         >
           <Grid item xs={6} sm={3}>
             <CardTile
-              title={'In steriods? :'}
+              title={'In steriods?'}
               values={[
                 `Yes: ${dashboardTiles.steriods.y}`,
                 `No: ${dashboardTiles.steriods.n}`,
@@ -97,7 +97,7 @@ const HomePage: React.FC<HomePageProps> = () => {
           </Grid>
           <Grid item xs={6} sm={3}>
             <CardTile
-              title={'Immuno compromised? :'}
+              title={'Immuno compromised? '}
               values={[
                 `Yes: ${dashboardTiles.immuno_comp.y}`,
                 `No: ${dashboardTiles.immuno_comp.n}`,
@@ -106,7 +106,7 @@ const HomePage: React.FC<HomePageProps> = () => {
           </Grid>
           <Grid item xs={6} sm={3}>
             <CardTile
-              title={'In ventilation? :'}
+              title={'In ventilation? '}
               values={[
                 `Yes: ${dashboardTiles.ventilation.y}`,
                 `No: ${dashboardTiles.ventilation.n}`,
@@ -147,6 +147,7 @@ const HomePage: React.FC<HomePageProps> = () => {
 const useStyles = makeStyles((theme) => ({
   content: {
     paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
   },
   centerText: {
     display: 'flex',

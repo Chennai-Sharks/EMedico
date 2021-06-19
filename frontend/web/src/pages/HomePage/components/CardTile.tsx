@@ -10,6 +10,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     borderRadius: '16px',
   },
+  title: {
+    fontSize: '1.5 rem',
+    fontWeight: 'bold',
+  },
   details: {
     display: 'flex',
     flexDirection: 'column',
@@ -32,7 +36,7 @@ const CardTile: React.FC<CardTilePropsProps> = (props) => {
   return (
     <Card className={classes.root} elevation={3}>
       <div>
-        <Typography variant='h6' gutterBottom>
+        <Typography variant='h6' className={classes.title}>
           {props.title}
         </Typography>
         <div className={classes.details}>
