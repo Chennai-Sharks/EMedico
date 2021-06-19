@@ -6,20 +6,55 @@ import {
   LinearProgress,
   makeStyles,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from '@material-ui/core';
 import TopSection from './components/TopSection';
 import CardTile from './components/CardTile';
 import RecentPatients from './components/RecentPatients';
 import Error from '../../assets/error.svg';
 import AllPatients from './components/AllPatients';
-import CustomTooltip from '../../widgets/CustomTooltip/CustomTooltip';
+import CustomFab from '../../widgets/CustomFab/CustomFab';
 
-import { Redirect, Route } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
+const useStyles = makeStyles((theme) => ({
+  content: {
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(8),
+  },
+  subContent: {
+    paddingTop: theme.spacing(4),
+  },
+  centerText: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    fontWeight: 'bold',
+    alignItems: 'center',
+  },
+  title: {
+    margin: '20px 20px',
+    fontSize: '1.5 rem',
+    fontWeight: 'bold',
+  },
+  subtitle: {
+    fontSize: '1.2rem',
+  },
+  errorImg: {
+    width: '100%',
+    height: '80vh',
+    padding: '10vh',
+  },
+}));
 
 interface HomePageProps {}
 
 const HomePage: React.FC<HomePageProps> = () => {
   const classes = useStyles();
+  const router = useHistory();
+  const theme = useTheme();
+  const match = useMediaQuery(theme.breakpoints.down('md'));
   const { data, isLoading, isError, error } = GetDashboardData();
 
   if (isLoading) {
@@ -46,7 +81,7 @@ const HomePage: React.FC<HomePageProps> = () => {
       <Grid
         container
         spacing={3}
-        // alignItems='center' // use center only for small devices
+        alignItems={match ? 'center' : undefined}
         className={classes.content}
       >
         <Grid item xs={6} sm={3}>
@@ -86,9 +121,9 @@ const HomePage: React.FC<HomePageProps> = () => {
         <Grid
           container
           spacing={3}
-          // alignItems='center'
+          alignItems={match ? 'center' : undefined}
           justify='center'
-          className={classes.content}
+          className={classes.subContent}
         >
           <Grid item xs={6} sm={3}>
             <CardTile
@@ -123,7 +158,7 @@ const HomePage: React.FC<HomePageProps> = () => {
           spacing={3}
           alignItems='center'
           justify='center'
-          className={classes.content}
+          className={classes.subContent}
         >
           <Grid item xs={6} sm={3}>
             <CardTile
@@ -144,48 +179,15 @@ const HomePage: React.FC<HomePageProps> = () => {
           <AllPatients />
         </Grid>
       </Grid>
-      <CustomTooltip
+      <CustomFab
         interactive
-        onClick={() => (
-          <Route exact path='/'>
-            {<Redirect to='/black-fungus/add-patient' />}
-          </Route>
-        )}
+        onClick={() => {
+          router.push('/black-fungus/add-patient');
+        }}
       />
     </>
   );
 };
-
-// <Route exact path="/">
-//   {<Redirect to="/black-fungus/add-patient" />}
-// </Route>
-
-const useStyles = makeStyles((theme) => ({
-  content: {
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
-  },
-  centerText: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    fontWeight: 'bold',
-    alignItems: 'center',
-  },
-  title: {
-    margin: '20px 20px',
-    fontSize: '1.5 rem',
-    fontWeight: 'bold',
-  },
-  subtitle: {
-    fontSize: '1.2rem',
-  },
-  errorImg: {
-    width: '100%',
-    height: '80vh',
-    padding: '10vh',
-  },
-}));
 
 export default HomePage;
 
