@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: theme.spacing(2),
   },
+  title: {
+    fontSize: '1.5 rem',
+    fontWeight: 'bold',
+  },
 }));
 
 const TopSection: React.FC<TopSectionProps> = (props) => {
@@ -22,7 +26,7 @@ const TopSection: React.FC<TopSectionProps> = (props) => {
       <Typography variant='body1' gutterBottom>
         Home
       </Typography>
-      <Typography gutterBottom variant='h6'>
+      <Typography gutterBottom variant='h6' className={classes.title}>
         Hello, {docDetails.name}
       </Typography>
       <Typography variant='subtitle1'>Here's some quick information</Typography>

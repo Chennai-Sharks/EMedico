@@ -21,12 +21,12 @@ import {
 } from '@material-ui/core/styles';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import FaceIcon from '@material-ui/icons/Face';
-import ExpandLess from '@material-ui/icons/ExpandLess';
+// import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import AddIcon from '@material-ui/icons/Add';
 // import RemoveIcon from '@material-ui/icons/Remove';
 // import EditIcon from '@material-ui/icons/Edit';
-import { Avatar, Button, Collapse } from '@material-ui/core';
+import { Avatar, Button } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 import { mapRoutesToTitle } from '../../constant/MapRoutesToTitle';
@@ -126,11 +126,11 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const [openPatient, setOpenPatient] = React.useState(false);
+  // const [openPatient, setOpenPatient] = React.useState(false);
 
-  const handleClickPatient = () => {
-    setOpenPatient(!openPatient);
-  };
+  // const handleClickPatient = () => {
+  //   setOpenPatient(!openPatient);
+  // };
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -166,38 +166,37 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
         <div className={classes.marginBottom} />
 
         <Divider />
-        <Typography className={classes.title}>Black Fungus</Typography>
-        <ListItem button onClick={handleClickPatient}>
+        <Typography className={classes.title}>Mucormycosis</Typography>
+        <ListItem>
           <ListItemIcon>
             <FaceIcon />
           </ListItemIcon>
           <ListItemText primary='Patients' />
-          {openPatient ? <ExpandLess /> : <ExpandMore />}
+          <ExpandMore />
         </ListItem>
 
-        <Collapse in={openPatient} timeout='auto' unmountOnExit>
-          <List component='div' disablePadding>
-            <ListItem
-              button
-              onClick={() => handleRouteChange('/black-fungus/get-patient')}
-              className={classes.nested}
-            >
-              <ListItemIcon>
-                <FaceIcon />
-              </ListItemIcon>
-              <ListItemText primary='Patient Detail' />
-            </ListItem>
-            <ListItem
-              button
-              onClick={() => handleRouteChange('/black-fungus/add-patient')}
-              className={classes.nested}
-            >
-              <ListItemIcon>
-                <AddIcon />
-              </ListItemIcon>
-              <ListItemText primary='Add Patient' />
-            </ListItem>
-            {/* <ListItem
+        <List component='div' disablePadding>
+          <ListItem
+            button
+            onClick={() => handleRouteChange('/black-fungus/get-patient')}
+            className={classes.nested}
+          >
+            <ListItemIcon>
+              <FaceIcon />
+            </ListItemIcon>
+            <ListItemText primary='Patient Detail' />
+          </ListItem>
+          <ListItem
+            button
+            onClick={() => handleRouteChange('/black-fungus/add-patient')}
+            className={classes.nested}
+          >
+            <ListItemIcon>
+              <AddIcon />
+            </ListItemIcon>
+            <ListItemText primary='Add Patient' />
+          </ListItem>
+          {/* <ListItem
 							button
 							onClick={() => handleRouteChange('/black-fungus/update-patient')}
 							className={classes.nested}
@@ -207,7 +206,7 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
 							</ListItemIcon>
 							<ListItemText primary='Update Patient' />
 						</ListItem> */}
-            {/* <ListItem
+          {/* <ListItem
 							button
 							onClick={() => handleRouteChange('/black-fungus/delete-patient')}
 							className={classes.nested}
@@ -217,8 +216,11 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
 							</ListItemIcon>
 							<ListItemText primary='Remove Patient' />
 						</ListItem> */}
-          </List>
-        </Collapse>
+        </List>
+        {/* 
+        <Collapse in={openPatient} timeout='auto' unmountOnExit>
+         
+        </Collapse> */}
       </List>
 
       <Divider />

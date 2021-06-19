@@ -18,7 +18,7 @@ import { GetBFAllPatients } from '@emedico/shared';
 import { useHistory } from 'react-router';
 import CustomCard from 'widgets/CustomCard/CustomCard';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   inner: {
     minWidth: '100%',
   },
@@ -29,6 +29,9 @@ const useStyles = makeStyles(() => ({
     margin: '20px 20px',
     fontSize: '1.5 rem',
     fontWeight: 'bold',
+  },
+  margin: {
+    margin: theme.spacing(3),
   },
 }));
 
@@ -48,7 +51,7 @@ const AllPatients: React.FC<AllPatientsProps> = () => {
       {isLoading ? (
         <LinearProgress />
       ) : isError ? (
-        <Typography align='center' variant='h6'>
+        <Typography align='center' variant='h6' className={classes.margin}>
           {error?.response?.data ? error?.response?.data?.message : 'No Data'}
         </Typography>
       ) : (

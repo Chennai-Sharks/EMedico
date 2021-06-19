@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.5 rem',
     fontWeight: 'bold',
   },
+  margin: {
+    margin: theme.spacing(3),
+  },
 }));
 
 const RecentPatients: React.FC<RecentPatientsProps> = (props) => {
@@ -38,43 +41,51 @@ const RecentPatients: React.FC<RecentPatientsProps> = (props) => {
         Recently added patients
       </Typography>
       <Divider />
-      <Table className={classes.inner}>
-        <TableHead>
-          <TableRow>
-            <TableCell align='center'>Name</TableCell>
-            <TableCell align='center'>DPID</TableCell>
-            <TableCell align='center'>Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {props.recentPatients.map((patient, index) => (
-            <TableRow hover key={index}>
-              <TableCell align='center'>
-                <Typography variant='body1' style={{ fontWeight: 500 }}>
-                  {patient.name}
-                </Typography>
-              </TableCell>
-              <TableCell align='center'>{patient.dpid}</TableCell>
-              <TableCell align='center'>
-                <Button
-                  color='primary'
-                  variant='outlined'
-                  onClick={() => {
-                    router.push(
-                      `black-fungus/get-patient/section1/${patient._id}`,
-                      {
-                        ...patient,
-                      }
-                    );
-                  }}
-                >
-                  View
-                </Button>
-              </TableCell>
+      {props.recentPatients.length !== 0 ? (
+        <Table className={classes.inner}>
+          <TableHead>
+            <TableRow>
+              <TableCell align='center'>Name</TableCell>
+              <TableCell align='center'>DPID</TableCell>
+              <TableCell align='center'>Actions</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {props.recentPatients.map((patient, index) => (
+              <TableRow hover key={index}>
+                <TableCell align='center'>
+                  <Typography variant='body1' style={{ fontWeight: 500 }}>
+                    {patient.name}
+                  </Typography>
+                </TableCell>
+                <TableCell align='center'>{patient.dpid}</TableCell>
+                <TableCell align='center'>
+                  <Button
+                    color='primary'
+                    variant='outlined'
+                    onClick={() => {
+                      router.push(
+                        `black-fungus/get-patient/section1/${patient._id}`,
+                        {
+                          ...patient,
+                        }
+                      );
+                    }}
+                  >
+                    View
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      ) : (
+        <div className={classes.margin}>
+          <Typography variant='h6' align='center'>
+            There are no recently added Patients
+          </Typography>
+        </div>
+      )}
     </CustomCard>
   );
 };

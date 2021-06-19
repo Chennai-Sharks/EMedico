@@ -82,6 +82,7 @@ export const GetBFAllPatients = () => {
     {
       staleTime: 120000,
       refetchOnWindowFocus: false,
+      retry: 1,
     }
   );
 };
@@ -101,6 +102,7 @@ export const GetBFSection1Data = (patientId: string) => {
       enabled: !!patientId,
       refetchOnWindowFocus: false,
       staleTime: 1200000,
+      retry: 1,
     }
   );
 };
@@ -120,6 +122,7 @@ export const GetBFSection2Data = (patientId: string) => {
       enabled: !!patientId,
       refetchOnWindowFocus: false,
       staleTime: 1200000,
+      retry: 1,
     }
   );
 };
@@ -139,6 +142,7 @@ export const GetBFSection3Data = (patientId: string) => {
       enabled: !!patientId,
       refetchOnWindowFocus: false,
       staleTime: 1200000,
+      retry: 1,
     }
   );
 };
