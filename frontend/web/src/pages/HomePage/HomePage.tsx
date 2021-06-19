@@ -36,7 +36,6 @@ const HomePage: React.FC<HomePageProps> = () => {
   const dashboardTiles = {
     ...data?.data.dash,
   };
-  console.log(data?.data);
   return (
     <>
       <TopSection />
@@ -129,7 +128,6 @@ const HomePage: React.FC<HomePageProps> = () => {
                 `Eye: ${dashboardTiles.complaints.e}`,
                 `Face: ${dashboardTiles.complaints.f}`,
                 `Mouth: ${dashboardTiles.complaints.m}`,
-
                 `Nose: ${dashboardTiles.complaints.n}`,
               ]}
             />
