@@ -208,7 +208,7 @@ export function FormikStepper({
               {isSubmitting ? (
                 <CircularProgress />
               ) : isLastStep() ? (
-                'Add Patient'
+                'Submit'
               ) : (
                 'Next Section'
               )}
