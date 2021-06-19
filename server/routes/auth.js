@@ -51,16 +51,26 @@ router.post('/login', async (req, res) => {
       });
     }
   } else {
-    const token = jwt.sign({ _id: emailExist._id }, process.env.TOKEN_SECRET, {
-      expiresIn: '2h',
-    });
-    let exp = new Date();
-    exp.setHours(exp.getHours() + 2);
-    res.status(200).send({
-      did: emailExist._id,
-      jwt: token,
-      exp: exp, //Date.now() + 7200
-    });
+    try {
+      const token = jwt.sign(
+        { _id: emailExist._id },
+        process.env.TOKEN_SECRET,
+        {
+          expiresIn: '2h',
+        }
+      );
+      let exp = new Date();
+      exp.setHours(exp.getHours() + 2);
+      res.status(200).send({
+        did: emailExist._id,
+        jwt: token,
+        exp: exp, //Date.now() + 7200
+      });
+    } catch (err) {
+      res.status(400).send({
+        message: 'something went wrong',
+      });
+    }
   }
 });
 
