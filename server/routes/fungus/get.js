@@ -23,7 +23,7 @@ router.get('/getPatients', async (req, res) => {
 		let allPatients = await User.findById(req.user._id);
 		allPatients = allPatients.fPatients;
 		if (allPatients.length === 0)
-			res.status(400).send('There are no patients to display');
+			res.status(400).send({message:'There are no patients'});
 		else res.json(allPatients);
 	} catch (err) {
 		res.status(400).send('Invalid ID');
