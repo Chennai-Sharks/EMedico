@@ -13,7 +13,7 @@ export const section1FormModel: Array<Record<string, any>> = [
   {
     name: 'dpid',
     type: 'textfield',
-    label: 'Dpid',
+    label: 'Patient ID',
   },
   {
     name: 'age',
@@ -53,10 +53,20 @@ export const section1FormModel: Array<Record<string, any>> = [
     label: 'Occupation',
   },
   {
+    type: 'title',
+    label: 'Predisposing Factors',
+  },
+  {
     name: 'vaccination',
     type: 'dropdown',
     props: ['None', '1 dose', '2 doses'],
     label: 'Vaccinated',
+  },
+  {
+    name: 'complaintRegion',
+    type: 'dropdown',
+    props: ['Mouth','Nose','Ear','Face'],
+    label: 'Region of complaint'
   },
   {
     name: 'concurrentCovid',

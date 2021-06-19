@@ -56,16 +56,12 @@ router.post('/section/:mongoid', async (req, res) => {
 	else if(section1.hospitalizedHomecare =='Home care')
 		fungus.hospitalized.n++
 
-	if(section1.mechanicalVentilation =='yes')
-		fungus.ventilation.y++
+	if(section1.vaccination =='None')
+		fungus.vaccination.n++
 	else 
-		fungus.ventilation.n++
-
-	console.log(fungus);
+		fungus.vaccination.y++
 
 	dash.fungus = fungus;
-
-	console.log(dash.fungus);
 	// add section1 data to db
 	const sec1 = new Section1({
 		mongoid: req.params.mongoid,
@@ -81,7 +77,7 @@ router.post('/section/:mongoid', async (req, res) => {
 	});
 
 	try {
-		await User.findByIdAndUpdate(req.user._id,{ dash : dash })
+		await User.findByIdAndUpdate(req.user._id,{ dash : dash },{ useFindAndModify:false })
 		await sec1.save();
 		await sec2.save();
 		await sec3.save();

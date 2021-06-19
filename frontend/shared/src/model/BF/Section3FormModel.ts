@@ -2,6 +2,10 @@ import * as Yup from 'yup';
 
 export const section3FormModel: Array<Record<string, any>> = [
   {
+    type: 'bigtitle',
+    label: 'Diagnosis',
+  },
+  {
     type: 'title',
     label: 'Nasal endoscopy',
   },

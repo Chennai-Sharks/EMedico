@@ -28,7 +28,7 @@ router.post('/login', async (req, res) => {
           immuno_comp: { y: 0, n: 0 },
           steriods: { y: 0, n: 0 },
           hospitalized: { y: 0, n: 0 },
-          ventilation: { y: 0, n: 0 },
+          vaccination: { y: 0, n: 0 },
         },
       },
     });
@@ -43,7 +43,7 @@ router.post('/login', async (req, res) => {
       res.status(200).send({
         did: savedUser._id,
         jwt: token,
-        exp: exp, //Date.now() + 7200
+        exp: exp, 
       });
     } catch (err) {
       res.status(400).send({
@@ -64,7 +64,7 @@ router.post('/login', async (req, res) => {
       res.status(200).send({
         did: emailExist._id,
         jwt: token,
-        exp: exp, //Date.now() + 7200
+        exp: exp, 
       });
     } catch (err) {
       res.status(400).send({
