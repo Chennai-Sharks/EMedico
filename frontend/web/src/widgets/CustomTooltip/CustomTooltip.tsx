@@ -13,15 +13,15 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
+
 type CustomTooltip = any;
 
 const CustomTooltip: React.FC<CustomTooltip> = (props) => {
   const classes = useStyles();
 
   return (
-    <div>         
-      
-      <Tooltip title="Add" aria-label="add" placement="right-end" >
+    <div>               
+      <Tooltip title="Click here to Add Patient" aria-label="add" placement="left-end" >
         <Fab color="primary" className={classes.absolute}>
           <AddIcon />
         </Fab>

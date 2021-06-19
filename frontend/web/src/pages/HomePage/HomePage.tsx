@@ -12,6 +12,7 @@ import CardTile from './components/CardTile';
 import RecentPatients from './components/RecentPatients';
 import Error from '../../assets/error.svg';
 import AllPatients from './components/AllPatients';
+import CustomTooltip from '../../widgets/CustomTooltip/CustomTooltip';
 
 interface HomePageProps {}
 
@@ -104,7 +105,7 @@ const HomePage: React.FC<HomePageProps> = () => {
               ]}
             />
           </Grid>
-          <Grid item xs={6} sm={3}>
+          {/* <Grid item xs={6} sm={3}>
             <CardTile
               title={'In ventilation? '}
               values={[
@@ -112,7 +113,7 @@ const HomePage: React.FC<HomePageProps> = () => {
                 `No: ${dashboardTiles.ventilation.n}`,
               ]}
             />
-          </Grid>
+          </Grid> */}
         </Grid>
         <Grid
           container
@@ -140,6 +141,7 @@ const HomePage: React.FC<HomePageProps> = () => {
           <AllPatients />
         </Grid>
       </Grid>
+      <CustomTooltip/>
     </>
   );
 };
