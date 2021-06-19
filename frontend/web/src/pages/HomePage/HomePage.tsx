@@ -33,6 +33,7 @@ const HomePage: React.FC<HomePageProps> = () => {
       </>
     );
   }
+  console.log(data?.data);
 
   const dashboardTiles = {
     ...data?.data.dash,
@@ -89,6 +90,15 @@ const HomePage: React.FC<HomePageProps> = () => {
         >
           <Grid item xs={6} sm={3}>
             <CardTile
+              title={'Immuno compromised? '}
+              values={[
+                `Yes: ${dashboardTiles.immuno_comp.y}`,
+                `No: ${dashboardTiles.immuno_comp.n}`,
+              ]}
+            />
+          </Grid>
+          <Grid item xs={6} sm={3}>
+            <CardTile
               title={'In steriods?'}
               values={[
                 `Yes: ${dashboardTiles.steriods.y}`,
@@ -98,22 +108,13 @@ const HomePage: React.FC<HomePageProps> = () => {
           </Grid>
           <Grid item xs={6} sm={3}>
             <CardTile
-              title={'Immuno compromised? '}
+              title={'No of patients vaccinated:'}
               values={[
-                `Yes: ${dashboardTiles.immuno_comp.y}`,
-                `No: ${dashboardTiles.immuno_comp.n}`,
+                `Yes: ${dashboardTiles.vaccination.y}`,
+                `No: ${dashboardTiles.vaccination.n}`,
               ]}
             />
           </Grid>
-          {/* <Grid item xs={6} sm={3}>
-            <CardTile
-              title={'In ventilation? '}
-              values={[
-                `Yes: ${dashboardTiles.ventilation.y}`,
-                `No: ${dashboardTiles.ventilation.n}`,
-              ]}
-            />
-          </Grid> */}
         </Grid>
         <Grid
           container
@@ -141,7 +142,7 @@ const HomePage: React.FC<HomePageProps> = () => {
           <AllPatients />
         </Grid>
       </Grid>
-      <CustomTooltip/>
+      <CustomTooltip />
     </>
   );
 };
