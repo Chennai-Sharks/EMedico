@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-const { timeStamp } = require('console');
+
 
 //register auth route
 router.post('/login', async (req, res) => {
