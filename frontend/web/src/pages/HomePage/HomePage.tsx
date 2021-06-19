@@ -129,7 +129,6 @@ const HomePage: React.FC<HomePageProps> = () => {
                 `Eye: ${dashboardTiles.complaints.e}`,
                 `Face: ${dashboardTiles.complaints.f}`,
                 `Mouth: ${dashboardTiles.complaints.m}`,
-
                 `Nose: ${dashboardTiles.complaints.n}`,
               ]}
             />
