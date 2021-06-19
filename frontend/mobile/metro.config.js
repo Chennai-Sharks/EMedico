@@ -16,8 +16,8 @@ module.exports = {
         get: (_, name) => {
           return path.join(__dirname, `node_modules/${name}`);
         },
-      },
+      }
     ),
   },
-  watchFolders: [path.resolve(__dirname, '../')],
+  watchFolders: [path.resolve(__dirname, '../../')],
 };

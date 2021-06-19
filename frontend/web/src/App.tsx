@@ -1,65 +1,88 @@
+import React, { lazy } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import AuthPage from 'pages/AuthPage/AuthPage';
-import { withStyles } from '@material-ui/core';
+import { LinearProgress, withStyles } from '@material-ui/core';
 
 import { scrollBarStyle } from './ScrollBarStyle';
-
-import HomePage from 'pages/HomePage/HomePage';
-import BFSection1Create from 'pages/BlackFungus/BFSectionCreate';
-import BFSection1Get from 'pages/BlackFungus/BFSection1Get';
-import BFSection1Delete from 'pages/BlackFungus/BFSection1Delete';
-import BFSection1Update from 'pages/BlackFungus/BFSection1Update';
+import PrivateRoute from './widgets/PrivateRoute/PrivateRoute';
 
 import './App.css';
+import CustomNavBar from 'widgets/CustomNavBar/CustomNavBar';
 
 function App() {
-	const theme = createMuiTheme({
-		typography: {
-			fontFamily: [
-				'Segoe UI',
-				'Oxygen',
-				'"Helvetica Neue"',
-				'Roboto',
-				'sans-serif',
-			].join(','),
-		},
-	});
-	return (
-		<BrowserRouter>
-			<ThemeProvider theme={theme}>
-				<div className='App'>
-					<Switch>
-						<Route path='/auth' exact component={AuthPage} />
-						<Route path='/home' exact component={HomePage} />
-						<Route
-							path='/black-fungus/add-patient'
-							exact
-							component={BFSection1Create}
-						/>
-						<Route
-							path='/black-fungus/get-patient'
-							exact
-							component={BFSection1Get}
-						/>
-						<Route
-							path='/black-fungus/delete-patient'
-							exact
-							component={BFSection1Delete}
-						/>
-						<Route
-							path='/black-fungus/update-patient'
-							exact
-							component={BFSection1Update}
-						/>
-						<Redirect path='/' to='/auth' />
-					</Switch>
-				</div>
-			</ThemeProvider>
-		</BrowserRouter>
-	);
+  const theme = createMuiTheme({
+    typography: {
+      fontFamily: [
+        'Segoe UI',
+        'Oxygen',
+        '"Helvetica Neue"',
+        'Roboto',
+        'sans-serif',
+      ].join(','),
+    },
+  });
+  return (
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <div className='App'>
+          <Switch>
+            <Redirect path='/' exact to='/auth' />
+            <Route path='/auth' exact component={AuthPage} />
+            <CustomNavBar>
+              <React.Suspense fallback={<LinearProgress />}>
+                <PrivateRoute path='/home' exact>
+                  {lazy(() => import('./pages/HomePage/HomePage'))}
+                </PrivateRoute>
+                <PrivateRoute path='/black-fungus/add-patient' exact>
+                  {lazy(() => import('./pages/BlackFungus/BFSectionCreate'))}
+                </PrivateRoute>
+                <PrivateRoute path='/black-fungus/get-patient' exact>
+                  {lazy(() => import('./pages/BlackFungus/BFSearchPatient'))}
+                </PrivateRoute>
+                <PrivateRoute
+                  path='/black-fungus/get-patient/section1/:patientid'
+                  exact
+                >
+                  {lazy(() => import('./pages/BlackFungus/BFSection1Get'))}
+                </PrivateRoute>
+
+                <PrivateRoute
+                  path='/black-fungus/get-patient/section2/:patientid'
+                  exact
+                >
+                  {lazy(() => import('./pages/BlackFungus/BFSection2Get'))}
+                </PrivateRoute>
+
+                <PrivateRoute
+                  path='/black-fungus/get-patient/section3/:patientid'
+                  exact
+                >
+                  {lazy(() => import('./pages/BlackFungus/BFSection3Get'))}
+                </PrivateRoute>
+
+                {/* <Route
+                  path='/black-fungus/delete-patient'
+                  exact
+                  component={lazy(
+                    () => import('./pages/BlackFungus/BFSection1Delete')
+                  )}
+                /> */}
+                {/* <Route
+                  path='/black-fungus/update-patient'
+                  exact
+                  component={lazy(
+                    () => import('./pages/BlackFungus/BFSection1Update')
+                  )}
+                /> */}
+              </React.Suspense>
+            </CustomNavBar>
+          </Switch>
+        </div>
+      </ThemeProvider>
+    </BrowserRouter>
+  );
 }
 
 export default withStyles(scrollBarStyle)(App);
-// export default App;

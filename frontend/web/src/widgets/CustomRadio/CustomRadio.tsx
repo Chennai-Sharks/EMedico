@@ -9,49 +9,64 @@ type CustomRadioProps = any;
 const CustomRadio: React.FC<CustomRadioProps> = (props) => {
 	const classes = useStyles();
 	return (
-		<div
-			className={classes.layout}
-			style={{
-				marginBottom: props.topMargin ? '5px' : '15px',
-			}}
-		>
-			<Typography variant='h6' className={classes.labelStyle}>
-				{props.label}
-			</Typography>
-			<Field
-				type='checkbox'
-				exclusive
-				name={props.name}
-				component={ToggleButtonGroup}
-			>
-				{(props.items as string[]).map((item, index) => (
-					<ToggleButton
-						classes={{
-							selected: classes.selected,
-						}}
-						color='primary'
-						className={classes.btWidth}
-						key={index}
-						value={item}
-						size='medium'
-						defaultValue=''
-					>
-						{item}
-					</ToggleButton>
-				))}
-			</Field>
-		</div>
+		<>
+			<div className={classes.layout1}>
+				<Typography variant='h6' className={classes.labelStyle}>
+					{props.label}
+				</Typography>
+				<Field
+					type='checkbox'
+					exclusive // exclusive makes it radio button
+					name={props.name}
+					component={ToggleButtonGroup}
+				>
+					{(props.items as string[]).map((item, index) => (
+						<ToggleButton
+							classes={{
+								selected: classes.selected,
+							}}
+							color='primary'
+							className={classes.btWidth}
+							style={{
+								borderColor: props.error ? 'red' : undefined,
+								// borderWidth: props.error ? '2px' : undefined,
+							}}
+							key={index}
+							value={item}
+							size='medium'
+							defaultValue=''
+						>
+							{item}
+						</ToggleButton>
+					))}
+				</Field>
+			</div>
+
+			{/* {props.error && (
+				<FormHelperText
+					error={props.error}
+					style={{
+						display: 'flex',
+						justifyContent: 'center',
+						fontWeight: 'bold',
+						marginTop: '5px',
+					}}
+				>
+					{props.helperText}
+				</FormHelperText>
+			)} */}
+		</>
 	);
 };
 
 const useStyles = makeStyles((theme) => ({
-	layout: {
+	layout1: {
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		// margin: '30px',
-		marginBottom: '20px',
-		marginTop: '30px',
+		flexDirection: 'row',
+
+		marginTop: '10px',
 	},
 
 	labelStyle: {
@@ -62,8 +77,7 @@ const useStyles = makeStyles((theme) => ({
 		fontWeight: 'bold',
 		margin: '20px',
 
-		marginRight: '0px',
-		textAlign: 'center',
+		// textAlign: 'center',
 	},
 	btWidth: {
 		width: '90px',

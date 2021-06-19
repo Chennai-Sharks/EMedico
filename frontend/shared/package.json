@@ -1,17 +1,18 @@
 {
-	"name": "@emedico/shared",
-	"version": "1.0.0",
-	"description": "",
-	"main": "dist/index.js",
-	"scripts": {
-		"build": "tsc"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"axios": "^0.21.1",
-		"react-query": "^3.16.0",
-		"zustand": "^3.5.1"
-	}
+  "name": "@emedico/shared",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "react-query": "^3.16.0",
+    "yup": "^0.32.9",
+    "zustand": "^3.5.1"
+  }
 }

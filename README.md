@@ -1,12 +1,12 @@
-# EMedico
+# Maxillo
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c0a9bf07-e7b3-407c-81b0-4245f7ecd4bd/deploy-status)](https://app.netlify.com/sites/maxillo/deploys)
+
+**Code-Named Emedico**
 In Progress
 
 Visit us back again and hopefully we've finished the project by then xD
 Or else look at our other works. Oh wait there ain't any lol
-
-## Mock Ui
-### [Here](http://sample-emedico.web.app/)
 
 ## Api blueprint
 
@@ -65,11 +65,5 @@ DELETE '/section1/:mongoID' => overwrites the entire document
     same to be repeated for all other sections...
 
 }
-
----
-
-## Basic FrontEnd architecture
-
-Click here to check [that](https://github.com/Chennai-Sharks/EMedico/blob/main/docs/basic_frontend_arch.svg)
 
 ---

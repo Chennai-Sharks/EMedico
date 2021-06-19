@@ -1,141 +1,199 @@
-import CustomNavBar from 'widgets/CustomNavBar/CustomNavBar';
-
+import { GetBFSection1Data, section1FormModel } from '@emedico/shared';
 import {
-	GetBFAllPatients,
-	GetBFSection1Data,
-	BFSection1DataTransformation,
-} from '@emedico/shared';
-import CustomAutoComplete from 'widgets/CustomAutoComplete/CustomAutoComplete';
-import {
-	Divider,
-	GridList,
-	LinearProgress,
-	makeStyles,
-	Typography,
+  Divider,
+  Grid,
+  LinearProgress,
+  makeStyles,
+  Typography,
+  Box,
+  useMediaQuery,
 } from '@material-ui/core';
-import React, { useState } from 'react';
+import React from 'react';
 import CustomCard from 'widgets/CustomCard/CustomCard';
 
+import Error404 from '../../assets/404.svg';
+import Error from '../../assets/error.svg';
 import { toHeaderCase } from 'js-convert-case';
+import CustomButton from 'widgets/CustomButton/CustomButton';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 
 interface BFSection1GetProps {}
 
-const BFSection1Get: React.FC<BFSection1GetProps> = () => {
-	const classes = useStyles();
-	const [patientMongoId, setPatientMongoId] = useState('');
+const BFSection1Get: React.FC<BFSection1GetProps> = (props: any) => {
+  const classes = useStyles();
+  const params = useParams<{ patientid: string }>();
+  const match = useMediaQuery('(min-width:1100px)');
 
-	const allPatients = GetBFAllPatients();
-	const { data, isLoading, isError, refetch } =
-		GetBFSection1Data(patientMongoId);
+  if (!params.patientid) {
+    return (
+      <>
+        {match && (
+          <img
+            src={Error404}
+            alt='404'
+            style={{
+              width: '100%',
+              height: '80vh',
+            }}
+          />
+        )}
+        <Typography
+          variant='h4'
+          className={classes.centerText}
+          style={{
+            height: !match ? '90vh' : undefined,
+          }}
+        >
+          Page Not Found
+        </Typography>
+      </>
+    );
+  }
 
-	// if (!allPatients.isLoading) {
-	// 	console.log(allPatients.data?.data);
-	// 	console.log(allPatients.error?.message);
-	// }
-	// if (!isLoading) {
-	// 	console.log(isError);
-	// 	console.log(BFSection1DataTransformation(data?.data));
-	// }
+  return <BFSection1GetAllowed {...props} />;
+};
 
-	// Performance improvements to be made in Object.keys() thing.
+const BFSection1GetAllowed: React.FC<any> = (props) => {
+  const classes = useStyles();
+  const router = useHistory();
+  const location = useLocation<Record<string, any>>();
+  const params = useParams<{ patientid: string }>();
 
-	return (
-		<CustomNavBar pageName='Black Fungus - View Details of Patient'>
-			{allPatients.isLoading && <LinearProgress />}
-			{allPatients.isError && (
-				<Typography style={{ marginTop: '40%', marginLeft: '40%' }}>
-					No Patients there
-				</Typography>
-			)}
+  const { data, isLoading, isError, error } = GetBFSection1Data(
+    params.patientid
+  );
 
-			{!allPatients.isLoading && !allPatients.isError && (
-				<div className={classes.content}>
-					<CustomAutoComplete
-						label='Enter Patient name'
-						data={allPatients.data?.data}
-						onChange={(_: any, value: any) => {
-							console.log('value' + value);
-							if (value) {
-								setPatientMongoId(value._id);
-								refetch();
-							} else {
-								setPatientMongoId('');
-							}
-						}}
-					/>
-					{patientMongoId && (
-						<CustomCard
-							customStyle={{
-								marginTop: '15px',
-							}}
-						>
-							<Typography className={classes.title} variant='h5'>
-								Patient Data
-							</Typography>
-							<Divider />
-							<GridList cellHeight='auto' spacing={2} style={{ width: '100%' }}>
-								{!isLoading &&
-									!isError &&
-									Object.keys(BFSection1DataTransformation(data?.data)).map(
-										(item, index) => {
-											console.log(item);
-											const newData = BFSection1DataTransformation(data?.data);
-											return (
-												<div
-													style={{
-														width: '50%',
-														display: 'flex',
-														flexDirection: 'row',
-														alignItems: 'center',
-													}}
-													key={index}
-												>
-													<Typography className={classes.title} style={{}}>
-														{toHeaderCase(item)}:
-													</Typography>
-													{
-														/// Post covid symptoms is array, so this the hack to bring
-														/// - if array is empty.
-														toHeaderCase(item) === 'Post Covid Symptoms' ? (
-															(newData[item] as string[]).length > 0 ? (
-																(newData[item] as string[]).map(
-																	(item, index) => (
-																		<Typography key={index}>
-																			{item ? `${item},` : '-'}
-																		</Typography>
-																	)
-																)
-															) : (
-																<Typography> - </Typography>
-															)
-														) : (
-															<Typography>
-																{newData[item] ? newData[item] : '-'}
-															</Typography>
-														)
-													}
-												</div>
-											);
-										}
-									)}
-							</GridList>
-						</CustomCard>
-					)}
-				</div>
-			)}
-		</CustomNavBar>
-	);
+  if (isLoading) {
+    return <LinearProgress />;
+  }
+
+  if (isError) {
+    return (
+      <>
+        <img src={Error} alt='Error' className={classes.errorImg} />
+        <Typography variant='h4' className={classes.centerText}>
+          {error?.response?.data.message ?? 'Invalid Patient'}
+        </Typography>
+      </>
+    );
+  }
+
+  const section1Data = {
+    name: location.state.name,
+    dpid: location.state.dpid,
+    ...data?.data,
+  };
+
+  return (
+    <CustomCard
+      customStyle={{
+        marginTop: '20px',
+        marginBottom: '30px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }}
+    >
+      <Typography className={classes.title} variant='h5'>
+        Section 1
+      </Typography>
+      <Divider />
+      <Grid container style={{ width: '100%' }}>
+        {section1FormModel.map((item, index) => {
+          if (item.type === 'title') {
+            return (
+              <Grid
+                item
+                xs={12}
+                className={classes.title}
+                key={index}
+                style={{ marginTop: '0px' }}
+              >
+                {index !== 0 && <Divider />}
+                <Typography
+                  className={classes.title}
+                  style={{
+                    textAlign: 'center',
+                  }}
+                  variant='h5'
+                >
+                  {item.label}
+                </Typography>
+                <Divider />
+              </Grid>
+            );
+          } else if (item.type === 'bigtitle') {
+            return (
+              <Grid item xs={12} className={classes.title} key={index}>
+                {index !== 0 && <Divider />}
+                <Typography
+                  className={classes.title}
+                  style={{
+                    textAlign: 'center',
+                  }}
+                  variant='h4'
+                >
+                  {item.label}
+                </Typography>
+              </Grid>
+            );
+          } else {
+            return (
+              <Grid item xs={12} sm={6} key={index}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <Typography className={classes.title} variant='h6'>
+                    {toHeaderCase(item.label)}:
+                  </Typography>
+                  <Box className={classes.subtitle} fontWeight={500}>
+                    {section1Data[item.name]}
+                  </Box>
+                </div>
+              </Grid>
+            );
+          }
+        })}
+      </Grid>
+      <CustomButton
+        onClick={() => {
+          router.push(
+            `/black-fungus/get-patient/section2/${params.patientid}`,
+            {
+              ...location.state,
+            }
+          );
+        }}
+        customStyle={{ margin: ' 10px 35%' }}
+      >
+        Next
+      </CustomButton>
+    </CustomCard>
+  );
 };
 
 const useStyles = makeStyles((theme) => ({
-	content: {
-		paddingTop: theme.spacing(3),
-	},
-	title: {
-		margin: '20px 20px',
-		fontSize: '1.5 rem',
-		fontWeight: 'bold',
-	},
+  content: {
+    paddingTop: theme.spacing(3),
+  },
+  centerText: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    fontWeight: 'bold',
+    alignItems: 'center',
+  },
+  title: {
+    margin: '20px 20px',
+    fontSize: '1.5 rem',
+    fontWeight: 'bold',
+  },
+  subtitle: {
+    fontSize: '1.2rem',
+  },
+  errorImg: {
+    width: '100%',
+    height: '80vh',
+    padding: '10vh',
+  },
 }));
 
 export default BFSection1Get;

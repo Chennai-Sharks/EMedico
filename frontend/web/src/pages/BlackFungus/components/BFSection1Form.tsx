@@ -1,191 +1,110 @@
-import { Grid, makeStyles } from '@material-ui/core';
-import { Field } from 'formik';
 import React from 'react';
-import CustomChipInput from 'widgets/CustomChipInput/CustomChipInput';
+import { Divider, Grid, Typography } from '@material-ui/core';
+import { Field, getIn, useFormikContext } from 'formik';
+import CustomCard from 'widgets/CustomCard/CustomCard';
 import CustomDropDown from 'widgets/CustomDropdown/CustomDropDown';
 import CustomRadio from 'widgets/CustomRadio/CustomRadio';
 import CustomTextField from 'widgets/CustomTextField/CustomTextField';
+import { BFFormInitialValues, section1FormModel } from '@emedico/shared';
+import { formStyles } from './BFSection1FormStyles';
 
-interface BFSection1FormProps {
-	values: any;
-}
+interface BFSection1FormProps {}
 
-const BFSection1Form: React.FC<BFSection1FormProps> = (props) => {
-	const classes = useStyles();
+const BFSection1Form: React.FC<BFSection1FormProps> = () => {
+  const classes = formStyles();
 
-	return (
-		<Grid container spacing={3} className={classes.layout}>
-			<Grid item xs={12} sm={6}>
-				<Field
-					name='name'
-					label='Name'
-					padding={classes.textFieldPadding}
-					as={CustomTextField}
-				/>
-				<Field
-					name='age'
-					label='Age'
-					type='number'
-					padding={classes.textFieldPadding}
-					as={CustomTextField}
-				/>
-				<Field
-					name='personalHistory'
-					label='Personal History'
-					type='select'
-					items={[
-						'single',
-						'married',
-						'divorce',
-						'separated',
-						'widowed',
-						'children',
-					]}
-					as={CustomDropDown}
-				/>
-				<CustomRadio
-					name='covid'
-					label='Tested Positive for Covid in the past?'
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='ventilatorOrProlongedLifeSupport'
-					label='Ventilator or in prolonged life support'
-					items={['yes', 'no']}
-				/>
+  const { errors } = useFormikContext<typeof BFFormInitialValues>();
 
-				<Field
-					name='diabeticStatus'
-					label='Diabetic Status'
-					padding={classes.textFieldPadding}
-					as={CustomTextField}
-				/>
-				<Field
-					name='steroidHistory'
-					label='Steroid History'
-					padding={classes.textFieldPadding}
-					as={CustomTextField}
-				/>
-				<CustomRadio
-					name='blackishDiscoloration'
-					// topMargin={true}
-					label='Blackish Discoloration'
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='eyeSymptoms'
-					label='Eye Symptoms'
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='toothacheOrMobileTooth'
-					label='Toothache or MobileTooth'
-					items={['yes', 'no']}
-				/>
-				<CustomRadio name='halitosis' label='Halitosis' items={['yes', 'no']} />
-				<CustomRadio name='fever' label='Fever' items={['yes', 'no']} />
-				<CustomRadio
-					name='alteredSensorium'
-					label='Altered Sensorium'
-					items={['yes', 'no']}
-				/>
-				<CustomRadio name='headache' label='Headache' items={['yes', 'no']} />
-			</Grid>
-			<Grid item xs={12} sm={6}>
-				<Field
-					name='dpid'
-					label='Patient ID'
-					padding={classes.textFieldPadding}
-					as={CustomTextField}
-				/>
-				<Field
-					name='gender'
-					label='Gender'
-					type='select'
-					items={['male', 'female', 'other']}
-					as={CustomDropDown}
-				/>
-				<Field
-					name='allergiesToMedication'
-					label='Allergies to Medication'
-					padding={classes.textFieldPadding}
-					as={CustomTextField}
-				/>
-				<CustomRadio
-					name='homecareOrHospitalized'
-					topMargin={true}
-					label='Home Care or Hospitalized?'
-					items={['Home care', 'Hospitalized']}
-				/>
-				<CustomRadio
-					name='sinusitis'
-					label='Sinusitis'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
+  return (
+    <CustomCard
+      customStyle={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }}
+    >
+      <Typography className={classes.title} variant='h5'>
+        Section 1
+      </Typography>
 
-				<CustomChipInput
-					name='postCovidSymptoms'
-					label='Post Covid Symptoms'
-					value={props.values.postCovidSymptoms}
-					padding={classes.textFieldPadding}
-				/>
-				<Field
-					name='occupation'
-					label='Occupation'
-					padding={classes.textFieldPadding}
-					as={CustomTextField}
-				/>
-				<CustomRadio
-					name='immunoCompromisedState'
-					label='Immuno Compromised?'
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='nasalBlockage'
-					label='Nasal Blockage'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='facialErythema'
-					label='Facial Erythema'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='facialPainNumbness'
-					label='Facial Pain or Numbness'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='palatalUlceration'
-					label='Palatal Ul Ceration'
-					// topMargin={false}
-					items={['yes', 'no']}
-				/>
-				<CustomRadio
-					name='skinLesions'
-					label='Skin Lesions'
-					topMargin={true}
-					items={['yes', 'no']}
-				/>
-			</Grid>
-		</Grid>
-	);
+      <Divider />
+
+      <Grid container className={classes.layout}>
+        {section1FormModel.map((item, index) => {
+          if (item.type === 'title') {
+            return (
+              <Grid item xs={12} className={classes.formTitle} key={index}>
+                {index !== 0 && <Divider style={{ marginTop: '20px' }} />}
+                <Typography
+                  className={classes.title}
+                  style={{
+                    textAlign: 'center',
+                  }}
+                  variant='h5'
+                >
+                  {item.label}
+                </Typography>
+                <Divider />
+              </Grid>
+            );
+          } else if (item.type === 'bigtitle') {
+            return (
+              <Grid item xs={12} className={classes.formTitle} key={index}>
+                {index !== 0 && <Divider style={{ marginTop: '20px' }} />}
+                <Typography
+                  className={classes.title}
+                  style={{
+                    textAlign: 'center',
+                  }}
+                  variant='h4'
+                >
+                  {item.label}
+                </Typography>
+                <Divider />
+              </Grid>
+            );
+          } else if (item.type === 'textfield') {
+            return (
+              <Grid item xs={12} sm={6} key={index}>
+                <Field
+                  name={`section1.${item.name}`}
+                  label={item.label}
+                  padding={classes.textFieldPadding}
+                  as={CustomTextField}
+                  error={!!getIn(errors.section1, item.name)}
+                  helperText={getIn(errors.section1, item.name)}
+                />
+              </Grid>
+            );
+          } else if (item.type === 'radio') {
+            return (
+              <Grid item xs={12} sm={6} key={index}>
+                <CustomRadio
+                  name={`section1.${item.name}`}
+                  label={item.label}
+                  items={item.props}
+                  error={!!getIn(errors.section1, item.name)}
+                />
+              </Grid>
+            );
+          } else if (item.type === 'dropdown') {
+            return (
+              <Grid item xs={12} sm={6} key={index}>
+                <Field
+                  name={`section1.${item.name}`}
+                  label={item.label}
+                  items={item.props}
+                  as={CustomDropDown}
+                  error={!!getIn(errors.section1, item.name)}
+                  helperText={getIn(errors.section1, item.name)}
+                />
+              </Grid>
+            );
+          } else return null;
+        })}
+      </Grid>
+    </CustomCard>
+  );
 };
-
-const useStyles = makeStyles(() => ({
-	layout: {
-		width: '100%',
-	},
-
-	textFieldPadding: {
-		margin: '20px',
-		paddingRight: '20px',
-		marginBottom: '0px',
-	},
-}));
 
 export default BFSection1Form;

@@ -1,0 +1,114 @@
+{
+    "data":[
+    {
+        "type": "title", 
+        "label": "Pulmonary Manifestations"
+    },
+    {
+        "name":"section2.feverOnBroadAntibiotics",
+        "label":"Refractory fever on broad-spectrum antibiotics",
+        "type":"radio",
+        "props":["yes","no"]
+    },
+    {
+        "name":"section2.nonproductiveCough",
+        "label":"Non-productive cough",
+        "type":"radio",
+        "props":["yes","no"]
+    },
+    {
+        "name":"section2.progressiveDyspnea",
+        "label":"Progressive dyspnea",
+        "type":"radio",
+        "props":["yes","no"]
+    },
+    {
+        "name":"section2.pleuriticChestPain",
+        "label":"Pleuritic Chest Pain",
+        "type":"radio",
+        "props":["yes","no"]
+    },
+    {
+        "type": "title", 
+        "label": "Cutaneous and soft tissue mucormycosis"
+    },
+    {
+        "name":"section2.erythema",
+        "label":"Erythema",
+        "type":"radio",
+        "props":["yes","no"]
+    },
+    {
+        "name":"section2.induration",
+        "label":"Induration",
+        "type":"radio",
+        "props":["yes","no"]
+    },
+    {
+        "name":"section2.blackEscharAtTrauma",
+        "label":"Black Eschar at trauma/puncture site",
+        "type":"radio",
+        "props":["yes","no"]
+    },
+    {
+        "name":"section2.musclePain",
+        "label":"Muscle pain with deeper involvement",
+        "type":"radio",
+        "props":["yes","no"]
+    },
+    {
+        "type": "title", 
+        "label": "Gastrointestinal mucormycosis"
+    },
+    {
+        "name":"section2.fever",
+        "label":"Fever",
+        "type":"radio",
+        "props":["yes","no"]
+    },
+    {
+        "name":"section2.bleedingPerAnus",
+        "label":"Bleeding per anus",
+        "type":"radio",
+        "props":["yes","no"]
+    },
+    {
+        "name":"section2.massLikeLesions",
+        "label":"Mass like lesions",
+        "type":"radio",
+        "props":["yes","no"]
+    },
+    {
+        "name":"section2.gutPerforation",
+        "label":"Perforation of gut",
+        "type":"radio",
+        "props":["yes","no"]
+    },
+    {
+        "type": "title", 
+        "label": "Mucormycosis of bones and joints"
+    },
+    {
+        "name":"section2.localPainAndTenderness",
+        "label":"Local pain and tenderness",
+        "type":"radio",
+        "props":["yes","no"]
+    },
+    {
+        "name":"section2.cellulitis",
+        "label":"Cellulitis",
+        "type":"radio",
+        "props":["yes","no"]
+    },
+    {
+        "type": "title", 
+        "label": "Cerebral involvement"
+    },
+    {
+        "name":"section2.alteredSensorium",
+        "label":"Altered sensorium",
+        "type":"radio",
+        "props":["yes","no"]
+    }
+]
+}

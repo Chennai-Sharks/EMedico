@@ -1,4 +1,4 @@
-package com.mobile;
+package com.maxillo;
 
 import android.app.Application;
 import android.content.Context;
