@@ -3,7 +3,6 @@ import { useQuery } from 'react-query';
 import { credentialStore } from '../../stores/CredentialStore';
 import { APIURL } from '../../utils/Utils';
 
-
 export const GetDashboardData = () => {
   const docId = credentialStore((state) => state.docId);
   const jwt = credentialStore((state) => state.token);
@@ -13,11 +12,11 @@ export const GetDashboardData = () => {
     () =>
       axios.get(`${APIURL}/api/fungus/get/dashboard`, {
         headers: {
-          auth_Token: jwt,
+          auth_token: jwt,
         },
       }),
     {
-      staleTime: 120000,
+      staleTime: 60000, // 1min
       refetchOnWindowFocus: false,
     }
   );
