@@ -30,7 +30,7 @@ var corsOptions = {
 
 //Middleware
 app.use(express.json({ limit: '10kb' }));
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 app.use(xss());
 app.use(helmet());
 app.use(mongoSanitize());
