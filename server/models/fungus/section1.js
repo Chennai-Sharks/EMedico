@@ -31,6 +31,10 @@ const section1Schema = new mongoose.Schema({
 		}, 
 
 		// Predisposing factors
+		"complaintRegion":{
+			type:String,
+			enum:['Mouth','Nose','Ear','Face']
+		},
 		"concurrentCovid":{
 			type:String,
 			enum:['yes','no']
