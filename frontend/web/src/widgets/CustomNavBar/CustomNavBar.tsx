@@ -166,7 +166,7 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
         <div className={classes.marginBottom} />
 
         <Divider />
-        <Typography className={classes.title}>Black Fungus</Typography>
+        <Typography className={classes.title}>Mucormycosis</Typography>
         <ListItem>
           <ListItemIcon>
             <FaceIcon />

@@ -5,11 +5,11 @@ export const mapRoutesToTitle = [
   },
   {
     route: '/black-fungus/get-patient',
-    title: 'Black Fungus - Search Patient',
+    title: 'Mucormycosis - Search Patient',
   },
   {
     route: '/black-fungus/add-patient',
-    title: 'Black Fungus - Add Patient Details',
+    title: 'Mucormycosis - Add Patient Details',
   },
   // {
   // 	route: '/black-fungus/update-patient',
