@@ -58,7 +58,7 @@ const AuthPage: React.FC<AuthPageProps> = (props: any) => {
 
         <div className={classes.loginButtonLayout}>
           <Typography variant='h5' style={{ fontWeight: 'bold' }}>
-            Login in to you account
+            Login in to your account
           </Typography>
           <Box m={2} />
           <GoogleLogin
