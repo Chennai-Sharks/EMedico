@@ -5,30 +5,35 @@ import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles((theme: Theme) =>
-  createStyles({    
+  createStyles({
     absolute: {
-      position: 'absolute',
+      position: 'fixed',
       bottom: theme.spacing(2),
       right: theme.spacing(3),
     },
-  }),
+  })
 );
 
-type CustomTooltip = any;
+// make this type safe later
+type CustomFabProps = any;
 
-const CustomTooltip: React.FC<CustomTooltip> = (props) => {
+const CustomFab: React.FC<CustomFabProps> = (props) => {
   const classes = useStyles();
 
   return (
-    <div>         
-      
-      <Tooltip {...props} title="Click here to Add Patient" aria-label="add" placement="right-end" >
-        <Fab color="primary" className={classes.absolute}>
+    <div>
+      <Tooltip
+        {...props}
+        title='Click here to Add Patient'
+        aria-label='add'
+        placement='right-end'
+      >
+        <Fab color='primary' className={classes.absolute}>
           <AddIcon />
         </Fab>
       </Tooltip>
     </div>
   );
-}
+};
 
-export default CustomTooltip;
+export default CustomFab;
