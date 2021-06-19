@@ -43,7 +43,7 @@ export const AddPatientProvider = () => {
       },
       {
         headers: {
-          auth_token: jwt,
+          'auth-token': jwt,
         },
       }
     )
@@ -60,7 +60,7 @@ export const AddBFPatientSectionData = () => {
       },
       {
         headers: {
-          auth_token: jwt,
+          'auth-token': jwt,
         },
       }
     )
@@ -76,7 +76,7 @@ export const GetBFAllPatients = () => {
     () =>
       axios.get(`${APIURL}/api/fungus/get/getPatients`, {
         headers: {
-          auth_token: jwt,
+          'auth-token': jwt,
         },
       }),
     {
@@ -94,7 +94,7 @@ export const GetBFSection1Data = (patientId: string) => {
     () =>
       axios.get(`${APIURL}/api/fungus/get/section1/${patientId}`, {
         headers: {
-          auth_token: jwt,
+          'auth-token': jwt,
         },
       }),
     {
@@ -113,7 +113,7 @@ export const GetBFSection2Data = (patientId: string) => {
     () =>
       axios.get(`${APIURL}/api/fungus/get/section2/${patientId}`, {
         headers: {
-          auth_token: jwt,
+          'auth-token': jwt,
         },
       }),
     {
@@ -132,7 +132,7 @@ export const GetBFSection3Data = (patientId: string) => {
     () =>
       axios.get(`${APIURL}/api/fungus/get/section3/${patientId}`, {
         headers: {
-          auth_token: jwt,
+          'auth-token': jwt,
         },
       }),
     {
@@ -152,7 +152,7 @@ export const DeleteBFSection1Data = () => {
       `${APIURL}/api/fungus/delete/patient/${docId}/${data.mongoid}`,
       {
         headers: {
-          auth_token: jwt,
+          'auth-token': jwt,
         },
       }
     );

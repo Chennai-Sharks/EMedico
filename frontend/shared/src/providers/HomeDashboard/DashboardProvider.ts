@@ -12,7 +12,7 @@ export const GetDashboardData = () => {
     () =>
       axios.get(`${APIURL}/api/fungus/get/dashboard`, {
         headers: {
-          auth_token: jwt,
+          'auth-token': jwt,
         },
       }),
     {

@@ -76,6 +76,7 @@ function App() {
                     () => import('./pages/BlackFungus/BFSection1Update')
                   )}
                 /> */}
+                {/**/}
               </React.Suspense>
             </CustomNavBar>
           </Switch>
