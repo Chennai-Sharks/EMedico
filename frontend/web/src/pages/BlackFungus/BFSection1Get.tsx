@@ -15,15 +15,16 @@ import Error404 from '../../assets/404.svg';
 import Error from '../../assets/error.svg';
 import { toHeaderCase } from 'js-convert-case';
 import CustomButton from 'widgets/CustomButton/CustomButton';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 
 interface BFSection1GetProps {}
 
 const BFSection1Get: React.FC<BFSection1GetProps> = (props: any) => {
   const classes = useStyles();
+  const params = useParams<{ patientid: string }>();
   const match = useMediaQuery('(min-width:1100px)');
 
-  if (!props.match.params.patientid) {
+  if (!params.patientid) {
     return (
       <>
         {match && (
@@ -55,9 +56,11 @@ const BFSection1Get: React.FC<BFSection1GetProps> = (props: any) => {
 const BFSection1GetAllowed: React.FC<any> = (props) => {
   const classes = useStyles();
   const router = useHistory();
+  const location = useLocation<Record<string, any>>();
+  const params = useParams<{ patientid: string }>();
 
   const { data, isLoading, isError, error } = GetBFSection1Data(
-    props.match.params.patientid
+    params.patientid
   );
 
   if (isLoading) {
@@ -76,8 +79,8 @@ const BFSection1GetAllowed: React.FC<any> = (props) => {
   }
 
   const section1Data = {
-    name: props.location.state.name,
-    dpid: props.location.state.dpid,
+    name: location.state.name,
+    dpid: location.state.dpid,
     ...data?.data,
   };
 
@@ -153,13 +156,13 @@ const BFSection1GetAllowed: React.FC<any> = (props) => {
       <CustomButton
         onClick={() => {
           router.push(
-            `/black-fungus/get-patient/section2/${props.match.params.patientid}`,
+            `/black-fungus/get-patient/section2/${params.patientid}`,
             {
-              ...props.location.state,
+              ...location.state,
             }
           );
         }}
-        customStyle={{ margin: ' 10px 30%' }}
+        customStyle={{ margin: ' 10px 35%' }}
       >
         Next
       </CustomButton>
