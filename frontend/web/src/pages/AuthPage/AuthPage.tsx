@@ -75,8 +75,10 @@ const AuthPage: React.FC<AuthPageProps> = (props: any) => {
                   name: finalResponse.profileObj.name,
                   userId: finalResponse.profileObj.googleId,
                 });
+                // console.log(new Date(serverResponse?.data.exp));
                 cred.setDocId(serverResponse.data.did);
                 cred.setToken(serverResponse.data.jwt);
+                cred.setExpiredIn(serverResponse.data.exp);
 
                 docDetails.setEmail(finalResponse.profileObj.email);
                 docDetails.setProfileUrl(finalResponse.profileObj.imageUrl);
@@ -87,8 +89,13 @@ const AuthPage: React.FC<AuthPageProps> = (props: any) => {
                   props.location.state ? props.location.state.goTo : '/home'
                 );
               } catch (error: any) {
+                console.log(error);
                 snackBar.setOpen(true);
-                snackBar.setmessage(error.response.data.message);
+                snackBar.setmessage(
+                  error.response.data
+                    ? error.response.data.message
+                    : 'something went wrong'
+                );
                 setLoading(false);
               }
             }}
