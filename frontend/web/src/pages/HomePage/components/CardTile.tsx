@@ -36,7 +36,7 @@ const CardTile: React.FC<CardTilePropsProps> = (props) => {
   return (
     <Card className={classes.root} elevation={3}>
       <div>
-        <Typography variant='h6' className={classes.title}>
+        <Typography variant='h6' gutterBottom className={classes.title}>
           {props.title}
         </Typography>
         <div className={classes.details}>
