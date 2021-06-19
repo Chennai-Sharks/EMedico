@@ -37,7 +37,7 @@ interface AllPatientsProps {}
 const AllPatients: React.FC<AllPatientsProps> = () => {
   const classes = useStyles();
   const router = useHistory();
-  const { data, isLoading, isError } = GetBFAllPatients();
+  const { data, isLoading, isError, error } = GetBFAllPatients();
 
   return (
     <CustomCard>
@@ -49,7 +49,7 @@ const AllPatients: React.FC<AllPatientsProps> = () => {
         <LinearProgress />
       ) : isError ? (
         <Typography align='center' variant='h6'>
-          Server is Down.
+          {error?.response?.data ? error?.response?.data?.message : 'No Data'}
         </Typography>
       ) : (
         <TableContainer className={classes.container}>
