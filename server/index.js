@@ -3,10 +3,10 @@ const app = express();
 const dotenv = require('dotenv');
 var cors = require('cors');
 const verify = require('./routes/verifyToken');
-const router =  require('./routes/index');
-const xss = require('xss-clean')
-const helmet = require('helmet')
-const mongoSanitize = require('express-mongo-sanitize')
+const router = require('./routes/index');
+const xss = require('xss-clean');
+const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
 //Import Routes
 const authRoute = require('./routes/auth');
 
@@ -37,11 +37,13 @@ app.use(mongoSanitize());
 
 app.use('/api/users', authRoute);
 
-// use 'M2' if u want jwt verification , else use 'M1'  
+// use 'M2' if u want jwt verification , else use 'M1'
 // M1
 //app.use('/api', router);
 
 // M2
-app.use('/api',verify, router);
+app.use('/api', verify, router);
 
-app.listen(port, () => console.log(`Server is running on port ${port}`.yellow.bold));
+app.listen(port, () =>
+  console.log(`Server is running on port ${port}`.yellow.bold)
+);
