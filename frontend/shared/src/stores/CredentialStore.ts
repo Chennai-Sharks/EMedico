@@ -26,7 +26,13 @@ export const credentialStore = create<State>(
           ...state,
           docId: docId,
         })),
-      deleteEverything: () => set({}, true),
+      deleteEverything: () =>
+        set((state) => ({
+          ...state,
+          docId: '',
+          token: '',
+          expiresIn: '',
+        })),
       expiresIn: '',
       setExpiredIn: (exp) =>
         set((state) => ({
