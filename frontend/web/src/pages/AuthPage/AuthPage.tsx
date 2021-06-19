@@ -75,7 +75,6 @@ const AuthPage: React.FC<AuthPageProps> = (props: any) => {
                   name: finalResponse.profileObj.name,
                   userId: finalResponse.profileObj.googleId,
                 });
-                // console.log(new Date(serverResponse?.data.exp));
                 cred.setDocId(serverResponse.data.did);
                 cred.setToken(serverResponse.data.jwt);
                 cred.setExpiredIn(serverResponse.data.exp);
@@ -108,7 +107,7 @@ const AuthPage: React.FC<AuthPageProps> = (props: any) => {
           <Box m={2} />
 
           <Typography variant='subtitle2'>
-            Copyright 2021, Chennai Sharks
+            Copyright 2021, Team Maxillo
           </Typography>
         </div>
       </div>
