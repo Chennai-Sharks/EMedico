@@ -19,8 +19,6 @@ const HomePage: React.FC<HomePageProps> = () => {
   const classes = useStyles();
   const { data, isLoading, isError, error } = GetDashboardData();
 
-  console.log(data);
-
   if (isLoading) {
     return <LinearProgress />;
   }
