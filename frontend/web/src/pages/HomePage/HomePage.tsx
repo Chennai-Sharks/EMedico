@@ -36,7 +36,6 @@ const HomePage: React.FC<HomePageProps> = () => {
   const dashboardTiles = {
     ...data?.data.dash,
   };
-  console.log(data?.data);
   return (
     <>
       <TopSection />
