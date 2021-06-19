@@ -30,7 +30,7 @@ const BFSearchPatient: React.FC<BFSearchPatientProps> = () => {
             label='Enter Patient name'
             data={allPatients.data?.data}
             onChange={(_: any, value: any) => {
-              //   console.log('value', value);
+              // console.log('value', value);
               router.push(`get-patient/section1/${value._id}`, {
                 ...value,
               });

@@ -60,28 +60,31 @@ router.post('/section/:mongoid', async (req, res) => {
 		fungus.ventilation.y++
 	else 
 		fungus.ventilation.n++
-	console.log(fungus)
+
+	console.log(fungus);
+
 	dash.fungus = fungus;
-	console.log(doctor.dash.fungus)
+
+	console.log(dash.fungus);
 	// add section1 data to db
 	const sec1 = new Section1({
 		mongoid: req.params.mongoid,
 		...req.body.section1,
 	});
-	// const sec2 = new Section2({
-	// 	mongoid: req.params.mongoid,
-	// 	...req.body.section2,
-	// });
-	// const sec3 = new Section3({
-	// 	mongoid: req.params.mongoid,
-	// 	...req.body.section3,
-	// });
+	const sec2 = new Section2({
+		mongoid: req.params.mongoid,
+		...req.body.section2,
+	});
+	const sec3 = new Section3({
+		mongoid: req.params.mongoid,
+		...req.body.section3,
+	});
 
 	try {
 		await User.findByIdAndUpdate(req.user._id,{ dash : dash })
 		await sec1.save();
-		// await sec2.save();
-		// await sec3.save();
+		await sec2.save();
+		await sec3.save();
 		res.send('Data added');
 	} catch (err) {
 		console.log(err);

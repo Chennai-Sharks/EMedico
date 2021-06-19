@@ -15,15 +15,16 @@ import Error404 from '../../assets/404.svg';
 import Error from '../../assets/error.svg';
 import { toHeaderCase } from 'js-convert-case';
 import CustomButton from 'widgets/CustomButton/CustomButton';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 
 interface BFSection2GetProps {}
 
 const BFSection2Get: React.FC<BFSection2GetProps> = (props: any) => {
   const classes = useStyles();
   const match = useMediaQuery('(min-width:1100px)');
+  const params = useParams<{ patientid: string }>();
 
-  if (!props.match.params.patientid) {
+  if (!params.patientid) {
     return (
       <>
         {match && (
@@ -55,9 +56,11 @@ const BFSection2Get: React.FC<BFSection2GetProps> = (props: any) => {
 const BFSection2GetAllowed: React.FC<any> = (props) => {
   const classes = useStyles();
   const router = useHistory();
+  const location = useLocation<Record<string, any>>();
+  const params = useParams<{ patientid: string }>();
 
   const { data, isLoading, isError, error } = GetBFSection2Data(
-    props.match.params.patientid
+    params.patientid
   );
 
   if (isLoading) {
@@ -132,26 +135,26 @@ const BFSection2GetAllowed: React.FC<any> = (props) => {
       <CustomButton
         onClick={() => {
           router.push(
-            `/black-fungus/get-patient/section1/${props.match.params.patientid}`,
+            `/black-fungus/get-patient/section1/${params.patientid}`,
             {
-              ...props.location.state,
+              ...location.state,
             }
           );
         }}
-        customStyle={{ margin: ' 10px 30%' }}
+        customStyle={{ margin: ' 10px 35%' }}
       >
         Back
       </CustomButton>
       <CustomButton
         onClick={() => {
           router.push(
-            `/black-fungus/get-patient/section3/${props.match.params.patientid}`,
+            `/black-fungus/get-patient/section3/${params.patientid}`,
             {
-              ...props.location.state,
+              ...location.state,
             }
           );
         }}
-        customStyle={{ margin: ' 10px 30%' }}
+        customStyle={{ margin: ' 10px 35%' }}
       >
         Next
       </CustomButton>

@@ -38,35 +38,30 @@ function App() {
                 <PrivateRoute path='/black-fungus/add-patient' exact>
                   {lazy(() => import('./pages/BlackFungus/BFSectionCreate'))}
                 </PrivateRoute>
-
-                <Route
-                  path='/black-fungus/get-patient'
-                  exact
-                  component={lazy(
-                    () => import('./pages/BlackFungus/BFSearchPatient')
-                  )}
-                />
-                <Route
+                <PrivateRoute path='/black-fungus/get-patient' exact>
+                  {lazy(() => import('./pages/BlackFungus/BFSearchPatient'))}
+                </PrivateRoute>
+                <PrivateRoute
                   path='/black-fungus/get-patient/section1/:patientid'
                   exact
-                  component={lazy(
-                    () => import('./pages/BlackFungus/BFSection1Get')
-                  )}
-                />
-                <Route
+                >
+                  {lazy(() => import('./pages/BlackFungus/BFSection1Get'))}
+                </PrivateRoute>
+
+                <PrivateRoute
                   path='/black-fungus/get-patient/section2/:patientid'
                   exact
-                  component={lazy(
-                    () => import('./pages/BlackFungus/BFSection2Get')
-                  )}
-                />
-                <Route
+                >
+                  {lazy(() => import('./pages/BlackFungus/BFSection2Get'))}
+                </PrivateRoute>
+
+                <PrivateRoute
                   path='/black-fungus/get-patient/section3/:patientid'
                   exact
-                  component={lazy(
-                    () => import('./pages/BlackFungus/BFSection3Get')
-                  )}
-                />
+                >
+                  {lazy(() => import('./pages/BlackFungus/BFSection3Get'))}
+                </PrivateRoute>
+
                 {/* <Route
                   path='/black-fungus/delete-patient'
                   exact

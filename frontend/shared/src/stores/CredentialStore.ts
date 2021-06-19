@@ -7,6 +7,8 @@ type State = {
   setToken: (token: string) => void;
   setDocId: (docId: string) => void;
   deleteEverything: () => void;
+  expiresIn: string;
+  setExpiredIn: (exp: string) => void;
 };
 
 export const credentialStore = create<State>(
@@ -25,6 +27,12 @@ export const credentialStore = create<State>(
           docId: docId,
         })),
       deleteEverything: () => set({}, true),
+      expiresIn: '',
+      setExpiredIn: (exp) =>
+        set((state) => ({
+          ...state,
+          expiresIn: exp,
+        })),
     }),
 
     {
