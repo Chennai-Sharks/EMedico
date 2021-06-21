@@ -71,3 +71,5 @@ jspm_packages/
 app/
 .vscode/settings.json
 
+# Cypress
+examples
