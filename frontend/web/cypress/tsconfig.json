@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "strict": true,
+    "noEmit": false,
+    "isolatedModules": true,
+    "lib": ["es5", "dom"],
+    "types": ["cypress"],
+    "allowJs": true
+  },
+  "include": ["**/*.spec.ts"]
+}
