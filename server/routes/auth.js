@@ -2,7 +2,6 @@ const router = require('express').Router();
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
-
 //register auth route
 router.post('/login', async (req, res) => {
   //this block of code is to check if the email doesn't already exists in the db
@@ -43,11 +42,11 @@ router.post('/login', async (req, res) => {
       res.status(200).send({
         did: savedUser._id,
         jwt: token,
-        exp: exp, 
+        exp: exp,
       });
     } catch (err) {
       res.status(400).send({
-        message: err,
+        message: 'Authentication failed',
       });
     }
   } else {
@@ -64,11 +63,11 @@ router.post('/login', async (req, res) => {
       res.status(200).send({
         did: emailExist._id,
         jwt: token,
-        exp: exp, 
+        exp: exp,
       });
     } catch (err) {
       res.status(400).send({
-        message: 'something went wrong',
+        message: 'Authentication failed',
       });
     }
   }
