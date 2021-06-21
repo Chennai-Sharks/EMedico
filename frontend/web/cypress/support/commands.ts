@@ -8,9 +8,28 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 //
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
+
+Cypress.Commands.add('login', () => {
+  window.localStorage.clear();
+  cy.request('POST', 'http://localhost:4000/api/users/login', {
+    email: Cypress.env('email'),
+    name: Cypress.env('name'),
+    userId: Cypress.env('userId'),
+  }).then((res) => {
+    cy.log(res.body.jwt);
+    window.localStorage.setItem(
+      'docId-store',
+      JSON.stringify({
+        state: {
+          docId: res.body.did,
+          token: res.body.jwt,
+          expiresIn: res.body.exp,
+        },
+        version: 0,
+      })
+    );
+  });
+});
 //
 //
 // -- This is a child command --
