@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { GetDashboardData } from "@emedico/shared";
+import { GetDashboardData } from '@emedico/shared';
 import {
   Grid,
   LinearProgress,
@@ -8,15 +8,15 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
-} from "@material-ui/core";
-import TopSection from "./components/TopSection";
-import CardTile from "./components/CardTile";
-import RecentPatients from "./components/RecentPatients";
-import Error from "../../assets/error.svg";
-import AllPatients from "./components/AllPatients";
-import CustomFab from "../../widgets/CustomFab/CustomFab";
+} from '@material-ui/core';
+import TopSection from './components/TopSection';
+import CardTile from './components/CardTile';
+import RecentPatients from './components/RecentPatients';
+import Error from '../../assets/error.svg';
+import AllPatients from './components/AllPatients';
+import CustomFab from '../../widgets/CustomFab/CustomFab';
 
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -27,24 +27,24 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(4),
   },
   centerText: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    fontWeight: "bold",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    fontWeight: 'bold',
+    alignItems: 'center',
   },
   title: {
-    margin: "20px 20px",
-    fontSize: "1.5 rem",
-    fontWeight: "bold",
+    margin: '20px 20px',
+    fontSize: '1.5 rem',
+    fontWeight: 'bold',
   },
   subtitle: {
-    fontSize: "1.2rem",
+    fontSize: '1.2rem',
   },
   errorImg: {
-    width: "100%",
-    height: "80vh",
-    padding: "10vh",
+    width: '100%',
+    height: '80vh',
+    padding: '10vh',
   },
 }));
 
@@ -54,7 +54,7 @@ const HomePage: React.FC<HomePageProps> = () => {
   const classes = useStyles();
   const router = useHistory();
   const theme = useTheme();
-  const match = useMediaQuery(theme.breakpoints.down("md"));
+  const match = useMediaQuery(theme.breakpoints.down('md'));
   const { data, isLoading, isError, error } = GetDashboardData();
 
   if (isLoading) {
@@ -63,9 +63,9 @@ const HomePage: React.FC<HomePageProps> = () => {
   if (isError) {
     return (
       <>
-        <img src={Error} alt="Error" className={classes.errorImg} />
-        <Typography variant="h4" className={classes.centerText}>
-          {error?.response?.data.message ?? "Server Error Please Contact Us"}
+        <img src={Error} alt='Error' className={classes.errorImg} />
+        <Typography variant='h4' className={classes.centerText}>
+          {error?.response?.data.message ?? 'Server Error Please Contact Us'}
         </Typography>
       </>
     );
@@ -81,18 +81,18 @@ const HomePage: React.FC<HomePageProps> = () => {
       <Grid
         container
         spacing={3}
-        alignItems={match ? "center" : undefined}
+        alignItems={match ? 'center' : undefined}
         className={classes.content}
       >
         <Grid item xs={6} sm={3}>
           <CardTile
-            title={"No of total Patients:"}
+            title={'No of total Patients:'}
             values={[data?.data.noOfPatients]}
           />
         </Grid>
         <Grid item xs={6} sm={3}>
           <CardTile
-            title={"Diabetes:"}
+            title={'Diabetes:'}
             values={[
               `With: ${dashboardTiles.diabetes.y}`,
               `Without: ${dashboardTiles.diabetes.n}`,
@@ -101,7 +101,7 @@ const HomePage: React.FC<HomePageProps> = () => {
         </Grid>
         <Grid item xs={6} sm={3}>
           <CardTile
-            title={"Covid:"}
+            title={'Covid:'}
             values={[
               `With: ${dashboardTiles.covid.y}`,
               `Without: ${dashboardTiles.covid.n}`,
@@ -110,7 +110,7 @@ const HomePage: React.FC<HomePageProps> = () => {
         </Grid>
         <Grid item xs={6} sm={3}>
           <CardTile
-            title={"Hospitalized:"}
+            title={'Hospitalized:'}
             values={[
               `Yes: ${dashboardTiles.hospitalized.y}`,
               `No: ${dashboardTiles.hospitalized.n}`,
@@ -121,13 +121,13 @@ const HomePage: React.FC<HomePageProps> = () => {
         <Grid
           container
           spacing={3}
-          alignItems={match ? "center" : undefined}
-          justify="center"
+          alignItems={match ? 'center' : undefined}
+          justify='center'
           className={classes.subContent}
         >
           <Grid item xs={6} sm={3}>
             <CardTile
-              title={"Immuno compromised? "}
+              title={'Immuno compromised? '}
               values={[
                 `Yes: ${dashboardTiles.immuno_comp.y}`,
                 `No: ${dashboardTiles.immuno_comp.n}`,
@@ -136,7 +136,7 @@ const HomePage: React.FC<HomePageProps> = () => {
           </Grid>
           <Grid item xs={6} sm={3}>
             <CardTile
-              title={"In steriods?"}
+              title={'In steriods?'}
               values={[
                 `Yes: ${dashboardTiles.steriods.y}`,
                 `No: ${dashboardTiles.steriods.n}`,
@@ -145,7 +145,7 @@ const HomePage: React.FC<HomePageProps> = () => {
           </Grid>
           <Grid item xs={6} sm={3}>
             <CardTile
-              title={"No of patients vaccinated:"}
+              title={'No of patients vaccinated:'}
               values={[
                 `Yes: ${dashboardTiles.vaccination.y}`,
                 `No: ${dashboardTiles.vaccination.n}`,
@@ -156,13 +156,13 @@ const HomePage: React.FC<HomePageProps> = () => {
         <Grid
           container
           spacing={3}
-          alignItems="center"
-          justify="center"
+          alignItems='center'
+          justify='center'
           className={classes.subContent}
         >
           <Grid item xs={6} sm={3}>
             <CardTile
-              title={"Region of complaints:"}
+              title={'Region of complaints:'}
               values={[
                 `Eye: ${dashboardTiles.complaints.e}`,
                 `Face: ${dashboardTiles.complaints.f}`,
@@ -182,7 +182,7 @@ const HomePage: React.FC<HomePageProps> = () => {
       <CustomFab
         interactive
         onClick={() => {
-          router.push("/black-fungus/add-patient");
+          router.push('/black-fungus/add-patient');
         }}
       />
     </>
