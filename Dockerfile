@@ -3,7 +3,6 @@
 # Base Image is pulled from docker hub. In this case its node with alpine variant.
 FROM node:14-alpine
 
-ENV NODE_ENV=production
 # Working directory is made as home/server
 WORKDIR /home/server
 
@@ -11,7 +10,7 @@ WORKDIR /home/server
 COPY ./server/package.json ./
 
 # Run this command
-RUN npm install --production
+RUN npm install
 
 # Copy all the contents in server folder to the docker Container in home/server
 COPY ./server/ .
