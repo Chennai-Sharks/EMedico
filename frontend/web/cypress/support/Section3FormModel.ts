@@ -1,4 +1,3 @@
-import * as Yup from 'yup';
 
 export const section3FormModel: Array<Record<string, any>> = [
   {
@@ -140,17 +139,3 @@ export const section3FormModel: Array<Record<string, any>> = [
   },
 ];
 
-let dummy = section3FormModel.filter((item) => item.type !== 'title');
-
-let validationSchema: Record<string, any> = {};
-
-dummy.forEach((item) => {
-  if (item.type === 'checkbox')
-    validationSchema[item.name] = Yup.array()
-      .min(1, 'Required')
-      .of(Yup.string().required('Required'))
-      .required('Required');
-  else validationSchema[item.name] = Yup.string().required('Required');
-});
-
-export const Section3ValidationSchema = validationSchema;

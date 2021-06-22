@@ -34,8 +34,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
@@ -53,7 +52,7 @@
   "devDependencies": {
     "@types/react-router": "^5.1.14",
     "@types/react-router-dom": "^5.1.7",
-    "cypress": "7.5.0"
+    "cypress": "^7.5.0"
   },
   "description": "",
   "main": "index.js",

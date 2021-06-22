@@ -1,4 +1,3 @@
-import * as Yup from 'yup';
 
 export const section1FormModel: Array<Record<string, any>> = [
   {
@@ -306,28 +305,3 @@ export const section1FormModel: Array<Record<string, any>> = [
     label: 'Perforation over palatal region',
   },
 ];
-
-// Future improvements, just check for item.name in section1FormModel itself. No need
-// Extra things.
-
-let dummy = section1FormModel.filter((item) => item.type !== 'title');
-
-let validationSchema: Record<string, any> = {};
-
-dummy.forEach((item) => {
-  if (item.name) {
-    if (item.name === 'name')
-      validationSchema[item.name] = Yup.string()
-        .min(3, 'Too Short!')
-        .max(50, 'Too Long!')
-        .required('Required');
-    else if (item.name === 'age')
-      validationSchema[item.name] = Yup.number()
-        .required('Required')
-        .positive()
-        .integer();
-    else validationSchema[item.name] = Yup.string().required('Required');
-  }
-});
-
-export const Section1ValidationSchema = validationSchema;

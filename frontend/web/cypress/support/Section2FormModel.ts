@@ -1,4 +1,3 @@
-import * as Yup from 'yup';
 
 export const section2FormModel: Array<Record<string, any>> = [
   {
@@ -113,16 +112,4 @@ export const section2FormModel: Array<Record<string, any>> = [
   },
 ];
 
-let intermediate = section2FormModel.filter((item) => item.type !== 'title');
 
-let validationSchema: Record<string, any> = {};
-
-intermediate.forEach((item) => {
-  validationSchema[item.name] = Yup.string().required('Required');
-});
-
-export const Section2ValidationSchema = validationSchema;
-
-// export { validationSchema };
-
-// console.log(validationSchema);

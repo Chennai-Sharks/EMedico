@@ -42,6 +42,9 @@ const CustomCheckBox: React.FC<CustomCheckBoxProps> = (props) => {
 								<Field
 									type='checkbox'
 									// name={item}
+									style ={{
+										color: "#5664D2",
+									  }}
 									name={props.name}
 									value={item}
 									defaultValue=''
