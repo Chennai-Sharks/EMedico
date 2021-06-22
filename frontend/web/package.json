@@ -26,7 +26,7 @@
     "yup": "^0.32.9"
   },
   "scripts": {
-    "deploy": "cd .. && cd shared && yarn build && cd .. && cd web && react-scripts build",
+    "deploy": "yarn upgrade formik@2.2.9 && cd .. && cd shared && yarn build && cd .. && cd web && react-scripts build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "cypress open",
