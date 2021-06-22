@@ -15,7 +15,6 @@ const BFSection3Form: React.FC<BFSection3FormProps> = () => {
   const classes = formStyles();
 
   const { errors } = useFormikContext<typeof BFFormInitialValues>();
-  console.log(errors);
 
   return (
     <CustomCard

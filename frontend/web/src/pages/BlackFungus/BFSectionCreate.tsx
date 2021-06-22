@@ -162,7 +162,6 @@ export function FormikStepper({
       validateOnBlur={false}
       validateOnMount={false}
       onSubmit={async (values, helpers) => {
-        console.log('hello');
         if (isLastStep()) {
           await props.onSubmit(values, helpers);
           setStep(0);
