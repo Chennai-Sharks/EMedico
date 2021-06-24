@@ -1,4 +1,3 @@
-
 export const section3FormModel: Array<Record<string, any>> = [
   {
     type: 'bigtitle',
@@ -138,4 +137,3 @@ export const section3FormModel: Array<Record<string, any>> = [
     ],
   },
 ];
-

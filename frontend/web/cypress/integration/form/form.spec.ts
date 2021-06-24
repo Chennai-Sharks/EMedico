@@ -37,12 +37,7 @@ context('Testing form', () => {
     cy.contains('Next Section').click();
   });
 
-  it('Filling Section 2 Form', () => {
+  it('Filling Section 2 Form', () => {});
 
-  });
-
-  it('Filling Section 3 Form and submitting it to the server successfully', () => {
-
-  });
-
+  it('Filling Section 3 Form and submitting it to the server successfully', () => {});
 });

@@ -1,4 +1,3 @@
-
 export const section1FormModel: Array<Record<string, any>> = [
   {
     type: 'title',
@@ -64,8 +63,8 @@ export const section1FormModel: Array<Record<string, any>> = [
   {
     name: 'complaintRegion',
     type: 'dropdown',
-    props: ['Mouth','Nose','Ear','Face'],
-    label: 'Region of complaint'
+    props: ['Mouth', 'Nose', 'Ear', 'Face'],
+    label: 'Region of complaint',
   },
   {
     name: 'concurrentCovid',

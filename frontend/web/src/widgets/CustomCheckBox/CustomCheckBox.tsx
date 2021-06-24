@@ -9,56 +9,56 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { Field } from 'formik';
 
 const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		root: {
-			display: 'flex',
-		},
-		formControl: {
-			margin: theme.spacing(3),
-		},
-	})
+  createStyles({
+    root: {
+      display: 'flex',
+    },
+    formControl: {
+      margin: theme.spacing(3),
+    },
+  })
 );
 
 type CustomCheckBoxProps = any;
 
 const CustomCheckBox: React.FC<CustomCheckBoxProps> = (props) => {
-	const classes = useStyles();
+  const classes = useStyles();
 
-	return (
-		<div className={classes.root}>
-			<FormControl
-				required
-				error={props.error}
-				component='fieldset'
-				className={classes.formControl}
-			>
-				<FormLabel component='legend'>{props.label}</FormLabel>
+  return (
+    <div className={classes.root}>
+      <FormControl
+        required
+        error={props.error}
+        component='fieldset'
+        className={classes.formControl}
+      >
+        <FormLabel component='legend'>{props.label}</FormLabel>
 
-				<FormGroup>
-					{(props.items as string[]).map((item, index) => (
-						<FormControlLabel
-							key={index}
-							control={
-								<Field
-									type='checkbox'
-									// name={item}
-									style ={{
-										color: "#5664D2",
-									  }}
-									name={props.name}
-									value={item}
-									defaultValue=''
-									as={Checkbox}
-								/>
-							}
-							label={item}
-						/>
-					))}
-				</FormGroup>
-				<FormHelperText> {props.FormHelperText} </FormHelperText>
-			</FormControl>
-		</div>
-	);
+        <FormGroup>
+          {(props.items as string[]).map((item, index) => (
+            <FormControlLabel
+              key={index}
+              control={
+                <Field
+                  type='checkbox'
+                  // name={item}
+                  style={{
+                    color: '#5664D2',
+                  }}
+                  name={props.name}
+                  value={item}
+                  defaultValue=''
+                  as={Checkbox}
+                />
+              }
+              label={item}
+            />
+          ))}
+        </FormGroup>
+        <FormHelperText> {props.FormHelperText} </FormHelperText>
+      </FormControl>
+    </div>
+  );
 };
 
 export default CustomCheckBox;
