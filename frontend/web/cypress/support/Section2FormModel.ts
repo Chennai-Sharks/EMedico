@@ -1,4 +1,3 @@
-
 export const section2FormModel: Array<Record<string, any>> = [
   {
     type: 'title',
@@ -111,5 +110,3 @@ export const section2FormModel: Array<Record<string, any>> = [
     props: ['yes', 'no'],
   },
 ];
-
-

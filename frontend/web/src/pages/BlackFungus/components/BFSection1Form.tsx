@@ -69,7 +69,11 @@ const BFSection1Form: React.FC<BFSection1FormProps> = () => {
                 <Field
                   name={`section1.${item.name}`}
                   label={item.label}
-                  type={item.name === 'age' || item.name ==='phoneNumber' ? "number": undefined}
+                  type={
+                    item.name === 'age' || item.name === 'phoneNumber'
+                      ? 'number'
+                      : undefined
+                  }
                   padding={classes.textFieldPadding}
                   as={CustomTextField}
                   error={!!getIn(errors.section1, item.name)}

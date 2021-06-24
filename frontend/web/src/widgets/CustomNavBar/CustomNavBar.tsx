@@ -32,7 +32,6 @@ import { useHistory } from 'react-router-dom';
 import { mapRoutesToTitle } from '../../constant/MapRoutesToTitle';
 import { Signout } from '../../utils/Signout';
 import { credentialStore, docDetailsStore } from '@emedico/shared';
-
 const drawerWidth = 240;
 
 interface CustomNavBarProps {

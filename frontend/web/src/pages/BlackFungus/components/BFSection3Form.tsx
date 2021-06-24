@@ -48,6 +48,22 @@ const BFSection3Form: React.FC<BFSection3FormProps> = () => {
                 <Divider />
               </Grid>
             );
+          } else if (item.type === 'bigtitle') {
+            return (
+              <Grid item xs={12} className={classes.formTitle} key={index}>
+                <Typography
+                  className={classes.title}
+                  style={{
+                    textAlign: 'center',
+                    margin: '0px',
+                    marginTop: '10px',
+                  }}
+                  variant='h4'
+                >
+                  {item.label}
+                </Typography>
+              </Grid>
+            );
           } else if (item.type === 'radio') {
             return (
               <Grid item xs={12} sm={6} key={index}>

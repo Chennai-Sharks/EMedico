@@ -8,7 +8,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderRadius: '16px',
+    borderRadius: '10px',
+    borderTop: '8px solid #5664D2',
   },
   title: {
     fontSize: '1.5 rem',

@@ -10,7 +10,6 @@ import {
 } from '@material-ui/core';
 import React from 'react';
 import CustomCard from 'widgets/CustomCard/CustomCard';
-
 import Error404 from '../../assets/404.svg';
 import Error from '../../assets/error.svg';
 import { toHeaderCase } from 'js-convert-case';
@@ -114,6 +113,22 @@ const BFSection3GetAllowed: React.FC<any> = (props) => {
                   {item.label}
                 </Typography>
                 <Divider />
+              </Grid>
+            );
+          } else if (item.type === 'bigtitle') {
+            return (
+              <Grid item xs={12} className={classes.title} key={index}>
+                <Typography
+                  className={classes.title}
+                  style={{
+                    textAlign: 'center',
+                    margin: '0px',
+                    marginTop: '0px',
+                  }}
+                  variant='h4'
+                >
+                  {item.label}
+                </Typography>
               </Grid>
             );
           } else if (item.type === 'checkbox') {

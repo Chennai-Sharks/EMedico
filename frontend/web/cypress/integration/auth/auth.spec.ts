@@ -35,7 +35,7 @@ context('Authentication', () => {
         })
       );
     });
-
+   
     cy.visit('/home');
   });
 });
