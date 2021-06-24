@@ -17,7 +17,6 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-google-login": "^5.2.2",
-    "react-perfect-scrollbar": "^1.5.8",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
@@ -26,7 +25,7 @@
     "yup": "^0.32.9"
   },
   "scripts": {
-    "deploy": "cd .. && cd shared && yarn build && cd .. && cd web && react-scripts build",
+    "deploy": "yarn upgrade formik@2.2.9 && cd .. && cd shared && yarn build && cd .. && cd web && react-scripts build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "cypress open",

@@ -159,6 +159,7 @@ const HomePage: React.FC<HomePageProps> = () => {
           alignItems='center'
           justify='center'
           className={classes.subContent}
+          style={{ marginBottom: '20px' }}
         >
           <Grid item xs={6} sm={3}>
             <CardTile
@@ -172,6 +173,7 @@ const HomePage: React.FC<HomePageProps> = () => {
             />
           </Grid>
         </Grid>
+
         <Grid item xs={12} sm={6}>
           <RecentPatients recentPatients={data?.data.recent} />
         </Grid>

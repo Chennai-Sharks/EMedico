@@ -10,7 +10,6 @@ import {
 } from '@material-ui/core';
 import React from 'react';
 import CustomCard from 'widgets/CustomCard/CustomCard';
-
 import Error404 from '../../assets/404.svg';
 import Error from '../../assets/error.svg';
 import { toHeaderCase } from 'js-convert-case';
