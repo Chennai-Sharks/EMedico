@@ -116,6 +116,22 @@ const BFSection3GetAllowed: React.FC<any> = (props) => {
                 <Divider />
               </Grid>
             );
+          } else if (item.type === 'bigtitle') {
+            return (
+              <Grid item xs={12} className={classes.title} key={index}>
+                <Typography
+                  className={classes.title}
+                  style={{
+                    textAlign: 'center',
+                    margin: '0px',
+                    marginTop: '0px',
+                  }}
+                  variant='h4'
+                >
+                  {item.label}
+                </Typography>
+              </Grid>
+            );
           } else if (item.type === 'checkbox') {
             return (
               <Grid item xs={12} key={index}>
