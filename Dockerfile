@@ -10,13 +10,13 @@ WORKDIR /home/server
 COPY ./server/package.json ./
 
 # Run this command
-RUN npm install
+RUN npm install --production
 
 # Copy all the contents in server folder to the docker Container in home/server
 COPY ./server/ .
 
 # Run node when running the docker container, not when building the container
-CMD node index.js
+CMD NODE_ENV=production node index.js
 
 # Expose this port to the outside world.
 EXPOSE 4000
