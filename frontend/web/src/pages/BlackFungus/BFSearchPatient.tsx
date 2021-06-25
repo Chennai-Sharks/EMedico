@@ -12,6 +12,7 @@ import ErrorImg from '../../assets/error.svg';
 interface BFSearchPatientProps {}
 
 const BFSearchPatient: React.FC<BFSearchPatientProps> = () => {
+  // maybe make it to async autocomplete
   const classes = useStyles();
   const router = useHistory();
   const { data, isLoading, isError, error } = GetBFAllPatients();
@@ -35,7 +36,7 @@ const BFSearchPatient: React.FC<BFSearchPatientProps> = () => {
     <div className={classes.content}>
       <CustomAutoComplete
         label='Enter Patient name'
-        data={data?.data}
+        data={(data?.data as Array<Record<string, any>>).reverse()}
         onChange={(_: any, value: any) => {
           router.push(`get-patient/section1/${value._id}`, {
             ...value,

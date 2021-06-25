@@ -143,6 +143,8 @@ export function FormikStepper({
   ] as React.ReactElement<FormikStepProps>;
   const [completed, setCompleted] = useState(false);
 
+  // const snackBar = snackBarStore((state) => state);
+
   function isLastStep() {
     return step === childrenArray.length - 1;
   }
@@ -152,6 +154,8 @@ export function FormikStepper({
       validationSchema={currentChild.props.validationSchema}
       validate={() => {
         console.log('error');
+        // snackBar.setOpen(true);
+        // snackBar.setmessage('Some Fields are not filled.');
         window.scrollTo({
           top: 0,
           left: 0,

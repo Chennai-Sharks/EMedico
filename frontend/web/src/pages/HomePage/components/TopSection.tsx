@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TopSection: React.FC<TopSectionProps> = (props) => {
+const TopSection: React.FC<TopSectionProps> = () => {
   const classes = useStyles();
   const docDetails = docDetailsStore((state) => state);
 

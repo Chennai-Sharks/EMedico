@@ -3,6 +3,7 @@ import React from 'react';
 
 type CustomCardProps = {
   customStyle?: React.CSSProperties | undefined;
+  elevation?: number;
 };
 
 const CustomCard: React.FC<CustomCardProps> = (props) => {
@@ -17,7 +18,11 @@ const CustomCard: React.FC<CustomCardProps> = (props) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.cardStyle} style={props.customStyle} elevation={1}>
+    <Card
+      className={classes.cardStyle}
+      style={props.customStyle}
+      elevation={props.elevation ?? 1}
+    >
       {props.children}
     </Card>
   );
