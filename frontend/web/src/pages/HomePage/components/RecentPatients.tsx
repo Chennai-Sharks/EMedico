@@ -36,7 +36,7 @@ const RecentPatients: React.FC<RecentPatientsProps> = (props) => {
   const classes = useStyles();
   const router = useHistory();
   return (
-    <CustomCard>
+    <CustomCard elevation={5}>
       <Typography className={classes.title} variant='h6'>
         Recently added patients
       </Typography>
