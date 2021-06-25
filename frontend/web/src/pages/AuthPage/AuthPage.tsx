@@ -91,9 +91,9 @@ const AuthPage: React.FC<AuthPageProps> = (props: any) => {
                 console.log(error);
                 snackBar.setOpen(true);
                 snackBar.setmessage(
-                  error.response.data
+                  error.response
                     ? error.response.data.message
-                    : 'something went wrong'
+                    : 'Something went wrong. Try again or contact us.'
                 );
                 setLoading(false);
               }
