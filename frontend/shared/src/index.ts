@@ -15,6 +15,7 @@ export * from './stores/CredentialStore';
 export * from './stores/getPatientStore';
 export * from './stores/SnackbarStore';
 export * from './stores/DoctorDetailsStore';
+export * from './stores/TabStateStore';
 
 export * from './schema/BlackFungus/FormInitialValues';
 
