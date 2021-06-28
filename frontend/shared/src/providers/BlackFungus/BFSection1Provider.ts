@@ -3,35 +3,6 @@ import { useMutation, useQuery } from 'react-query';
 import { credentialStore } from '../../stores/CredentialStore';
 import { APIURL } from '../../utils/Utils';
 
-// This is used to change the data from server to form schema that niki did.
-export const BFSection1DataTransformation = (data: Record<string, any>) => {
-  let oldData = { ...data };
-  let covidScreeningTest: {} = {
-    ...oldData['covidScreeningTest'],
-  };
-
-  delete oldData['covidScreeningTest'];
-  let mucormycosisSymptoms: {} = {
-    ...oldData['mucormycosisSymptoms'],
-  };
-
-  delete oldData['mucormycosisSymptoms'];
-
-  let newData: Record<string, any> = {
-    ...oldData,
-    ...covidScreeningTest,
-    ...mucormycosisSymptoms,
-  };
-  console.log('newdata');
-  delete newData['__v'];
-  delete newData['date'];
-
-  delete newData['_id'];
-  delete newData['mongoid'];
-
-  return newData;
-};
-
 export const AddPatientProvider = () => {
   // const docId = credentialStore((state) => state.docId);
   const jwt = credentialStore((state) => state.token);
@@ -151,7 +122,6 @@ export const DeleteBFSection1Data = () => {
   const docId = credentialStore((state) => state.docId);
   const jwt = credentialStore((state) => state.token);
   return useMutation((data: Record<string, any>) => {
-    console.log(data);
     return axios.delete(
       `${APIURL}/api/fungus/delete/patient/${docId}/${data.mongoid}`,
       {
