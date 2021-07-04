@@ -5,7 +5,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import AuthPage from 'pages/AuthPage/AuthPage';
 import { LinearProgress, withStyles } from '@material-ui/core';
 
-import { scrollBarStyle } from './ScrollBarStyle';
+import { scrollBarStyle } from 'utils/ScrollBarStyle';
 import PrivateRoute from './widgets/PrivateRoute/PrivateRoute';
 
 import './App.css';
@@ -60,6 +60,13 @@ function App() {
                   exact
                 >
                   {lazy(() => import('./pages/BlackFungus/BFSection3Get'))}
+                </PrivateRoute>
+
+                <PrivateRoute
+                  path='/mucormycosis/get-patient/section4/:patientid'
+                  exact
+                >
+                  {lazy(() => import('./pages/BlackFungus/BFSection4Get'))}
                 </PrivateRoute>
 
                 <PrivateRoute path='/mucormycosis/surgical-management' exact>

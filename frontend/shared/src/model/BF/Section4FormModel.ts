@@ -1,9 +1,5 @@
 export const section4FormModel: Array<Record<string, any>> = [
   {
-    type: 'bigtitle',
-    label: 'Surgical Management',
-  },
-  {
     name: 'surgicalPlan',
     type: 'checkbox',
     label: 'Choose surgical plan',
