@@ -46,7 +46,7 @@ export const AddSection4PatientData = () => {
     axios.post(
       `${APIURL}/api/fungus/post/section4/${data.mongoId}`,
       {
-        ...data.data,
+        surgicalPlan: data.surgicalPlan,
       },
       {
         headers: {
