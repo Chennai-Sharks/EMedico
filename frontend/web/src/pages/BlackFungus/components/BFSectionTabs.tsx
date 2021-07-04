@@ -8,16 +8,20 @@ interface BFSectionTabsProps {
   params: {
     patientid: string;
   };
+  section: number;
 }
 
 const BFSectionTabs: React.FC<BFSectionTabsProps> = (props) => {
   const { value, setvalue } = tabStateStore((state) => state);
 
   const router = useHistory();
+  React.useEffect(() => {
+    setvalue(props.section - 1);
+  }, [props.section, setvalue]);
+
   const handleChange = (_: React.ChangeEvent<{}>, newValue: number) => {
-    setvalue(newValue);
     router.push(
-      `/black-fungus/get-patient/section${newValue + 1}/${
+      `/mucormycosis/get-patient/section${newValue + 1}/${
         props.params.patientid
       }`,
       {

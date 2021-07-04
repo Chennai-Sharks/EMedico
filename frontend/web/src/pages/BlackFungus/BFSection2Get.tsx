@@ -87,7 +87,7 @@ const BFSection2GetAllowed: React.FC<any> = () => {
         justifyContent: 'center',
       }}
     >
-      <BFSectionTabs location={location.state} params={params} />
+      <BFSectionTabs location={location.state} params={params} section={2} />
       <Divider />
 
       <Typography className={classes.title} variant='h5'>
@@ -135,7 +135,7 @@ const BFSection2GetAllowed: React.FC<any> = () => {
         })}
       </Grid>
       <Divider />
-      <BFSectionTabs location={location.state} params={params} />
+      <BFSectionTabs location={location.state} params={params} section={2} />
     </CustomCard>
   );
 };
