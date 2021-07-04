@@ -35,50 +35,39 @@ function App() {
                 <PrivateRoute path='/home' exact>
                   {lazy(() => import('./pages/HomePage/HomePage'))}
                 </PrivateRoute>
-                <PrivateRoute path='/black-fungus/add-patient' exact>
+                <PrivateRoute path='/mucormycosis/add-patient' exact>
                   {lazy(() => import('./pages/BlackFungus/BFSectionCreate'))}
                 </PrivateRoute>
-                <PrivateRoute path='/black-fungus/get-patient' exact>
+                <PrivateRoute path='/mucormycosis/get-patient' exact>
                   {lazy(() => import('./pages/BlackFungus/BFSearchPatient'))}
                 </PrivateRoute>
                 <PrivateRoute
-                  path='/black-fungus/get-patient/section1/:patientid'
+                  path='/mucormycosis/get-patient/section1/:patientid'
                   exact
                 >
                   {lazy(() => import('./pages/BlackFungus/BFSection1Get'))}
                 </PrivateRoute>
 
                 <PrivateRoute
-                  path='/black-fungus/get-patient/section2/:patientid'
+                  path='/mucormycosis/get-patient/section2/:patientid'
                   exact
                 >
                   {lazy(() => import('./pages/BlackFungus/BFSection2Get'))}
                 </PrivateRoute>
 
                 <PrivateRoute
-                  path='/black-fungus/get-patient/section3/:patientid'
+                  path='/mucormycosis/get-patient/section3/:patientid'
                   exact
                 >
                   {lazy(() => import('./pages/BlackFungus/BFSection3Get'))}
                 </PrivateRoute>
 
-                {/* <Route
-                  path='/black-fungus/delete-patient'
-                  exact
-                  component={lazy(
-                    () => import('./pages/BlackFungus/BFSection1Delete')
-                  )}
-                /> */}
-                {/* <Route
-                  path='/black-fungus/update-patient'
-                  exact
-                  component={lazy(
-                    () => import('./pages/BlackFungus/BFSection1Update')
-                  )}
-                /> */}
-                {/**/}
+                <PrivateRoute path='/mucormycosis/surgical-management' exact>
+                  {lazy(() => import('./pages/BlackFungus/SurgicalManagement'))}
+                </PrivateRoute>
               </React.Suspense>
             </CustomNavBar>
+            {/* <Route component={lazy(() => import('./pages/404/404'))} /> */}
           </Switch>
         </div>
       </ThemeProvider>
