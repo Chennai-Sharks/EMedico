@@ -67,7 +67,6 @@ const BFSection4GetAllowed: React.FC<any> = () => {
   if (isLoading) {
     return <LinearProgress />;
   }
-  console.log(data);
 
   if (isError) {
     return (
