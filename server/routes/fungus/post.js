@@ -3,6 +3,7 @@ const User = require('../../models/User');
 const Section1 = require('../../models/fungus/section1');
 const Section2 = require('../../models/fungus/section2');
 const Section3 = require('../../models/fungus/section3');
+const Section4 = require('../../models/fungus/section4');
 
 router.post('/addPatient', async (req, res) => {
 	//checks if patient ID already exists
@@ -88,4 +89,17 @@ router.post('/section/:mongoid', async (req, res) => {
 	}
 });
 
+router.post('/section4/:mongoid', async (req, res) => {
+	const sec4 = new Section4({
+		mongoid: req.params.mongoid,
+		...req.body,
+	});
+	try {
+		await sec1.save();
+		res.send('Data added');
+	} catch (err) {
+		console.log(err);
+		res.status(400).send({ message: err });
+	}
+});
 module.exports = router;

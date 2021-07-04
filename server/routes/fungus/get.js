@@ -92,5 +92,17 @@ router.get('/section3/:mongoid', async (req, res) => {
 		res.status(400).json({ message: err });
 	}
 });
+router.get('/section4/:mongoid', async (req, res) => {
+	try {
+		let data = await Section4.findOne({ mongoid: req.params.mongoid }).exec();
+		if (data)
+			res.json({
+				...data._doc,
+			});
+		else res.status(404).json({ message: 'No patient.' });
+	} catch (err) {
+		res.status(400).json({ message: err });
+	}
+});
 
 module.exports = router;
