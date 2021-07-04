@@ -8,6 +8,7 @@ export * from './types/AuthTypes';
 export * from './model/BF/Section1FormModel';
 export * from './model/BF/Section2FormModel';
 export * from './model/BF/Section3FormModel';
+export * from './model/BF/Section4FormModel';
 
 export { QueryClient, QueryClientProvider };
 
@@ -15,6 +16,7 @@ export * from './stores/CredentialStore';
 export * from './stores/getPatientStore';
 export * from './stores/SnackbarStore';
 export * from './stores/DoctorDetailsStore';
+export * from './stores/TabStateStore';
 
 export * from './schema/BlackFungus/FormInitialValues';
 

@@ -70,7 +70,6 @@ const HomePage: React.FC<HomePageProps> = () => {
       </>
     );
   }
-  console.log(data?.data);
 
   const dashboardTiles = {
     ...data?.data.dash,

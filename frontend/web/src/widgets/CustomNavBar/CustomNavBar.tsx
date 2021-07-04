@@ -26,6 +26,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import AddIcon from '@material-ui/icons/Add';
 // import RemoveIcon from '@material-ui/icons/Remove';
 // import EditIcon from '@material-ui/icons/Edit';
+import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
 import { Avatar, Button } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
@@ -177,7 +178,7 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
         <List component='div' disablePadding>
           <ListItem
             button
-            onClick={() => handleRouteChange('/black-fungus/get-patient')}
+            onClick={() => handleRouteChange('/mucormycosis/get-patient')}
             className={classes.nested}
           >
             <ListItemIcon>
@@ -187,7 +188,7 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
           </ListItem>
           <ListItem
             button
-            onClick={() => handleRouteChange('/black-fungus/add-patient')}
+            onClick={() => handleRouteChange('/mucormycosis/add-patient')}
             className={classes.nested}
           >
             <ListItemIcon>
@@ -195,19 +196,21 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
             </ListItemIcon>
             <ListItemText primary='Add Patient' />
           </ListItem>
+          <ListItem
+            button
+            onClick={() =>
+              handleRouteChange('/mucormycosis/surgical-management')
+            }
+            className={classes.nested}
+          >
+            <ListItemIcon>
+              <LocalHospitalIcon />
+            </ListItemIcon>
+            <ListItemText primary='Surgical Management' />
+          </ListItem>
           {/* <ListItem
 							button
-							onClick={() => handleRouteChange('/black-fungus/update-patient')}
-							className={classes.nested}
-						>
-							<ListItemIcon>
-								<EditIcon />
-							</ListItemIcon>
-							<ListItemText primary='Update Patient' />
-						</ListItem> */}
-          {/* <ListItem
-							button
-							onClick={() => handleRouteChange('/black-fungus/delete-patient')}
+							onClick={() => handleRouteChange('/mucormycosis/delete-patient')}
 							className={classes.nested}
 						>
 							<ListItemIcon>
