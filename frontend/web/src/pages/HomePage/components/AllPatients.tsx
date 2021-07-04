@@ -80,7 +80,7 @@ const AllPatients: React.FC<AllPatientsProps> = () => {
                         variant='outlined'
                         onClick={() => {
                           router.push(
-                            `black-fungus/get-patient/section1/${patient._id}`,
+                            `mucormycosis/get-patient/section1/${patient._id}`,
                             {
                               ...patient,
                             }

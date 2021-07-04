@@ -15,6 +15,7 @@ import RecentPatients from './components/RecentPatients';
 import Error from '../../assets/error.svg';
 import AllPatients from './components/AllPatients';
 import CustomFab from '../../widgets/CustomFab/CustomFab';
+import CovidIcon from '../../assets/covid.png';
 
 import { useHistory } from 'react-router-dom';
 
@@ -105,6 +106,7 @@ const HomePage: React.FC<HomePageProps> = () => {
               `With: ${dashboardTiles.covid.y}`,
               `Without: ${dashboardTiles.covid.n}`,
             ]}
+            icon={CovidIcon}
           />
         </Grid>
         <Grid item xs={6} sm={3}>
@@ -183,7 +185,7 @@ const HomePage: React.FC<HomePageProps> = () => {
       <CustomFab
         interactive
         onClick={() => {
-          router.push('/black-fungus/add-patient');
+          router.push('/mucormycosis/add-patient');
         }}
       />
     </>
