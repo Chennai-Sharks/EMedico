@@ -21,8 +21,7 @@ router.post('/addPatient', async (req, res) => {
 		savedPatient = await doctor.save();
 		res.send(savedPatient.fPatients.pop());
 	} catch (err) {
-		console.log(err);
-		res.status(400).json({ message: err });
+		res.status(400).json({ message : 'Invalid Input' });
 	}
 });
 
@@ -84,8 +83,7 @@ router.post('/section/:mongoid', async (req, res) => {
 		await sec3.save();
 		res.send('Data added');
 	} catch (err) {
-		console.log(err);
-		res.status(400).send({ message: err });
+		res.status(400).send({ message : 'Invalid Input' });
 	}
 });
 
@@ -95,11 +93,10 @@ router.post('/section4/:mongoid', async (req, res) => {
 		...req.body,
 	});
 	try {
-		await sec1.save();
+		await sec4.save();
 		res.send('Data added');
 	} catch (err) {
-		console.log(err);
-		res.status(400).send({ message: err });
+		res.status(400).send({ message : 'Invalid Input' });
 	}
 });
 module.exports = router;
