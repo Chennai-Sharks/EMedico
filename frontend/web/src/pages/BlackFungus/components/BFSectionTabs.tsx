@@ -40,6 +40,7 @@ const BFSectionTabs: React.FC<BFSectionTabsProps> = (props) => {
       <Tab label='Section One' />
       <Tab label='Section Two' />
       <Tab label='Section Three' />
+      <Tab label='Surgical Plan' />
     </Tabs>
   );
 };

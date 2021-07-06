@@ -16,6 +16,11 @@ const useStyles = makeStyles((theme: Theme) =>
     formControl: {
       margin: theme.spacing(3),
     },
+    hover: {
+      '&:hover': {
+        backgroundColor: 'rgb(0,0,255,0.1)',
+      },
+    },
   })
 );
 
@@ -46,6 +51,7 @@ const CustomCheckBox: React.FC<CustomCheckBoxProps> = (props) => {
                   style={{
                     color: '#5664D2',
                   }}
+                  className={classes.hover}
                   name={props.name}
                   value={item}
                   defaultValue=''
