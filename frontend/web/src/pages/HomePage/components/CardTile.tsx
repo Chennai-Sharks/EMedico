@@ -8,11 +8,16 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderRadius: '16px',
+    borderRadius: '10px',
+    borderTop: '8px solid #5664D2',
   },
   title: {
     fontSize: '1.5 rem',
     fontWeight: 'bold',
+  },
+  imgSize: {
+    height: '55px',
+    width: '55px',
   },
   details: {
     display: 'flex',
@@ -29,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 interface CardTilePropsProps {
   title: string;
   values: string[];
+  icon?: any;
 }
 
 const CardTile: React.FC<CardTilePropsProps> = (props) => {
@@ -39,6 +45,7 @@ const CardTile: React.FC<CardTilePropsProps> = (props) => {
         <Typography variant='h6' gutterBottom className={classes.title}>
           {props.title}
         </Typography>
+
         <div className={classes.details}>
           {props.values.map((item, index) => (
             <Typography variant='body1' key={index}>
@@ -47,6 +54,9 @@ const CardTile: React.FC<CardTilePropsProps> = (props) => {
           ))}
         </div>
       </div>
+      {/* {props.icon && (
+        <img className={classes.imgSize} src={props.icon} alt={props.title} />
+      )} */}
     </Card>
   );
 };

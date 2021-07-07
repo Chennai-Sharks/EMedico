@@ -1,0 +1,2 @@
+cd frontend/shared
+tsc

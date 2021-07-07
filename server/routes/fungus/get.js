@@ -3,6 +3,7 @@ const User = require('../../models/User');
 const Section1 = require('../../models/fungus/section1');
 const Section2 = require('../../models/fungus/section2');
 const Section3 = require('../../models/fungus/section3');
+const Section4 = require('../../models/fungus/section4');
 
 router.get('/dashboard', async (req,res)=>{
 	try {
@@ -13,7 +14,7 @@ router.get('/dashboard', async (req,res)=>{
 			dash : user.dash.fungus
 		})	
 	} catch (error) {
-		res.status(400).send({ message:error});
+		res.status(400).send({ message:"No Dashboard data"});
 	}
 });
 
@@ -26,7 +27,7 @@ router.get('/getPatients', async (req, res) => {
 			res.status(400).send({message:'There are no patients'});
 		else res.json(allPatients);
 	} catch (err) {
-		res.status(400).send('Invalid ID');
+		res.status(400).send({message : 'Invalid ID'});
 	}
 });
 
@@ -39,8 +40,9 @@ router.get('/getOnePatient/:mongoid', async (req, res) => {
 			if (allPatients[i]._id == req.params.mongoid) 
 				res.json(allPatients[i]);
 		}
+		if(allPatient.length == 0) res.json({message: 'No patients'})
 	} catch (err) {
-		res.status(400).send(err);
+		res.status(400).send({ message : 'Invalid Input'});
 	}
 });
 
@@ -63,7 +65,7 @@ router.get('/section1/:mongoid', async (req, res) => {
 			// }
 		// }
 	} catch (err) {
-		res.status(400).json({ message: err });
+		res.status(400).json({ message : 'Invalid Input' });
 	}
 });
 
@@ -76,7 +78,7 @@ router.get('/section2/:mongoid', async (req, res) => {
 			});
 		else res.status(404).json({ message: 'No patient.' });
 	} catch (err) {
-		res.status(400).json({ message: err });
+		res.status(400).json({ message : 'Invalid Input' });
 	}
 });
 
@@ -89,7 +91,19 @@ router.get('/section3/:mongoid', async (req, res) => {
 			});
 		else res.status(404).json({ message: 'No patient.' });
 	} catch (err) {
-		res.status(400).json({ message: err });
+		res.status(400).json({ message : 'Invalid Input' });
+	}
+});
+router.get('/section4/:mongoid', async (req, res) => {
+	try {
+		let data = await Section4.findOne({ mongoid: req.params.mongoid }).exec();
+		if (data)
+			res.json({
+				...data._doc,
+			});
+		else res.status(404).json({ message: 'No patient.' });
+	} catch (err) {
+		res.status(400).json({ message : 'Invalid Input' });
 	}
 });
 

@@ -4,19 +4,23 @@ export const mapRoutesToTitle = [
     title: 'Dashboard',
   },
   {
-    route: '/black-fungus/get-patient',
+    route: '/mucormycosis/get-patient',
     title: 'Mucormycosis - Search Patient',
   },
   {
-    route: '/black-fungus/add-patient',
+    route: '/mucormycosis/add-patient',
     title: 'Mucormycosis - Add Patient Details',
   },
+  {
+    route: '/mucormycosis/surgical-management',
+    title: 'Add Surgical Details',
+  },
   // {
-  // 	route: '/black-fungus/update-patient',
+  // 	route: '/mucormycosis/update-patient',
   // 	title: 'Black Fungus - Update Patient Details',
   // },
   // {
-  //   route: '/black-fungus/delete-patient',
+  //   route: '/mucormycosis/delete-patient',
   //   title: 'Black Fungus - Delete Patient Details',
   // },
 ];

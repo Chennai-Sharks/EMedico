@@ -8,7 +8,7 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 //
-
+   
 Cypress.Commands.add('login', () => {
   window.localStorage.clear();
   cy.request('POST', 'http://localhost:4000/api/users/login', {

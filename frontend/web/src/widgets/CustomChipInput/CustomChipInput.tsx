@@ -32,9 +32,7 @@ const CustomChipInput: React.FC<CustomChipInputProps> = (props) => {
               placeholder='Press Enter after typing to add'
               className={props.padding}
               value={props.value}
-              onChange={() => {
-                console.log('hello');
-              }}
+              onChange={() => {}}
               onAdd={(chip) => arrayHelpers.push(chip)}
               onDelete={(chip) => arrayHelpers.remove(chip)}
               fullWidth

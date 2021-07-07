@@ -62,7 +62,7 @@ const AuthPage: React.FC<AuthPageProps> = (props: any) => {
           </Typography>
           <Box m={2} />
           <GoogleLogin
-            clientId='373451025957-0un7stu5blrn47pr8vj240uu5i4u7ap7.apps.googleusercontent.com'
+            clientId={process.env.REACT_APP_GOOGLE_OAUTH_KEY as string}
             cookiePolicy={'single_host_origin'}
             onRequest={() => {
               setLoading(true);
@@ -91,9 +91,9 @@ const AuthPage: React.FC<AuthPageProps> = (props: any) => {
                 console.log(error);
                 snackBar.setOpen(true);
                 snackBar.setmessage(
-                  error.response.data
+                  error.response
                     ? error.response.data.message
-                    : 'something went wrong'
+                    : 'Something went wrong. Try again or contact us.'
                 );
                 setLoading(false);
               }

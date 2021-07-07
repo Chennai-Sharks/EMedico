@@ -4,8 +4,7 @@ import React from 'react';
 type CustomTextFieldProps = any;
 
 const CustomTextField: React.FC<CustomTextFieldProps> = (props) => {
-  
-  const id = (props.name ?? '' as string).split('.').pop();
+  const id = (props.name ?? ('' as string)).split('.').pop();
 
   return (
     <TextField

@@ -14,8 +14,8 @@ import CustomCard from 'widgets/CustomCard/CustomCard';
 import Error404 from '../../assets/404.svg';
 import Error from '../../assets/error.svg';
 import { toHeaderCase } from 'js-convert-case';
-import CustomButton from 'widgets/CustomButton/CustomButton';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import BFSectionTabs from 'pages/BlackFungus/components/BFSectionTabs';
 
 interface BFSection1GetProps {}
 
@@ -53,9 +53,8 @@ const BFSection1Get: React.FC<BFSection1GetProps> = (props: any) => {
   return <BFSection1GetAllowed {...props} />;
 };
 
-const BFSection1GetAllowed: React.FC<any> = (props) => {
+const BFSection1GetAllowed: React.FC<any> = () => {
   const classes = useStyles();
-  const router = useHistory();
   const location = useLocation<Record<string, any>>();
   const params = useParams<{ patientid: string }>();
 
@@ -88,12 +87,15 @@ const BFSection1GetAllowed: React.FC<any> = (props) => {
     <CustomCard
       customStyle={{
         marginTop: '20px',
-        marginBottom: '30px',
+        marginBottom: '40px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
       }}
     >
+      <BFSectionTabs location={location.state} params={params} section={1} />
+      <Divider />
+
       <Typography className={classes.title} variant='h5'>
         Section 1
       </Typography>
@@ -153,19 +155,9 @@ const BFSection1GetAllowed: React.FC<any> = (props) => {
           }
         })}
       </Grid>
-      <CustomButton
-        onClick={() => {
-          router.push(
-            `/black-fungus/get-patient/section2/${params.patientid}`,
-            {
-              ...location.state,
-            }
-          );
-        }}
-        customStyle={{ margin: ' 10px 35%' }}
-      >
-        Next
-      </CustomButton>
+
+      <Divider />
+      <BFSectionTabs location={location.state} params={params} section={1} />
     </CustomCard>
   );
 };

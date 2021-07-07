@@ -122,7 +122,3 @@ intermediate.forEach((item) => {
 });
 
 export const Section2ValidationSchema = validationSchema;
-
-// export { validationSchema };
-
-// console.log(validationSchema);

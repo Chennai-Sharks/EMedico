@@ -23,6 +23,7 @@ const CustomDialog: React.FC<CustomDialogProps> = (props) => {
   return (
     <Dialog
       open={props.open}
+      id='dialog'
       onClose={props.onClose}
       aria-labelledby='alert-dialog-title'
       aria-describedby='alert-dialog-description'

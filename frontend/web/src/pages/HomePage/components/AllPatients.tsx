@@ -43,7 +43,7 @@ const AllPatients: React.FC<AllPatientsProps> = () => {
   const { data, isLoading, isError, error } = GetBFAllPatients();
 
   return (
-    <CustomCard>
+    <CustomCard elevation={5}>
       <Typography className={classes.title} variant='h6'>
         All Patients
       </Typography>
@@ -80,7 +80,7 @@ const AllPatients: React.FC<AllPatientsProps> = () => {
                         variant='outlined'
                         onClick={() => {
                           router.push(
-                            `black-fungus/get-patient/section1/${patient._id}`,
+                            `mucormycosis/get-patient/section1/${patient._id}`,
                             {
                               ...patient,
                             }

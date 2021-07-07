@@ -53,14 +53,12 @@ const AuthScreen: React.FC<AuthScreenProps> = (props) => {
               try {
                 await GoogleSignin.hasPlayServices();
                 const userInfo = await GoogleSignin.signIn();
-                console.log(userInfo);
 
                 const response = await auth.mutateAsync({
                   email: userInfo.user.email,
                   name: userInfo.user.name!,
                   userId: userInfo.user.id,
                 });
-                console.log(response);
 
                 cred.setDocId(response.data.did);
                 cred.setToken(response.data.jwt);

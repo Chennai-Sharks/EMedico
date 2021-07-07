@@ -10,7 +10,5 @@ export const CheckAuthState: () => boolean = () => {
     return true;
   }
 
-  // if (deleteEverything) deleteEverything();
-
   return false;
 };

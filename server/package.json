@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm i && nodemon index.js"
+    "start": "npm i && nodemon index.js",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -12,17 +13,21 @@
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "express": "^4.17.1",
     "express-mongo-sanitize": "^2.1.0",
     "helmet": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.3",
-    "node": "^15.12.0",
+    "mongoose": "^5.12.14",
+    "node": "^15.14.0",
     "pdfkit": "^0.12.1",
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "babel-preset-env": "^1.7.0",
+    "jest": "^27.0.5",
+    "nodemon": "^2.0.7",
+    "superagent": "^6.1.0",
+    "supertest": "^6.1.3"
   }
 }

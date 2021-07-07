@@ -36,7 +36,7 @@ const RecentPatients: React.FC<RecentPatientsProps> = (props) => {
   const classes = useStyles();
   const router = useHistory();
   return (
-    <CustomCard>
+    <CustomCard elevation={5}>
       <Typography className={classes.title} variant='h6'>
         Recently added patients
       </Typography>
@@ -51,32 +51,34 @@ const RecentPatients: React.FC<RecentPatientsProps> = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.recentPatients.map((patient, index) => (
-              <TableRow hover key={index}>
-                <TableCell align='center'>
-                  <Typography variant='body1' style={{ fontWeight: 500 }}>
-                    {patient.name}
-                  </Typography>
-                </TableCell>
-                <TableCell align='center'>{patient.dpid}</TableCell>
-                <TableCell align='center'>
-                  <Button
-                    color='primary'
-                    variant='outlined'
-                    onClick={() => {
-                      router.push(
-                        `black-fungus/get-patient/section1/${patient._id}`,
-                        {
-                          ...patient,
-                        }
-                      );
-                    }}
-                  >
-                    View
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+            {props.recentPatients
+              .map((patient, index) => (
+                <TableRow hover key={index}>
+                  <TableCell align='center'>
+                    <Typography variant='body1' style={{ fontWeight: 500 }}>
+                      {patient.name}
+                    </Typography>
+                  </TableCell>
+                  <TableCell align='center'>{patient.dpid}</TableCell>
+                  <TableCell align='center'>
+                    <Button
+                      color='primary'
+                      variant='outlined'
+                      onClick={() => {
+                        router.push(
+                          `mucormycosis/get-patient/section1/${patient._id}`,
+                          {
+                            ...patient,
+                          }
+                        );
+                      }}
+                    >
+                      View
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))
+              .reverse()}
           </TableBody>
         </Table>
       ) : (

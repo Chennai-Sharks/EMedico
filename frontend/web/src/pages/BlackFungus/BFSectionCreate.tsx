@@ -58,7 +58,6 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
         initialValues={BFFormInitialValues}
         onSubmit={async (values) => {
           try {
-            console.log(values);
             const data = { ...values };
 
             const response = await addPatientProvider.mutateAsync({
@@ -66,19 +65,16 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
               dpid: data.section1.dpid,
             });
             const mongoId: string = response.data._id;
-            console.log(mongoId);
 
             delete data.section1.name;
             delete data.section1.dpid;
 
-            const response1 = await addPatientFormData.mutateAsync({
+            await addPatientFormData.mutateAsync({
               mongoId,
               data,
             });
 
             setOpenDialog(!openDialog);
-
-            console.log(response1.data);
           } catch (error: any) {
             console.log(error.response.data.message);
             snackBar.setOpen(true);
@@ -143,6 +139,8 @@ export function FormikStepper({
   ] as React.ReactElement<FormikStepProps>;
   const [completed, setCompleted] = useState(false);
 
+  // const snackBar = snackBarStore((state) => state);
+
   function isLastStep() {
     return step === childrenArray.length - 1;
   }
@@ -152,6 +150,8 @@ export function FormikStepper({
       validationSchema={currentChild.props.validationSchema}
       validate={() => {
         console.log('error');
+        // snackBar.setOpen(true);
+        // snackBar.setmessage('Some Fields are not filled.');
         window.scrollTo({
           top: 0,
           left: 0,
