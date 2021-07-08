@@ -11,20 +11,20 @@ const mongoSanitize = require('express-mongo-sanitize');
 const authRoute = require('./routes/auth');
 
 
-// var whitelist = ['https://www.maxillo.in', 'http://localhost:3000']
-// var corsOptions = {
-//   origin: function (origin, callback) {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true)
-//     } else {
-//       callback(new Error('Not allowed by CORS'))
-//     }
-//   }
-// }
+var whitelist = ['https://www.maxillo.in', 'http://localhost:3000']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
 
 //Middleware
 app.use(express.json({ limit: '10kb' }));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(xss());
 app.use(helmet());
 app.use(mongoSanitize());
