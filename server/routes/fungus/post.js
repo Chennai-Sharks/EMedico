@@ -16,14 +16,13 @@ router.post('/addPatient', async (req, res) => {
       if (patient[i].dpid == req.body.dpid)
         return res.status(400).send({ message: 'Patient ID already exists' });
 
-    //adds patient detail to
-    doctor.fPatients.push({ name: req.body.name, dpid: req.body.dpid });
-    savedPatient = await doctor.save();
-    res.send(savedPatient.fPatients.pop());
-  } catch (err) {
-    console.log(err);
-    res.status(400).json({ message: 'Failed to add. Try again' });
-  }
+		//adds patient detail to
+		doctor.fPatients.push({ name: req.body.name, dpid: req.body.dpid });
+		savedPatient = await doctor.save();
+		res.send(savedPatient.fPatients.pop());
+	} catch (err) {
+		res.status(400).json({ message : 'Invalid Input' });
+	}
 });
 
 router.post('/section/:mongoid', async (req, res) => {

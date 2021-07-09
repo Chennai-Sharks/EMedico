@@ -17,7 +17,7 @@ router.delete('/',async (req,res)=>{
         const del = await User.findByIdAndDelete(req.user._id)
         res.status(200).send(del)
     } catch (err) {
-        res.status(400).send(err)
+        res.status(400).send({message : 'Invalid Input'})
     }
 });
 router.patch('/schema',async (req, res)=>{
@@ -40,7 +40,7 @@ router.patch('/schema',async (req, res)=>{
 		}})
 		res.send("User schema updated!!")
 	} catch (error) {
-		res.send({message:error})
+		res.send({message:'Invalid Input'})
 	}
 })
 //Updates doctor details
@@ -53,9 +53,7 @@ router.patch('/', async (req, res) => {
       const Doc = await User.findByIdAndUpdate(id,update,options);
       res.json(Doc);
     } catch (err) {
-      res.status(400).json({
-        message: err
-      });
+      res.status(400).json({message: 'Invalid Input'});
     }
   
   });

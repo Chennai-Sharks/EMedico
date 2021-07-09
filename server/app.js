@@ -11,7 +11,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const authRoute = require('./routes/auth');
 
 
-// var whitelist = ['https://maxillo.in', 'http://localhost:3000']
+// var whitelist = ['https://www.maxillo.in', 'http://localhost:3000']
 // var corsOptions = {
 //   origin: function (origin, callback) {
 //     if (whitelist.indexOf(origin) !== -1) {
