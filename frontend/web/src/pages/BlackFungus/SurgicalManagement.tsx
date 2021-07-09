@@ -65,7 +65,7 @@ const BFSection4Form: React.FC<BFSection4FormProps> = () => {
   const snackBar = snackBarStore((state) => state);
   const addSection4Data = AddSection4PatientData();
 
-  const { data, isLoading, isError, error } = GetBFAllPatients();
+  const { data, isLoading, isError, error, remove } = GetBFAllPatients();
 
   if (isLoading) {
     return <LinearProgress />;
@@ -117,7 +117,7 @@ const BFSection4Form: React.FC<BFSection4FormProps> = () => {
           }
         }}
       >
-        {({ errors, isSubmitting }) => {
+        {({ errors, isSubmitting, resetForm }) => {
           return (
             <Form>
               <Grid container className={classes.layout}>
@@ -169,7 +169,9 @@ const BFSection4Form: React.FC<BFSection4FormProps> = () => {
                                         color: '#5664D2',
                                       }}
                                       name={item.name}
-                                      value={eachProp.part1}
+                                      value={`${eachProp.part1} \n ${(
+                                        eachProp.option as string[]
+                                      ).map((item) => ` ${item}\n `)}`}
                                       defaultValue=''
                                       as={Checkbox}
                                     />
@@ -181,10 +183,7 @@ const BFSection4Form: React.FC<BFSection4FormProps> = () => {
                               )
                             )}
                           </FormGroup>
-                          <FormHelperText>
-                            {' '}
-                            {errors.surgicalPlan}{' '}
-                          </FormHelperText>
+                          <FormHelperText>{errors.surgicalPlan}</FormHelperText>
                         </FormControl>
                       </div>
                     );
@@ -209,7 +208,14 @@ const BFSection4Form: React.FC<BFSection4FormProps> = () => {
                   okButtonText='Okay'
                   onOkHandled={() => {
                     setOpenDialog(false);
-                    window.location.reload();
+                    resetForm();
+                    setMongoId('');
+                    remove();
+                    window.scrollTo({
+                      top: 0,
+                      left: 0,
+                      behavior: 'smooth',
+                    });
                   }}
                   title='Success'
                   content='Surgical Plan added successfully for the patient.'
