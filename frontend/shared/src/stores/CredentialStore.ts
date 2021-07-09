@@ -1,5 +1,6 @@
 import create from 'zustand';
 import { persist } from 'zustand/middleware';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type State = {
   docId: string;
@@ -43,6 +44,9 @@ export const credentialStore = create<State>(
 
     {
       name: 'docId-store',
+      getStorage: () => {
+        return AsyncStorage;
+      },
     }
   )
 );

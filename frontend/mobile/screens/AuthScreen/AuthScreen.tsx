@@ -15,18 +15,14 @@ import {
   credentialStore,
   AuthProvider,
 } from '@emedico/shared';
-import { useContext } from 'react';
-
-import { AuthContext } from '../../context/AuthContext';
 
 interface AuthScreenProps {}
 
-const AuthScreen: React.FC<AuthScreenProps> = (props) => {
+const AuthScreen: React.FC<AuthScreenProps> = () => {
   const snackBar = snackBarStore();
   const docDetails = docDetailsStore();
   const cred = credentialStore();
   const auth = AuthProvider();
-  const { setIsAuth } = useContext(AuthContext);
 
   return (
     <View style={authScreenStyles.background}>
@@ -51,6 +47,7 @@ const AuthScreen: React.FC<AuthScreenProps> = (props) => {
             style={authScreenStyles.signInButton}
             onPress={async () => {
               try {
+                console.log('ehhho');
                 await GoogleSignin.hasPlayServices();
                 const userInfo = await GoogleSignin.signIn();
 
@@ -66,7 +63,7 @@ const AuthScreen: React.FC<AuthScreenProps> = (props) => {
                 docDetails.setEmail(userInfo.user.email);
                 docDetails.setProfileUrl(userInfo.user.photo!);
                 docDetails.setName(userInfo.user.name!);
-                setIsAuth!(true);
+                console.log(docDetails.email);
               } catch (error) {
                 console.log(error);
                 snackBar.setmessage(error);

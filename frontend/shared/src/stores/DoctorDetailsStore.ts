@@ -1,5 +1,8 @@
 import create from 'zustand';
 import { persist } from 'zustand/middleware';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+console.log(typeof window);
 
 type State = {
   name: string;
@@ -36,6 +39,9 @@ export const docDetailsStore = create<State>(
 
     {
       name: 'doc-details-Store',
+      getStorage: () => {
+        return AsyncStorage;
+      },
     }
   )
 );

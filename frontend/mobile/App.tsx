@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -6,40 +6,38 @@ import AuthScreen from './screens/AuthScreen/AuthScreen';
 import { useEffect } from 'react';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { QueryClient, QueryClientProvider } from '@emedico/shared';
-import AuthProvider, { AuthContext } from './context/AuthContext';
 import HomeScreen from './screens/HomeScreen/HomeScreen';
+import { credentialStore } from '@emedico/shared';
 
 const Stack = createStackNavigator();
 
 const queryClient = new QueryClient();
 
 const App = () => {
+  const cred = credentialStore((state) => state);
   useEffect(() => {
     configureGoogleLogin();
   }, []);
-  const context = useContext(AuthContext);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <NavigationContainer>
-          <Stack.Navigator>
-            {context.isAuth ? (
-              <>
-                <Stack.Screen name='Home' component={HomeScreen} />
-              </>
-            ) : (
-              <Stack.Screen
-                name='Login'
-                component={AuthScreen}
-                options={{
-                  headerShown: false,
-                }}
-              />
-            )}
-          </Stack.Navigator>
-        </NavigationContainer>
-      </AuthProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          {cred.token ? (
+            <>
+              <Stack.Screen name='Home' component={HomeScreen} />
+            </>
+          ) : (
+            <Stack.Screen
+              name='Login'
+              component={AuthScreen}
+              options={{
+                headerShown: false,
+              }}
+            />
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
     </QueryClientProvider>
   );
 };
