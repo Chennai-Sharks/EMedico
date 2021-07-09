@@ -9,8 +9,37 @@ In Progress
 
 ## Developing
 
-Built with 
+### IOS/Android App - React Native (TypeScript)
+```json
+ "react": "17.0.1",
+ "react-native": "0.64.1",
+```
+State management - Zustand (stores are shared between all the frontend pipelines)
 
-React: 17.0.1
+### DashBoard - React (TypeScript)
+
+```json
+"react": "^17.0.2",
+"react-dom": "^17.0.2",
+```
+State management - Zustand (stores are shared between all the frontend pipelines)
+
+### Server - Node.js (JavaScript)
+
+```json
+"node": "^15.14.0",
+"express": "^4.17.1",
+```
+
+### Testing
+
+- Frontend - ***Cypress***
+- Server - ***Jest with supertest***
 
 
+---
+
+# License
+This project is closed source.
+
+---
