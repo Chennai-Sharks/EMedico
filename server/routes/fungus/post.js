@@ -82,8 +82,8 @@ router.post('/section/:mongoid', async (req, res) => {
 
 router.post('/section4/:mongoid', async (req, res) => {
   const sec4 = new Section4({
-    mongoid: req.params.mongoid,
-    ...req.body,
+    mongoid : req.params.mongoid,
+    surgicalPlan : req.body.surgicalPlan
   });
   try {
     await sec4.save();
