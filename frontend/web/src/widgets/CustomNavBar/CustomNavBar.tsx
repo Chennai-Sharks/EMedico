@@ -18,7 +18,8 @@ import {
   useTheme,
   Theme,
   createStyles,
-} from '@material-ui/core/styles';
+  useMediaQuery,
+} from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import FaceIcon from '@material-ui/icons/Face';
 // import ExpandLess from '@material-ui/icons/ExpandLess';
@@ -99,6 +100,10 @@ const useStyles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       alignItems: 'center',
       minHeight: 'fit-content',
+      marginTop: '10px',
+      [theme.breakpoints.up('md')]: {
+        marginTop: '0px',
+      },
     },
     avatar: {
       width: 60,
@@ -121,6 +126,7 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const router = useHistory();
+  const match = useMediaQuery(theme.breakpoints.up('md'));
   const deleteCred = credentialStore((state) => state.deleteEverything);
   const docDetails = docDetailsStore((state) => state);
 
@@ -142,7 +148,7 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
 
   const drawer = (
     <div>
-      <div className={classes.toolbar} />
+      {match && <div className={classes.toolbar} />}
       <div className={classes.profile}>
         <Avatar
           alt='Profile Pic'
