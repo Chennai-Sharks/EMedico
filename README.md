@@ -33,8 +33,8 @@ State management - Zustand (stores are shared between all the frontend pipelines
 
 ### Testing
 
-- Frontend - ***Cypress***
-- Server - ***Jest with supertest***
+- Frontend - **Cypress**
+- Server - **Jest with supertest**
 
 
 ---
