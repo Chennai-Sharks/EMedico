@@ -1,9 +1,11 @@
 # Maxillo
 
+---
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/c0a9bf07-e7b3-407c-81b0-4245f7ecd4bd/deploy-status)](https://app.netlify.com/sites/maxillo/deploys)
 
 **Code-Named Emedico**\
-In Progress
+Development in progress.
 
 ---
 
@@ -23,6 +25,14 @@ State management - Zustand (stores are shared between all the frontend pipelines
 "react-dom": "^17.0.2",
 ```
 State management - Zustand (stores are shared between all the frontend pipelines)
+
+### Product Page - Next.js/React (TypeScript)
+
+```json
+"next": "11.0.1",
+"react": "17.0.2",
+"react-dom": "17.0.2"
+```
 
 ### Server - Node.js (JavaScript)
 
