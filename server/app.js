@@ -7,19 +7,11 @@ const router = require('./routes/index');
 const xss = require('xss-clean');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
-//Import Rout es
+//Import Routes
 const authRoute = require('./routes/auth');
 
-
-var whitelist = ['https://www.maxillo.in', 'http://localhost:3000']
 var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
+  origin: process.env.ORIGIN
 }
 
 //Middleware
@@ -35,7 +27,7 @@ app.use('/api/users', authRoute);
 // M1
 //app.use('/api', router);
 
-// M2
+// M2 
 app.use('/api', verify, router);
 
 module.exports = app;
