@@ -21,6 +21,9 @@ const roundedSelectOnFocusStyle = () => ({
     '.MuiSelect-select:focus': {
       borderRadius: '16px',
     },
+    '.MuiPaper-rounded': {
+      borderRadius: '16px',
+    },
   },
 });
 
@@ -38,11 +41,6 @@ const CustomDropDown: React.FC<CustomDropDownProps> = (props) => {
         InputProps={{
           style: {
             borderRadius: '16px',
-          },
-        }}
-        MenuProps={{
-          classes: {
-            paper: classes.menuStyle,
           },
         }}
         className={classes.selectStyle}
