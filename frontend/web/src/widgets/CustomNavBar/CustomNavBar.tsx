@@ -24,7 +24,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import FaceIcon from '@material-ui/icons/Face';
 // import ExpandLess from '@material-ui/icons/ExpandLess';
 // import ExpandMore from '@material-ui/icons/ExpandMore';
-import AddIcon from '@material-ui/icons/Add';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 // import RemoveIcon from '@material-ui/icons/Remove';
 // import EditIcon from '@material-ui/icons/Edit';
 import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
@@ -122,6 +122,9 @@ const useStyles = makeStyles((theme: Theme) =>
     navFontStyle: {
       'font-weight': '600',
     },
+    addPrimaryColor: {
+      color: '#5664D2',
+    },
   })
 );
 
@@ -171,7 +174,7 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
             <DashboardIcon />
           </ListItemIcon>
           <ListItemText
-            classes={{ primary: classes.navFontStyle }}
+            // classes={{ primary: classes.navFontStyle }}
             primary='DashBoard'
           />
         </ListItem>
@@ -189,7 +192,7 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
               <FaceIcon />
             </ListItemIcon>
             <ListItemText
-              classes={{ primary: classes.navFontStyle }}
+              // classes={{ primary: classes.navFontStyle }}
               primary='Patient Detail'
             />
           </ListItem>
@@ -204,7 +207,7 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
             onClick={() => handleRouteChange('/mucormycosis/add-patient')}
           >
             <ListItemIcon>
-              <AddIcon />
+              <AddCircleIcon className={classes.addPrimaryColor} />
             </ListItemIcon>
             <ListItemText
               classes={{ primary: classes.navFontStyle }}
@@ -223,7 +226,7 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
               <LocalHospitalIcon />
             </ListItemIcon>
             <ListItemText
-              classes={{ primary: classes.navFontStyle }}
+              // classes={{ primary: classes.navFontStyle }}
               primary='Surgical Management'
             />
           </ListItem>
