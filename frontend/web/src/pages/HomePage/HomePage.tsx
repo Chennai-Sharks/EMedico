@@ -160,7 +160,7 @@ const HomePage: React.FC<HomePageProps> = () => {
           alignItems='center'
           justify='center'
           className={classes.subContent}
-          style={{ marginBottom: '-1px' }}
+          style={{ marginBottom: '-1px', marginTop: '5px' }}
         >
           <Grid item xs={6} sm={3}>
             <CardTile
