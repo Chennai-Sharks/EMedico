@@ -4,6 +4,8 @@ const app = express();
 var cors = require('cors');
 const verify = require('./routes/verifyToken');
 const router = require('./routes/index');
+const dotenv = require('dotenv');
+dotenv.config();
 const xss = require('xss-clean');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
@@ -11,8 +13,8 @@ const mongoSanitize = require('express-mongo-sanitize');
 const authRoute = require('./routes/auth');
 
 var corsOptions = {
-  origin: process.env.ORIGIN
-}
+  origin: process.env.ORIGIN,
+};
 
 //Middleware
 app.use(express.json({ limit: '10kb' }));
@@ -27,7 +29,7 @@ app.use('/api/users', authRoute);
 // M1
 //app.use('/api', router);
 
-// M2 
+// M2
 app.use('/api', verify, router);
 
 module.exports = app;
