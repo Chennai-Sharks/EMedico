@@ -4,23 +4,17 @@ const app = express();
 var cors = require('cors');
 const verify = require('./routes/verifyToken');
 const router = require('./routes/index');
+const dotenv = require('dotenv');
+dotenv.config();
 const xss = require('xss-clean');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
-//Import Rout es
+//Import Routes
 const authRoute = require('./routes/auth');
 
-
-var whitelist = ['https://www.maxillo.in', 'http://localhost:3000']
 var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
+  origin: process.env.ORIGIN,
+};
 
 //Middleware
 app.use(express.json({ limit: '10kb' }));

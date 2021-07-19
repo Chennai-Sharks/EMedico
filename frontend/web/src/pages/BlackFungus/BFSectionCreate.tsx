@@ -1,7 +1,7 @@
 import React from 'react';
 import { Step, StepLabel, Stepper } from '@material-ui/core';
 import { Form, Formik, FormikConfig, FormikValues } from 'formik';
-import * as Yup from 'yup';
+import { object } from 'yup';
 import { useState } from 'react';
 
 import {
@@ -11,12 +11,14 @@ import {
   snackBarStore,
 } from '@emedico/shared';
 
+import { FormikErrorOnFocus } from 'utils/ErrorOnFocus';
+
 import CustomButton from 'widgets/CustomButton/CustomButton';
 import { CircularProgress } from '@material-ui/core';
-import BFSection1Form from './components/BFSection1Form';
 import CustomSnackBar from 'widgets/CustomSnackBar/CustomSnackBar';
 import CustomDialog from 'widgets/CustomDialog/CustomDialog';
 
+import BFSection1Form from './components/BFSection1Form';
 import BFSection2Form from './components/BFSection2Form';
 import BFSection3Form from './components/BFSection3Form';
 
@@ -28,20 +30,19 @@ import {
 
 interface BFSection1CreateProps {}
 
-const validationSchema1 = Yup.object().shape({
-  section1: Yup.object()
+const validationSchema1 = object().shape({
+  section1: object()
     .shape(Section1ValidationSchema)
     .default(undefined)
     .nullable(),
 });
 
-const validationSchema2 = Yup.object().shape({
-  // Section2ValidationSchema is coming from shared. see there.
-  section2: Yup.object().shape(Section2ValidationSchema),
+const validationSchema2 = object().shape({
+  section2: object().shape(Section2ValidationSchema),
 });
 
-const validationSchema3 = Yup.object().shape({
-  section3: Yup.object().shape(Section3ValidationSchema),
+const validationSchema3 = object().shape({
+  section3: object().shape(Section3ValidationSchema),
 });
 
 const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
@@ -76,21 +77,27 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
 
             setOpenDialog(!openDialog);
           } catch (error: any) {
-            console.log(error.response.data.message);
+            console.log(
+              error.response.data.message ??
+                'Something went wrong. Maybe your 2 hour session got over. Reload to login again.'
+            );
             snackBar.setOpen(true);
             snackBar.setmessage(error.response.data.message);
           }
         }}
       >
         <FormikStep validationSchema={validationSchema1} label='Section 1'>
+          <FormikErrorOnFocus />
           <BFSection1Form />
         </FormikStep>
 
         <FormikStep validationSchema={validationSchema2} label='Section 2'>
+          <FormikErrorOnFocus />
           <BFSection2Form />
         </FormikStep>
 
         <FormikStep validationSchema={validationSchema3} label='Section 3'>
+          <FormikErrorOnFocus />
           <BFSection3Form />
         </FormikStep>
       </FormikStepper>
@@ -139,8 +146,6 @@ export function FormikStepper({
   ] as React.ReactElement<FormikStepProps>;
   const [completed, setCompleted] = useState(false);
 
-  // const snackBar = snackBarStore((state) => state);
-
   function isLastStep() {
     return step === childrenArray.length - 1;
   }
@@ -150,15 +155,8 @@ export function FormikStepper({
       validationSchema={currentChild.props.validationSchema}
       validate={() => {
         console.log('error');
-        // snackBar.setOpen(true);
-        // snackBar.setmessage('Some Fields are not filled.');
-        window.scrollTo({
-          top: 0,
-          left: 0,
-          behavior: 'smooth',
-        });
       }}
-      validateOnChange={false} // don't remove these. it is important.
+      validateOnChange={false}
       validateOnBlur={false}
       validateOnMount={false}
       onSubmit={async (values, helpers) => {

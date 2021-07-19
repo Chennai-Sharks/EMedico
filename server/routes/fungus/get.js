@@ -101,7 +101,7 @@ router.get('/section4/:mongoid', async (req, res) => {
 			res.json({
 				...data._doc,
 			});
-		else res.status(404).json({ message: 'No patient.' });
+		else res.status(404).json({ message: 'No surgical plan found for this patient.' });
 	} catch (err) {
 		res.status(400).json({ message : 'Invalid Input' });
 	}

@@ -42,8 +42,8 @@ router.post('/section/:mongoid', async (req, res) => {
   if (section1.longtermSteriods == 'yes') fungus.steriods.y++;
   else fungus.steriods.n++;
 
-  if (section1.hospitalizedHomecare == 'Hospitalized') fungus.hospitalized.y++;
-  else if (section1.hospitalizedHomecare == 'Home care')
+  if (section1.hospitalizedOrHomecare == 'Hospitalized') fungus.hospitalized.y++;
+  else if (section1.hospitalizedOrHomecare == 'Home care')
     fungus.hospitalized.n++;
 
   if (section1.vaccination == 'None') fungus.vaccination.n++;
