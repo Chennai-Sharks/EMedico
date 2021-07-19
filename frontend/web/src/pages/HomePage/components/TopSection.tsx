@@ -9,7 +9,7 @@ interface TopSectionProps {}
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(2),
   },
   title: {
     fontSize: '1.5 rem',
@@ -23,8 +23,10 @@ const TopSection: React.FC<TopSectionProps> = () => {
 
   return (
     <div className={classes.root}>
-      <Typography variant='body1'>Home</Typography>
-      <Typography variant='h6' className={classes.title}>
+      <Typography variant='body1' gutterBottom>
+        Home
+      </Typography>
+      <Typography gutterBottom variant='h6' className={classes.title}>
         Hello, {docDetails.name}
       </Typography>
       <Typography variant='subtitle1'>Here's some quick information</Typography>

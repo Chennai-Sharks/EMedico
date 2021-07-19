@@ -7,16 +7,11 @@ import CustomRadio from 'widgets/CustomRadio/CustomRadio';
 import CustomTextField from 'widgets/CustomTextField/CustomTextField';
 import { BFFormInitialValues, section1FormModel } from '@emedico/shared';
 import { formStyles } from './BFSection1FormStyles';
-import { scrollToTop } from 'utils/ScrollToTop';
 
 interface BFSection1FormProps {}
 
 const BFSection1Form: React.FC<BFSection1FormProps> = () => {
   const classes = formStyles();
-
-  React.useEffect(() => {
-    scrollToTop();
-  }, []);
 
   const { errors } = useFormikContext<typeof BFFormInitialValues>();
 

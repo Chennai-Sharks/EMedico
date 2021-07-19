@@ -97,9 +97,9 @@ context('Testing form', () => {
     });
 
     cy.contains('Submit').click();
-
+   
     cy.get('#alert-dialog-title', {
-      timeout: 6000,
+      timeout: 3000,
     });
   });
 });

@@ -141,9 +141,7 @@ const BFSection3GetAllowed: React.FC<any> = (props) => {
                     {toHeaderCase(item.label)}:
                   </Typography>
                   <Box className={classes.subtitle} fontWeight={500}>
-                    {(data?.data[item.name] as string[]).length === 0
-                      ? 'Nil'
-                      : data?.data[item.name].toString()}
+                    {data?.data[item.name]}
                   </Box>
                 </div>
               </Grid>

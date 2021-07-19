@@ -47,7 +47,7 @@ const section1Schema = new mongoose.Schema({
 			type:String,
 			enum:['None','1 dose','2 doses']
 		},
-		"hospitalizedOrHomeCare":{
+		"hospitalizedHomecare":{
 			type:String,
 			enum:['Hospitalized','Home care','None']
 		},

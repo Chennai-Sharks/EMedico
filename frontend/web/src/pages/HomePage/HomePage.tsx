@@ -21,11 +21,11 @@ import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   content: {
-    paddingTop: theme.spacing(1.5),
+    paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(8),
   },
   subContent: {
-    paddingTop: theme.spacing(1),
+    paddingTop: theme.spacing(4),
   },
   centerText: {
     display: 'flex',
@@ -160,7 +160,7 @@ const HomePage: React.FC<HomePageProps> = () => {
           alignItems='center'
           justify='center'
           className={classes.subContent}
-          style={{ marginBottom: '-1px', marginTop: '5px' }}
+          style={{ marginBottom: '20px' }}
         >
           <Grid item xs={6} sm={3}>
             <CardTile

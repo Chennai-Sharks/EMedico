@@ -6,16 +6,10 @@ import CustomCard from 'widgets/CustomCard/CustomCard';
 import { formStyles } from './BFSection1FormStyles';
 import { Typography, Divider, Grid } from '@material-ui/core';
 import CustomRadio from 'widgets/CustomRadio/CustomRadio';
-import { scrollToTop } from 'utils/ScrollToTop';
-
 interface BFSection2FormProps {}
 
 const BFSection2Form: React.FC<BFSection2FormProps> = () => {
   const classes = formStyles();
-
-  React.useEffect(() => {
-    scrollToTop();
-  }, []);
 
   const { errors } = useFormikContext<typeof BFFormInitialValues>();
 

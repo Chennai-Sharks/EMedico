@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import { Card, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -10,11 +10,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     borderRadius: '10px',
     borderTop: '8px solid #5664D2',
-    // remove if transition not needed (experimental)
-    transition: 'box-shadow 0.2s ease 0s',
-    '&:hover': {
-      boxShadow: 'rgb(0 0 0 / 8%) 0px 15px 15px',
-    },
   },
   title: {
     fontSize: '1.5 rem',
@@ -52,21 +47,11 @@ const CardTile: React.FC<CardTilePropsProps> = (props) => {
         </Typography>
 
         <div className={classes.details}>
-          {props.values.length > 2 ? (
-            <Grid container spacing={1}>
-              {props.values.map((item, index) => (
-                <Grid item xs={6} key={index}>
-                  <Typography variant='body1'>{item}</Typography>
-                </Grid>
-              ))}
-            </Grid>
-          ) : (
-            props.values.map((item, index) => (
-              <Typography variant='body1' key={index}>
-                {item}
-              </Typography>
-            ))
-          )}
+          {props.values.map((item, index) => (
+            <Typography variant='body1' key={index}>
+              {item}
+            </Typography>
+          ))}
         </div>
       </div>
       {/* {props.icon && (

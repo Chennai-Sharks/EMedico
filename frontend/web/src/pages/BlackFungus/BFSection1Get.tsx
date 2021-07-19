@@ -147,7 +147,7 @@ const BFSection1GetAllowed: React.FC<any> = () => {
                     {toHeaderCase(item.label)}:
                   </Typography>
                   <Box className={classes.subtitle} fontWeight={500}>
-                    {toHeaderCase(section1Data[item.name] ?? 'Nil')}
+                    {section1Data[item.name]}
                   </Box>
                 </div>
               </Grid>

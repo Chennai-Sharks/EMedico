@@ -8,16 +8,11 @@ import { Typography, Divider, Grid } from '@material-ui/core';
 import CustomRadio from '../../../widgets/CustomRadio/CustomRadio';
 import CustomTextField from '../../../widgets/CustomTextField/CustomTextField';
 import CustomCheckBox from '../../../widgets/CustomCheckBox/CustomCheckBox';
-import { scrollToTop } from 'utils/ScrollToTop';
 
 interface BFSection3FormProps {}
 
 const BFSection3Form: React.FC<BFSection3FormProps> = () => {
   const classes = formStyles();
-
-  React.useEffect(() => {
-    scrollToTop();
-  }, []);
 
   const { errors } = useFormikContext<typeof BFFormInitialValues>();
 

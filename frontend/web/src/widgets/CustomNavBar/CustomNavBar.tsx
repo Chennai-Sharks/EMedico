@@ -23,8 +23,8 @@ import {
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import FaceIcon from '@material-ui/icons/Face';
 // import ExpandLess from '@material-ui/icons/ExpandLess';
-// import ExpandMore from '@material-ui/icons/ExpandMore';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import AddIcon from '@material-ui/icons/Add';
 // import RemoveIcon from '@material-ui/icons/Remove';
 // import EditIcon from '@material-ui/icons/Edit';
 import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
@@ -119,12 +119,6 @@ const useStyles = makeStyles((theme: Theme) =>
     marginBottom: {
       marginBottom: theme.spacing(1),
     },
-    navFontStyle: {
-      'font-weight': '600',
-    },
-    addPrimaryColor: {
-      color: '#5664D2',
-    },
   })
 );
 
@@ -173,62 +167,52 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>
-          <ListItemText
-            // classes={{ primary: classes.navFontStyle }}
-            primary='DashBoard'
-          />
+          <ListItemText primary='DashBoard' />
         </ListItem>
         <div className={classes.marginBottom} />
 
         <Divider />
         <Typography className={classes.title}>Mucormycosis</Typography>
+        <ListItem>
+          <ListItemIcon>
+            <FaceIcon />
+          </ListItemIcon>
+          <ListItemText primary='Patients' />
+          <ExpandMore />
+        </ListItem>
 
         <List component='div' disablePadding>
           <ListItem
             button
             onClick={() => handleRouteChange('/mucormycosis/get-patient')}
+            className={classes.nested}
           >
             <ListItemIcon>
               <FaceIcon />
             </ListItemIcon>
-            <ListItemText
-              // classes={{ primary: classes.navFontStyle }}
-              primary='Patient Detail'
-            />
+            <ListItemText primary='Patient Detail' />
           </ListItem>
-          <Divider />
-
           <ListItem
             button
-            // style={{
-            //   boxShadow:
-            //     '0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08)',
-            // }}
             onClick={() => handleRouteChange('/mucormycosis/add-patient')}
+            className={classes.nested}
           >
             <ListItemIcon>
-              <AddCircleIcon className={classes.addPrimaryColor} />
+              <AddIcon />
             </ListItemIcon>
-            <ListItemText
-              classes={{ primary: classes.navFontStyle }}
-              primary='Add Patient'
-            />
+            <ListItemText primary='Add Patient' />
           </ListItem>
-          <Divider />
-
           <ListItem
             button
             onClick={() =>
               handleRouteChange('/mucormycosis/surgical-management')
             }
+            className={classes.nested}
           >
             <ListItemIcon>
               <LocalHospitalIcon />
             </ListItemIcon>
-            <ListItemText
-              // classes={{ primary: classes.navFontStyle }}
-              primary='Surgical Management'
-            />
+            <ListItemText primary='Surgical Management' />
           </ListItem>
           {/* <ListItem
 							button

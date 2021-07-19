@@ -1,4 +1,4 @@
-import { makeStyles, MenuItem, TextField, withStyles } from '@material-ui/core';
+import { makeStyles, MenuItem, TextField } from '@material-ui/core';
 import React from 'react';
 
 type CustomDropDownProps = any;
@@ -11,21 +11,7 @@ const useStyles = makeStyles(() => ({
     marginLeft: '20px',
     width: '97%',
   },
-  menuStyle: {
-    borderRadius: '16px',
-  },
 }));
-
-const roundedSelectOnFocusStyle = () => ({
-  '@global': {
-    '.MuiSelect-select:focus': {
-      borderRadius: '16px',
-    },
-    '.MuiPaper-rounded': {
-      borderRadius: '16px',
-    },
-  },
-});
 
 const CustomDropDown: React.FC<CustomDropDownProps> = (props) => {
   const classes = useStyles();
@@ -55,4 +41,4 @@ const CustomDropDown: React.FC<CustomDropDownProps> = (props) => {
   );
 };
 
-export default withStyles(roundedSelectOnFocusStyle)(CustomDropDown);
+export default CustomDropDown;

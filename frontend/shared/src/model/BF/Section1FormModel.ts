@@ -30,39 +30,27 @@ export const section1FormModel: Array<Record<string, any>> = [
     name: 'phoneNumber',
     type: 'textfield',
     label: 'Phone number',
-    notRequired: true,
   },
   {
     name: 'email',
     type: 'textfield',
     label: 'Email',
-    notRequired: true,
   },
   {
     name: 'city',
     type: 'textfield',
     label: 'Town/City',
-    notRequired: true,
   },
   {
     name: 'personalHistory',
     type: 'dropdown',
     props: ['single', 'married', 'divorce', 'separated', 'widowed', 'children'],
     label: 'Personal History',
-    notRequired: true,
   },
   {
     name: 'occupation',
     type: 'textfield',
     label: 'Occupation',
-    notRequired: true,
-  },
-  {
-    name: 'hospitalizedOrHomeCare',
-    type: 'dropdown',
-    props: ['Hospitalized', 'Home care'],
-    label: 'Hospitalized or Home care?',
-    notRequired: true,
   },
   {
     type: 'title',
@@ -77,8 +65,8 @@ export const section1FormModel: Array<Record<string, any>> = [
   {
     name: 'complaintRegion',
     type: 'dropdown',
-    props: ['Mouth', 'Nose', 'Ear', 'Face'],
-    label: 'Region of complaint',
+    props: ['Mouth','Nose','Ear','Face'],
+    label: 'Region of complaint'
   },
   {
     name: 'concurrentCovid',
@@ -327,7 +315,7 @@ let dummy = section1FormModel.filter((item) => item.type !== 'title');
 let validationSchema: Record<string, any> = {};
 
 dummy.forEach((item) => {
-  if (item.name && !item.notRequired) {
+  if (item.name) {
     if (item.name === 'name')
       validationSchema[item.name] = Yup.string()
         .min(3, 'Too Short!')
