@@ -19,4 +19,4 @@ COPY ./server/ .
 CMD NODE_ENV=production node index.js
 
 # Expose this port to the outside world.
-EXPOSE 5000
+EXPOSE 4000
