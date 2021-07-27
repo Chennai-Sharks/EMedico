@@ -1,11 +1,17 @@
 # Maxillo
 
 ---
+**Code-Named Emedico**\
+Development in progress.
+
+### Dashboard Deploy Status
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/c0a9bf07-e7b3-407c-81b0-4245f7ecd4bd/deploy-status)](https://app.netlify.com/sites/maxillo/deploys)
 
-**Code-Named Emedico**\
-Development in progress.
+### Product Page Deploy Status
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f159837d-bafa-459a-8537-8fc31b7dca54/deploy-status)](https://app.netlify.com/sites/product-page-maxillo/deploys)
+
 
 ---
 
