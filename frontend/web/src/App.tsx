@@ -77,7 +77,6 @@ function App() {
                 </PrivateRoute>
               </React.Suspense>
             </CustomNavBar>
-            {/* <Route component={lazy(() => import('./pages/404/404'))} /> */}
           </Switch>
         </div>
       </ThemeProvider>
