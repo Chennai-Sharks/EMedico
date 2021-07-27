@@ -3,13 +3,15 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import AuthPage from 'pages/AuthPage/AuthPage';
+import PrivacyPage from 'pages/Privacy/Privacy';
 import { LinearProgress, withStyles } from '@material-ui/core';
 
 import { scrollBarStyle } from 'utils/ScrollBarStyle';
 import PrivateRoute from './widgets/PrivateRoute/PrivateRoute';
 
-import './App.css';
 import CustomNavBar from 'widgets/CustomNavBar/CustomNavBar';
+
+import './App.css';
 
 function App() {
   const theme = createMuiTheme({
@@ -30,6 +32,7 @@ function App() {
           <Switch>
             <Redirect path='/' exact to='/auth' />
             <Route path='/auth' exact component={AuthPage} />
+            <Route path='/privacy' exact component={PrivacyPage} />
             <CustomNavBar>
               <React.Suspense fallback={<LinearProgress />}>
                 <PrivateRoute path='/home' exact>
