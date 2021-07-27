@@ -107,6 +107,19 @@ const AuthPage: React.FC<AuthPageProps> = (props: any) => {
           <Box m={2} />
 
           <Typography variant='subtitle2'>
+            By signing in, you agree to our{' '}
+            <a
+              href={`${process.env.REACT_APP_WEBSITE_URL as string}/privacy`}
+              target='_blank'
+              style={{ textDecoration: 'none' }}
+              rel='noreferrer'
+            >
+              Privacy Policy
+            </a>
+          </Typography>
+          <Box m={0.5} />
+
+          <Typography variant='subtitle2'>
             Copyright 2021, Team Maxillo
           </Typography>
         </div>
