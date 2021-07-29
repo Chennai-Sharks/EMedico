@@ -4,7 +4,7 @@ import Error404 from '../../assets/404.svg';
 interface PageNotFoundProps {}
 
 const PageNotFound: React.FC<PageNotFoundProps> = () => {
-  const match = useMediaQuery('(min-width:1100px)');
+  const match = useMediaQuery('(min-width:1200px)');
   const classes = useStyles();
   return (
     <>
@@ -25,7 +25,10 @@ const PageNotFound: React.FC<PageNotFoundProps> = () => {
           height: !match ? '90vh' : undefined,
         }}
       >
-        Page Not Found
+        Page Not Found.{' '}
+        <a style={{ fontSize: '16px' }} href='/'>
+          Go Back Home
+        </a>
       </Typography>
     </>
   );
