@@ -35,9 +35,11 @@ const AuthPage: React.FC<AuthPageProps> = (props: any) => {
 
   React.useEffect(() => {
     if (isAuth) {
-      router.replace('/home');
+      router.replace(
+        props.location.state ? props.location.state.goTo : '/home'
+      );
     }
-  }, [isAuth, router]);
+  }, [isAuth, props.location.state, router]);
 
   return (
     <Box className={classes.background} overflow='hidden'>
@@ -84,9 +86,6 @@ const AuthPage: React.FC<AuthPageProps> = (props: any) => {
                 docDetails.setName(finalResponse.profileObj.name);
 
                 setLoading(false);
-                router.replace(
-                  props.location.state ? props.location.state.goTo : '/home'
-                );
               } catch (error: any) {
                 console.log(error);
                 snackBar.setOpen(true);

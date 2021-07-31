@@ -1,6 +1,7 @@
 import { AppBar, Toolbar, Typography, makeStyles } from '@material-ui/core';
 import React from 'react';
 import { useHistory } from 'react-router';
+import { CheckAuthState } from 'utils/CheckAuthState';
 
 interface HeaderProps {}
 
@@ -18,6 +19,8 @@ const useStyles = makeStyles((theme) => ({
 const Header: React.FC<HeaderProps> = () => {
   const classes = useStyles();
   const router = useHistory();
+  const isAuth = CheckAuthState();
+
   return (
     <AppBar position='fixed'>
       <Toolbar>
@@ -25,7 +28,7 @@ const Header: React.FC<HeaderProps> = () => {
           variant='h6'
           className={classes.home}
           onClick={() => {
-            router.push('/home');
+            isAuth ? router.push('/home') : router.push('/auth');
           }}
         >
           Maxillo

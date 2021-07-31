@@ -1,17 +1,15 @@
-import React, { lazy } from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import AuthPage from 'pages/AuthPage/AuthPage';
-import PrivacyPage from 'pages/Privacy/Privacy';
-import { LinearProgress, withStyles } from '@material-ui/core';
-
+import { createBrowserHistory } from 'history';
+import { withStyles } from '@material-ui/core';
+import { renderRoutes } from 'react-router-config';
 import { scrollBarStyle } from 'utils/ScrollBarStyle';
-import PrivateRoute from './widgets/PrivateRoute/PrivateRoute';
 
-import CustomNavBar from 'widgets/CustomNavBar/CustomNavBar';
-
+import routes from 'routes/Routes';
 import './App.css';
+
+const history = createBrowserHistory();
 
 function App() {
   const theme = createMuiTheme({
@@ -26,61 +24,11 @@ function App() {
     },
   });
   return (
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <div className='App'>
-          <Switch>
-            <Redirect path='/' exact to='/auth' />
-            <Route path='/auth' exact component={AuthPage} />
-            <Route path='/privacy' exact component={PrivacyPage} />
-            <CustomNavBar>
-              <React.Suspense fallback={<LinearProgress />}>
-                <PrivateRoute path='/home' exact>
-                  {lazy(() => import('./pages/HomePage/HomePage'))}
-                </PrivateRoute>
-                <PrivateRoute path='/mucormycosis/add-patient' exact>
-                  {lazy(() => import('./pages/BlackFungus/BFSectionCreate'))}
-                </PrivateRoute>
-                <PrivateRoute path='/mucormycosis/get-patient' exact>
-                  {lazy(() => import('./pages/BlackFungus/BFSearchPatient'))}
-                </PrivateRoute>
-                <PrivateRoute
-                  path='/mucormycosis/get-patient/section1/:patientid'
-                  exact
-                >
-                  {lazy(() => import('./pages/BlackFungus/BFSection1Get'))}
-                </PrivateRoute>
-
-                <PrivateRoute
-                  path='/mucormycosis/get-patient/section2/:patientid'
-                  exact
-                >
-                  {lazy(() => import('./pages/BlackFungus/BFSection2Get'))}
-                </PrivateRoute>
-
-                <PrivateRoute
-                  path='/mucormycosis/get-patient/section3/:patientid'
-                  exact
-                >
-                  {lazy(() => import('./pages/BlackFungus/BFSection3Get'))}
-                </PrivateRoute>
-
-                <PrivateRoute
-                  path='/mucormycosis/get-patient/section4/:patientid'
-                  exact
-                >
-                  {lazy(() => import('./pages/BlackFungus/BFSection4Get'))}
-                </PrivateRoute>
-
-                <PrivateRoute path='/mucormycosis/surgical-management' exact>
-                  {lazy(() => import('./pages/BlackFungus/SurgicalManagement'))}
-                </PrivateRoute>
-              </React.Suspense>
-            </CustomNavBar>
-          </Switch>
-        </div>
-      </ThemeProvider>
-    </BrowserRouter>
+    <div className='App'>
+      <Router history={history}>
+        <ThemeProvider theme={theme}>{renderRoutes(routes)}</ThemeProvider>
+      </Router>
+    </div>
   );
 }
 

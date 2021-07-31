@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -22,6 +22,7 @@ import {
 } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import FaceIcon from '@material-ui/icons/Face';
+import { LinearProgress } from '@material-ui/core';
 // import ExpandLess from '@material-ui/icons/ExpandLess';
 // import ExpandMore from '@material-ui/icons/ExpandMore';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
@@ -34,6 +35,7 @@ import { useHistory } from 'react-router-dom';
 import { mapRoutesToTitle } from '../../constant/MapRoutesToTitle';
 import { Signout } from '../../utils/Signout';
 import { credentialStore, docDetailsStore } from '@emedico/shared';
+import { renderRoutes } from 'react-router-config';
 const drawerWidth = 240;
 
 interface CustomNavBarProps {
@@ -131,6 +133,8 @@ const useStyles = makeStyles((theme: Theme) =>
 const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
   const classes = useStyles();
   const theme = useTheme();
+  const { route }: any = props;
+
   const router = useHistory();
   const match = useMediaQuery(theme.breakpoints.up('md'));
   const deleteCred = credentialStore((state) => state.deleteEverything);
@@ -325,7 +329,9 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        {props.children}
+        <Suspense fallback={<LinearProgress />}>
+          {renderRoutes(route.routes)}
+        </Suspense>
       </main>
     </div>
   );
