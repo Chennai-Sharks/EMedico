@@ -97,7 +97,6 @@ const BFSection4Form: React.FC<BFSection4FormProps> = () => {
           surgicalPlan: [],
         }}
         onSubmit={async (values, action) => {
-          console.log(values);
           if (!mongoId) {
             snackBar.setmessage('Select a Patient before submitting.');
             snackBar.setOpen(true);

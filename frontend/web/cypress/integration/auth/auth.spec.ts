@@ -1,4 +1,3 @@
-/* eslint-disable jest/valid-expect-in-promise */
 context('Authentication', () => {
   it('checks for failing authentication request to server', () => {
     cy.request({
@@ -35,7 +34,7 @@ context('Authentication', () => {
         })
       );
     });
-   
+
     cy.visit('/home');
   });
 });
