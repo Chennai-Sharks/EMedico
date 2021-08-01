@@ -1,7 +1,26 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import React from 'react';
+import Head from 'next/head';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
-export default MyApp
+import type { AppProps } from 'next/app';
+
+import '../styles/globals.css';
+
+const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
+  React.useEffect(() => {
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles.parentElement!.removeChild(jssStyles);
+    }
+  }, []);
+
+  return (
+    <React.Fragment>
+      <Head>
+        <title>Next.js Starter Kit</title>
+      </Head>
+      <Component {...pageProps} />
+    </React.Fragment>
+  );
+};
+
+export default MyApp;
