@@ -1,7 +1,9 @@
 import React from 'react';
 import Head from 'next/head';
+import { ThemeProvider } from '@material-ui/styles';
 
 import type { AppProps } from 'next/app';
+import theme from '../theme/Theme';
 
 import '../styles/globals.css';
 
@@ -16,9 +18,13 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
     <React.Fragment>
       <Head>
-        <title>Next.js Starter Kit</title>
+        <title>Maxillo | Product</title>
+        <meta name='description' content='Maxillo Product Page' />
+        <link rel='icon' href='/logo.svg' />
       </Head>
-      <Component {...pageProps} />
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </React.Fragment>
   );
 };
