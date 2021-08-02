@@ -1,8 +1,8 @@
 import React from 'react';
 import CustomAppBar from '../components/AppBar/AppBar';
 import styles from '../styles/Home.module.css';
-import { withStyles } from '@material-ui/core';
-import { scrollBarStyle } from '../utils/ScrollBar';
+// import { withStyles } from '@material-ui/core';
+// import { scrollBarStyle } from '../utils/ScrollBar';
 import Section1 from '../sections/Section1';
 
 const Home = () => {
@@ -16,4 +16,4 @@ const Home = () => {
   );
 };
 
-export default withStyles(scrollBarStyle)(Home);
+export default Home;

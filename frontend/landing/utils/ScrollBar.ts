@@ -2,10 +2,10 @@ export const scrollBarStyle = () => ({
   '@global': {
     '*::-webkit-scrollbar': {
       width: '12px',
-      'background-color': '#fff',
+      'background-color': '#FFFFFF9C',
     },
     '*::-webkit-scrollbar-track': {
-      'background-color': '#fff',
+      'background-color': '#FFFFFF9C',
     },
     '*::-webkit-scrollbar-track:hover': {
       'background-color': '#f4f4f4',
