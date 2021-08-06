@@ -1,6 +1,5 @@
 # Maxillo
 
----
 **Code-Named Emedico**\
 Development in progress.
 
@@ -12,6 +11,17 @@ Development in progress.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f159837d-bafa-459a-8537-8fc31b7dca54/deploy-status)](https://app.netlify.com/sites/product-page-maxillo/deploys)
 
+
+---
+## URL
+
+### Dashboard
+
+URL - [https://www.maxillo.in](https://www.maxillo.in)
+
+### Product Page 
+
+URL - [https://product.maxillo.in](https://product.maxillo.in)
 
 ---
 
