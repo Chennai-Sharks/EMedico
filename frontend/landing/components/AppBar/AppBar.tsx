@@ -59,7 +59,7 @@ const CustomAppBar: React.FC<CustomAppBarProps> = () => {
 
   return (
     <ElevationScroll>
-      <AppBar position='sticky' color='inherit'>
+      <AppBar position='sticky' style={{ backgroundColor: '#fbfbfb' }}>
         <LinearProgress
           style={{
             width: '100%',
@@ -82,8 +82,7 @@ const CustomAppBar: React.FC<CustomAppBarProps> = () => {
 
           <Typography
             variant='h4'
-            style={{ fontWeight: 'bold', marginLeft: '10px' }}
-            color='inherit'
+            style={{ fontWeight: 'bold', marginLeft: '10px', color: 'black' }}
           >
             Maxillo
           </Typography>

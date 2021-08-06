@@ -17,6 +17,10 @@ const theme = createMuiTheme({
   },
   typography: {
     fontFamily: 'Inter, sans-serif',
+
+    h6: {
+      color: '#626262',
+    },
   },
 
   breakpoints: {
