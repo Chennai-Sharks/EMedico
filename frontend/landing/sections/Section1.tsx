@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Typography } from '@material-ui/core';
+import { Hidden, makeStyles, Typography } from '@material-ui/core';
 import DemoCard from '../components/DemoCard/DemoCard';
 
 interface Section1Props {}
@@ -25,17 +25,30 @@ const useStyles = makeStyles(() => ({
 const Section1: React.FC<Section1Props> = () => {
   const classes = useStyles();
   return (
-    <section>
+    <section id='section1'>
       <div className={classes.subject}>
-        <Typography variant='h2' className={classes.bold}>
-          Specialised
-        </Typography>
-        <Typography variant='h2' className={classes.bold} color='primary'>
-          Medical Dashboard
-        </Typography>
-        <Typography variant='h2' className={classes.bold}>
-          for Oral Surgeons
-        </Typography>
+        <Hidden implementation='css' xsDown>
+          <Typography variant='h2' className={classes.bold}>
+            Specialised
+          </Typography>
+          <Typography variant='h2' className={classes.bold} color='primary'>
+            Medical Dashboard
+          </Typography>
+          <Typography variant='h2' className={classes.bold}>
+            for Oral Surgeons
+          </Typography>
+        </Hidden>
+        <Hidden implementation='css' only={['lg', 'md', 'xl', 'sm']}>
+          <Typography variant='h4' className={classes.bold}>
+            Specialised
+          </Typography>
+          <Typography variant='h4' className={classes.bold} color='primary'>
+            Medical Dashboard
+          </Typography>
+          <Typography variant='h4' className={classes.bold}>
+            for Oral Surgeons
+          </Typography>
+        </Hidden>
       </div>
       <Typography variant='h6' className={classes.bold2}>
         Explore the dashboard by signing in{' '}

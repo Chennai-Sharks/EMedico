@@ -35,6 +35,7 @@ const Section2: React.FC<Section2Props> = () => {
   const classes = useStyles();
   return (
     <section
+      id='section2'
       style={{
         textAlign: 'center',
         marginTop: '50px',
@@ -53,6 +54,7 @@ const Section2: React.FC<Section2Props> = () => {
         market this time for Oral Surgeons. Dashboard pages with features that
         will convince you to use it for your Medical business.
       </Typography>
+
       <Grid container>
         <Grid xs={12} sm={6}>
           <DevicesIcon color='primary' className={classes.iconSize} />

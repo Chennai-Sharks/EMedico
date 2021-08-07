@@ -57,7 +57,7 @@ const useStyles = makeStyles(() => ({
 const Section3: React.FC<Section3Props> = () => {
   const classes = useStyles();
   return (
-    <section>
+    <section id='section3'>
       <Grid container>
         <Grid
           xs={12}
@@ -94,7 +94,7 @@ const Section3: React.FC<Section3Props> = () => {
           sm={4}
           style={{
             padding: '30px',
-            paddingRight: '70px',
+            // paddingRight: '70px',
           }}
           className={classes.flex}
         >
@@ -114,7 +114,7 @@ const Section3: React.FC<Section3Props> = () => {
           sm={4}
           style={{
             padding: '30px',
-            paddingLeft: '50px',
+            // paddingLeft: '50px',
           }}
           className={classes.flex}
         >
@@ -143,6 +143,7 @@ const Section3: React.FC<Section3Props> = () => {
         >
           here
         </a>
+        . As of today, only mucormycosis dashboard is available*
       </Typography>
     </section>
   );

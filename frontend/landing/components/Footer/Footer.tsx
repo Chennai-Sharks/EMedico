@@ -40,6 +40,7 @@ const Footer: React.FC<FooterProps> = () => {
     <>
       <Divider style={{ width: '100%' }} />
       <Box
+        id='footer'
         component='footer'
         width='100%'
         padding='1rem'

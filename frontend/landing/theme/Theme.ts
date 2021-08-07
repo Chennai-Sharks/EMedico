@@ -22,6 +22,10 @@ const theme = createMuiTheme({
       color: '#626262',
       textAlign: 'center',
     },
+    subtitle1: {
+      color: '#626262',
+      textAlign: 'center',
+    },
   },
 
   breakpoints: {
