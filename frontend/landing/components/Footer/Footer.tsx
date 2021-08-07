@@ -82,7 +82,7 @@ const Footer: React.FC<FooterProps> = () => {
             >
               <ListItem
                 component='a'
-                href='https://www.creative-tim.com?ref=adr-admin-footer'
+                href='https://www.maxillo.in/privacy'
                 rel='noopener noreferrer'
                 target='_blank'
                 classes={{
