@@ -117,6 +117,15 @@ const CustomAppBar: React.FC<CustomAppBarProps> = () => {
                 Features
               </Typography>
             </Button>
+            <Button>
+              <Typography
+                variant='subtitle1'
+                style={{ fontWeight: 'bold' }}
+                color='inherit'
+              >
+                About
+              </Typography>
+            </Button>
             <a
               style={{ minWidth: '80px', marginLeft: '10px' }}
               href='https://www.maxillo.in/auth'

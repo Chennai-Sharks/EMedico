@@ -20,13 +20,14 @@ const theme = createMuiTheme({
 
     h6: {
       color: '#626262',
+      textAlign: 'center',
     },
   },
 
   breakpoints: {
     values: {
       xs: 0,
-      sm: 700,
+      sm: 770,
       md: 960,
       lg: 1280,
       xl: 1920,

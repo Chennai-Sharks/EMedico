@@ -1,11 +1,9 @@
 .container {
-  min-height: 200vh;
   display: flex;
   flex-direction: column;
   scroll-behavior: smooth;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 .main {

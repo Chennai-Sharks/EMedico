@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Section1: React.FC<Section1Props> = (props) => {
+const Section1: React.FC<Section1Props> = () => {
   const classes = useStyles();
   return (
     <section>
