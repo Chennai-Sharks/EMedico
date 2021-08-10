@@ -1,8 +1,7 @@
 import React from 'react';
-import { FlatList, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import { Button } from 'react-native';
 import { credentialStore, GetDashboardData } from '@emedico/shared';
-import CustomCard from '../../widgets/CustomCard/CustomCard';
 import LinearProgress from '../../widgets/LinearProgressBar/LinearProgressBar';
 import { LogBox } from 'react-native';
 import CardTile from './components/CardTile';
@@ -23,9 +22,18 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
 
   if (isError) {
     return (
-      <Text>
-        {error?.response?.data.message ?? 'Server Error Please Contact Us'}
-      </Text>
+      <>
+        <Text>
+          {error?.response?.data.message ?? 'Server Error Please Contact Us'}
+        </Text>
+        <Button
+          title='logout'
+          onPress={() => {
+            console.log('hello');
+            cred.deleteEverything();
+          }}
+        />
+      </>
     );
   }
 
@@ -36,8 +44,6 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
   return (
     <ScrollView
       style={{
-        // display: 'flex',
-        // flexDirection: 'column',
         backgroundColor: '#ECF0FD',
       }}
     >
@@ -87,6 +93,15 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
         values={[
           `Yes: ${dashboardTiles.steriods.y}`,
           `No: ${dashboardTiles.steriods.n}`,
+        ]}
+      />
+      <CardTile
+        title={'Region of complaints:'}
+        values={[
+          `Eye: ${dashboardTiles.complaints.e}`,
+          `Face: ${dashboardTiles.complaints.f}`,
+          `Mouth: ${dashboardTiles.complaints.m}`,
+          `Nose: ${dashboardTiles.complaints.n}`,
         ]}
       />
     </ScrollView>

@@ -1,11 +1,15 @@
 import React from 'react';
+import { useEffect } from 'react';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import AuthScreen from './screens/AuthScreen/AuthScreen';
-import { useEffect } from 'react';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { QueryClient, QueryClientProvider } from '@emedico/shared';
+import { Provider as PaperProvider } from 'react-native-paper';
+
+import AuthScreen from './screens/AuthScreen/AuthScreen';
+import { theme } from './theme/Theme';
 import HomeScreen from './screens/HomeScreen/HomeScreen';
+import { QueryClient, QueryClientProvider } from '@emedico/shared';
 import { credentialStore } from '@emedico/shared';
 
 const Stack = createStackNavigator();
@@ -20,29 +24,31 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          {cred.token ? (
-            <>
+      <PaperProvider theme={theme}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            {cred.token ? (
+              <>
+                <Stack.Screen
+                  name='Home'
+                  component={HomeScreen}
+                  options={{
+                    headerTitle: 'Dashboard',
+                  }}
+                />
+              </>
+            ) : (
               <Stack.Screen
-                name='Home'
-                component={HomeScreen}
+                name='Login'
+                component={AuthScreen}
                 options={{
-                  headerTitle: 'Dashboard',
+                  headerShown: false,
                 }}
               />
-            </>
-          ) : (
-            <Stack.Screen
-              name='Login'
-              component={AuthScreen}
-              options={{
-                headerShown: false,
-              }}
-            />
-          )}
-        </Stack.Navigator>
-      </NavigationContainer>
+            )}
+          </Stack.Navigator>
+        </NavigationContainer>
+      </PaperProvider>
     </QueryClientProvider>
   );
 };

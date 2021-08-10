@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   title: {
-    fontSize: 25,
+    fontSize: 23,
     fontWeight: 'bold',
   },
   imgSize: {
@@ -21,12 +21,16 @@ const styles = StyleSheet.create({
   details: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'flex-start',
-    flexWrap: 'wrap',
-    marginLeft: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
   },
   label: {
     marginLeft: 10,
+  },
+  textStyle: {
+    textAlign: 'center',
+    fontSize: 15,
   },
 });
 
@@ -44,7 +48,9 @@ const CardTile: React.FC<CardTilePropsProps> = (props) => {
 
         <View style={styles.details}>
           {props.values.map((item, index) => (
-            <Text key={index}>{item}</Text>
+            <Text key={index} style={styles.textStyle}>
+              {item}
+            </Text>
           ))}
         </View>
       </View>
