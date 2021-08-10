@@ -106,19 +106,7 @@ const CustomAppBar: React.FC<CustomAppBarProps> = () => {
                 Home
               </Typography>
             </Button>
-
-            <Link to='section1' smooth={true} offset={250} duration={500}>
-              <Button>
-                <Typography
-                  variant='subtitle1'
-                  style={{ fontWeight: 'bold' }}
-                  color='inherit'
-                >
-                  Features
-                </Typography>
-              </Button>
-            </Link>
-            <Link to='section2' smooth={true} duration={500}>
+            <Link to='section1' smooth={true} duration={500}>
               <Button>
                 <Typography
                   variant='subtitle1'
@@ -129,6 +117,19 @@ const CustomAppBar: React.FC<CustomAppBarProps> = () => {
                 </Typography>
               </Button>
             </Link>
+
+            <Link to='section2' smooth={true} offset={250} duration={500}>
+              <Button>
+                <Typography
+                  variant='subtitle1'
+                  style={{ fontWeight: 'bold' }}
+                  color='inherit'
+                >
+                  Features
+                </Typography>
+              </Button>
+            </Link>
+
             <Link
               to='footer'
               spy={true}
