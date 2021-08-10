@@ -154,7 +154,7 @@ const CustomNavBar: React.FC<CustomNavBarProps> = (props) => {
 
   const handleRouteChange = (path: string) => {
     router.push(path);
-    setMobileOpen(!mobileOpen);
+    if (!match) setMobileOpen(false);
   };
 
   const drawer = (
