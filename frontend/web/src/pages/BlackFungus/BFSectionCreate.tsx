@@ -77,10 +77,6 @@ const BFSection1Create: React.FC<BFSection1CreateProps> = () => {
 
             setOpenDialog(!openDialog);
           } catch (error: any) {
-            console.log(
-              error.response.data.message ??
-                'Something went wrong. Maybe your 2 hour session got over. Reload to login again.'
-            );
             snackBar.setOpen(true);
             snackBar.setmessage(error.response.data.message);
           }
@@ -153,9 +149,6 @@ export function FormikStepper({
     <Formik
       {...props}
       validationSchema={currentChild.props.validationSchema}
-      validate={() => {
-        console.log('error');
-      }}
       validateOnChange={false}
       validateOnBlur={false}
       validateOnMount={false}

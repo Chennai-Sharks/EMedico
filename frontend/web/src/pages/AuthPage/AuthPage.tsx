@@ -85,7 +85,6 @@ const AuthPage: React.FC<AuthPageProps> = (props: any) => {
                 docDetails.setProfileUrl(finalResponse.profileObj.imageUrl);
                 docDetails.setName(finalResponse.profileObj.name);
               } catch (error: any) {
-                console.log(error);
                 snackBar.setOpen(true);
                 snackBar.setmessage(
                   error.response
