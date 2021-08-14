@@ -72,7 +72,16 @@ State management - Zustand (stores are shared between all the frontend pipelines
 
 ---
 
-# License
-This project is closed source.
+# Contributors
+
+**Poujhit MU [(https://github.com/Poujhit)](https://github.com/Poujhit/)**
+
+**Nikhilesh S [(https://github.com/NikhileshJr08](https://github.com/NikhileshJr08)**
+
+**R Naveen Sriram  [(https://github.com/NaveenSriramR)](https://github.com/NaveenSriramR/)**
+
+---
+
+ <h3 align="middle">All rights reserved</h3>
 
 ---
