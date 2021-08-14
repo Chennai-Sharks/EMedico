@@ -1,4 +1,6 @@
-# name: Build Flutter App for IOS and Android
+# CI for this project is disabled. Below is for the old legacy flutter code. Now it is updated
+# for react.
+# name: Build and test
 # on:
 #   push:
 #     paths:
