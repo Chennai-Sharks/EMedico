@@ -25,7 +25,7 @@ URL - [https://product.maxillo.in](https://product.maxillo.in)
 
 ---
 
-## Developing
+## Pipelines
 
 ### IOS/Android App - React Native (TypeScript)
 ```json
@@ -41,6 +41,13 @@ State management - Zustand (stores are shared between all the frontend pipelines
 "react-dom": "^17.0.2",
 ```
 State management - Zustand (stores are shared between all the frontend pipelines)
+
+### Desktop App - Electron Wrapper for dashboard (TypeScript)
+
+```json
+"electron": "^13.1.9",
+"electron-builder": "^22.11.7",
+```
 
 ### Product Page - Next.js/React (TypeScript)
 
