@@ -2,6 +2,7 @@
   "name": "mobile",
   "version": "1.0.0",
   "private": true,
+  "description": "Mobile App for Maxillo",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
@@ -53,5 +54,6 @@
       "json",
       "node"
     ]
-  }
+  },
+  "license": "UNLICENSED"
 }
