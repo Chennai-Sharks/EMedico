@@ -1,12 +1,15 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, Menu } from 'electron';
 
+import menuTray from './apptray';
+
+let menu: Menu;
 const __prod__ = app.isPackaged;
 
 function createWindow() {
-  // Create the browser window.
+  // Create the window.
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1200,
+    height: 780,
     title: 'Maxillo',
     webPreferences: {
       nodeIntegration: false, // since im not using any native features.
@@ -15,12 +18,11 @@ function createWindow() {
     },
   });
 
-  win.loadURL(__prod__ ? 'https://www.maxillo.in' : 'http://localhost:3000');
+  // applying custom menu
+  menu = Menu.buildFromTemplate(menuTray);
+  Menu.setApplicationMenu(menu);
 
-  // Open the DevTools.
-  //   if (!__prod__) {
-  //     win.webContents.openDevTools({ mode: "detach" });
-  //   }
+  win.loadURL(__prod__ ? 'https://www.maxillo.in' : 'http://localhost:3000');
 }
 
 // This method will be called when Electron has finished
