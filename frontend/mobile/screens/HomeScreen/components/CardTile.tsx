@@ -1,23 +1,22 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Divider } from 'react-native-paper';
 import Card from '../../../widgets/CustomCard/CustomCard';
 
 const styles = StyleSheet.create({
   root: {
     padding: 15,
     display: 'flex',
+    flex: 0.5,
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderRadius: 10,
   },
   title: {
-    fontSize: 23,
+    fontSize: 18,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
-  imgSize: {
-    height: '55px',
-    width: '55px',
-  },
+
   details: {
     display: 'flex',
     flexDirection: 'column',
