@@ -6,11 +6,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { Provider as PaperProvider } from 'react-native-paper';
 
+import { GOOGLE_CLIENT_ID } from 'react-native-dotenv';
+
 import AuthScreen from './screens/AuthScreen/AuthScreen';
 import { theme } from './theme/Theme';
-import HomeScreen from './screens/HomeScreen/HomeScreen';
 import { QueryClient, QueryClientProvider } from '@emedico/shared';
 import { credentialStore } from '@emedico/shared';
+import RootScreen from './navigation/DrawerNavigation';
 
 const Stack = createStackNavigator();
 
@@ -30,11 +32,9 @@ const App = () => {
             {cred.token ? (
               <>
                 <Stack.Screen
-                  name='Home'
-                  component={HomeScreen}
-                  options={{
-                    headerTitle: 'Dashboard',
-                  }}
+                  name='Root'
+                  component={RootScreen}
+                  options={{ headerShown: false }}
                 />
               </>
             ) : (
@@ -55,8 +55,7 @@ const App = () => {
 
 const configureGoogleLogin = async () => {
   GoogleSignin.configure({
-    webClientId:
-      '373451025957-0un7stu5blrn47pr8vj240uu5i4u7ap7.apps.googleusercontent.com',
+    webClientId: GOOGLE_CLIENT_ID,
     offlineAccess: false,
   });
 };
