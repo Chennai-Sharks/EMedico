@@ -38,39 +38,41 @@ const AuthScreen: React.FC<AuthScreenProps> = () => {
           />
           <Title style={authScreenStyles.titleStyle}>Maxillo</Title>
         </View>
-        <View style={authScreenStyles.loginButtonLayout}>
-          <Title>Login in to your account</Title>
+        {!cred.token ? (
+          <View style={authScreenStyles.loginButtonLayout}>
+            <Title>Login in to your account</Title>
 
-          <GoogleSigninButton
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Dark}
-            style={authScreenStyles.signInButton}
-            onPress={async () => {
-              try {
-                console.log('ehhho');
-                await GoogleSignin.hasPlayServices();
-                const userInfo = await GoogleSignin.signIn();
+            <GoogleSigninButton
+              size={GoogleSigninButton.Size.Wide}
+              color={GoogleSigninButton.Color.Dark}
+              style={authScreenStyles.signInButton}
+              onPress={async () => {
+                try {
+                  console.log('ehhho');
+                  await GoogleSignin.hasPlayServices();
+                  const userInfo = await GoogleSignin.signIn();
 
-                const response = await auth.mutateAsync({
-                  email: userInfo.user.email,
-                  name: userInfo.user.name!,
-                  userId: userInfo.user.id,
-                });
+                  const response = await auth.mutateAsync({
+                    email: userInfo.user.email,
+                    name: userInfo.user.name!,
+                    userId: userInfo.user.id,
+                  });
 
-                cred.setDocId(response.data.did);
-                cred.setToken(response.data.jwt);
+                  cred.setDocId(response.data.did);
+                  cred.setToken(response.data.jwt);
 
-                docDetails.setEmail(userInfo.user.email);
-                docDetails.setProfileUrl(userInfo.user.photo!);
-                docDetails.setName(userInfo.user.name!);
-                console.log(docDetails.email);
-              } catch (error) {
-                console.log(error);
-                snackBar.setmessage(error);
-              }
-            }}
-          />
-        </View>
+                  docDetails.setEmail(userInfo.user.email);
+                  docDetails.setProfileUrl(userInfo.user.photo!);
+                  docDetails.setName(userInfo.user.name!);
+                  console.log(docDetails.email);
+                } catch (error) {
+                  console.log(error);
+                  snackBar.setmessage(error);
+                }
+              }}
+            />
+          </View>
+        ) : null}
       </View>
       <Snackbar
         visible={snackBar.open}
