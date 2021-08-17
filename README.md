@@ -3,6 +3,8 @@
 **Code-Named Emedico**\
 Development in progress.
 
+Maxillo is a medical dashboard application specially crafted for oral surgeon's use. All the aspect of this project (mobile app, website/web app, server, desktop app) is built using the **JavaScript/TypeScript**. This project is a sole example of how powerful and useful javascript is. 
+
 ### Dashboard Deploy Status
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/c0a9bf07-e7b3-407c-81b0-4245f7ecd4bd/deploy-status)](https://app.netlify.com/sites/maxillo/deploys)
@@ -76,7 +78,7 @@ State management - Zustand (stores are shared between all the frontend pipelines
 
 **Poujhit MU [(https://github.com/Poujhit)](https://github.com/Poujhit/)**
 
-**Nikhilesh S [(https://github.com/NikhileshJr08](https://github.com/NikhileshJr08)**
+**Nikhilesh S [(https://github.com/NikhileshJr08)](https://github.com/NikhileshJr08)**
 
 **R Naveen Sriram  [(https://github.com/NaveenSriramR)](https://github.com/NaveenSriramR/)**
 
