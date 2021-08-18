@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { Provider as PaperProvider } from 'react-native-paper';
+import { NativeBaseProvider } from 'native-base';
 
 import { GOOGLE_CLIENT_ID } from 'react-native-dotenv';
 
@@ -26,29 +27,31 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <PaperProvider theme={theme}>
-        <NavigationContainer>
-          <Stack.Navigator>
-            {cred.token ? (
-              <>
+      <NativeBaseProvider>
+        <PaperProvider theme={theme}>
+          <NavigationContainer>
+            <Stack.Navigator>
+              {cred.token ? (
+                <>
+                  <Stack.Screen
+                    name='Root'
+                    component={RootScreen}
+                    options={{ headerShown: false }}
+                  />
+                </>
+              ) : (
                 <Stack.Screen
-                  name='Root'
-                  component={RootScreen}
-                  options={{ headerShown: false }}
+                  name='Login'
+                  component={AuthScreen}
+                  options={{
+                    headerShown: false,
+                  }}
                 />
-              </>
-            ) : (
-              <Stack.Screen
-                name='Login'
-                component={AuthScreen}
-                options={{
-                  headerShown: false,
-                }}
-              />
-            )}
-          </Stack.Navigator>
-        </NavigationContainer>
-      </PaperProvider>
+              )}
+            </Stack.Navigator>
+          </NavigationContainer>
+        </PaperProvider>
+      </NativeBaseProvider>
     </QueryClientProvider>
   );
 };
