@@ -123,7 +123,7 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
       </ScrollView>
       <FAB
         style={styles.fab}
-        icon={require('../../assets/plus.png')}
+        icon={'plus'}
         onPress={() => console.log('Pressed')}
       />
     </>
