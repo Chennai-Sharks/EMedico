@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
-import { Divider, RadioButton } from 'react-native-paper';
+import { Divider, HelperText, RadioButton } from 'react-native-paper';
 import CustomCard from '../CustomCard/CustomCard';
 import { toHeaderCase } from 'js-convert-case';
 
@@ -11,6 +11,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
+  margin: {
+    paddingBottom: 8,
+  },
 });
 
 interface CustomRadioProps {
@@ -18,6 +21,8 @@ interface CustomRadioProps {
   onValueChange: any;
   value: string;
   items: string[];
+  error: boolean;
+  helperText: string;
 }
 
 const CustomRadio: React.FC<CustomRadioProps> = ({
@@ -25,11 +30,11 @@ const CustomRadio: React.FC<CustomRadioProps> = ({
   onValueChange,
   value,
   items,
+  error,
+  helperText,
 }) => {
-  // const [stateValue, setStateValue] = React.useState('');
-
   return (
-    <CustomCard styles={{}}>
+    <CustomCard styles={error ? styles.margin : []}>
       <Text style={styles.title}>{label}</Text>
       <Divider />
       <RadioButton.Group onValueChange={onValueChange} value={value}>
@@ -45,6 +50,13 @@ const CustomRadio: React.FC<CustomRadioProps> = ({
           />
         ))}
       </RadioButton.Group>
+      <HelperText
+        style={{ textAlign: 'center', fontSize: 14 }}
+        type='error'
+        visible={error}
+      >
+        {helperText}
+      </HelperText>
     </CustomCard>
   );
 };
