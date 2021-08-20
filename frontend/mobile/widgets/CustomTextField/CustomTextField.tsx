@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { KeyboardTypeOptions, StyleSheet } from 'react-native';
 import { Divider, HelperText, TextInput } from 'react-native-paper';
 import { Text } from 'react-native';
 import CustomCard from '../CustomCard/CustomCard';
@@ -23,6 +23,7 @@ interface CustomTextFieldProps {
   label: string;
   error: boolean;
   helperText: string;
+  keyboardType?: KeyboardTypeOptions | undefined;
 }
 
 const CustomTextField: React.FC<CustomTextFieldProps> = (props) => {

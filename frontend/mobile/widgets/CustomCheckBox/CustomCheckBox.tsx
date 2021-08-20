@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Divider, Text } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import { Checkbox, Center } from 'native-base';
 import CustomCard from '../CustomCard/CustomCard';
 import { toHeaderCase } from 'js-convert-case';
@@ -32,8 +32,6 @@ const CustomCheckBox: React.FC<CustomCheckBoxProps> = ({
   onValueChange,
   value,
 }) => {
-  console.log(value);
-  // const [groupValue, setGroupValue] = React.useState(['Item 1', 'Item 3']);
   return (
     <CustomCard styles={styles.margin}>
       <Text style={styles.title}>{label}</Text>
