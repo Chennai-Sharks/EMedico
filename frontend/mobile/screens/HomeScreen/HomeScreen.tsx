@@ -127,8 +127,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }: any) => {
             `Nose: ${dashboardTiles.complaints.n}`,
           ]}
         />
-        <RecentPatients recentPatients={data?.data.recent} />
-        <AllPatients />
+        <RecentPatients
+          navigator={navigation}
+          recentPatients={data?.data.recent}
+        />
+        <AllPatients navigator={navigation} />
       </ScrollView>
       <FAB
         style={styles.fab}

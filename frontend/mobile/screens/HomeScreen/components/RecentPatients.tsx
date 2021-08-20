@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
 
 interface RecentPatientsProps {
   recentPatients: Array<Record<string, any>>;
+  navigator: any;
 }
 
 const RecentPatients: React.FC<RecentPatientsProps> = (props) => {
@@ -59,7 +60,12 @@ const RecentPatients: React.FC<RecentPatientsProps> = (props) => {
                 <DataTable.Cell style={styles.centerStyle}>
                   <Button
                     onPress={() => {
-                      console.log('click');
+                      props.navigator.navigate('Root', {
+                        screen: 'Mucormycosis - Patient Detials',
+                        params: {
+                          patientId: patient._id,
+                        },
+                      });
                     }}
                   >
                     View

@@ -38,9 +38,15 @@ const styles = StyleSheet.create({
   },
 });
 
-interface AllPatientsProps {}
+interface AllPatientsProps {
+  navigator: any;
+  fromBFAllPatients?: boolean;
+}
 
-const AllPatients: React.FC<AllPatientsProps> = () => {
+const AllPatients: React.FC<AllPatientsProps> = ({
+  navigator,
+  fromBFAllPatients,
+}: any) => {
   const { data, isLoading, isError, error, refetch } = GetBFAllPatients();
 
   useFocusEffect(
@@ -72,7 +78,7 @@ const AllPatients: React.FC<AllPatientsProps> = () => {
               Actions
             </DataTable.Title>
           </DataTable.Header>
-          <View style={styles.container}>
+          <View style={fromBFAllPatients ? [] : styles.container}>
             <ScrollView nestedScrollEnabled={true}>
               {(data?.data as Array<Record<string, any>>)
                 .map((patient, index) => (
@@ -86,7 +92,12 @@ const AllPatients: React.FC<AllPatientsProps> = () => {
                     <DataTable.Cell style={styles.centerStyle}>
                       <Button
                         onPress={() => {
-                          console.log('click');
+                          navigator.navigate('Root', {
+                            screen: 'Mucormycosis - Patient Detials',
+                            params: {
+                              patientId: patient._id,
+                            },
+                          });
                         }}
                       >
                         View
