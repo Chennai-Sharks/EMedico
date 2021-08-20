@@ -1,8 +1,12 @@
 import React from 'react';
+import {
+  Text,
+  KeyboardTypeOptions,
+  ScrollView,
+  StyleSheet,
+} from 'react-native';
 
 import { object } from 'yup';
-
-import { KeyboardTypeOptions, ScrollView, StyleSheet } from 'react-native';
 
 import { Formik, getIn } from 'formik';
 import { useFocusEffect } from '@react-navigation/native';
@@ -20,8 +24,8 @@ import {
   section3FormModel,
 } from '@emedico/shared';
 
-import { Text } from 'react-native';
 import { Button } from 'react-native-paper';
+
 import CustomTextField from '../../widgets/CustomTextField/CustomTextField';
 import CustomDropDown from '../../widgets/CustomDropDown/CustomDropDown';
 import CustomRadio from '../../widgets/CustomRadio/CustomRadio';
@@ -96,6 +100,10 @@ const BFSectionCreate: React.FC<BFSectionCreateProps> = () => {
 
   useFocusEffect(
     React.useCallback(() => {
+      ref.current?.scrollTo({
+        y: 0,
+        animated: true,
+      });
       setVisible(true);
       return () => {
         setVisible(false);
@@ -145,10 +153,17 @@ const BFSectionCreate: React.FC<BFSectionCreateProps> = () => {
         setFieldValue,
         errors,
         resetForm,
+        isSubmitting,
+        isValidating,
       }) => {
         return (
           <>
-            <ScrollView ref={ref}>
+            <ScrollView
+              ref={ref}
+              style={{
+                backgroundColor: '#ECF0FD',
+              }}
+            >
               <Text style={styles.title}>Section 1</Text>
 
               {section1FormModel.map((item, index) => {
@@ -282,6 +297,8 @@ const BFSectionCreate: React.FC<BFSectionCreateProps> = () => {
                 style={styles.button}
                 theme={{ roundness: 16 }}
                 mode='contained'
+                loading={isValidating || isSubmitting}
+                disabled={isValidating || isSubmitting}
                 onPress={handleSubmit}
               >
                 Submit form
