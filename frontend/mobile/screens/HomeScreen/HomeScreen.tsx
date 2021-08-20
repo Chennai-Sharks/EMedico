@@ -1,15 +1,15 @@
 import React from 'react';
-import { ScrollView, Text, StyleSheet } from 'react-native';
-import { GetDashboardData } from '@emedico/shared';
-import LinearProgress from '../../widgets/LinearProgressBar/LinearProgressBar';
-import { LogBox, View } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
-import CardTile from './components/CardTile';
-import RecentPatients from './components/RecentPatients';
-import AllPatients from './components/AllPatients';
-
+import { ScrollView, Text, StyleSheet, LogBox, View } from 'react-native';
 import { FAB } from 'react-native-paper';
+import { GetDashboardData } from '@emedico/shared';
+import { useFocusEffect } from '@react-navigation/native';
+
+import CardTile from './components/CardTile';
+import AllPatients from './components/AllPatients';
 import TopSection from './components/TopSection';
+import RecentPatients from './components/RecentPatients';
+
+import LinearProgress from '../../widgets/LinearProgressBar/LinearProgressBar';
 
 const styles = StyleSheet.create({
   tileContainer: { display: 'flex', flexDirection: 'row' },
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 
 interface HomeScreenProps {}
 
-const HomeScreen: React.FC<HomeScreenProps> = () => {
+const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }: any) => {
   const { data, isLoading, isError, error, refetch } = GetDashboardData();
   const [visible, setVisible] = React.useState(false);
 
@@ -134,7 +134,9 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
         style={styles.fab}
         icon={'plus'}
         visible={visible}
-        onPress={() => console.log('Pressed')}
+        onPress={() => {
+          navigation.navigate('Root', { screen: 'Mucormycosis - Add Patient' });
+        }}
       />
     </>
   );
