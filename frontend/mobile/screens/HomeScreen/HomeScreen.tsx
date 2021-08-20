@@ -3,6 +3,7 @@ import { ScrollView, Text, StyleSheet } from 'react-native';
 import { GetDashboardData } from '@emedico/shared';
 import LinearProgress from '../../widgets/LinearProgressBar/LinearProgressBar';
 import { LogBox, View } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import CardTile from './components/CardTile';
 import RecentPatients from './components/RecentPatients';
 import AllPatients from './components/AllPatients';
@@ -27,11 +28,19 @@ const styles = StyleSheet.create({
 interface HomeScreenProps {}
 
 const HomeScreen: React.FC<HomeScreenProps> = () => {
-  React.useEffect(() => {
-    LogBox.ignoreLogs(['Setting a timer for a long period of time']);
-  }, []);
+  const { data, isLoading, isError, error, refetch } = GetDashboardData();
+  const [visible, setVisible] = React.useState(false);
 
-  const { data, isLoading, isError, error } = GetDashboardData();
+  useFocusEffect(
+    React.useCallback(() => {
+      setVisible(true);
+      LogBox.ignoreLogs(['Setting a timer for a long period of time']);
+      refetch();
+      return () => {
+        setVisible(false);
+      };
+    }, [])
+  );
 
   if (isLoading) {
     return <LinearProgress />;
@@ -124,6 +133,7 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
       <FAB
         style={styles.fab}
         icon={'plus'}
+        visible={visible}
         onPress={() => console.log('Pressed')}
       />
     </>

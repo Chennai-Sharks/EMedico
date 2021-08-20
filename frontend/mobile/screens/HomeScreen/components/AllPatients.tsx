@@ -5,6 +5,7 @@ import { DataTable, Button, Divider } from 'react-native-paper';
 
 import CustomCard from '../../../widgets/CustomCard/CustomCard';
 import LinearProgressBar from '../../../widgets/LinearProgressBar/LinearProgressBar';
+import { useFocusEffect } from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   root: {
@@ -40,7 +41,13 @@ const styles = StyleSheet.create({
 interface AllPatientsProps {}
 
 const AllPatients: React.FC<AllPatientsProps> = () => {
-  const { data, isLoading, isError, error } = GetBFAllPatients();
+  const { data, isLoading, isError, error, refetch } = GetBFAllPatients();
+
+  useFocusEffect(
+    React.useCallback(() => {
+      refetch();
+    }, [])
+  );
 
   return (
     <CustomCard styles={styles.root}>
