@@ -1,10 +1,13 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
+
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
-import BFSectionCreate from '../screens/BlackFungus/BFSectionCreate';
 import BFSectionGet from '../screens/BlackFungus/BFSectionGet';
-import { StyleSheet } from 'react-native';
+import BFAllPatients from '../screens/BlackFungus/BFAllPatients';
+import BFSectionCreate from '../screens/BlackFungus/BFSectionCreate';
+
 import LogoutButton from '../widgets/LogoutButton/LogoutButton';
 
 const styles = StyleSheet.create({
@@ -35,16 +38,25 @@ const DrawerNavigation: React.FC<DrawerNavigationProps> = () => {
         name='Mucormycosis - Add Patient'
         component={BFSectionCreate}
         options={{
-          headerTitle: 'Add Patient',
+          headerTitle: 'BF - Add Patient',
           headerRight: () => <LogoutButton />,
           drawerLabel: 'Mucormycosis - Add Patient',
+        }}
+      />
+      <Drawer.Screen
+        name='Mucormycosis - All Patients'
+        component={BFAllPatients}
+        options={{
+          headerTitle: 'BF - All Patients',
+          headerRight: () => <LogoutButton />,
+          drawerLabel: 'Mucormycosis - All Patients',
         }}
       />
       <Drawer.Screen
         name='Mucormycosis - Patient Detials'
         component={BFSectionGet}
         options={{
-          headerTitle: 'Patient Detials',
+          headerTitle: 'BF - Patient Detials',
           headerRight: () => <LogoutButton />,
           drawerLabel: 'Mucormycosis - Patient Detials',
         }}
