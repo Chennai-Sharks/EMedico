@@ -60,8 +60,7 @@ const RecentPatients: React.FC<RecentPatientsProps> = (props) => {
                 <DataTable.Cell style={styles.centerStyle}>
                   <Button
                     onPress={() => {
-                      props.navigator.navigate('Root', {
-                        screen: 'Mucormycosis - Patient Detials',
+                      props.navigator.navigate('BF-PatientDetails', {
                         params: {
                           patientId: patient._id,
                         },

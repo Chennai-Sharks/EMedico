@@ -52,7 +52,8 @@ const DrawerNavigation: React.FC<DrawerNavigationProps> = () => {
           drawerLabel: 'Mucormycosis - All Patients',
         }}
       />
-      <Drawer.Screen
+      {
+        /* <Drawer.Screen
         name='Mucormycosis - Patient Detials'
         component={BFSectionGet}
         options={{
@@ -60,7 +61,10 @@ const DrawerNavigation: React.FC<DrawerNavigationProps> = () => {
           headerRight: () => <LogoutButton />,
           drawerLabel: 'Mucormycosis - Patient Detials',
         }}
-      />
+      /> */
+        // this will be added in future once search is implemented.
+        // For Version 1 this feature is disabled.
+      }
     </Drawer.Navigator>
   );
 };

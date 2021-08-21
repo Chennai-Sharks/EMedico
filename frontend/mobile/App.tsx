@@ -14,6 +14,7 @@ import { theme } from './theme/Theme';
 import { QueryClient, QueryClientProvider } from '@emedico/shared';
 import { credentialStore } from '@emedico/shared';
 import RootScreen from './navigation/DrawerNavigation';
+import BFSectionGet from './screens/BlackFungus/BFSectionGet';
 
 const Stack = createStackNavigator();
 
@@ -37,6 +38,13 @@ const App = () => {
                     name='Root'
                     component={RootScreen}
                     options={{ headerShown: false }}
+                  />
+                  <Stack.Screen
+                    name='BF-PatientDetails'
+                    component={BFSectionGet}
+                    options={{
+                      headerTitle: 'Mucormycosis - Patient Detials',
+                    }}
                   />
                 </>
               ) : (
