@@ -3,7 +3,7 @@
 **Code-Named Emedico**\
 Development in progress.
 
-Maxillo is a medical dashboard application specially crafted for oral surgeon's use. All the aspect of this project (mobile app, website/web app, server, desktop app) is built using the **JavaScript/TypeScript**. This project is a sole example of how powerful and useful javascript is. 
+Maxillo is a medical dashboard application specially crafted for oral surgeons. All the aspect of this project (mobile app, website/web app, server, desktop app) is built using **JavaScript/TypeScript**. This project is a sole example of how powerful and useful javascript is. 
 
 ### Dashboard Deploy Status
 
