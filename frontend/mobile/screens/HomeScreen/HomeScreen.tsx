@@ -1,5 +1,12 @@
 import React from 'react';
-import { ScrollView, Text, StyleSheet, LogBox, View } from 'react-native';
+import {
+  ScrollView,
+  Text,
+  StyleSheet,
+  LogBox,
+  View,
+  Image,
+} from 'react-native';
 import { FAB } from 'react-native-paper';
 import { GetDashboardData } from '@emedico/shared';
 import { useFocusEffect } from '@react-navigation/native';
@@ -23,12 +30,32 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   },
+  errorContainer: {
+    height: '100%',
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  errorText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin: 40,
+    textAlign: 'center',
+  },
+  errorImage: {
+    height: 200,
+    width: 300,
+    borderRadius: 16,
+    backgroundColor: '#fff',
+  },
 });
 
 interface HomeScreenProps {}
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }: any) => {
   const { data, isLoading, isError, error, refetch } = GetDashboardData();
+
   const [visible, setVisible] = React.useState(false);
 
   useFocusEffect(
@@ -48,17 +75,19 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }: any) => {
 
   if (isError) {
     return (
-      <>
-        <Text>
+      <View style={styles.errorContainer}>
+        <Image
+          source={require('../../assets/error.png')}
+          style={styles.errorImage}
+        />
+        <Text style={styles.errorText}>
           {error?.response?.data?.message ?? 'Server Error Please Contact Us'}
         </Text>
-      </>
+      </View>
     );
   }
 
-  const dashboardTiles = {
-    ...data?.data.dash,
-  };
+  const dashboardTiles = data?.data.dash;
 
   return (
     <>
