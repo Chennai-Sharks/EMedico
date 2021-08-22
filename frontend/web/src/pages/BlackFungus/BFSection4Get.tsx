@@ -120,30 +120,28 @@ const BFSection4GetAllowed: React.FC<any> = () => {
                     </Typography>
                   ) : (
                     (data?.data.surgicalPlan as Array<string>).map(
-                      (eachPlan, num) => {
-                        return (
-                          <ListItem>
-                            <ListItemIcon
-                              style={{
-                                backgroundColor: '#5664D2',
-                                borderRadius: '20px',
-                                height: '30px',
-                                minWidth: '30px',
-                                color: 'white',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                marginLeft: '10px',
-                                marginRight: '10px',
-                              }}
-                            >
-                              {num + 1}
-                            </ListItemIcon>
-                            <div style={{ fontSize: '1.3rem' }}>{eachPlan}</div>
-                            <Box m={3} />
-                          </ListItem>
-                        );
-                      }
+                      (eachPlan, num) => (
+                        <ListItem key={eachPlan}>
+                          <ListItemIcon
+                            style={{
+                              backgroundColor: '#5664D2',
+                              borderRadius: '20px',
+                              height: '30px',
+                              minWidth: '30px',
+                              color: 'white',
+                              display: 'flex',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                              marginLeft: '10px',
+                              marginRight: '10px',
+                            }}
+                          >
+                            {num + 1}
+                          </ListItemIcon>
+                          <div style={{ fontSize: '1.3rem' }}>{eachPlan}</div>
+                          <Box m={3} />
+                        </ListItem>
+                      )
                     )
                   )}
                 </List>
