@@ -7,6 +7,7 @@ import HomeScreen from '../screens/HomeScreen/HomeScreen';
 // import BFSectionGet from '../screens/BlackFungus/BFSectionGet';
 import BFAllPatients from '../screens/BlackFungus/BFAllPatients';
 import BFSectionCreate from '../screens/BlackFungus/BFSectionCreate';
+import AboutScreen from '../screens/AboutScreen/AboutScreen';
 
 import LogoutButton from '../widgets/LogoutButton/LogoutButton';
 
@@ -65,6 +66,15 @@ const DrawerNavigation: React.FC<DrawerNavigationProps> = () => {
         // this will be added in future once search is implemented.
         // For Version 1 this feature is disabled.
       }
+      <Drawer.Screen
+        name='About'
+        component={AboutScreen}
+        options={{
+          headerTitle: 'About',
+          headerRight: () => <LogoutButton />,
+          drawerLabel: 'About',
+        }}
+      />
     </Drawer.Navigator>
   );
 };
