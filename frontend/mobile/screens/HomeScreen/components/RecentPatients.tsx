@@ -61,9 +61,9 @@ const RecentPatients: React.FC<RecentPatientsProps> = (props) => {
                   <Button
                     onPress={() => {
                       props.navigator.navigate('BF-PatientDetails', {
-                        params: {
-                          patientId: patient._id,
-                        },
+                        patientId: patient._id,
+                        name: patient.name,
+                        dpid: patient.dpid,
                       });
                     }}
                   >

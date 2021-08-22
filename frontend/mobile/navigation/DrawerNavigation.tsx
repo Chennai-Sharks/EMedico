@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
-import BFSectionGet from '../screens/BlackFungus/BFSectionGet';
+// import BFSectionGet from '../screens/BlackFungus/BFSectionGet';
 import BFAllPatients from '../screens/BlackFungus/BFAllPatients';
 import BFSectionCreate from '../screens/BlackFungus/BFSectionCreate';
 

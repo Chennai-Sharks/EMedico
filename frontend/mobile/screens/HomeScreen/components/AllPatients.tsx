@@ -93,9 +93,9 @@ const AllPatients: React.FC<AllPatientsProps> = ({
                       <Button
                         onPress={() => {
                           navigator.navigate('BF-PatientDetails', {
-                            params: {
-                              patientId: patient._id,
-                            },
+                            patientId: patient._id,
+                            name: patient.name,
+                            dpid: patient.dpid,
                           });
                         }}
                       >
