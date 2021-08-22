@@ -62,3 +62,6 @@ buck-out/
 .env
 .env.staging
 .env.prod
+
+# Google
+google-services.json
