@@ -114,7 +114,6 @@ const Section3: React.FC<Section3Props> = () => {
           sm={4}
           style={{
             padding: '30px',
-            // paddingLeft: '50px',
           }}
           className={classes.flex}
         >
@@ -143,7 +142,25 @@ const Section3: React.FC<Section3Props> = () => {
         >
           here
         </a>
-        . As of today, only mucormycosis dashboard is available*
+        . As of today, only mucormycosis dashboard is available*. Download the
+        app for{' '}
+        <a
+          style={{ color: '#556cd6' }}
+          href='https://github.com/Chennai-Sharks/EMedico/releases/download/v1.0.0/maxillo.apk'
+          target='_blank'
+          rel='noreferrer'
+        >
+          android
+        </a>
+        ,{' '}
+        <a
+          style={{ color: '#556cd6' }}
+          href='https://github.com/Chennai-Sharks/EMedico/releases/download/v1.0.0/Maxillo-Setup-1.0.0.exe'
+          target='_blank'
+          rel='noreferrer'
+        >
+          windows
+        </a>
       </Typography>
     </section>
   );
