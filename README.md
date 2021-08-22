@@ -33,7 +33,7 @@ Download - [https://github.com/Chennai-Sharks/EMedico/releases/download/v1.0.0/m
 
 ### Desktop App
 
-Windows support is only present right now. More platforms will be supported Later.
+Windows support is only present right now. More platforms will be supported later.
 
 Download - [https://github.com/Chennai-Sharks/EMedico/releases/download/v1.0.0/Maxillo-Setup-1.0.0.exe](https://github.com/Chennai-Sharks/EMedico/releases/download/v1.0.0/Maxillo-Setup-1.0.0.exe)
 
@@ -88,7 +88,7 @@ State management - Zustand (stores are shared between all the frontend pipelines
 
 ---
 
-# Contributors
+## Contributors
 
 **Poujhit MU [(https://github.com/Poujhit)](https://github.com/Poujhit/)**
 
