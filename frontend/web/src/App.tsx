@@ -1,6 +1,6 @@
 import { Router } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 import { createBrowserHistory } from 'history';
 import { withStyles } from '@material-ui/core';
 import { renderRoutes } from 'react-router-config';
