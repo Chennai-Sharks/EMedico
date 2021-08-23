@@ -1,3 +1,10 @@
+// A Note for future updates
+// As of now this initial values and the data in model folder is not coupled.
+// In future remove this and extract the name (name: 'hospitalizedOrHomeCare')
+// from the Form Model. By this way, when changes are made to the model,
+// it is automatically reflected in the initial values too(Like how it is done for schema).
+// NO NEED OF COPYING. MAKE THE CODE DRY!
+
 export const BFFormInitialValues = {
   section1: {
     name: '',
@@ -10,6 +17,7 @@ export const BFFormInitialValues = {
     personalHistory: '',
     occupation: '',
     concurrentCovid: '',
+    hospitalizedOrHomeCare: '',
     recentCovid: '',
     diabetesMellitus: '',
     longtermSteroids: '',

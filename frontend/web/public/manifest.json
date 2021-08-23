@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Maxillo",
+  "name": "Maxillo - Dashboard for oral surgeons",
   "icons": [
     {
       "src": "favicon.ico",

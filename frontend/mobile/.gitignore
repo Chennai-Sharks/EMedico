@@ -57,3 +57,11 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+# env
+.env
+.env.staging
+.env.prod
+
+# Google
+google-services.json

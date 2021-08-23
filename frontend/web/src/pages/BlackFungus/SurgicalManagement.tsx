@@ -109,7 +109,6 @@ const BFSection4Form: React.FC<BFSection4FormProps> = () => {
               });
               setOpenDialog(!openDialog);
             } catch (error) {
-              console.error(error.response.data.message);
               snackBar.setmessage(error.response.data.message);
               snackBar.setOpen(true);
             }

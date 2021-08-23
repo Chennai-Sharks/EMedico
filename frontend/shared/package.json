@@ -1,14 +1,13 @@
 {
   "name": "@emedico/shared",
   "version": "1.0.0",
-  "description": "",
+  "description": "Shared business logic for maxillo products",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Team Maxillo",
+  "license": "UNLICENSED",
   "dependencies": {
     "axios": "^0.21.1",
     "react-query": "^3.16.0",

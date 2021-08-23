@@ -1,0 +1,65 @@
+{
+  "name": "desktop",
+  "version": "1.0.0",
+  "description": "Desktop app for Maxillo",
+  "main": "./dist/electron.js",
+  "scripts": {
+    "compile": "tsc",
+    "watch": "tsc -w",
+    "electron": "wait-on tcp:3000 && electron ./dist/electron.js",
+    "start": "yarn compile && concurrently -k \"cd .. && cd web && yarn start:electron\" \"yarn electron\"",
+    "build:win": "rm -rf build && yarn compile && electron-builder --win",
+    "build:linux": "yarn compile && electron-builder --linux",
+    "build:mac": "yarn compile && electron-builder --mac",
+    "build:all": "yarn compile && electron-builder -mwl"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "concurrently": "^6.2.1",
+    "cross-env": "^7.0.3",
+    "electron": "^13.1.9",
+    "electron-builder": "^22.11.7",
+    "typescript": "^4.3.5",
+    "wait-on": "^6.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Chennai-Sharks/EMedico"
+  },
+  "author": "Team Maxillo <neodemy2020@gmail.com>",
+  "homepage": "https://github.com/Chennai-Sharks/EMedico/",
+  "contributors": [
+    "Poujhit MU <poujhit.dev@gmail.com> (https://github.com/Poujhit/)",
+    "Nikhilesh S <nikhileshjr08@gmail.com> (https://github.com/NikhileshJr08)",
+    "R Naveen Sriram <naveensriram2000@gmail.com> (https://github.com/NaveenSriramR/)"
+  ],
+  "build": {
+    "appId": "com.electron.maxillo",
+    "productName": "Maxillo",
+    "win": {
+      "icon": "icons/logo.png",
+      "target": "nsis",
+      "publish": [
+        "github"
+      ]
+    },
+    "linux": {
+      "icon": "icons/logo.png",
+      "target": [
+        "deb",
+        "AppImage",
+        "snap",
+        "tar.gz",
+        "rpm"
+      ],
+      "category": "Utility"
+    },
+    "extraMetadata": {
+      "main": "dist/electron.js"
+    },
+    "directories": {
+      "output": "./build"
+    },
+    "extends": null
+  }
+}

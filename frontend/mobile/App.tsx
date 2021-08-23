@@ -1,16 +1,22 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import { useEffect } from 'react';
+import SplashScreen from 'react-native-splash-screen';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { Provider as PaperProvider } from 'react-native-paper';
+import { NativeBaseProvider } from 'native-base';
+
+import { GOOGLE_CLIENT_ID } from 'react-native-dotenv';
 
 import AuthScreen from './screens/AuthScreen/AuthScreen';
 import { theme } from './theme/Theme';
-import HomeScreen from './screens/HomeScreen/HomeScreen';
 import { QueryClient, QueryClientProvider } from '@emedico/shared';
 import { credentialStore } from '@emedico/shared';
+import RootScreen from './navigation/DrawerNavigation';
+import BFSectionGet from './screens/BlackFungus/BFSectionGet';
 
 const Stack = createStackNavigator();
 
@@ -20,43 +26,50 @@ const App = () => {
   const cred = credentialStore((state) => state);
   useEffect(() => {
     configureGoogleLogin();
+    SplashScreen.hide();
   }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <PaperProvider theme={theme}>
-        <NavigationContainer>
-          <Stack.Navigator>
-            {cred.token ? (
-              <>
+      <NativeBaseProvider>
+        <PaperProvider theme={theme}>
+          <NavigationContainer>
+            <Stack.Navigator>
+              {cred.token ? (
+                <>
+                  <Stack.Screen
+                    name='Root'
+                    component={RootScreen}
+                    options={{ headerShown: false }}
+                  />
+                  <Stack.Screen
+                    name='BF-PatientDetails'
+                    component={BFSectionGet}
+                    options={{
+                      headerTitle: 'Mucormycosis - Patient Detials',
+                    }}
+                  />
+                </>
+              ) : (
                 <Stack.Screen
-                  name='Home'
-                  component={HomeScreen}
+                  name='Login'
+                  component={AuthScreen}
                   options={{
-                    headerTitle: 'Dashboard',
+                    headerShown: false,
                   }}
                 />
-              </>
-            ) : (
-              <Stack.Screen
-                name='Login'
-                component={AuthScreen}
-                options={{
-                  headerShown: false,
-                }}
-              />
-            )}
-          </Stack.Navigator>
-        </NavigationContainer>
-      </PaperProvider>
+              )}
+            </Stack.Navigator>
+          </NavigationContainer>
+        </PaperProvider>
+      </NativeBaseProvider>
     </QueryClientProvider>
   );
 };
 
 const configureGoogleLogin = async () => {
   GoogleSignin.configure({
-    webClientId:
-      '373451025957-0un7stu5blrn47pr8vj240uu5i4u7ap7.apps.googleusercontent.com',
+    webClientId: GOOGLE_CLIENT_ID,
     offlineAccess: false,
   });
 };

@@ -33,7 +33,6 @@ const CustomCheckBox: React.FC<CustomCheckBoxProps> = (props) => {
   return (
     <div className={classes.root}>
       <FormControl
-        required
         error={props.error}
         component='fieldset'
         className={classes.formControl}

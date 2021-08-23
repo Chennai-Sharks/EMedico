@@ -1,7 +1,6 @@
 {
   "name": "emedico",
-  "version": "1.0.0",
-  "description": "In Progress",
+  "description": "Medical Dashboard app for oral surgeons",
   "private": true,
   "workspaces": {
     "packages": [
@@ -13,7 +12,11 @@
       "**/react",
       "**/react/**",
       "**/react-dom",
-      "**/react-dom/**"
+      "**/react-dom/**",
+      "**/electron",
+      "**/electron/**",
+      "**/electron-builder",
+      "**/electron-builder/**"
     ]
   },
   "scripts": {
@@ -21,13 +24,22 @@
     "mobile": "cd frontend && cd mobile",
     "server": "cd server"
   },
+  "author": "Chennai Sharks <neodemy2020@gmail.com>",
+  "contributors": [
+    "Poujhit MU <poujhit.dev@gmail.com> (https://github.com/Poujhit/)",
+    "Nikhilesh S <nikhileshjr08@gmail.com> (https://github.com/NikhileshJr08)",
+    "R Naveen Sriram <naveensriram2000@gmail.com> (https://github.com/NaveenSriramR/)"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Chennai-Sharks/EMedico.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "",
+  "keywords": [
+    "Dashboard",
+    "medical",
+    "react"
+  ],
+  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/Chennai-Sharks/EMedico/issues"
   },

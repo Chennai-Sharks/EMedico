@@ -16,20 +16,20 @@ router.post('/addPatient', async (req, res) => {
       if (patient[i].dpid == req.body.dpid)
         return res.status(400).send({ message: 'Patient ID already exists' });
 
-		//adds patient detail to
-		doctor.fPatients.push({ name: req.body.name, dpid: req.body.dpid });
-		savedPatient = await doctor.save();
-		res.send(savedPatient.fPatients.pop());
-	} catch (err) {
-		res.status(400).json({ message : 'Invalid Input' });
-	}
+    //adds patient detail to
+    doctor.fPatients.push({ name: req.body.name, dpid: req.body.dpid });
+    savedPatient = await doctor.save();
+    res.send(savedPatient.fPatients.pop());
+  } catch (err) {
+    res.status(400).json({ message: 'Invalid Input' });
+  }
 });
 
 router.post('/section/:mongoid', async (req, res) => {
   var doctor = await User.findOne({ _id: req.user._id });
   dash = doctor.dash;
   fungus = doctor.dash.fungus;
-  section1 = req.body.section1;
+  const section1 = req.body.section1;
   if (section1.recentCovid == 'yes') fungus.covid.y++;
   else fungus.covid.n++;
 
@@ -42,12 +42,32 @@ router.post('/section/:mongoid', async (req, res) => {
   if (section1.longtermSteriods == 'yes') fungus.steriods.y++;
   else fungus.steriods.n++;
 
-  if (section1.hospitalizedOrHomecare == 'Hospitalized') fungus.hospitalized.y++;
-  else if (section1.hospitalizedOrHomecare == 'Home care')
+  if (section1.hospitalizedOrHomeCare == 'Hospitalized')
+    fungus.hospitalized.y++;
+  else if (section1.hospitalizedOrHomeCare == 'Home care')
     fungus.hospitalized.n++;
 
   if (section1.vaccination == 'None') fungus.vaccination.n++;
   else fungus.vaccination.y++;
+
+  switch (section1.complaintRegion) {
+    case 'Mouth':
+      fungus.complaints.m++;
+      break;
+    case 'Nose':
+      fungus.complaints.n++;
+      break;
+    case 'Ear':
+      fungus.complaints.e++;
+      break;
+    case 'Face':
+      fungus.complaints.f++;
+      break;
+
+    default:
+      console.log('Not a proper input. Validation of mongodb failed.');
+      break;
+  }
 
   dash.fungus = fungus;
   // add section1 data to db
@@ -73,7 +93,7 @@ router.post('/section/:mongoid', async (req, res) => {
     await sec1.save();
     await sec2.save();
     await sec3.save();
-    res.send('Data added');
+    res.send({ message: 'Data added' });
   } catch (err) {
     console.log(err);
     res.status(400).send({ message: 'Failed to add. Try again' });
@@ -82,12 +102,12 @@ router.post('/section/:mongoid', async (req, res) => {
 
 router.post('/section4/:mongoid', async (req, res) => {
   const sec4 = new Section4({
-    mongoid : req.params.mongoid,
-    surgicalPlan : req.body.surgicalPlan
+    mongoid: req.params.mongoid,
+    surgicalPlan: req.body.surgicalPlan,
   });
   try {
     await sec4.save();
-    res.send('Data added');
+    res.send({ message: 'Data added' });
   } catch (err) {
     console.log(err);
     res.status(400).send({ message: 'Failed to add. Try again.' });
