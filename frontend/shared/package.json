@@ -9,7 +9,7 @@
   "author": "Team Maxillo",
   "license": "UNLICENSED",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "react-query": "^3.16.0",
     "yup": "^0.32.9",
     "zustand": "^3.5.1"
