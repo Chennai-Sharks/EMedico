@@ -150,7 +150,7 @@ const CustomAppBar: React.FC<CustomAppBarProps> = () => {
 
             <a
               style={{ minWidth: '80px', marginLeft: '10px' }}
-              href='https://www.maxillo.in/auth'
+              href='https://maxillo.netlify.app/auth'
               target='_blank'
               rel='noreferrer'
             >
